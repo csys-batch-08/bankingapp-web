@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+a{
+text-decoration:none}
+h3{
+padding:20px;
+background-color:blue;
+margin:0;
+}
+.sidebar{
+position:fixed;
+left:0;
+width:250px;
+height:100%;
+background:#042331;
+color:white;
+}
+.sidebar header{
+font-size:15px;
+color:white;
+text-align: center;
+line-height:50px;
+background:#063146;
+
+}
+ul{
+list-style-type: none;
+}
+.sidebar ul a{
+
+height:100%;
+width:100%;
+line-height: 40px;
+font-size: 15px;
+padding-left:40px;
+color:white;
+ 
+ 
+}
+ul li:hover a{
+padding-left:50px;
+}
+.sidebar ul a {
+margin-right:16px;
+}

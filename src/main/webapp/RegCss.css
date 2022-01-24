@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+ 
+     
+     .box1{
+           width:100%;
+           background:transparent;
+           border: 1px solid #fff;
+           margin :6px 0;
+	       
+}
+ a{
+	text-decoration:none;
+	color:white;
+ }
+ body{
+ background-image: url("bank15.jpg");
+ background-repeat: none;
+ }

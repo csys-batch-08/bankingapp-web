@@ -47,34 +47,32 @@ public class LoansDaoimpl implements LoansDao {
 			 
 			 pstmt.executeUpdate();
 				ResultSet rs = pstmt.executeQuery();
-				//System.out.println(userid);
-				//System.out.println("ghsgdjhsg");
+				 
 				if(rs.next()) {
 					 accNumber = rs.getLong(1);
 				}
-			//	System.out.println(accNumber);
+			 
 			    pstmt = con.prepareStatement(query);		  
 			     
 				pstmt.setLong(1, accNumber);
-				pstmt.setString(2,loan.getUser_name());
+				pstmt.setString(2,loan. getUsername());
 				pstmt.setDate(3,java.sql.Date.valueOf(loan.getDob()));
 				pstmt.setString(4,loan.getAddress());
 				pstmt.setLong(5,loan.getMobno());
 				pstmt.setString(6,loan.getEmail());
-				pstmt.setString(7,loan.getLoan_type());
+				pstmt.setString(7,loan.getLoanType());
 				pstmt.setString(8,loan.getDescription());
-				pstmt.setDouble(9 ,loan.getLoan_amount());
+				pstmt.setDouble(9 ,loan. getLoanAmount());
 				pstmt.setDouble(10,loan.getTenure());
-				pstmt.setDouble(11,loan.getInterest_rate());
-				pstmt.setDouble(12,loan.getMonthly_payment());
-				pstmt.setString(13,loan.getLoan_status());
+				pstmt.setDouble(11,loan. getInterestRate());
+				pstmt.setDouble(12,loan. getMonthlyPayment());
+				pstmt.setString(13,loan. getLoanStatus());
 				pstmt.setString(14,loan.getPanNumber());
 				pstmt.executeUpdate();
-				//System.out.println(loan.getPanNumber()+loan.getLoan_status()+loan.getMonthly_payment()+loan.getInterest_rate()+
-				//		loan.getTenure()+loan.getLoan_amount()+loan.getDescription());
+				 
 			 flag=true;
 		 }catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		 return accNumber;
@@ -204,18 +202,18 @@ public class LoansDaoimpl implements LoansDao {
 			    pstmt = con.prepareStatement(query);		  
 			     
 				pstmt.setLong(1, accNumber);
-				pstmt.setString(2,loan.getUser_name());
+				pstmt.setString(2,loan. getUsername());
 				pstmt.setDate(3,java.sql.Date.valueOf(loan.getDob()));
 				pstmt.setString(4,loan.getAddress());
 				pstmt.setLong(5,loan.getMobno());
 				pstmt.setString(6,loan.getEmail());
-				pstmt.setString(7,loan.getLoan_type());
+				pstmt.setString(7,loan.getLoanType());
 				pstmt.setString(8,loan.getDescription());
-				pstmt.setDouble(9 ,loan.getLoan_amount());
+				pstmt.setDouble(9 ,loan.getLoanAmount());
 				pstmt.setDouble(10,loan.getTenure());
-				pstmt.setDouble(11,loan.getInterest_rate());
-				pstmt.setDouble(12,loan.getMonthly_payment());
-				pstmt.setString(13,loan.getLoan_status());
+				pstmt.setDouble(11,loan.getInterestRate());
+				pstmt.setDouble(12,loan.getMonthlyPayment());
+				pstmt.setString(13,loan.getLoanStatus());
 				pstmt.setString(14,loan.getPanNumber());
 				pstmt.executeUpdate();
 			 flag=true;

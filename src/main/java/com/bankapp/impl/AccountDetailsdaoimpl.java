@@ -15,45 +15,44 @@ import com.bankapp.model.UserDetails;
 import com.bankapp.util.ConnectionUtil;
 
 public class AccountDetailsdaoimpl implements AccountDetailsDao {
-    
-	public  boolean insertAccount(AccountDetails account) {
-		String que="select  user_id.nextval from dual";
-		String query="INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+	public boolean insertAccount(AccountDetails account) {
+		String que = "select  user_id.nextval from dual";
+		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection con = ConnectionUtil.getDbConnection();
-		 int accNumber = 0;
-		 boolean flag=false;
-			 
-		 try {
-			 PreparedStatement   pstmt = con.prepareStatement(que);
-				ResultSet rs = pstmt.executeQuery();
-				if(rs.next())
-					accNumber = rs.getInt(1);
-			//	System.out.println(accNumber);
-				pstmt = con.prepareStatement(query);	  
-			    pstmt.setInt(1, accNumber);
-				pstmt.setString(2,account.getAccount_type());
-				pstmt.setString(3,account.getAccount_Holder_name());
-				pstmt.setString(4,account.getAddress());
-				pstmt.setString(5,account.getCity());
-				pstmt.setInt(6,account.getPincode());
-				pstmt.setDate(7,java.sql.Date.valueOf(account.getDob()));
-				pstmt.setLong(8,account.getMobile_Number());
-				pstmt.setString(9,account.getEmail());
-				pstmt.setString(10,account.getIfsc_Code());
-				pstmt.setString(11,account.getBranchName());
-				pstmt.setDouble(12,account.getBalance());
-				pstmt.setInt(13,account.getPin_Number());
-				pstmt.setString(14,account.getStatus());
-				pstmt.executeUpdate();
-				flag=true;
-			 
-		 }catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 return flag;
+		int accNumber = 0;
+		boolean flag = false;
+
+		try {
+			PreparedStatement pstmt = con.prepareStatement(que);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next())
+				accNumber = rs.getInt(1);
+
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, accNumber);
+			pstmt.setString(2, account.getAccountType());
+			pstmt.setString(3, account.getAccountHolderName());
+			pstmt.setString(4, account.getAddress());
+			pstmt.setString(5, account.getCity());
+			pstmt.setInt(6, account.getPincode());
+			pstmt.setDate(7, java.sql.Date.valueOf(account.getDob()));
+			pstmt.setLong(8, account.getMobileNumber());
+			pstmt.setString(9, account.getEmail());
+			pstmt.setString(10, account.getIfscCode());
+			pstmt.setString(11, account.getBranchName());
+			pstmt.setDouble(12, account.getBalance());
+			pstmt.setInt(13, account.getPinNumber());
+			pstmt.setString(14, account.getStatus());
+			pstmt.executeUpdate();
+			flag = true;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return flag;
 	}
-	 
 
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) {
 		List<AccountDetails> list = new ArrayList<AccountDetails>();
@@ -69,9 +68,10 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			ResultSet rs = st.executeQuery(ValidateQuery);
 
 			if (rs.next()) {
-				accDetail = new AccountDetails(rs.getInt(1),rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(), rs.getLong(9), rs.getString(10),
-						rs.getString(11), rs.getString(12), rs.getInt(13), rs.getInt(14),rs.getString(15),rs.getString(16));
+				accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(), rs.getLong(9),
+						rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13), rs.getInt(14),
+						rs.getString(15), rs.getString(16));
 				list.add(accDetail);
 			}
 
@@ -82,60 +82,72 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		}
 		return list;
 	}
-	public List<AccountDetails> viewAccout(){
-		List<AccountDetails> List=new ArrayList<AccountDetails>();
-		
-		String view="select * from  account_details";
-		Connection con=ConnectionUtil.getDbConnection();
-		 try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(view);
-			while(rs.next()) {
-				AccountDetails accDetail = new AccountDetails(rs.getInt(1),rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(), rs.getLong(9), rs.getString(10),
-						rs.getString(11), rs.getString(12), rs.getInt(13), rs.getInt(14),rs.getString(15),rs.getString(16));
-				List.add(accDetail);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return List;
-	}
-	public List<AccountDetails> viewOneAccount(long num){
-		List<AccountDetails> List=new ArrayList<AccountDetails>();
-		
-		String view="select * from  account_details where account_num='"+num+"'";
-		Connection con=ConnectionUtil.getDbConnection();
-		 try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(view);
-			if(rs.next()) {
-				AccountDetails accDetail = new AccountDetails(rs.getInt(1),rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(), rs.getLong(9), rs.getString(10),
-						rs.getString(11), rs.getString(12), rs.getInt(13), rs.getInt(14),rs.getString(15),rs.getString(16));
-				List.add(accDetail);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return List;
-	}
-	public boolean updateUserDetailAdmin(String email1, long mobilenumber, String email) {
 
+	public List<AccountDetails> viewAccout() {
+		List<AccountDetails> List = new ArrayList<AccountDetails>();
+
+		String view = "select * from  account_details";
+		Connection con = ConnectionUtil.getDbConnection();
+
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(view);
+			while (rs.next()) {
+				AccountDetails accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3),
+						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(),
+						rs.getLong(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getInt(13),
+						rs.getInt(14), rs.getString(15), rs.getString(16));
+				List.add(accDetail);
+
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return List;
+	}
+
+	public List<AccountDetails> viewOneAccount(long num) {
+		List<AccountDetails> List = new ArrayList<AccountDetails>();
+
+		String view = "select acc_type,acc_holder_name,mobile_number,email,ifsc_code,branch_name,account_status,pan_number from  account_details where account_number='" + num + "'";
+		Connection con = ConnectionUtil.getDbConnection();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(view);
+			
+			if (rs.next()) {
+				AccountDetails accDetail = new AccountDetails(0, num, rs.getString(1),
+						rs.getString(2), null,null,0,null,
+						rs.getLong(3), rs.getString(4), rs.getString(5), rs.getString(6), 0,
+						 0, rs.getString(7), rs.getString(8));
+				List.add(accDetail);
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return List;
+	}
+
+	public boolean updateUserDetailAdmin(String email1, long mobilenumber, String email) {
+		String updateQuery = "update user_details set email=? where email=?";
 		String updatequery1 = "update account_details set email=?,mobile_number=? where email=?";
 		Connection con = ConnectionUtil.getDbConnection();
-        boolean flag=false;
+		boolean flag = false;
 		try {
 			PreparedStatement pstmt = con.prepareStatement(updatequery1);
 			pstmt.setString(1, email1);
 			pstmt.setLong(2, mobilenumber);
 			pstmt.setString(3, email);
-			  pstmt.executeUpdate();
-          flag=true;
+			pstmt.executeUpdate();
+			pstmt = con.prepareStatement(updateQuery);
+			pstmt.setString(1, email1);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+			flag = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -146,16 +158,16 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public boolean deleteDetails(long accountnum, String status) {
 		String deleteQuery = "update account_details set account_status= ? where Account_number=?";
 		Connection con = ConnectionUtil.getDbConnection();
-		boolean flag=false;
+		boolean flag = false;
 		try {
 			PreparedStatement pst = con.prepareStatement(deleteQuery);
 			pst.setString(1, status);
 			pst.setLong(2, accountnum);
 			pst.executeUpdate();
-			flag=true;
- 
+			flag = true;
+
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return flag;
@@ -179,63 +191,61 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		return null;
 	}
 
-
-	public  int  getPinnumber(  long accountno)
-	{
+	public int getPinnumber(long accountno) {
 		String query = "select pin_number from Account_Details where account_number = ?";
-		Connection con=ConnectionUtil.getDbConnection();
+		Connection con = ConnectionUtil.getDbConnection();
 		try {
-			PreparedStatement pst= con.prepareStatement(query);
-			pst.setLong(1, accountno  );
-			ResultSet rs=pst.executeQuery();
-			if(rs.next())
-			{
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setLong(1, accountno);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
 				return rs.getInt(1);
-			}else {
+			} else {
 				return 0;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
-	 public double checkBalance(long accnum) {
-		 String que="Select Balance from account_details where Account_number='"+accnum+"'";
-				 Connection con=ConnectionUtil.getDbConnection();
-		 double balance=0;
-		 Statement st;
+
+	public double checkBalance(long accnum) {
+		String que = "Select Balance from account_details where Account_number='" + accnum + "'";
+		Connection con = ConnectionUtil.getDbConnection();
+		double balance = 0;
+		Statement st;
 		try {
 			st = con.createStatement();
-			ResultSet rs=st.executeQuery(que);
-			if(rs.next()) {
-				 balance= rs.getDouble(1);
+			ResultSet rs = st.executeQuery(que);
+			if (rs.next()) {
+				balance = rs.getDouble(1);
 			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-				return balance;
-	 }
-	 public boolean checkaccount(long num) {
-		 String que="select Account_number from account_details where account_number= '"+num+"'";
-		 boolean flag=false;
-		 long accnum=0;
-		 Connection con=ConnectionUtil.getDbConnection();
-		 try {
-			Statement st = con.createStatement();
-				ResultSet rs=st.executeQuery(que);
-				if(rs.next()) {
-					  accnum= rs.getLong(1);
-					  flag=true;
-				}
-		 
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		 return flag;
-	 }
+
+		return balance;
+	}
+
+	public boolean checkaccount(long num) {
+		String que = "select Account_number from account_details where account_number= '" + num + "'";
+		boolean flag = false;
+		long accnum = 0;
+		Connection con = ConnectionUtil.getDbConnection();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(que);
+			if (rs.next()) {
+				accnum = rs.getLong(1);
+				flag = true;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return flag;
+	}
 }

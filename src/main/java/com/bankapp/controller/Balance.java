@@ -17,9 +17,8 @@ import com.bankapp.impl.TransactionDaoimpl;
  */@WebServlet("/Balance")
 public class Balance extends HttpServlet {
 	 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
+		 try {
 		HttpSession session=request.getSession();
 		 long accNo=Long.parseLong(request.getParameter("accno"));
 		 int pin=Integer.parseInt(request.getParameter("pin"));
@@ -32,16 +31,20 @@ public class Balance extends HttpServlet {
 		 
 		 
 		 session.setAttribute( "amount", amoun);
-		  response.sendRedirect("BalanceView.jsp");
 		 }
 		 else
 		 {
 			 session.setAttribute("pinvalidate","Enter Correct Pin Number");
 			 response.sendRedirect("Balance.jsp");
 		 }
-		// PrintWriter out=response.getWriter();
-		// out.println("Balance is :"+amoun);
-		//  response.sendRedirect("TransferAmount.jsp");
+		 
+			response.sendRedirect("BalanceView.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 
 	}
 
 }

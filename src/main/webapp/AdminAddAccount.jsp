@@ -12,13 +12,10 @@
 }
 
 nav {
-	font-size: 17px;
-	 
+	font-size: 17px; 
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
- 
 	margin: 0;
-	 
 	padding: 4px;
 }
 
@@ -172,7 +169,7 @@ color:green;}
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="viewAllUser.jsp">View All Users</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="viewAccount.jsp">View All Account</a></li>
 			<li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="UpdateAccountDetails.jsp">Update Account Details</a></li>

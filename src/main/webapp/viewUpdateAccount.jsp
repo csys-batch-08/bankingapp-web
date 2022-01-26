@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1" import = "java.util.List" import ="java.util.ArrayList" %>
      <%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
     <%@page import="com.bankapp.model. *"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,75 +177,57 @@ padding-left:400px
 
 		</ul>
 	</div>
-	<%!long accnum; %>
-	<%  AccountDetailsdaoimpl UserDao = new AccountDetailsdaoimpl();
-        List<AccountDetails> List = new ArrayList<AccountDetails>();
-        accnum= Long.parseLong(request.getParameter("acc"));
-        List = UserDao.viewOneAccount(accnum);
-
-%>
+	
 
 <div class="div1">
+<c:if test="${sessionScope.msg!=null}">
+          <h4 id="transhead">${sessionScope.msg}</h4>
+          </c:if> 
+            
+           <c:remove var="msg" scope="session"/>
 <table >
  
 <thead>
 <tr>
   <th>S.no</th>
+   
   <th>AccountHolderName</th>
  <th>AccountType</th>
- <th>MobileNumber</th>
+ <th>Mobi leNumber</th>
 <th> Email</th>
 <th>IFSC code</th>
 <th>BranchName</th>
 <th>Status</th>
+<th>Pan</th>
 </tr>
 </thead>
-<br>
-<br>
+ 
 
 <tbody>
-<%
-int i = 0;
-for (AccountDetails Viewuser :List ) {
-i++;
-
-%>
+<c:forEach items="${UpdateAccount}" var="updateAccount">
+		  <c:set var="i" value="${i+1 }"/>
 <tr>
 
 
-<td><%=i%></td>
-<td><%=Viewuser.getAccount_Holder_name()%></td>
-<td><%=Viewuser. getAccount_type()%></td>
-<td><%=Viewuser. getMobile_Number()%></td>
-<td><%=Viewuser. getEmail()%></td>
- <td><%=Viewuser.getIfsc_Code()%></td>
- <td><%=Viewuser.getBranchName()%></td>
-  <td><%=Viewuser.getStatus()%></td>
+<td>${i}</td>
+ 
+<td>${viewAccount.accountHolderName }  </td>
+<td>${viewAccount. accountType}  </td>
+<td>${viewAccount.mobileNumber }  </td>
+<td>${viewAccount.email }  </td>
+<td>${viewAccount.ifscCode }  </td>
+<td>${viewAccount.branchName }  </td>
+<td>${viewAccount. status}  </td>
+<td>${viewAccount.pan }  </td>
  </tr>
-
-<%
-}
-%>
+ </c:forEach>
 </tbody>
           </table><br>
           </div>
           <div class="btn3">
 		<button type="submit" class="btn2"><a href="adminDashBoard.jsp">Back</a></button>
-		</div>
-		<%!
-          String flag;
-%>
-<%
-if(session.getAttribute("msg") != null){
-flag = session.getAttribute("msg").toString();
-%>
-
-
-	<h4 id = "transhead"><%= flag%></h4>
-	
-<% }%>
- 
-<% session.removeAttribute("msg"); %>
+          </div>
+		
 	
 </body>
 </html>

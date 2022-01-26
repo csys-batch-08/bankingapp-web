@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList" %>
      <%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
     <%@page import="com.bankapp.model. *"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -190,7 +191,7 @@ padding-left:240px
 		<header>ADMIN</header>
 		<ul>
 			<li><a href="viewAllUser.jsp">View All Users</a></li>
-			<li><a href="viewAccount.jsp">View All Account</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="UpdateAccountDetails.jsp">Update Account Details</a></li>
 			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
@@ -205,11 +206,7 @@ padding-left:240px
 		</ul>
 	</div>
 	
-	<%  AccountDetailsdaoimpl UserDao = new AccountDetailsdaoimpl();
-        List<AccountDetails> List = new ArrayList<AccountDetails>();
-        List = UserDao.viewAccout();
-
-%>
+	
 
 <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
@@ -231,30 +228,23 @@ padding-left:240px
  
 
 <tbody>
-<%
-int i = 0;
-for (AccountDetails Viewuser :List ) {
-i++;
-
-%>
+ <c:forEach items="${ViewAccount}" var="viewAccount">
+		  <c:set var="i" value="${i+1 }"/>
 <tr>
 
 
-<td><%=i%></td>
-<td><%=Viewuser.getAccount_number()%></td>
-<td><%=Viewuser.getAccount_Holder_name()%></td>
-<td><%=Viewuser. getAccount_type()%></td>
-<td><%=Viewuser. getMobile_Number()%></td>
-<td><%=Viewuser. getEmail()%></td>
- <td><%=Viewuser.getIfsc_Code()%></td>
- <td><%=Viewuser.getBranchName()%></td>
-  <td><%=Viewuser.getStatus()%></td>
-  <td><%=Viewuser.getPan()%></td>
+<td>${i}</td>
+<td>${viewAccount.accountNumber }  </td>
+<td>${viewAccount.accountHolderName }  </td>
+<td>${viewAccount. accountType}  </td>
+<td>${viewAccount.mobileNumber }  </td>
+<td>${viewAccount.email }  </td>
+<td>${viewAccount.ifscCode }  </td>
+<td>${viewAccount.branchName }  </td>
+<td>${viewAccount. status}  </td>
+<td>${viewAccount.pan }  </td>
  </tr>
-
-<%
-}
-%>
+ </c:forEach>
 </tbody>
           </table><br>
           </div>

@@ -125,36 +125,7 @@ li, p {
 	 
 	</nav><br><br>
 
- <%-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/deposit.jpg"  class="d-block w-100" alt="couldn'tLoad" Style="width:50%!important ">
-    </div>
-    <div class="carousel-item">
-      <img src="images/deposit1.jpg"  class="d-block w-100" alt="couldn'tLoad" Style="width:50%!important ">
-    </div>
-    <div class="carousel-item">
-      <img src="images/deposit2.jpg"    class="d-block w-100" alt="couldn'tLoad" Style="width:50%!important">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" Style="width:50%!important">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" Style="width:50%!important">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button> 
-  </div> --%>
- 
-	 
-
-		<h4>Vision:</h4>
+ <h4>Vision:</h4>
 		<br>
 		<p>Delivering excellence in financial services through customer
 			focus, employee engagement<br> and sustainable growth.</p>

@@ -25,10 +25,10 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 		try {
 			PreparedStatement	pst = con.prepareStatement(insertQuery);
-			pst.setString(1, user.getUser_name());
+			pst.setString(1, user.getusername());
 			pst.setString(2, user.getEmailId());
-			pst.setString(3, user.getUser_password());
-			pst.setLong(4, user.getMobile_Number());
+			pst.setString(3, user.getuserpassword());
+			pst.setLong(4, user.getmobileNumber());
 			 
 			i=pst.executeUpdate();
 			System.out.println("Value Inserted Successfully");
@@ -164,17 +164,20 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 	}
 	public List<UserDetails> viewUser(){
 		List<UserDetails> userList=new ArrayList<UserDetails>();
-		String view="select * from User_details where role='USER'";
+		String view="select User_login_id,user_name,email,mobile_number from User_details where role='USER'";
 		Connection con=ConnectionUtil.getDbConnection();
 		 try {
+			 
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery(view);
 			while(rs.next()) {
-				UserDetails user=new UserDetails(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5) );
+				 
+				UserDetails user=new UserDetails(rs.getInt(1), rs.getString(2), rs.getString(3), null,rs.getLong(4) );
 				userList.add(user);
+				 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		

@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 		if (validUser != null)
 		   {
 			 
-			String name=validUser.getUser_name();
+			String name=validUser.getusername();
 			
 			session.setAttribute("user_id", userId);
 			session.setAttribute("pass", password);
@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 		   }
 		 else if(ValidAdmin !=null) 
 		 {
-			 String admin= ValidAdmin.getUser_name() + " as Admin!" ;
+			 String admin= ValidAdmin.getusername() + " as Admin!" ;
 			 session.setAttribute("adminname", admin);
 			 RequestDispatcher rd=request.getRequestDispatcher("adminDashBoard.jsp");
 			   rd.forward(request, response);
@@ -58,8 +58,8 @@ public class Login extends HttpServlet {
          }
 		 else {
 			 
-			 session.setAttribute("login","Invalid User");
-			  response.sendRedirect("login.jsp");
+			   session.setAttribute("login","Invalid User");
+			    response.sendRedirect("login.jsp");
 			  
 		 }
 	}

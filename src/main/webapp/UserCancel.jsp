@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -219,20 +220,11 @@ padding-left:350px;
 		</div>
 	</form>
 
-	    <%!
-String flag;
-%>
-<%
-if(session.getAttribute("can") != null){
-flag = session.getAttribute("can").toString();
-%>
-
-
-	<h4 id = "transhead"><%= flag%></h4>
-<% }%>
-<% 
-session.removeAttribute("can");
-%>
+	   <c:if test="${sessionScope.can!=null}">
+          <h4>${sessionScope.can}</h4>
+          </c:if> 
+            
+           <c:remove var="can" scope="session"/>
 	</div>
 </body>
 </html>

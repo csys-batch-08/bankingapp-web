@@ -3,6 +3,7 @@
 	import="java.util.ArrayList"%>
 <%@page import="com.bankapp.impl.UserDetailsDaoimpl"%>
 <%@page import="com.bankapp.model.UserDetails"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +26,11 @@ nav {
 	height: 25%;
 	margin: 0;
 	 
-	padding: 7px;
+	padding: 6.5px;
 }
 
 nav a {
-	padding-right: 65px;
+	padding-right: 65 px;
 }
 
 h1 {
@@ -193,12 +194,12 @@ background-color:  rgba(35, 106, 240,.5);}
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="viewAllUser.jsp">View All Users</a></li>
-			<li><a href="viewAccount.jsp">View All Account</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="UpdateAccountDetails.jsp">Update Account
 					Details </a></li>
-			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
 			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
 			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>
@@ -210,11 +211,7 @@ background-color:  rgba(35, 106, 240,.5);}
 	</div>
 
 
-	<%
-	UserDetailsDaoimpl UserDao = new UserDetailsDaoimpl();
-	List<UserDetails> List = new ArrayList<UserDetails>();
-	List = UserDao.viewUser();
-	%>
+	 
 
 	 <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
@@ -232,25 +229,19 @@ background-color:  rgba(35, 106, 240,.5);}
 
 
 			<tbody>
-				<%
-				int i = 0;
-				for (UserDetails Viewuser : List) {
-					i++;
-				%>
+			
+				 <c:forEach items="${AllUser}" var="allUserList">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
-
-
-					<td><%=i%></td>
-					<td><%=Viewuser.getUser_id()%></td>
-					<td><%=Viewuser.getUser_name()%></td>
-					<td><%=Viewuser.getEmailId()%></td>
-					<td><%=Viewuser.getMobile_Number()%></td>
+                      <td> ${i} </td>
+					<td>${allUserList.userId} </td>
+					<td>${allUserList.username} </td>
+					<td>${allUserList.emailId}  </td>
+					<td>${allUserList.mobileNumber}  </td>
 
 				</tr>
 
-				<%
-				}
-				%>
+				 </c:forEach>
 			</tbody>
 		</table>
 	</div>

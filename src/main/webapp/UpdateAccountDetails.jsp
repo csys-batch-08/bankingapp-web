@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,11 +52,7 @@ a {
 	font-size: 15px;
 }
 
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
+ 
 
 .sidebar {
 	position:absolute;
@@ -186,7 +183,7 @@ color:green;}
 		</ul>
      </div>
       
-     <h2 align="center">WELCOME!</h2>
+     <h3 align="center">Update Details</h3>
      <div class="box">
      <form   action="UpdateAccount"method="post">
      <table>
@@ -211,20 +208,12 @@ color:green;}
      <button type="submit" class="btn2">Submit</button>
      <button type="reset" class="btn2" >Reset</button><br><br>
      </div>
+     <c:if test="${sessionScope.msg!=null}">
+          <h4 id="transhead">${sessionScope.msg}</h4>
+          </c:if> 
+            
+           <c:remove var="msg" scope="session"/>
      </form>
-     <%!
-String flag;
-%>
-<%
-if(session.getAttribute("msg") != null){
-flag = session.getAttribute("msg").toString();
-%>
-
-
-	<h4 id = "transhead"><%= flag%></h4>
-	
-<% }%>
-</div>
-<% session.removeAttribute("msg"); %>
+     
 </body>
 </html>

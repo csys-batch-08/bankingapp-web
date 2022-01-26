@@ -18,12 +18,9 @@
 
 nav {
 	font-size: 17px;
-	color: black;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
-	height: 25%;
-	margin: 0;
-	 
+	background-color: rgba(9, 57, 87,.9); 
+	margin: 0; 
 	padding: 4px;
 }
 
@@ -86,7 +83,7 @@ ul {
 	height: 100%;
 	width: 100%;
 	line-height: 40px;
-	font-size: 13px;
+	font-size: 15px;
 	padding-left: 40px;
 	color: white;
 }

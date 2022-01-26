@@ -19,9 +19,8 @@ import com.bankapp.model.AccountDetails;
 @WebServlet("/addAccount")
 public class InsertAccount extends HttpServlet {
 	 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
+		  try { 
 		String accType=request.getParameter("type");
 	    String accHolderName= (request.getParameter("aname"));
 	    String address=request.getParameter("address");
@@ -40,10 +39,13 @@ public class InsertAccount extends HttpServlet {
 	    AccountDetails acc=new AccountDetails(0,0,accType,accHolderName,address,city,pincode,dob,mobNo,email,ifscCode,branch,bal,pin,status,pan);
 	    
 	    accdao.insertAccount(acc);
-	   // System.out.println(acc);
-	    HttpSession session=request.getSession();
-	    session.setAttribute( "add","Added Account Sucessfully!!");
-	    response.sendRedirect("viewAccount.jsp");
+	    
+	     
+			response.sendRedirect("viewAccount.jsp");
+		} catch (IOException e) {
+			 
+			e.printStackTrace();
+		}
 	    
 	}
 

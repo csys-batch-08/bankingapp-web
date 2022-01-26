@@ -21,45 +21,32 @@ import com.bankapp.model.AccountDetails;
 @WebServlet("/AccountDetails")
 public class AccountDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccountDetail() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
 		HttpSession session = request.getSession();
-	 long accNo=Long.parseLong(request.getParameter("accNo"));
-	    int pin=Integer.parseInt(request.getParameter("pin"));
-	   AccountDetails accdao=new AccountDetails();
-	   session.setAttribute("useraccno", accNo);
-	   session.setAttribute("userpin", pin);
-	   AccountDetailsdaoimpl accDetailDao=new AccountDetailsdaoimpl();
-	   int pinnum=accDetailDao.getPinnumber(accNo);
-		 if(pin==pinnum) {
-	   List<AccountDetails> list = accDetailDao.searchDetail(accNo, pin);
-	      response.sendRedirect("accDetailView.jsp");
-		 }
-		 else {
-			 session.setAttribute("pinvalid", "Enter Valid Account number or Pin Number");
-			 response.sendRedirect("accountDetail.jsp");
-		 }
+
+		try {
+			long accNo = Long.parseLong(request.getParameter("accNo"));
+			int pin = Integer.parseInt(request.getParameter("pin"));
+
+			session.setAttribute("useraccno", accNo);
+			session.setAttribute("userpin", pin);
+			AccountDetailsdaoimpl accDetailDao = new AccountDetailsdaoimpl();
+			int pinnum = accDetailDao.getPinnumber(accNo);
+			if (pin == pinnum) {
+				List<AccountDetails> list = accDetailDao.searchDetail(accNo, pin);
+				response.sendRedirect("accDetailView.jsp");
+			} else {
+				session.setAttribute("pinvalid", "Enter Valid Account number or Pin Number");
+				response.sendRedirect("accountDetail.jsp");
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 }

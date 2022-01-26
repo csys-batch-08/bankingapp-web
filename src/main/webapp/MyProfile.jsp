@@ -196,7 +196,7 @@ h4 {
 		<table>
 			<tr>
 				<th>Name</th>
-				<td><%=Viewuser.getUser_name()%></td>
+				<td><%=Viewuser.getusername()%></td>
 			</tr>
 			<br>
 			<tr>
@@ -206,7 +206,7 @@ h4 {
 			<br>
 			<tr>
 				<th>Mobile Number</th>
-				<td><%=Viewuser.getMobile_Number()%></td>
+				<td><%=Viewuser.getmobileNumber()%></td>
 			</tr>
 		</table>
 

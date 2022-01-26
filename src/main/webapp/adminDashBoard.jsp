@@ -15,14 +15,12 @@ nav {
 	font-size: 17px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 30%;
 	margin: 0;
-	color: red;
 	padding: 4px;
 }
 
 nav a {
-	padding-right: 117.2px;
+	padding-right: 117.5px;
 }
 
 h1 {
@@ -140,11 +138,11 @@ body{
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="viewAllUser.jsp">View All Users</a></li>
-			<li><a href="viewAccount.jsp"nt.jsp">View All Account</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="viewAccount.jsp".jsp">View All Account</a></li>
 			<li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="UpdateAccountDetails.jsp">Update Account Details </a></li>
-			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
 			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
 			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>

@@ -3,26 +3,26 @@ package com.bankapp.model;
 import java.util.Objects;
 
 public class UserDetails {
-	private int user_id;
-	private String user_name;
+	private int userId;	
+	private String username;
 	private String emailId;
-	private String user_password;
-	private long mobile_Number;
+	private String userpassword;
+	private long mobileNumber;
 
-	public int getUser_id() {
-		return user_id;
+	public int getuserId() {
+		return userId;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setuserId(int userId) {
+		this.userId = userId;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getusername() {
+		return username;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setusername(String username) {
+		this.username = username;
 	}
 
 	public String getEmailId() {
@@ -33,48 +33,48 @@ public class UserDetails {
 		this.emailId = emailId;
 	}
 
-	public String getUser_password() {
-		return user_password;
+	public String getuserpassword() {
+		return userpassword;
 	}
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+	public void setuserpassword(String userpassword) {
+		this.userpassword = userpassword;
 	}
 
-	public long getMobile_Number() {
-		return mobile_Number;
+	public long getmobileNumber() {
+		return mobileNumber;
 	}
 
-	public void setMobile_Number(long mobile_Number) {
-		this.mobile_Number = mobile_Number;
+	public void setmobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
      
-	public UserDetails(int user_id, String user_name, String emailId, String user_password, long mobile_Number) {
+	public UserDetails(int userId, String username, String emailId, String userpassword, long mobileNumber) {
 		super();
-		this.user_id = user_id;
-		this.user_name = user_name;
+		this.userId = userId;
+		this.username = username;
 		this.emailId = emailId;
-		this.user_password = user_password;
-		this.mobile_Number = mobile_Number;
+		this.userpassword = userpassword;
+		this.mobileNumber = mobileNumber;
 	}
-	public UserDetails( String user_name, String emailId, String user_password, long mobile_Number) {
+	public UserDetails( String username, String emailId, String userpassword, long mobileNumber) {
 		super();
 		 
-		this.user_name = user_name;
+		this.username = username;
 		this.emailId = emailId;
-		this.user_password = user_password;
-		this.mobile_Number = mobile_Number;
+		this.userpassword = userpassword;
+		this.mobileNumber = mobileNumber;
 	}
 
 	public UserDetails() {
 		super();
-		// TODO Auto-generated constructor stub
+	 
 	}
 	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(emailId, mobile_Number, user_id, user_name, user_password);
+		return Objects.hash(emailId, mobileNumber, userId, username, userpassword);
 	}
 
 	@Override
@@ -86,15 +86,15 @@ public class UserDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		UserDetails other = (UserDetails) obj;
-		return Objects.equals(emailId, other.emailId) && mobile_Number == other.mobile_Number
-				&& user_id == other.user_id && Objects.equals(user_name, other.user_name)
-				&& Objects.equals(user_password, other.user_password);
+		return Objects.equals(emailId, other.emailId) && mobileNumber == other.mobileNumber
+				&& userId == other.userId && Objects.equals(username, other.username)
+				&& Objects.equals(userpassword, other.userpassword);
 	}
 
 	@Override
 	public String toString() {
-		return " Name:" + user_name +"\t "+" EmailId:" + emailId
-				+ "\t "+  "MobileNumber:" + mobile_Number;
+		return " Name:" + username +"\t "+" EmailId:" + emailId
+				+ "\t "+  "MobileNumber:" + mobileNumber;
 	}
 
 	 

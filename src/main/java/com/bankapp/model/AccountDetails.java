@@ -5,46 +5,46 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class AccountDetails {
-	private int  user_id;
-	private  Long account_number;
-	private String account_type;
-	private String account_Holder_name;
+	private int  userId;
+	private  Long accountNumber;
+	private String accountType;
+	private String accountHolderName;
 	private String address;
 	private String city;
 	private int pincode;
 	private  LocalDate dob;
-	private long mobile_Number;
+	private long mobileNumber;
 	private String email;
-	private String ifsc_Code;
+	private String ifscCode;
 	private String branchName;
 	private double balance;	
-	private int pin_Number;
+	private int pinNumber;
 	private String status;
 	private String pan;
 	 
-	public int getUser_id() {
-		return user_id;
+	public int getuserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setuserId(int userId) {
+		this.userId = userId;
 	}
-	public  long getAccount_number() {
-		return account_number;
+	public  long getAccountNumber() {
+		return accountNumber;
 	}
-	public void setAccount_number( long account_number) {
-		this.account_number = account_number;
+	public void setAccountNumber( long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
-	public String getAccount_type() {
-		return account_type;
+	public String getAccountType() {
+		return accountType;
 	}
-	public void setAccount_type(String account_type) {
-		this.account_type = account_type;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
-	public String getAccount_Holder_name() {
-		return account_Holder_name;
+	public String getAccountHolderName() {
+		return accountHolderName;
 	}
-	public void setAccount_Holder_name(String account_Holder_name) {
-		this.account_Holder_name = account_Holder_name;
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
 	}
 	public String getAddress() {
 		return address;
@@ -70,11 +70,11 @@ public class AccountDetails {
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
-	public long getMobile_Number() {
-		return mobile_Number;
+	public long getMobileNumber() {
+		return mobileNumber;
 	}
-	public void setMobile_Number(long mobile_Number) {
-		this.mobile_Number = mobile_Number;
+	public void setMobileNumber(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 	public String getEmail() {
 		return email;
@@ -82,11 +82,11 @@ public class AccountDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getIfsc_Code() {
-		return ifsc_Code;
+	public String getIfscCode() {
+		return ifscCode;
 	}
-	public void setIfsc_Code(String ifsc_Code) {
-		this.ifsc_Code = ifsc_Code;
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
 	}
 	public String getBranchName() {
 		return branchName;
@@ -100,11 +100,11 @@ public class AccountDetails {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	public int getPin_Number() {
-		return pin_Number;
+	public int getPinNumber() {
+		return pinNumber;
 	}
-	public void setPin_Number(int pin_Number) {
-		this.pin_Number = pin_Number;
+	public void setPinNumber(int pinNumber) {
+		this.pinNumber = pinNumber;
 	}
 	public String getStatus() {
 		return status;
@@ -119,38 +119,38 @@ public class AccountDetails {
 	public void setPan(String pan) {
 		this.pan = pan;
 	}
-	public AccountDetails(int user_id,  long account_number, String account_type, String account_Holder_name,
-			String address, String city, int pincode, LocalDate dob, long mobile_Number, String email, String ifsc_Code,
-			String branchName, double balance, int pin_Number, String status,String pan) {
+	public AccountDetails(int userId,  long accountNumber, String accountType, String accountHolderName,
+			String address, String city, int pincode, LocalDate dob, long mobileNumber, String email, String ifscCode,
+			String branchName, double balance, int pinNumber, String status,String pan) {
 		super();
-		this.user_id = user_id;
-		this.account_number = account_number;
-		this.account_type = account_type;
-		this.account_Holder_name = account_Holder_name;
+		this.userId = userId;
+		this.accountNumber = accountNumber;
+		this.accountType = accountType;
+		this.accountHolderName = accountHolderName;
 		this.address = address;
 		this.city = city;
 		this.pincode = pincode;
 		this.dob = dob;
-		this.mobile_Number = mobile_Number;
+		this.mobileNumber = mobileNumber;
 		this.email = email;
-		this.ifsc_Code = ifsc_Code;
+		this.ifscCode = ifscCode;
 		this.branchName = branchName;
 		this.balance = balance;
-		this.pin_Number = pin_Number;
+		this.pinNumber = pinNumber;
 		this.status = status;
 		this.pan=pan;
 	}
 	 
 	public AccountDetails() {
 		super();
-		// TODO Auto-generated constructor stub
+	 
 	}
 	 
 	 
 	@Override
 	public int hashCode() {
-		return Objects.hash(account_Holder_name, account_number, account_type, address, balance, branchName, city, dob,
-				email, ifsc_Code, mobile_Number, pin_Number, pincode, status, user_id);
+		return Objects.hash(accountHolderName, accountNumber, accountType, address, balance, branchName, city, dob,
+				email, ifscCode, mobileNumber, pinNumber, pincode, status, userId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -161,23 +161,23 @@ public class AccountDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		AccountDetails other = (AccountDetails) obj;
-		return Objects.equals(account_Holder_name, other.account_Holder_name)
-				&& Objects.equals(account_number, other.account_number)
-				&& Objects.equals(account_type, other.account_type) && Objects.equals(address, other.address)
+		return Objects.equals(accountHolderName, other.accountHolderName)
+				&& Objects.equals(accountNumber, other.accountNumber)
+				&& Objects.equals(accountType, other.accountType) && Objects.equals(address, other.address)
 				&& Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
 				&& Objects.equals(branchName, other.branchName) && Objects.equals(city, other.city)
 				&& Objects.equals(dob, other.dob) && Objects.equals(email, other.email)
-				&& Objects.equals(ifsc_Code, other.ifsc_Code) && mobile_Number == other.mobile_Number
-				&& pin_Number == other.pin_Number && pincode == other.pincode && Objects.equals(status, other.status)
-				&& user_id == other.user_id;
+				&& Objects.equals(ifscCode, other.ifscCode) && mobileNumber == other.mobileNumber
+				&& pinNumber == other.pinNumber && pincode == other.pincode && Objects.equals(status, other.status)
+				&& userId == other.userId;
 	}
 	@Override
 	public String toString() {
-		return "AccountDetails [user_id=" + user_id + ", account_number=" + account_number + ", account_type="
-				+ account_type + ", account_Holder_name=" + account_Holder_name + ", address=" + address + ", city="
-				+ city + ", pincode=" + pincode + ", dob=" + dob + ", mobile_Number=" + mobile_Number + ", email="
-				+ email + ", ifsc_Code=" + ifsc_Code + ", branchName=" + branchName + ", balance=" + balance
-				+ ", pin_Number=" + pin_Number + ", status=" + status + "]";
+		return "AccountDetails [user_id=" + userId + ", account_number=" + accountNumber + ", account_type="
+				+ accountType + ", account_Holder_name=" + accountHolderName + ", address=" + address + ", city="
+				+ city + ", pincode=" + pincode + ", dob=" + dob + ", mobile_Number=" + mobileNumber + ", email="
+				+ email + ", ifsc_Code=" + ifscCode + ", branchName=" + branchName + ", balance=" + balance
+				+ ", pin_Number=" + pinNumber + ", status=" + status + "]";
 	}
 	 
 	 

@@ -3,6 +3,7 @@
 	import="java.util.ArrayList"%>
 <%@page import="com.bankapp.impl. LoansDaoimpl"%>
 <%@page import="com.bankapp.model.Loans"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,11 +212,7 @@ background-color:  rgba(35, 106, 240,.5);}
 	</div>
 	<h2 align="center">Loan Status</h2>
 
-	<%
-	LoansDaoimpl LoanDao = new LoansDaoimpl();
-	List<Loans> List = new ArrayList<Loans>();
-	List = LoanDao.viewloan();
-	%>
+	 
 
 	 <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
@@ -223,7 +220,6 @@ background-color:  rgba(35, 106, 240,.5);}
 			<thead>
 				<tr>
 					<th>S.no</th>
-
 					<th>AccountNumber</th>
 					<th>Name</th>
 					<th>Mobile number</th>
@@ -239,33 +235,25 @@ background-color:  rgba(35, 106, 240,.5);}
 			 
 
 			<tbody>
-				<%
-				int i = 0;
-				for (Loans viewuser : List) {
-					i++;
-				%>
+				<c:forEach items="${ApproveLoan}" var="approveloan">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
-
-
-					<td><%=i%></td>
-
-					<td><%=viewuser.getAccount_number()%></td>
-					<td><%=viewuser.getUser_name()%></td>
-					<td><%=viewuser.getMobno()%></td>
-					<td><%=viewuser.getLoan_type()%></td>
-					<td><%=viewuser.getLoan_amount()%></td>
-					<td><%=viewuser.getTenure()%></td>
-					<td><%=viewuser.getInterest_rate()%></td>
-					<td><%=viewuser.getLoan_status()%></td>
+                      <td> ${i} </td>
+					<td>${approveloan.accountNumber} </td>
+					<td>${approveloan.username} </td>
+					<td>${approveloan.mobno} </td>
+					<td>${approveloan.loanType}</td>
+					<td>${approveloan.loanAmount}</td>
+					<td>${approveloan.tenure}</td>
+					<td>${approveloan.interestRate}%</td>
+					<td>${approveloan.loanStatus}</td>
 					<td><a
-						href="approveloan?accno=<%=viewuser.getAccount_number()%>&status=<%="Approved"%>">Approve</a></td>
+						href="approveloan?accno= ${approveloan.accountNumber}&status=<%="Approved"%>">Approve</a></td>
 					<td><a
-						href="approveloan?accno=<%=viewuser.getAccount_number()%>&status=<%="Rejected"%>">Reject</a></td>
+						href="approveloan?accno= ${approveloan.accountNumber}&status=<%="Rejected"%>">Reject</a></td>
 				</tr>
-
-				<%
-				}
-				%>
+                </c:forEach>
+				 
 			</tbody>
 		</table>
 

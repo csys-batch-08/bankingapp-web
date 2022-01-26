@@ -5,36 +5,37 @@ import java.util.Objects;
 
 public class Loans {
 	 
-	private long account_number;
-    private String user_name;
+	private long accountNumber;
+    private String username;
     private  LocalDate dob;
     private String address;
     private String email;
     private long mobno;
-	private String loan_type;
+	private String loanType;
 	private String description;
-	private double Loan_amount;
+	private double loanAmount;
 	private int tenure;
-	private double interest_rate;
-	private double monthly_payment;
-	private String loan_status;
+	private double interestRate;
+	private double monthlyPayment;
+	private String loanStatus;
 	private  String  panNumber;
  
 	
 
-	public long getAccount_number() {
-		return account_number;
+	 
+	public long getAccountNumber() {
+		return accountNumber;
 	}
-	public void setAccount_number(long account_number) {
-		this.account_number = account_number;
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUsername() {
+		return username;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public  LocalDate getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 	public void setDob(LocalDate dob) {
@@ -58,11 +59,11 @@ public class Loans {
 	public void setMobno(long mobno) {
 		this.mobno = mobno;
 	}
-	public String getLoan_type() {
-		return loan_type;
+	public String getLoanType() {
+		return loanType;
 	}
-	public void setLoan_type(String loan_type) {
-		this.loan_type = loan_type;
+	public void setLoanType(String loanType) {
+		this.loanType = loanType;
 	}
 	public String getDescription() {
 		return description;
@@ -70,11 +71,11 @@ public class Loans {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getLoan_amount() {
-		return Loan_amount;
+	public double getLoanAmount() {
+		return loanAmount;
 	}
-	public void setLoan_amount(double loan_amount) {
-		Loan_amount = loan_amount;
+	public void setLoanAmount(double loanAmount) {
+		this.loanAmount = loanAmount;
 	}
 	public int getTenure() {
 		return tenure;
@@ -82,23 +83,23 @@ public class Loans {
 	public void setTenure(int tenure) {
 		this.tenure = tenure;
 	}
-	public double getInterest_rate() {
-		return interest_rate;
+	public double getInterestRate() {
+		return interestRate;
 	}
-	public void setInterest_rate(double interest_rate) {
-		this.interest_rate = interest_rate;
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
 	}
-	public double getMonthly_payment() {
-		return monthly_payment;
+	public double getMonthlyPayment() {
+		return monthlyPayment;
 	}
-	public void setMonthly_payment(double monthly_payment) {
-		this.monthly_payment = monthly_payment;
+	public void setMonthlyPayment(double monthlyPayment) {
+		this.monthlyPayment = monthlyPayment;
 	}
-	public String getLoan_status() {
-		return loan_status;
+	public String getLoanStatus() {
+		return loanStatus;
 	}
-	public void setLoan_status(String loan_status) {
-		this.loan_status = loan_status;
+	public void setLoanStatus(String loanStatus) {
+		this.loanStatus = loanStatus;
 	}
 	public String getPanNumber() {
 		return panNumber;
@@ -106,62 +107,61 @@ public class Loans {
 	public void setPanNumber(String panNumber) {
 		this.panNumber = panNumber;
 	}
-	public Loans(  long account_number, String loan_type, String description, double loan_amount,
-			       int tenure, double interest_rate, double monthly_payment, String loan_status) {
+	public Loans(  long accountNumber, String loanType, String description, double loanAmount,
+			       int tenure, double interestRate, double monthlyPayment, String loanStatus) {
 		super();
 		
-		this.account_number = account_number;
-		this.loan_type = loan_type;
+		this.accountNumber = accountNumber;
+		this.loanType = loanType;
 		this.description = description;
-		this.Loan_amount = loan_amount;
+		this.loanAmount = loanAmount;
 		this.tenure = tenure;
-		this.interest_rate = interest_rate;
-		this.monthly_payment = monthly_payment;
-		this.loan_status = loan_status;
+		this.interestRate = interestRate;
+		this.monthlyPayment = monthlyPayment;
+		this.loanStatus = loanStatus;
 	}
-	public Loans(  long account_number, String user_name, LocalDate dob, String address,long mobno, String email,
-			 String loan_type, String description, double loan_amount, int tenure, double interest_rate,
-			double monthly_payment, String loan_status, String panNumber) {
+	public Loans(  long accountNumber, String username, LocalDate dob, String address,long mobno, String email,
+			 String loanType, String description, double loanAmount, int tenure, double interestRate,
+			double monthlyPayment, String loanStatus, String panNumber) {
 		super();
 		 
-		this.account_number = account_number;
-		this.user_name = user_name;
+		this.accountNumber = accountNumber;
+		this.username = username;
 		this.dob = dob;
 		this.address = address;
-		
 		this.mobno = mobno;
 		this.email = email;
-		this.loan_type = loan_type;
+		this.loanType = loanType;
 		this.description = description;
-		this.Loan_amount = loan_amount;
+		this.loanAmount = loanAmount;
 		this.tenure = tenure;
-		this.interest_rate = interest_rate;
-		this.monthly_payment = monthly_payment;
-		this.loan_status = loan_status;
+		this.interestRate = interestRate;
+		this.monthlyPayment = monthlyPayment;
+		this.loanStatus = loanStatus;
 		this.panNumber = panNumber;
 	}
 	public Loans() {
 		super();
-		// TODO Auto-generated constructor stub
+ 
 	}
-	public Loans(long account_number, double monthly_payment, String loan_status) {
-		// TODO Auto-generated constructor stub
-		this.account_number = account_number;
-		this.monthly_payment = monthly_payment;
-		this.loan_status = loan_status;
+	public Loans(long accountNumber, double monthlyPayment, String loanStatus) {
+		 
+		this.accountNumber = accountNumber;
+		this.monthlyPayment = monthlyPayment;
+		this.loanStatus = loanStatus;
 	}
 	@Override
 	public String toString() {
-		return "Loans [  account_number=" + account_number + ", user_name=" + user_name
+		return "Loans [  account_number=" + accountNumber + ", user_name=" + username
 				+ ", dob=" + dob + ", address=" + address + ", email=" + email + ", mobno=" + mobno + ", loan_type="
-				+ loan_type + ", description=" + description + ", Loan_amount=" + Loan_amount + ", tenure=" + tenure
-				+ ", interest_rate=" + interest_rate + ", monthly_payment=" + monthly_payment + ", loan_status="
-				+ loan_status + ", panNumber=" + panNumber + "]";
+				+ loanType + ", description=" + description + ", Loan_amount=" + loanAmount + ", tenure=" + tenure
+				+ ", interest_rate=" + interestRate + ", monthly_payment=" + monthlyPayment + ", loan_status="
+				+ loanStatus + ", panNumber=" + panNumber + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(Loan_amount, account_number, address, description, dob, email, interest_rate, loan_status,
-				loan_type, mobno, monthly_payment, panNumber, tenure, user_name);
+		return Objects.hash(loanAmount, accountNumber, address, description, dob, email, interestRate, loanStatus,
+				loanType, mobno, monthlyPayment, panNumber, tenure, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -172,16 +172,16 @@ public class Loans {
 		if (getClass() != obj.getClass())
 			return false;
 		Loans other = (Loans) obj;
-		return Double.doubleToLongBits(Loan_amount) == Double.doubleToLongBits(other.Loan_amount)
-				&& account_number == other.account_number && Objects.equals(address, other.address)
+		return Double.doubleToLongBits(loanAmount) == Double.doubleToLongBits(other.loanAmount)
+				&& accountNumber == other.accountNumber && Objects.equals(address, other.address)
 				&& Objects.equals(description, other.description) && Objects.equals(dob, other.dob)
 				&& Objects.equals(email, other.email)
-				&& Double.doubleToLongBits(interest_rate) == Double.doubleToLongBits(other.interest_rate)
-				&& Objects.equals(loan_status, other.loan_status) && Objects.equals(loan_type, other.loan_type)
+				&& Double.doubleToLongBits(interestRate) == Double.doubleToLongBits(other.interestRate)
+				&& Objects.equals(loanStatus, other.loanStatus) && Objects.equals(loanType, other.loanType)
 				&& mobno == other.mobno
-				&& Double.doubleToLongBits(monthly_payment) == Double.doubleToLongBits(other.monthly_payment)
+				&& Double.doubleToLongBits(monthlyPayment) == Double.doubleToLongBits(other.monthlyPayment)
 				&& Objects.equals(panNumber, other.panNumber) && Objects.equals(tenure, other.tenure)
-				  && Objects.equals(user_name, other.user_name);
+				  && Objects.equals(username, other.username);
 	}
 	 
 

@@ -3,6 +3,7 @@
 	import="java.util.ArrayList"%>
 <%@page import="com.bankapp.impl. DepositsDaoimpl"%>
 <%@page import="com.bankapp.model.Deposits"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -203,7 +204,7 @@ th {
 			<li><a href="UpdateAccountDetails.jsp">Update Account
 					Details </a></li>
 			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
 			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="TransactionByAcc.jsp">Transaction by Account</a></li>
@@ -215,12 +216,7 @@ th {
 	</div>
 
 
-	<%
-	DepositsDaoimpl depositDao = new DepositsDaoimpl();
-	List<Deposits> List = new ArrayList<Deposits>();
-	List = depositDao.viewdeposit();
-	%>
-
+	
 	<div class="container mt-4 mb-4">
 		<table class="table table-hover table-striped">
 			<thead>
@@ -240,29 +236,24 @@ th {
 			<br>
 
 			<tbody>
-				<%
-				int i = 0;
-				for (Deposits viewuser : List) {
-					i++;
-				%>
+				<c:forEach items="${ApproveDeposit}" var="approvedeposit">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
 
 
-					<td><%=i%></td>
-					<td><%=viewuser.getDepositNumber()%>
-					<td><%=viewuser.getAccno()%></td>
-					<td><%=viewuser.getDeposit_type()%></td>
-					<td><%=viewuser.getAmount()%></td>
-					<td><%=viewuser. getDate_of_deposit()%></td>
-					<td><%=viewuser.getTenure()%></td>
-					<td><%=viewuser.getDeposit_status()%></td>
+					<td>${i}</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
+					<td>${approvedeposit. }</td>
 					<td><a
-						href="DepositApproveAdmin?accno=<%=viewuser.getDepositNumber()%>&status=Approved">Approve</a></td>
+						href="DepositApproveAdmin?accno=${approvedeposit. }%>&status=Approved">Approve</a></td>
 				</tr>
 
-				<%
-				}
-				%>
+				 </c:forEach>
 			</tbody>
 		</table>
 

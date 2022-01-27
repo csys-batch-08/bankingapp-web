@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Deposits {
 	    private long depositNumber;
         private long accno;
-        private int user_id;
-     	private String deposit_type;
+        private int userId;
+     	private String depositType;
         private double amount;
-        private LocalDate date_of_deposit;
+        private LocalDate dateOfDeposit;
         private  int tenure;
-        private double rate_of_interest;
+        private double rateOfInterest;
         private  LocalDate maturity_date;
         private double maturity_value;
         private String deposit_status;
@@ -30,16 +30,16 @@ public class Deposits {
 			this.accno = accno;
 		}
 		public int getUser_id() {
-			return user_id;
+			return userId;
 		}
 		public void setUser_id(int user_id) {
-			this.user_id = user_id;
+			this.userId = user_id;
 		}
 		public String getDeposit_type() {
-			return deposit_type;
+			return depositType;
 		}
 		public void setDeposit_type(String deposit_type) {
-			this.deposit_type = deposit_type;
+			this.depositType = deposit_type;
 		}
 		public double getAmount() {
 			return amount;
@@ -48,10 +48,10 @@ public class Deposits {
 			this.amount = amount;
 		}
 		public LocalDate getDate_of_deposit() {
-			return date_of_deposit;
+			return dateOfDeposit;
 		}
 		public void setDate_of_deposit(LocalDate date_of_deposit) {
-			this.date_of_deposit = date_of_deposit;
+			this.dateOfDeposit = date_of_deposit;
 		}
 		public int getTenure() {
 			return tenure;
@@ -60,10 +60,10 @@ public class Deposits {
 			this.tenure = tenure;
 		}
 		public double getRate_of_interest() {
-			return rate_of_interest;
+			return rateOfInterest;
 		}
 		public void setRate_of_interest(double rate_of_interest) {
-			this.rate_of_interest = rate_of_interest;
+			this.rateOfInterest = rate_of_interest;
 		}
 		public LocalDate getMaturity_date() {
 			return maturity_date;
@@ -101,12 +101,12 @@ public class Deposits {
 			super();
 			this.depositNumber = depositNumber;
 			this.accno = accno;
-			this.user_id = user_id;
-			this.deposit_type = deposit_type;
+			this.userId = user_id;
+			this.depositType = deposit_type;
 			this.amount = amount;
-			this.date_of_deposit = date_of_deposit;
+			this.dateOfDeposit = date_of_deposit;
 			this.tenure = tenure;
-			this.rate_of_interest = rate_of_interest;
+			this.rateOfInterest = rate_of_interest;
 			this.maturity_date = maturity_date;
 			this.maturity_value = maturity_value;
 			this.deposit_status = deposit_status;
@@ -119,8 +119,8 @@ public class Deposits {
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(accno, amount, approved_date, date_of_deposit, depositNumber, deposit_status,
-					deposit_type, maturity_date, maturity_value, pan, rate_of_interest, tenure, user_id);
+			return Objects.hash(accno, amount, approved_date, dateOfDeposit, depositNumber, deposit_status,
+					depositType, maturity_date, maturity_value, pan, rateOfInterest, tenure, userId);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -133,20 +133,20 @@ public class Deposits {
 			Deposits other = (Deposits) obj;
 			return accno == other.accno && Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
 					&& Objects.equals(approved_date, other.approved_date)
-					&& Objects.equals(date_of_deposit, other.date_of_deposit) && depositNumber == other.depositNumber
+					&& Objects.equals(dateOfDeposit, other.dateOfDeposit) && depositNumber == other.depositNumber
 					&& Objects.equals(deposit_status, other.deposit_status)
-					&& Objects.equals(deposit_type, other.deposit_type)
+					&& Objects.equals(depositType, other.depositType)
 					&& Objects.equals(maturity_date, other.maturity_date)
 					&& Double.doubleToLongBits(maturity_value) == Double.doubleToLongBits(other.maturity_value)
 					&& Objects.equals(pan, other.pan)
-					&& Double.doubleToLongBits(rate_of_interest) == Double.doubleToLongBits(other.rate_of_interest)
-					&& tenure == other.tenure && user_id == other.user_id;
+					&& Double.doubleToLongBits(rateOfInterest) == Double.doubleToLongBits(other.rateOfInterest)
+					&& tenure == other.tenure && userId == other.userId;
 		}
 		@Override
 		public String toString() {
-			return "Deposits [depositNumber=" + depositNumber + ", accno=" + accno + ", user_id=" + user_id
-					+ ", deposit_type=" + deposit_type + ", amount=" + amount + ", date_of_deposit=" + date_of_deposit
-					+ ", tenure=" + tenure + ", rate_of_interest=" + rate_of_interest + ", maturity_date="
+			return "Deposits [depositNumber=" + depositNumber + ", accno=" + accno + ", user_id=" + userId
+					+ ", deposit_type=" + depositType + ", amount=" + amount + ", date_of_deposit=" + dateOfDeposit
+					+ ", tenure=" + tenure + ", rate_of_interest=" + rateOfInterest + ", maturity_date="
 					+ maturity_date + ", maturity_value=" + maturity_value + ", deposit_status=" + deposit_status
 					+ ", pan=" + pan + ", approved_date=" + approved_date + "]";
 		}

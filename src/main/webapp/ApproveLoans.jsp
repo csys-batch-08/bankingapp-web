@@ -248,7 +248,7 @@ background-color:  rgba(35, 106, 240,.5);}
 					<td>${approveloan.interestRate}%</td>
 					<td>${approveloan.loanStatus}</td>
 					<td><a
-						href="approveloan?accno= ${approveloan.accountNumber}&status=<%="Approved"%>">Approve</a></td>
+						href="approveloan?accno= ${approveloan.accountNumber}&status=${Approved}">Approve</a></td>
 					<td><a
 						href="approveloan?accno= ${approveloan.accountNumber}&status=<%="Rejected"%>">Reject</a></td>
 				</tr>

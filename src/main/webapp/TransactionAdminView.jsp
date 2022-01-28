@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList"%>
     <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
     <%@page import="com.bankapp.model.Transaction"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -231,15 +232,7 @@ background-color:  rgba(35, 106, 240,.5);}
      
      <h2 align="center">Transaction</h2>
       
-      <%
-     long acc;
-      
-     %>
-     <% TransactionDaoimpl tranDao = new TransactionDaoimpl();
-     acc=(Long) session.getAttribute("accNo");
-        List<Transaction> List = tranDao.getByAccountNumberAdmin(acc);
-      %>
-
+     
 
  <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
@@ -257,27 +250,21 @@ background-color:  rgba(35, 106, 240,.5);}
  
 
 <tbody>
-<%
-int i = 0;
-for (Transaction Viewuser :List ) {
-i++;
-
-%>
+ <c:forEach items="${transacAcc}" var="TransactionAccount">
+				  <c:set var="i" value="${i+1 }"/>
 <tr>
 
 
-<td><%=i%></td>
-<td><%=Viewuser.getSender_Account_number()%></td>
-<td><%=Viewuser.getName()%></td>
-<td><%=Viewuser.getTransaction_type()%></td>
- <td><%=Viewuser.getReceiver_account_number()%></td>
- <td><%=Viewuser.getAmount()%></td>
- <td><%=Viewuser.getTransaction_date()%></td>
+<td>${i }</td>
+<td>${TransactionAccount. senderAccountNumber} </td>
+<td>${TransactionAccount. name} </td>
+<td>${TransactionAccount.transactionType }</td>
+ <td>${TransactionAccount. receiveAccountNumber} </td>
+ <td>${TransactionAccount.amount } </td>
+ <td>${TransactionAccount.transactiondate } </td>
  </tr>
 
-<%
-}
-%>
+ </c:forEach>
 </tbody>
           </table><br><br>
           <div class="btn3">

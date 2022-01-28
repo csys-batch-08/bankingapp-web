@@ -2,6 +2,7 @@
 <%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "java.util.List"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
  
 <!DOCTYPE html>
@@ -200,57 +201,52 @@ body {
      <h2 align="center">Account Details</h2>
       <div class="t1">
       
- <%
-long accno =  (long)session.getAttribute("useraccno");
- int pin = (int)session.getAttribute("userpin");
- AccountDetailsdaoimpl accountDetailsdaoimpl = new AccountDetailsdaoimpl();
- List<AccountDetails>  accdet = accountDetailsdaoimpl.searchDetail(accno, pin);
- %>
+ 
  <table  >
- <%for(AccountDetails acc : accdet){ %>
+ <c:forEach items="${AccountDetail}" var="AccountDetails">
    <tr>
    <th>AccountType</th>
-   <td><%=acc.getAccount_type() %></td>
+   <td>${AccountDetails.accountType}</td>
    </tr>
    <tr>
    <th>AccountHolderName</th>
-   <td><%=acc.getAccount_Holder_name() %></td>
+   <td>${AccountDetails.accountHolderName}</td>
    </tr>
    <tr>
    <th>AccountBalance</th>
-   <td><%=acc.getBalance() %></td>
+   <td>${AccountDetails.balance}</td>
    </tr>
    <tr>
    <th>AccountAddress</th>
-   <td><%=acc.getAddress() %></td>
+   <td>${AccountDetails.address}</td>
    </tr>
      <th >City</th>
-   <td><%=acc.getCity() %></td>
+   <td>${AccountDetails.city}</td>
    </tr>
     <th >PinCode</th>
-    <td><%=acc.getPincode() %></td>
+    <td>${AccountDetails.pincode}</td>
    </tr>
     <th >DOB</th>
-   <td><%=acc. getDob() %></td>
+   <td>${AccountDetails.dob}</td>
    </tr>
     <th >Mobile number</th>
-   <td><%=acc. getMobile_Number()%></td>
+   <td>${AccountDetails.mobileNumber}</td>
    </tr>
     <th >Email</th>
-   <td><%=acc.getEmail() %></td>
+   <td>${AccountDetails. email}</td>
    </tr>
     <th >IFSC code</th>
-   <td><%=acc.getIfsc_Code()%></td>
+   <td>${AccountDetails.ifscCode}</td>
    </tr>
     <th >Branch Name</th>
-   <td><%=acc. getBranchName() %></td>
+   <td>${AccountDetails.branchName}</td>
    </tr>
    </tr>
     <th >Pan Number</th>
-   <td><%=acc.getPan() %></td>
+   <td>${AccountDetails.pan }</td>
    </tr>
     
-    <%} %>
+  </c:forEach>
     </table>
      
     <div class="btn3">

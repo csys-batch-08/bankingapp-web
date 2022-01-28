@@ -5,19 +5,19 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Transaction {
-	         private long sender_Account_number;
+	         private long senderAccountNumber;
 	          private String name;
-             private String transaction_type;
-             private long receiver_account_number;
+             private String transactionType;
+             private long receiveAccountNumber;
              private double amount;
              private  double balance;
-             private String transaction_status;
-			 private LocalDate transaction_date;
-			public long getSender_Account_number() {
-				return sender_Account_number;
+             private String transactionstatus;
+			 private LocalDate transactiondate;
+			public long getSenderAccountNumber() {
+				return senderAccountNumber;
 			}
-			public void setSender_Account_number(long sender_Account_number) {
-				this.sender_Account_number = sender_Account_number;
+			public void setSenderAccountNumber(long senderAccountNumber) {
+				this.senderAccountNumber = senderAccountNumber;
 			}
 			public String getName() {
 				return name;
@@ -25,19 +25,19 @@ public class Transaction {
 			public void setName(String name) {
 				this.name = name;
 			}
-			public String getTransaction_type() {
-				return transaction_type;
+			public String getTransactionType() {
+				return transactionType;
 			}
-			public void setTransaction_type(String transaction_type) {
-				this.transaction_type = transaction_type;
+			public void setTransactionType(String transactionType) {
+				this.transactionType = transactionType;
 			}
-			public long getReceiver_account_number() {
-				return receiver_account_number;
+			public long getReceiveAccountNumber() {
+				return receiveAccountNumber;
 			}
-			public void setReceiver_account_number(long receiver_account_number) {
-				this.receiver_account_number = receiver_account_number;
+			public void setReceiveAccountNumber(long receiveAccountNumber) {
+				this.receiveAccountNumber = receiveAccountNumber;
 			}
-			public  double getAmount() {
+			public double getAmount() {
 				return amount;
 			}
 			public void setAmount(double amount) {
@@ -49,69 +49,38 @@ public class Transaction {
 			public void setBalance(double balance) {
 				this.balance = balance;
 			}
-			public String getTransaction_status() {
-				return transaction_status;
+			public String getTransactionstatus() {
+				return transactionstatus;
 			}
-			public void setTransaction_status(String transaction_status) {
-				this.transaction_status = transaction_status;
+			public void setTransactionstatus(String transactionstatus) {
+				this.transactionstatus = transactionstatus;
 			}
-			public LocalDate getTransaction_date() {
-				return transaction_date;
+			public LocalDate getTransactiondate() {
+				return transactiondate;
 			}
-			public void setTransaction_date(LocalDate transaction_date) {
-				this.transaction_date = transaction_date;
+			public void setTransactiondate(LocalDate transactiondate) {
+				this.transactiondate = transactiondate;
 			}
-			public Transaction(long sender_Account_number, String name, String transaction_type,
-					long receiver_account_number, double amount, double balance, String transaction_status,
-					LocalDate transaction_date) {
+			public Transaction(long senderAccountNumber, String name, String transactionType, long receiveAccountNumber,
+					double amount, double balance, String transactionstatus, LocalDate transactiondate) {
 				super();
-				this.sender_Account_number = sender_Account_number;
+				this.senderAccountNumber = senderAccountNumber;
 				this.name = name;
-				this.transaction_type = transaction_type;
-				this.receiver_account_number = receiver_account_number;
+				this.transactionType = transactionType;
+				this.receiveAccountNumber = receiveAccountNumber;
 				this.amount = amount;
 				this.balance = balance;
-				this.transaction_status = transaction_status;
-				this.transaction_date = transaction_date;
+				this.transactionstatus = transactionstatus;
+				this.transactiondate = transactiondate;
 			}
-			public Transaction(long lsender_Account_number, String name, String transaction_type, long receiver_account_number, double amount, LocalDate transaction_date) {
+			public Transaction() {
 				super();
-				this.sender_Account_number = sender_Account_number;
-				this.name = name;
-				this.transaction_type = transaction_type;
-				this.receiver_account_number = receiver_account_number;
-				this.amount = amount;
-				this.transaction_date = transaction_date;
 				// TODO Auto-generated constructor stub
-			}
-			 
-			public Transaction(long sender_Account_number, String name, String transaction_type, long receiver_account_number, double amount) {
-				this.sender_Account_number = sender_Account_number;
-				this.name = name;
-				this.transaction_type = transaction_type;
-				this.receiver_account_number = receiver_account_number;
-				this.amount = amount;
-				this.sender_Account_number = sender_Account_number;
-				this.name = name;
-				this.transaction_type = transaction_type;
-				this.receiver_account_number = receiver_account_number;
-				this.amount = amount;
-				// TODO Auto-generated constructor stub
-			}
-			public Transaction(long sender_Account_number, String name, String transaction_type, long receiver_account_number, double amount, String transaction_status,
-					LocalDate transaction_date) {
-				// TODO Auto-generated constructor stub
-				this.sender_Account_number = sender_Account_number;
-				this.name = name;
-				this.transaction_type = transaction_type;
-				this.receiver_account_number = receiver_account_number;
-				this.amount = amount;
-				this.transaction_date = transaction_date;
 			}
 			@Override
 			public int hashCode() {
-				return Objects.hash(amount, balance, name, receiver_account_number, sender_Account_number,
-						transaction_date, transaction_status, transaction_type);
+				return Objects.hash(amount, balance, name, receiveAccountNumber, senderAccountNumber, transactionType,
+						transactiondate, transactionstatus);
 			}
 			@Override
 			public boolean equals(Object obj) {
@@ -122,20 +91,25 @@ public class Transaction {
 				if (getClass() != obj.getClass())
 					return false;
 				Transaction other = (Transaction) obj;
-				return amount == other.amount && balance == other.balance && Objects.equals(name, other.name)
-						&& receiver_account_number == other.receiver_account_number
-						&& sender_Account_number == other.sender_Account_number
-						&& Objects.equals(transaction_date, other.transaction_date)
-						&& Objects.equals(transaction_status, other.transaction_status)
-						&& Objects.equals(transaction_type, other.transaction_type);
+				return Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
+						&& Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
+						&& Objects.equals(name, other.name) && receiveAccountNumber == other.receiveAccountNumber
+						&& senderAccountNumber == other.senderAccountNumber
+						&& Objects.equals(transactionType, other.transactionType)
+						&& Objects.equals(transactiondate, other.transactiondate)
+						&& Objects.equals(transactionstatus, other.transactionstatus);
 			}
 			@Override
 			public String toString() {
-				return "Transaction [sender_Account_number=" + sender_Account_number + ", name=" + name
-						+ ", transaction_type=" + transaction_type + ", receiver_account_number="
-						+ receiver_account_number + ", amount=" + amount + ", balance=" + balance
-						+ ", transaction_status=" + transaction_status + ", transaction_date=" + transaction_date + "]";
+				return "Transaction [senderAccountNumber=" + senderAccountNumber + ", name=" + name
+						+ ", transactionType=" + transactionType + ", receiveAccountNumber=" + receiveAccountNumber
+						+ ", amount=" + amount + ", balance=" + balance + ", transactionstatus=" + transactionstatus
+						+ ", transactiondate=" + transactiondate + "]";
 			}
+			 
+			 
+			 
+			 
 			 
 			 
 

@@ -12,11 +12,12 @@ public class Deposits {
         private LocalDate dateOfDeposit;
         private  int tenure;
         private double rateOfInterest;
-        private  LocalDate maturity_date;
-        private double maturity_value;
-        private String deposit_status;
+        private  LocalDate maturityDate;
+        private double maturityValue;
+        private String depositStatus;
         private String pan;
-		private LocalDate approved_date;
+		private LocalDate approvedDate;
+		 
 		public long getDepositNumber() {
 			return depositNumber;
 		}
@@ -29,17 +30,17 @@ public class Deposits {
 		public void setAccno(long accno) {
 			this.accno = accno;
 		}
-		public int getUser_id() {
+		public int getUserId() {
 			return userId;
 		}
-		public void setUser_id(int user_id) {
-			this.userId = user_id;
+		public void setUserId(int userId) {
+			this.userId = userId;
 		}
-		public String getDeposit_type() {
+		public String getDepositType() {
 			return depositType;
 		}
-		public void setDeposit_type(String deposit_type) {
-			this.depositType = deposit_type;
+		public void setDepositType(String depositType) {
+			this.depositType = depositType;
 		}
 		public double getAmount() {
 			return amount;
@@ -47,11 +48,11 @@ public class Deposits {
 		public void setAmount(double amount) {
 			this.amount = amount;
 		}
-		public LocalDate getDate_of_deposit() {
+		public LocalDate getDateOfDeposit() {
 			return dateOfDeposit;
 		}
-		public void setDate_of_deposit(LocalDate date_of_deposit) {
-			this.dateOfDeposit = date_of_deposit;
+		public void setDateOfDeposit(LocalDate dateOfDeposit) {
+			this.dateOfDeposit = dateOfDeposit;
 		}
 		public int getTenure() {
 			return tenure;
@@ -59,29 +60,29 @@ public class Deposits {
 		public void setTenure(int tenure) {
 			this.tenure = tenure;
 		}
-		public double getRate_of_interest() {
+		public double getRateOfInterest() {
 			return rateOfInterest;
 		}
-		public void setRate_of_interest(double rate_of_interest) {
-			this.rateOfInterest = rate_of_interest;
+		public void setRateOfInterest(double rateOfInterest) {
+			this.rateOfInterest = rateOfInterest;
 		}
-		public LocalDate getMaturity_date() {
-			return maturity_date;
+		public LocalDate getMaturityDate() {
+			return maturityDate;
 		}
-		public void setMaturity_date(LocalDate maturity_date) {
-			this.maturity_date = maturity_date;
+		public void setMaturityDate(LocalDate maturityDate) {
+			this.maturityDate = maturityDate;
 		}
-		public double getMaturity_value() {
-			return maturity_value;
+		public double getMaturityValue() {
+			return maturityValue;
 		}
-		public void setMaturity_value(double maturity_value) {
-			this.maturity_value = maturity_value;
+		public void setMaturityValue(double maturityValue) {
+			this.maturityValue = maturityValue;
 		}
-		public String getDeposit_status() {
-			return deposit_status;
+		public String getDepositStatus() {
+			return depositStatus;
 		}
-		public void setDeposit_status(String deposit_status) {
-			this.deposit_status = deposit_status;
+		public void setDepositStatus(String depositStatus) {
+			this.depositStatus = depositStatus;
 		}
 		public String getPan() {
 			return pan;
@@ -89,29 +90,29 @@ public class Deposits {
 		public void setPan(String pan) {
 			this.pan = pan;
 		}
-		public LocalDate getApproved_date() {
-			return approved_date;
+		public LocalDate getApprovedDate() {
+			return approvedDate;
 		}
-		public void setApproved_date(LocalDate approved_date) {
-			this.approved_date = approved_date;
+		public void setApprovedDate(LocalDate approvedDate) {
+			this.approvedDate = approvedDate;
 		}
-		public Deposits(long depositNumber, long accno, int user_id, String deposit_type, double amount,
-				LocalDate date_of_deposit, int tenure, double rate_of_interest, LocalDate maturity_date,
-				double maturity_value, String deposit_status, String pan, LocalDate approved_date) {
+		public Deposits(long depositNumber, long accno, int userId, String depositType, double amount,
+				LocalDate dateOfDeposit, int tenure, double rateOfInterest, LocalDate maturityDate,
+				double maturityValue, String depositStatus, String pan, LocalDate approvedDate) {
 			super();
 			this.depositNumber = depositNumber;
 			this.accno = accno;
-			this.userId = user_id;
-			this.depositType = deposit_type;
+			this.userId = userId;
+			this.depositType = depositType;
 			this.amount = amount;
-			this.dateOfDeposit = date_of_deposit;
+			this.dateOfDeposit = dateOfDeposit;
 			this.tenure = tenure;
-			this.rateOfInterest = rate_of_interest;
-			this.maturity_date = maturity_date;
-			this.maturity_value = maturity_value;
-			this.deposit_status = deposit_status;
+			this.rateOfInterest = rateOfInterest;
+			this.maturityDate = maturityDate;
+			this.maturityValue = maturityValue;
+			this.depositStatus = depositStatus;
 			this.pan = pan;
-			this.approved_date = approved_date;
+			this.approvedDate = approvedDate;
 		}
 		public Deposits() {
 			super();
@@ -119,8 +120,8 @@ public class Deposits {
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(accno, amount, approved_date, dateOfDeposit, depositNumber, deposit_status,
-					depositType, maturity_date, maturity_value, pan, rateOfInterest, tenure, userId);
+			return Objects.hash(accno, amount, approvedDate, dateOfDeposit, depositNumber, depositStatus,
+					depositType, maturityDate, maturityValue, pan, rateOfInterest, tenure, userId);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -132,12 +133,12 @@ public class Deposits {
 				return false;
 			Deposits other = (Deposits) obj;
 			return accno == other.accno && Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
-					&& Objects.equals(approved_date, other.approved_date)
+					&& Objects.equals(approvedDate, other.approvedDate)
 					&& Objects.equals(dateOfDeposit, other.dateOfDeposit) && depositNumber == other.depositNumber
-					&& Objects.equals(deposit_status, other.deposit_status)
+					&& Objects.equals(depositStatus, other.depositStatus)
 					&& Objects.equals(depositType, other.depositType)
-					&& Objects.equals(maturity_date, other.maturity_date)
-					&& Double.doubleToLongBits(maturity_value) == Double.doubleToLongBits(other.maturity_value)
+					&& Objects.equals(maturityDate, other.maturityDate)
+					&& Double.doubleToLongBits(maturityValue) == Double.doubleToLongBits(other.maturityValue)
 					&& Objects.equals(pan, other.pan)
 					&& Double.doubleToLongBits(rateOfInterest) == Double.doubleToLongBits(other.rateOfInterest)
 					&& tenure == other.tenure && userId == other.userId;
@@ -147,8 +148,8 @@ public class Deposits {
 			return "Deposits [depositNumber=" + depositNumber + ", accno=" + accno + ", user_id=" + userId
 					+ ", deposit_type=" + depositType + ", amount=" + amount + ", date_of_deposit=" + dateOfDeposit
 					+ ", tenure=" + tenure + ", rate_of_interest=" + rateOfInterest + ", maturity_date="
-					+ maturity_date + ", maturity_value=" + maturity_value + ", deposit_status=" + deposit_status
-					+ ", pan=" + pan + ", approved_date=" + approved_date + "]";
+					+ maturityDate + ", maturity_value=" + maturityValue + ", deposit_status=" + depositStatus
+					+ ", pan=" + pan + ", approved_date=" + approvedDate + "]";
 		}
 		 
 		 

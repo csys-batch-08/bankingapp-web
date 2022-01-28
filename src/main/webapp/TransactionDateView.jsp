@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList" import="java.time.LocalDate"
      import="java.time.format.DateTimeFormatter"%>
-    <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
-    <%@page import="com.bankapp.model.Transaction"%>
+     
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title> Transaction</title>
@@ -205,15 +205,7 @@ background-color:  rgba(35, 106, 240,.5);}
       
      <h2 align="center">Transaction </h2>
       
-     <%
-       LocalDate date;
-      
-     %>
-     <% TransactionDaoimpl tranDao = new TransactionDaoimpl();
-     date=(LocalDate) session.getAttribute("Date");
      
-        List<Transaction> List = tranDao. getbyDate(date);
-      %>
 
  <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
@@ -231,27 +223,21 @@ background-color:  rgba(35, 106, 240,.5);}
 <br>
 
 <tbody>
-<%
-int i = 0;
-for (Transaction Viewuser :List ) {
-i++;
-
-%>
+       <c:forEach items="${ViewList}" var="viewlist">
+				  <c:set var="i" value="${i+1 }"/>
 <tr>
+ 
 
-
-<td><%=i%></td>
-<td><%=Viewuser.getSender_Account_number()%></td>
-<td><%=Viewuser.getName()%></td>
-<td><%=Viewuser.getTransaction_type()%></td>
- <td><%=Viewuser.getReceiver_account_number()%></td>
- <td><%=Viewuser.getAmount()%></td>
+<td> ${i}</td>
+<td> ${viewlist.senderAccountNumber }</td>
+<td> ${viewlist.name}</td>
+<td> ${viewlist.transactionType}</td>
+ <td> ${viewlist.receiveAccountNumber}</td>
+ <td> ${viewlist.amount}</td>
  
  </tr>
 
-<%
-}
-%>
+ </c:forEach>
 </tbody>
           </table>
           <br><br><br>

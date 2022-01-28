@@ -227,6 +227,7 @@ th {
 					<th>DepositType</th>
 					<th>Amount</th>
 					<th>Date</th>
+					
 					<th>Tenure</th>
 					<th>Status</th>
 					<th>Approve</th>
@@ -242,15 +243,15 @@ th {
 
 
 					<td>${i}</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
-					<td>${approvedeposit. }</td>
+					<td>${approvedeposit.depositNumber}</td>
+					<td>${approvedeposit.accno }</td>
+					<td>${approvedeposit.depositType }</td>
+					<td>${approvedeposit. amount}</td>
+					<td>${approvedeposit.maturityDate }</td>
+					<td>${approvedeposit.tenure }</td>
+					<td>${approvedeposit.depositStatus }</td>
 					<td><a
-						href="DepositApproveAdmin?accno=${approvedeposit. }%>&status=Approved">Approve</a></td>
+						href="DepositApproveAdmin?accno=${approvedeposit. accno}&status=Approved">Approve</a></td>
 				</tr>
 
 				 </c:forEach>

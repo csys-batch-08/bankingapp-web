@@ -3,7 +3,7 @@
 <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
 <%@page import="com.bankapp.model.Transaction"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Transaction</title>

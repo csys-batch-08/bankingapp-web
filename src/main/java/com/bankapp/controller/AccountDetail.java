@@ -1,7 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+ 
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,7 +23,7 @@ public class AccountDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
 
 		HttpSession session = request.getSession();
 
@@ -36,16 +36,24 @@ public class AccountDetail extends HttpServlet {
 			AccountDetailsdaoimpl accDetailDao = new AccountDetailsdaoimpl();
 			int pinnum = accDetailDao.getPinnumber(accNo);
 			if (pin == pinnum) {
-				List<AccountDetails> list = accDetailDao.searchDetail(accNo, pin);
-				response.sendRedirect("accDetailView.jsp");
+				List<AccountDetails>  accdet = accDetailDao.searchDetail(accNo, pin);
+				 request.setAttribute("AccountDetail",accdet);
+				 RequestDispatcher rd=request.getRequestDispatcher("accDetailView.jsp");
+					rd.forward(request, response);
+			 
 			} else {
 				session.setAttribute("pinvalid", "Enter Valid Account number or Pin Number");
-				response.sendRedirect("accountDetail.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("accountDetail.jsp");
+				rd.include(request, response);
 			}
-		} catch (IOException e) {
+			
+			 
+			 
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
+		 
 
 	}
 

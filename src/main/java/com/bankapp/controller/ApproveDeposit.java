@@ -18,7 +18,7 @@ import com.bankapp.model.Deposits;
 public class ApproveDeposit extends HttpServlet {
 	 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void  service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  
 		 
 		DepositsDaoimpl depositDao = new DepositsDaoimpl();

@@ -144,7 +144,7 @@ body{
 			<li><a href="UpdateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
-			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="TransactionByAcc.jsp">Transaction by Account</a></li>
 			<li><a href="UserCancel.jsp">Cancel Account</a></li>

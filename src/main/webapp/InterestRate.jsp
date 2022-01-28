@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -217,20 +218,11 @@ th {
 			</div>
 			 
 		</form>
-		<%!String flag;%>
-		<%
-		if (session.getAttribute("rat") != null) {
-			flag = session.getAttribute("rat").toString();
-		%>
-
-
-		<h4 id="transhead"><%=flag%></h4>
-		<%
-		}
-		%>
-		<%
-		session.removeAttribute("rat");
-		%>
+		 <c:if test="${sessionScope.rat!=null}">
+          <h4>${sessionScope.rat}</h4>
+          </c:if> 
+            
+           <c:remove var="rat" scope="session"/>
 	</div>
 
 </body>

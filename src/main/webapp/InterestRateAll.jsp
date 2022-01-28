@@ -3,6 +3,7 @@
 	import="java.util.ArrayList"%>
 <%@page import="com.bankapp.impl.AdminUseDaoimpl"%>
 <%@page import="com.bankapp.model.AdminUse"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,12 +209,7 @@ background-color:  rgba(35, 106, 240,.5);}
 	</div>
 
 	<h3 align="center">Rate Of Interest</h3>
-	<%
-	AdminUseDaoimpl adminDao = new AdminUseDaoimpl();
-	List<AdminUse> List = new ArrayList<AdminUse>();
-	List = adminDao.allDetails();
-	%>
-
+	
 	 <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
 			<thead>
@@ -230,25 +226,20 @@ background-color:  rgba(35, 106, 240,.5);}
 			 
 
 			<tbody>
-				<%
-				int i = 0;
-				for (AdminUse viewuser : List) {
-					i++;
-				%>
+				<c:forEach items="${InterestsRate}" var="Rate">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
 
 
-					<td><%=i%></td>
-					<td><%=viewuser.getCategoryName()%></td>
-					<td><%=viewuser.getCategoryType()%></td>
-					<td><%=viewuser.getDescription()%></td>
-					<td><%=viewuser.getDescriptionId()%></td>
-					<td><%=viewuser.getRateOfInterest()%>%</td>
+					<td>${i}</td>
+					<td>${Rate.categoryName}</td>
+					<td>${Rate.categoryType}</td>
+					<td>${Rate.description}</td>
+					<td>${Rate.descriptionId}</td>
+					<td>${Rate.rateOfInterest}%</td>
 				</tr>
 
-				<%
-				}
-				%>
+				 </c:forEach>
 			</tbody>
 		</table>
 		<br>

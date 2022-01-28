@@ -20,28 +20,28 @@ import com.bankapp.util.ConnectionUtil;
 public class TransactionDaoimpl implements TransactionDao {
 	
 	
-	   public boolean depositAmount(long sender_AccNO, String Name, double amount, int pin_No, long receiver_AccNO) {
+	   public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO) {
 		Connection con = ConnectionUtil.getDbConnection();
-		String rec_query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
-		String rec_query1 = "select balance from account_details where account_number=?";
+		String recQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
+		String recQuery1 = "select balance from account_details where account_number=?";
 		double balance = 0;
 		boolean flag=false;
-		String rec_query2 = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
+		String recQuery2 = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
 
-		String send_query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
+		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
 		
 
 		PreparedStatement ps;
 		try {
-			ps = con.prepareStatement(rec_query);
+			ps = con.prepareStatement(recQuery);
 
 			ps.setDouble(1, amount);
-			ps.setLong(2, receiver_AccNO);
-			ps.setLong(3, receiver_AccNO);
+			ps.setLong(2, receiverAccNO);
+			ps.setLong(3, receiverAccNO);
 			ps.executeUpdate();
 
-			ps = con.prepareStatement(rec_query1);
-			ps.setDouble(1, sender_AccNO );
+			ps = con.prepareStatement(recQuery1);
+			ps.setDouble(1, senderAccNum );
 			ps.executeUpdate();
 			ResultSet rs = ps.executeQuery();
 			
@@ -49,19 +49,19 @@ public class TransactionDaoimpl implements TransactionDao {
 				balance = rs.getDouble("balance");
 			}
 
-			ps = con.prepareStatement(rec_query2);
-			ps.setLong(1, sender_AccNO);
-			ps.setString(2, Name);
-			ps.setLong(3, receiver_AccNO);
+			ps = con.prepareStatement(recQuery2);
+			ps.setLong(1, senderAccNum);
+			ps.setString(2, uname);
+			ps.setLong(3, receiverAccNO);
 			ps.setDouble(4, amount);
 			ps.setDouble(5, balance);
 			ps.executeUpdate();
-			ps = con.prepareStatement(send_query);
+			ps = con.prepareStatement(sendQuery);
 
-			ps.setLong(1, sender_AccNO);
+			ps.setLong(1, senderAccNum);
 			ps.setDouble(2, amount);
-			ps.setLong(3, sender_AccNO);
-			ps.setInt(4, pin_No);
+			ps.setLong(3, senderAccNum);
+			ps.setInt(4, pinNo);
 
 			ps.executeUpdate();
 			 flag=true;
@@ -164,16 +164,17 @@ public class TransactionDaoimpl implements TransactionDao {
 			 
 		    while(rs.next())
 			{
-		    	Transaction trans=new Transaction(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getDouble(5),
+		    	Transaction trans=new Transaction(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getDouble(5),0,
 						rs.getString(6),rs.getDate(7).toLocalDate());
 				list .add(trans);
+				System.out.println(list);
 			}
 			 
-	//	System.out.println(list);	
+	 	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
-		//	System.out.println(e);
+	 
 		}
 		return list;
 	}
@@ -181,7 +182,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		Connection con=ConnectionUtil.getDbConnection();
 		List<Transaction> list=new ArrayList<Transaction>();
 		 ResultSet rs=null;
-		String query=" select * from transaction  where  Sender_Account_number='"+accNo+"'";
+		String query=" select * from transaction  where  Sender_Account_number='"+accNo+"' order by transaction_date desc  "  ;
 		try {
 			Statement st =con.createStatement();
 		  rs= st.executeQuery(query);
@@ -189,7 +190,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		    while(rs.next())
 			{
 		    	 
-		    	Transaction transac=new Transaction(rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getDouble(6),
+		    	Transaction transac=new Transaction(rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getDouble(6),0,
 						rs.getString(7),rs.getDate(9).toLocalDate());
 				list .add(transac);
 			}
@@ -213,7 +214,7 @@ public class TransactionDaoimpl implements TransactionDao {
 			
 			while(rs.next())
 			{
-			Transaction	trans=new Transaction(rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getDouble(6),
+			Transaction	trans=new Transaction(rs.getLong(2),rs.getString(3),rs.getString(4),rs.getLong(5),rs.getDouble(6),0,
 					rs.getString(7),rs.getDate(9).toLocalDate());
 			list .add(trans);
 			}
@@ -241,7 +242,7 @@ public class TransactionDaoimpl implements TransactionDao {
 			}
 				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
 		}
 		 return date;

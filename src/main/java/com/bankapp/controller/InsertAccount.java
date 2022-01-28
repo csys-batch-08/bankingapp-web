@@ -1,6 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
@@ -38,11 +39,14 @@ public class InsertAccount extends HttpServlet {
 	    AccountDetailsdaoimpl accdao=new AccountDetailsdaoimpl(); 
 	    AccountDetails acc=new AccountDetails(0,0,accType,accHolderName,address,city,pincode,dob,mobNo,email,ifscCode,branch,bal,pin,status,pan);
 	    
-	    accdao.insertAccount(acc);
 	    
-	     
+			accdao.insertAccount(acc);
 			response.sendRedirect("viewAccount.jsp");
-		} catch (IOException e) {
+		  }
+		 catch (SQLException e) {
+			 
+			e.printStackTrace();
+		}catch (IOException e) {
 			 
 			e.printStackTrace();
 		}

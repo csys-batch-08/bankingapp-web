@@ -3,6 +3,7 @@ package com.bankapp.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,29 +20,37 @@ import com.bankapp.model.Transaction;
 
 /**
  * Servlet implementation class depStatusUser
- */ @WebServlet("/deposit")
+ */
+@WebServlet("/deposit")
 public class DepositStatusUser extends HttpServlet {
-	 
-	 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		HttpSession session=request.getSession();
-		long accNo=Long.parseLong(request.getParameter("accno"));
-		 DepositsDaoimpl accDetailDao=new DepositsDaoimpl();
-		   boolean flag=accDetailDao.viewOnedeposit(accNo);
-		   System.out.println(flag);
-		   if (flag==true) {
-		   List<Deposits> list = accDetailDao.viewStatusUser(accNo);
-		   session.setAttribute("useraccno", accNo);
-	//	   session.setAttribute("userpin", pin);
-		   response.sendRedirect("depStatusView.jsp");
-	                  }
-		   else {
-			   session.setAttribute("Saccnum","Enter Valid Account Number!");
-			   response.sendRedirect("depositStatusUser.jsp");
-		   }
-		   
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			HttpSession session = request.getSession();
+			long accNo = Long.parseLong(request.getParameter("accno"));
+			DepositsDaoimpl accDetailDao = new DepositsDaoimpl();
+			boolean flag = accDetailDao.viewOnedeposit(accNo);
+
+			if (flag == true) {
+				List<Deposits> accde = accDetailDao.viewStatusUser(accNo);
+				request.setAttribute("Deposits", accde);
+				RequestDispatcher rd = request.getRequestDispatcher("depStatusView.jsp");
+				rd.forward(request, response);
+			} else {
+				session.setAttribute("Saccnum", "Enter Valid Account Number!");
+				RequestDispatcher rd = request.getRequestDispatcher("depStatusView.jsp");
+				rd.include(request, response);
+			}
+		} catch (ServletException | IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 }

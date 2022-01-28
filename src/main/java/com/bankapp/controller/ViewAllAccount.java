@@ -1,6 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,13 +18,20 @@ import com.bankapp.model.AccountDetails;
 @WebServlet("/ViewAllAccount")
 public class ViewAllAccount extends HttpServlet {
 	 
-	protected void  service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void  service(HttpServletRequest request, HttpServletResponse response)   {
+		try {
 		  AccountDetailsdaoimpl UserDao = new AccountDetailsdaoimpl();
-        List<AccountDetails>  list = UserDao.viewAccout();
+        List<AccountDetails> list;
+		
+			list = UserDao.viewAccout();
+		
         request.setAttribute("ViewAccount",list);
         RequestDispatcher rd=request.getRequestDispatcher("viewAccount.jsp");
         rd.forward(request, response);
-
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

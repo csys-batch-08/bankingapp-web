@@ -23,7 +23,7 @@ public class TransactionSummary extends HttpServlet {
 	 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
-		  
+		   try {
 		long accNo=Long.parseLong(request.getParameter("accno"));
 		 
 		 TransactionDaoimpl transDao=new TransactionDaoimpl();
@@ -36,16 +36,11 @@ public class TransactionSummary extends HttpServlet {
 	        List<Transaction> list = tranDao.getByAccountNumberAdmin(acc);
 	        request.setAttribute("transacAcc",list);
 	        RequestDispatcher rd=request.getRequestDispatcher("TransactionAdminView.jsp");
-	        try {
+	     
 				rd.forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			 
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				 
 				e.printStackTrace();
 			}
 		 

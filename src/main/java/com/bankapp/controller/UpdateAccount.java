@@ -1,6 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +27,13 @@ public class UpdateAccount extends HttpServlet {
 		String email1 = request.getParameter("email1");
 		long mobno=Long.parseLong( request.getParameter("mobno"));
 		AccountDetailsdaoimpl accountDetailDao=new AccountDetailsdaoimpl();
-		accountDetailDao.updateUserDetailAdmin(email1,mobno, email);
-//		long  accnum= Long.parseLong(request.getParameter("acc"));
-//		System.out.println(accnum);
-//		   AccountDetailsdaoimpl userDao = new AccountDetailsdaoimpl();
-//	        List<AccountDetails> list = userDao.viewOneAccount(accnum);
-//	        System.out.println(list);
-//	       request.setAttribute("UpdateAccount",list);
+		try {
+			accountDetailDao.updateUserDetailAdmin(email1,mobno, email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
 	       HttpSession session=request.getSession();
 	       session.setAttribute("msg","Updated");
 	       response.sendRedirect("UpdateAccountDetails.jsp");

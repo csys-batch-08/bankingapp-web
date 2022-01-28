@@ -1,9 +1,9 @@
-<%@page import="com.bankapp.model.Loans"%>
-<%@page import="com.bankapp.impl.LoansDaoimpl"%>
+ 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Loan Status</title>
@@ -205,11 +205,7 @@ background-color:  rgba(35, 106, 240,.5);}
 	</div>
 
 	 
-		<%
-		long accno = (Long) session.getAttribute("useraccno");
-		LoansDaoimpl depdao = new LoansDaoimpl();
-		List<Loans> accde = depdao.viewStatusUser(accno);
-		%>
+		
 		<div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
 
@@ -231,30 +227,25 @@ background-color:  rgba(35, 106, 240,.5);}
 
 
 			<tbody>
-				<%
-				int i = 0;
-				for (Loans Viewuser : accde) {
-					i++;
-				%>
+				<c:forEach items="${LoanStatus}" var="LoanStatusView">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
+                      <td> ${i} </td>
+					<td>${LoanStatusView.accountNumber} </td>
+					<td>${LoanStatusView.username} </td>
+					<td>${LoanStatusView.loanType}</td>
+					<td>${LoanStatusView.loanAmount}</td>
+					<td>${LoanStatusView.interestRate}%</td>
+					<td>${LoanStatusView.tenure}</td>
+					<td>${LoanStatusView.monthlyPayment}</td>
+					<td>${LoanStatusView.loanStatus}</td>
 
-
-					<td><%=i%></td>
-					<td><%=Viewuser.getAccount_number()%></td>
-					<td><%=Viewuser.getUser_name()%></td>
-					<td><%=Viewuser.getLoan_type()%></td>
-					<td><%=Viewuser.getLoan_amount()%></td>
-					<td><%=Viewuser.getInterest_rate()%></td>
-					<td><%=Viewuser.getTenure()%></td>
-					<td><%=Viewuser.getMonthly_payment()%></td>
-					<td><%=Viewuser.getLoan_status()%></td>
+					 
 
 
 				</tr>
 
-				<%
-				}
-				%>
+				 </c:forEach>
 			</tbody>
 		</table>
 		<br>

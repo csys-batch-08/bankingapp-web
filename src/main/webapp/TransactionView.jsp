@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
-<%@page import="com.bankapp.impl.TransactionDaoimpl"%>
-<%@page import="com.bankapp.model.Transaction"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>TransactionSummary</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
 * {
@@ -21,7 +23,7 @@ nav {
 	font-size: 16px;
 	color: black;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
+	background-color: rgba(9, 57, 87, .9);
 	height: 40%;
 	margin: 0;
 	color: red;
@@ -29,7 +31,7 @@ nav {
 }
 
 nav a {
-	padding-right:  77.5px;
+	padding-right: 77.5px;
 }
 
 h1 {
@@ -63,11 +65,11 @@ h3 {
 }
 
 .sidebar {
-	position:absolute;
+	position: absolute;
 	left: 0;
 	width: 250px;
 	height: 1200px;
-    background-color: rgba(9, 57, 87,.8);
+	background-color: rgba(9, 57, 87, .8);
 	color: white;
 }
 
@@ -76,7 +78,7 @@ h3 {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
+	background-color: rgba(9, 57, 87, .3);
 }
 
 ul {
@@ -131,8 +133,8 @@ ul li:hover a {
 	color: white;
 	background-color: green;
 	margin-right: 30px;
-	border:0;
-	border-radius:3px;
+	border: 0;
+	border-radius: 3px;
 }
 
 .btn3 {
@@ -140,55 +142,58 @@ ul li:hover a {
 }
 
 body {
-	background-color: rgba(198, 208, 214,.9);
+	background-color: rgba(198, 208, 214, .9);
 }
 
 #transhead {
 	color: green;
 }
+
 .t1 {
 	padding: 10px;
 	padding-left: 350px;
-	border:none;
+	border: none;
 }
 
 td {
 	padding-left: 15px;
-	 
 }
 
 th {
-	padding-left:  10px;
-	font-size:18px;
-	 
+	padding-left: 10px;
+	font-size: 18px;
 }
 
-.table{
-margin-bottom:10px;
- width:1000px;
- margin-left:180px;
+.table {
+	margin-bottom: 10px;
+	width: 1000px;
+	margin-left: 180px;
 }
-.table th{
-background-color:  rgba(161, 15, 95,.5);}
-.table td{
-background-color:  rgba(35, 106, 240,.5);}
+
+.table th {
+	background-color: rgba(161, 15, 95, .5);
+}
+
+.table td {
+	background-color: rgba(35, 106, 240, .5);
+}
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	<img src="images/boilogo.png" alt="couldnot load" width="400"
+		height="100" />
 	<nav>
-		 <a  href="CustomerDashBoard.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                       <a   href="interest.jsp" class="set1">%</a>   
-                        <a href="MyProfile.jsp">My Profile</a>
-                         <button class="btn"><a href="LogoutServlet">Logout</a></button>
+		<a href="CustomerDashBoard.jsp"> Home</a> <a href="loans.jsp">Loans</a>
+		<a href="deposits.jsp">Deposits</a> <a href="AboutUs.jsp">About us</a>
+		<a href="ContactUs.jsp">Contact Us</a> <a href="interest.jsp"
+			class="set1">%</a> <a href="MyProfile.jsp">My Profile</a>
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
 	</nav>
 	<br>
 	<br>
-  <br>
+	<br>
 	<div class="sidebar">
 
 		<header>My Account</header>
@@ -206,67 +211,49 @@ background-color:  rgba(35, 106, 240,.5);}
 
 		</ul>
 	</div>
-	 
+
 	<h2 align="center">Transaction Summary</h2>
 	<div class="">
-		<%
-		long acc;
-		int pin;
-		
-		%>
-		<%
-		TransactionDaoimpl tranDao = new TransactionDaoimpl();
-		acc = (Long) session.getAttribute("accNo");
-		pin=(int) session.getAttribute("passw");
-		List<Transaction> List = tranDao.getByAccountNumberUser(acc,pin);
-		%>
 
 
 		<div class="container mt-4 mb-4">
-      <table class="table table-hover table-striped">
-			<thead>
-				<tr>
-					<th>S.no</th>
-					<th>Sender Account Number</th>
-					<th>Name</th>
-					<th>Transaction</th>
-					<th>Receive Account Number</th>
-					<th>Amount</th>
-					<th>Date</th>
-				</tr>
-			</thead>
-			<br>
-			<br>
-
-			<tbody>
-				<%
-				int i = 0;
-				for (Transaction Viewuser : List) {
-					i++;
-				%>
-				<tr>
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>S.no</th>
+						<th>Sender Account Number</th>
+						<th>Name</th>
+						<th>Transaction</th>
+						<th>Receive Account Number</th>
+						<th>Amount</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${TransacSummary}" var="Transacviewlist">
+						<c:set var="i" value="${i+1 }" />
+						<tr>
 
 
-					<td><%=i%></td>
-					<td><%=acc%></td>
-					<td><%=Viewuser.getName()%></td>
-					<td><%=Viewuser.getTransaction_type()%></td>
-					<td><%=Viewuser.getReceiver_account_number()%></td>
-					<td><%=Viewuser.getAmount()%></td>
-					<td><%=Viewuser.getTransaction_date()%></td>
+							<td>${i}</td>
+							<td>${Transacviewlist.senderAccountNumber }</td>
+							<td>${Transacviewlist.name}</td>
+							<td>${Transacviewlist.transactionType}</td>
+							<td>${Transacviewlist.receiveAccountNumber}</td>
+							<td>${Transacviewlist.amount}</td>
+							<td>${Transacviewlist.transactiondate }</td>
+							
 
-				</tr>
-
-				<%
-				}
-				%>
-			</tbody>
-		</table>
+						</tr>
+ </c:forEach>
+					
+				</tbody>
+			</table>
 		</div>
 		<div class="btn3">
-		<button type="submit" class="btn2">
-			<a href="CustomerDashBoard.jsp">Back</a>
-		</button>
+			<button type="submit" class="btn2">
+				<a href="CustomerDashBoard.jsp">Back</a>
+			</button>
 		</div>
 	</div>
 

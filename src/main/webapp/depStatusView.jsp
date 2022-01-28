@@ -1,7 +1,6 @@
-<%@page import="com.bankapp.model.Deposits"%>
-<%@page import="com.bankapp.impl.DepositsDaoimpl"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -217,20 +216,17 @@ background-color:  rgba(35, 106, 240,.5);}
 	</div>
 	          <h2 align="center">Deposits</h2>
 	 
-		<%
-		long accno = (Long) session.getAttribute("useraccno");
-		DepositsDaoimpl depdao = new DepositsDaoimpl();
-		List<Deposits> accde = depdao.viewStatusUser(accno);
-		%>
 		<div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
 
 			<thead>
 				<tr>
 					<th>S.no</th>
+					<th>DepositNumber</th>
 					<th>AccountNumber</th>
 					<th>Deposit Type</th>
 					<th>Amount</th>
+					<th>MaturityDate</th>
 					<th>Rate Of Interest</th>
 					<th>Tenure</th>
 					<th>MaturityValue</th>
@@ -242,29 +238,25 @@ background-color:  rgba(35, 106, 240,.5);}
 
 
 			<tbody>
-				<%
-				int i = 0;
-				for (Deposits Viewuser : accde) {
-					i++;
-				%>
+				<c:forEach items="${Deposits}" var="depositView">
+				  <c:set var="i" value="${i+1 }"/>
 				<tr>
 
 
-					<td><%=i%></td>
-					<td><%=Viewuser.getAccno()%></td>
-					<td><%=Viewuser.getDeposit_type()%></td>
-					<td><%=Viewuser.getAmount()%></td>
-					<td><%=Viewuser.getRate_of_interest()%></td>
-					<td><%=Viewuser.getTenure()%></td>
-					<td><%=Viewuser.getMaturity_value()%></td>
-					<td><%=Viewuser.getDeposit_status()%></td>
-
-
+					<td>${i}</td>
+					<td>${depositView.depositNumber}</td>
+					<td>${depositView.accno}</td>
+					<td>${depositView.depositType }</td>
+					<td>${depositView.amount}</td>
+					<td>${depositView.maturityDate}</td>
+					<td>${depositView.rateOfInterest}
+					<td>${depositView.tenure}</td>
+					<td>${depositView.maturityValue}</td>
+					<td>${depositView.depositStatus }</td>
+			 
 				</tr>
 
-				<%
-				}
-				%>
+				 </c:forEach>
 			</tbody>
 		</table>
 		<br><br>

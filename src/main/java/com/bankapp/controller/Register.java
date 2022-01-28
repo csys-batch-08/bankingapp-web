@@ -1,8 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
+ 
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,44 +22,27 @@ import com.bankapp.model.UserDetails;
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public Register() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);\
-	//	System.out.println("hello");
+     
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
+		  try {
 		String name=request.getParameter("uname");
 		String email=request.getParameter("emailId");
 		String password=request.getParameter("pwd");
 		long mobileNo=(Long.parseLong(request.getParameter("mobNo")));
-		//System.out.println(name+email+password+mobileNo);
+		 
 		UserDetailsDaoimpl userDetailDao=new  UserDetailsDaoimpl();
 		AccountDetailsdaoimpl accountsDao = new AccountDetailsdaoimpl();
 		String id = accountsDao.getUserId(email);
 		
 		if( id !=null )
 		{
-			int account_id = Integer.parseInt(id);
+			int accountId = Integer.parseInt(id);
 			UserDetails user = new UserDetails(name, email, password, mobileNo);
 			userDetailDao.insertUser(user);		
 			RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
-			   rd.forward(request, response);
+			 
+				rd.forward(request, response);
 		}
 
 		else {
@@ -69,13 +51,16 @@ public class Register extends HttpServlet {
 			response.sendRedirect("Reg.jsp");
 			
 		}
-//		 UserDetails user=new UserDetails(name,email,password,mobileNo);
-//		 userDetailDao.insertUser(user);
-//		  Connection con = ConnectionUtil.getDbConnection();
+		 
+		  }catch (ServletException | IOException e) {
+			 
+			e.printStackTrace();
+		}catch (Exception e) {
+			 
+			e.printStackTrace();
+		}
 		  
-		   
-//		 PrintWriter out=response.getWriter();
-//		 out.print("welcome");
+ 		} 
 	}
 
-}
+

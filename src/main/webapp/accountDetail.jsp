@@ -2,8 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
 <%@ page import="java.sql.ResultSet"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>accountDetail</title>
@@ -204,19 +205,11 @@ th {
 		</form>
 		<br>
 		<br>
-		<%!String flag;%>
-		<%
-		if (session.getAttribute("pinvalid") != null) {
-			flag = session.getAttribute("pinvalid").toString();
-		%>
-		<h4 id="transhead"><%=flag%></h4>
-		<%
-		}
-		%>
-
-		<%
-		session.removeAttribute("pinvalid");
-		%>
+		 <c:if test="${sessionScope.pinvalid!=null}">
+          <h4>${sessionScope.pinvalid}</h4>
+          </c:if> 
+            
+           <c:remove var="pinvalid" scope="session"/>
 	</div>
 	</div>
 

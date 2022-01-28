@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Check Balance</title>
@@ -179,13 +180,13 @@ body {
 	 
 	<h2 align="center">WELCOME!</h2>
 	<div class="box">
-		<%!double amt;%>
-		<%
-		amt = (Double) session.getAttribute("amount");
-		%>
+		<c:if test="${sessionScope.amount!=null}">
 		<h2>
 			Balance is :
-			<%=amt%></h2><br><br>
+			${sessionScope.amount}</h2>
+          </c:if> 
+            
+            <br><br>
 			<div class="btn3">
 			<button type="submit" class="btn2" ><a href="CustomerDashBoard.jsp">OK</a></button>
 			</div>

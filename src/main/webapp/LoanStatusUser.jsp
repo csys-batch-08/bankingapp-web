@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Loans Status</title>
@@ -197,19 +198,10 @@ color:red;
 			</div>
 		</form>
 		<br><br>
-		<%!String flag;%>
-		<%
-		if (session.getAttribute("Saccnum") != null) {
-			flag = session.getAttribute("Saccnum").toString();
-		%>
-     <h4 id="transhead"><%=flag%></h4>
-		<%
-		}
-		%>
-		
-		<%
-		session.removeAttribute("Saccnum");
-		%>
+		 <c:if test="${sessionScope.Saccnum!=null}">
+          <h4>${sessionScope.Saccnum}</h4>
+          </c:if> 
+          <c:remove var="Saccnum" scope="session"/>
 	</div>
 </body>
 </html>

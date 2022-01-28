@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -232,33 +233,20 @@ color:red;}
 			</div>
 			<br>
 			<br>
-		</form>
-		<%!String flag;
-		   String acc;%>
-		<%
-		if (session.getAttribute("loan") != null) {
-		flag = session.getAttribute("loan").toString();
-		acc=session.getAttribute("loan1").toString();
-		%>
-
-
-		<h4 id="transhead"><%=flag%></h4>
-		<h4 id="transhead">Your Loan Number: <%=acc %></h4>
-		<%
-		}
-		else if (session.getAttribute("loanNot")!=null){%>
-			
-		<h4 id="transhead1"><%=session.getAttribute("loanNot") %></h4>
-		<%}
-		else if (session.getAttribute("Ploan")!=null){%>
-		
-		<h4 id="transhead1"><%=session.getAttribute("Ploan") %></h4>
-		<%} %>
-		<%
-		session.removeAttribute("loan");
-		session.removeAttribute("loanNot");
-		session.removeAttribute("Ploan");
-		%>
+		</form> 
+		<c:if test="${sessionScope.loan!=null}">
+            <h4>${sessionScope.loan}</h4>
+	    	<h4 id="transhead">Your Loan Number: ${sessionScope.loan1}</h4>
+		</c:if>
+		<c:remove var="trans" scope="session" />
+		<c:if test="${sessionScope.loanNot!=null}">
+			<h4>${sessionScope.loanNot}</h4>
+		</c:if>
+        <c:remove var="HloanNot" scope="session" />
+		<c:if test="${sessionScope.Ploan!=null}">
+			<h4>${sessionScope.Ploan}</h4>
+		</c:if>
+        <c:remove var="Houloan" scope="session" />
 	</div>
 
 </body>

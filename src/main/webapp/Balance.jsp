@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Balance</title>
@@ -203,18 +204,10 @@ body {
 		</form>
 
 	</div>
-	<%!String flag;%>
-	<%
-	if (session.getAttribute("pinvalidate") != null) {
-		flag = session.getAttribute("pinvalidate").toString();
-	%>
-	<h4 id="transhead"><%=flag%></h4>
-	<%
-	}
-	%>
-
-	<%
-	session.removeAttribute("pinvalidate");
-	%>
+	  <c:if test="${sessionScope.pinvalidate!=null}">
+          <h4>${sessionScope.pinvalidate}</h4>
+          </c:if> 
+            
+           <c:remove var="pinvalidate" scope="session"/>
 </body>
 </html>

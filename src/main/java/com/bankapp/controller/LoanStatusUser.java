@@ -3,6 +3,7 @@ package com.bankapp.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,42 +23,27 @@ import com.bankapp.model.Transaction;
 @WebServlet("/loanStatus")
 public class LoanStatusUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoanStatusUser() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			HttpSession session = request.getSession();
+			long accNo = Long.parseLong(request.getParameter("accno"));
+			LoansDaoimpl accDetailDao = new LoansDaoimpl();
+			boolean flag = accDetailDao.ViewOneLoan(accNo);
+			if (flag == true) {
+				List<Loans> accde = accDetailDao.viewStatusUser(accNo);
+				request.setAttribute("LoanStatus", accde);
+				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
+				rd.forward(request, response);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	//	doGet(request, response);
-		HttpSession session=request.getSession();
-		long accNo=Long.parseLong(request.getParameter("accno"));
-		LoansDaoimpl accDetailDao=new LoansDaoimpl();
-		   boolean flag=accDetailDao.ViewOneLoan(accNo);
-		   if (flag==true) {
-		   List<Loans> list = accDetailDao.viewStatusUser(accNo);
-		   session.setAttribute("useraccno", accNo);
-	//	   session.setAttribute("userpin", pin);
-		   response.sendRedirect("loanStatusView.jsp");
-		   } else {
-			   session.setAttribute("Saccnum","Enter Valid Account Number!");
-			   response.sendRedirect("LoanStatusUser.jsp");
-		   }
+			} else {
+				session.setAttribute("Saccnum", "Enter Valid Account Number!");
+				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
+				rd.include(request, response);
+			}
+		} catch (ServletException | IOException e) {
+			 
+			e.printStackTrace();
+		}
 	}
-	}
-
+}

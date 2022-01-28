@@ -17,6 +17,7 @@ import com.bankapp.impl.TransactionDaoimpl;
  */@WebServlet("/Balance")
 public class Balance extends HttpServlet {
 	 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
 		 try {
 		HttpSession session=request.getSession();
@@ -28,9 +29,8 @@ public class Balance extends HttpServlet {
 		 int pinnum=transDao.getPinnumber(accNo);
 		 if(pin==pinnum) {
 		 double amoun=transDao.viewBalance(accNo,  pin);
-		 
-		 
 		 session.setAttribute( "amount", amoun);
+		 response.sendRedirect("BalanceView.jsp");
 		 }
 		 else
 		 {
@@ -38,9 +38,9 @@ public class Balance extends HttpServlet {
 			 response.sendRedirect("Balance.jsp");
 		 }
 		 
-			response.sendRedirect("BalanceView.jsp");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
+		} catch ( Exception e) {
+ 
 			e.printStackTrace();
 		}
 		 

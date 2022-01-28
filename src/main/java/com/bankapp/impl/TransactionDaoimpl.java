@@ -24,12 +24,12 @@ public class TransactionDaoimpl implements TransactionDao {
 		Connection con = ConnectionUtil.getDbConnection();
 		String recQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
 		String recQuery1 = "select balance from account_details where account_number=?";
-		double balance = 0;
-		boolean flag=false;
+		
 		String recQuery2 = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
 
 		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
-		
+		double balance = 0;
+		boolean flag=false;
 
 		PreparedStatement ps;
 		try {

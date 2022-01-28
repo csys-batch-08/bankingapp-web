@@ -1,6 +1,8 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +19,20 @@ import com.bankapp.impl.UserDetailsDaoimpl;
 public class ForgotPassword extends HttpServlet {
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);String name=request.getParameter("uname");
+ 
 		String email=request.getParameter("userId");
 		String password=request.getParameter("pwd");
 		long mobileNo=(Long.parseLong(request.getParameter("mobNo")));
-		//System.out.println(name+email+password+mobileNo);
+		 
 		UserDetailsDaoimpl userDetailDao=new  UserDetailsDaoimpl();
 		AccountDetailsdaoimpl accountsDao = new AccountDetailsdaoimpl();
-		String id = accountsDao.getUserId(email);
-		//System.out.println(id);
+		try {
+			String id = accountsDao.getUserId(email);
+		} catch (SQLException e) {
+			 
+			e.printStackTrace();
+		}
+		 
 		userDetailDao.forgotPassword(password, email);
 		response.sendRedirect("login.jsp");
 	}

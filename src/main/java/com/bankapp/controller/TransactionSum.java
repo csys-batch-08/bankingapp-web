@@ -13,10 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.TransactionDaoimpl;
 import com.bankapp.model.Transaction;
-
-/**
- * Servlet implementation class TransactionSum
- */
+ 
 @WebServlet("/transac")
 public class TransactionSum extends HttpServlet {
 
@@ -39,7 +36,6 @@ public class TransactionSum extends HttpServlet {
 				TransactionDaoimpl tranDao = new TransactionDaoimpl();
 				List<Transaction> list = tranDao.getByAccountNumberUser(accNo, pin);
 				request.setAttribute("TransacSummary", list);
-				System.out.println(list);
 				RequestDispatcher rd = request.getRequestDispatcher("TransactionView.jsp");
                 rd.forward(request, response);
 

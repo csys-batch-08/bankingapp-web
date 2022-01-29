@@ -3,7 +3,7 @@
 <%@ page import="com.bankapp.model.UserDetails"%>
 <%@ page import="com.bankapp.impl.*"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>My Profile</title>

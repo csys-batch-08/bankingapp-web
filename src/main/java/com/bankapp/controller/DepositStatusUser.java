@@ -10,25 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.DepositsDaoimpl;
-import com.bankapp.impl.TransactionDaoimpl;
-import com.bankapp.model.AccountDetails;
 import com.bankapp.model.Deposits;
-import com.bankapp.model.Transaction;
-
-/**
- * Servlet implementation class depStatusUser
- */
+ 
 @WebServlet("/deposit")
 public class DepositStatusUser extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+ 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -36,8 +23,7 @@ public class DepositStatusUser extends HttpServlet {
 			long accNo = Long.parseLong(request.getParameter("accno"));
 			DepositsDaoimpl accDetailDao = new DepositsDaoimpl();
 			boolean flag = accDetailDao.viewOnedeposit(accNo);
-
-			if (flag == true) {
+            if (flag) {
 				List<Deposits> accde = accDetailDao.viewStatusUser(accNo);
 				request.setAttribute("Deposits", accde);
 				RequestDispatcher rd = request.getRequestDispatcher("depStatusView.jsp");

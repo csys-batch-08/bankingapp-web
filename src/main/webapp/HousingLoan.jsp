@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -17,7 +17,7 @@ nav {
 	font-size: 17px;
 	color: black;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
+	background-color: rgba(9, 57, 87, .9);
 	height: 30%;
 	margin: 0;
 	color: red;
@@ -25,7 +25,7 @@ nav {
 }
 
 nav a {
-	padding-right:  79px;
+	padding-right: 79px;
 }
 
 h1 {
@@ -63,7 +63,7 @@ h3 {
 	left: 0;
 	width: 250px;
 	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	background-color: rgba(9, 57, 87, .8);
 	color: white;
 }
 
@@ -72,7 +72,7 @@ h3 {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
+	background-color: rgba(9, 57, 87, .3);
 }
 
 ul {
@@ -133,8 +133,8 @@ ul li:hover a {
 	color: white;
 	background-color: green;
 	margin-right: 30px;
-	border:0;
-	border-radius:3px;
+	border: 0;
+	border-radius: 3px;
 }
 
 .btn3 {
@@ -142,8 +142,9 @@ ul li:hover a {
 }
 
 body {
-	background-color: rgba(198, 208, 214,.9);
+	background-color: rgba(198, 208, 214, .9);
 }
+
 td {
 	padding-left: 20px;
 	text-align: justify;
@@ -155,28 +156,31 @@ th {
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
-#transhead{
-color:green;
+
+#transhead {
+	color: green;
 }
-#transhead1{
-color:red;
+
+#transhead1 {
+	color: red;
 }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	<img src="images/boilogo.png" alt="couldnot load" width="400"
+		height="100" />
 	<nav>
-		 <a  href="CustomerDashBoard.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                       <a   href="interest.jsp" class="set1">%</a>   
-                       <a href="MyProfile.jsp">My Profile</a>
-                         <button class="btn"><a href="LogoutServlet">Logout</a></button>	</nav>
+		<a href="CustomerDashBoard.jsp"> Home</a> <a href="loans.jsp">Loans</a>
+		<a href="deposits.jsp">Deposits</a> <a href="AboutUs.jsp">About us</a>
+		<a href="ContactUs.jsp">Contact Us</a> <a href="interest.jsp"
+			class="set1">%</a> <a href="MyProfile.jsp">My Profile</a>
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
+	</nav>
 	<br>
 	<br>
-    <br>
+	<br>
 	<div class="sidebar">
 
 		<header>My Account</header>
@@ -199,32 +203,30 @@ color:red;
 	<div class="box">
 		<form action="House" method="post">
 			<table>
-			<th>Name</th>
-					<td><input type="text"  class="cls" name="lname"
-						pattern="[a-zA-z]{3,}" required /></td>
+				<th>Name</th>
+				<td><input type="text" class="cls" name="lname"
+					pattern="[a-zA-z]{3,}" required /></td>
 				</tr>
 				<tr>
 					<th>DOB</th>
-					<td><input type="date"  class="cls" name="dob"
-						  required /></td>
+					<td><input type="date" class="cls" name="dob" required /></td>
 				</tr>
 				<tr>
 					<th>Address</th>
-					<td><input type="text"  class="cls" name="address"
+					<td><input type="text" class="cls" name="address"
 						pattern="[a-zA-z0-9,-]+" required /></td>
 				</tr>
 				<tr>
 					<th>Email</th>
-					<td><input type="email"  class="cls" name="email"
-						  required /></td>
+					<td><input type="email" class="cls" name="email" required /></td>
 				</tr>
 				<tr>
 					<th>MobileNumber</th>
-					<td><input type="text"  class="cls" name="mobno"
+					<td><input type="text" class="cls" name="mobno"
 						pattern="[6-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th>  Loan Amount</th>
+					<th>Loan Amount</th>
 					<td><input type="text" name="amountDeposit" class="cls"
 						pattern="[1-9][0-9]+" required"/></td>
 				</tr>
@@ -234,42 +236,31 @@ color:red;
 						class="cls" placeholder="TENURE IN YEARS" required /></td>
 				</tr>
 				<tr>
-					<th>  Pan number</th>
+					<th>Pan number</th>
 					<td><input type="text" name="pan" class="cls" required /></td>
 				</tr>
 
 			</table>
-			<br>
-			<br>
+			<br> <br>
 			<div class="btn3">
 				<button type="submit" class="btn2">Submit</button>
 				<button type="reset" class="btn2">Reset</button>
 			</div>
 			<br> <br>
 		</form>
-		 
-         <c:if test="${sessionScope.Hloan!=null}">
-          
-          </c:if> 
-            
-        
-
-		<h4>${sessionScope.Hloan}</h4>
-		<h4 id="transhead"> Your Loan Number: ${sessionScope.Hloan1}</h4>
-		   <c:remove var="trans" scope="session"/>
-		 <c:if test="${sessionScope.HloanNot!=null}">
-          <h4>${sessionScope.HloanNot}</h4>
-          </c:if> 
-            
-           <c:remove var="HloanNot" scope="session"/>
-		 <c:if test="${sessionScope.Houloan!=null}">
-          <h4>${sessionScope.Houloan}</h4>
-          </c:if> 
-            
-           <c:remove var="Houloan" scope="session"/>
-		 
-		 
-	</div>
-
+    	<c:if test="${sessionScope.Hloan!=null}">
+            <h4>${sessionScope.Hloan}</h4>
+	    	<h4 id="transhead">Your Loan Number: ${sessionScope.Hloan1}</h4>
+		</c:if>
+		<c:remove var="trans" scope="session" />
+		<c:if test="${sessionScope.HloanNot!=null}">
+			<h4>${sessionScope.HloanNot}</h4>
+		</c:if>
+        <c:remove var="HloanNot" scope="session" />
+		<c:if test="${sessionScope.Houloan!=null}">
+			<h4>${sessionScope.Houloan}</h4>
+		</c:if>
+        <c:remove var="Houloan" scope="session" />
+   </div>
 </body>
 </html>

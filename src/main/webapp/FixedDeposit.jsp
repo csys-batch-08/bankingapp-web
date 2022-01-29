@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Fixed Dposits</title>
@@ -217,21 +218,12 @@ th {
 			<br>
 			<br>
 		</form>
-		<%!String flag;%>
-		<%
-		if (session.getAttribute("trans") != null) {
-			flag = session.getAttribute("trans").toString();
-		%>
-
-
-		<h4 id="transhead"><%=flag%></h4>
-
-		<%
-		}
-		%>
-		<%
-		session.removeAttribute("trans");
-		%>
+		 
+		  <c:if test="${sessionScope.trans!=null}">
+          <h4>${sessionScope.trans}</h4>
+          </c:if> 
+            
+           <c:remove var="trans" scope="session"/>
 	</div>
 </body>
 </html>

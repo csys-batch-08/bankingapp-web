@@ -1,10 +1,8 @@
 package com.bankapp.controller;
-
-import java.io.IOException;
+ 
  
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.UserDetailsDaoimpl;
 import com.bankapp.model.UserDetails;
-
-/**
- * Servlet implementation class register
- */
+ 
  @WebServlet("/register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,8 +36,7 @@ public class Register extends HttpServlet {
 			UserDetails user = new UserDetails(name, email, password, mobileNo);
 			userDetailDao.insertUser(user);		
 			RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
-			 
-				rd.forward(request, response);
+			rd.forward(request, response);
 		}
 
 		else {
@@ -52,9 +46,7 @@ public class Register extends HttpServlet {
 			
 		}
 		 
-		  }catch (ServletException | IOException e) {
-			 
-			e.printStackTrace();
+		  
 		}catch (Exception e) {
 			 
 			e.printStackTrace();

@@ -78,7 +78,7 @@ public class TransferAmount extends HttpServlet {
 			session.setAttribute("trans", "Verify  Account Number ");
 			response.sendRedirect("TransferAmount.jsp");
 		}
-			} catch (ServletException | IOException e) {
+			} catch (Exception e) {
 		 
 			e.printStackTrace();
 		}

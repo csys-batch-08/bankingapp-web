@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.AccountDetailsDao;
-import com.bankapp.dao.UserDetailsDao;
+ 
 import com.bankapp.model.AccountDetails;
-import com.bankapp.model.UserDetails;
+ 
 import com.bankapp.util.ConnectionUtil;
 
 public class AccountDetailsdaoimpl implements AccountDetailsDao {
@@ -274,7 +274,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		}finally {
 			if(statement!=null)
 			{
-				statement.close();
+				 statement.close();
 			}
 			if(con!=null)
 			{

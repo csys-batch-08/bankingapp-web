@@ -25,7 +25,7 @@ public class LoanStatusAdmin extends HttpServlet {
 
 		accDetailDao.updateStatus(accNo, status);
 		session.setAttribute("depo", "UPDATED");
-         response.sendRedirect("ApproveLoans.jsp");
+         response.sendRedirect("approveLoans.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

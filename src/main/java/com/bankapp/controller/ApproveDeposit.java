@@ -17,7 +17,7 @@ public class ApproveDeposit extends HttpServlet {
 		DepositsDaoimpl depositDao = new DepositsDaoimpl();
 		List<Deposits> list = depositDao.viewdeposit();
 		request.setAttribute("ApproveDeposit",list);
-		RequestDispatcher rd=request.getRequestDispatcher("ApproveDeposits.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("approveDeposits.jsp");
 	
 			rd.forward(request, response);
 		} catch ( Exception e) {

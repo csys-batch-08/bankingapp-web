@@ -24,7 +24,7 @@ public class RateServlet extends HttpServlet {
 		   HttpSession session=request.getSession();
 		   session.setAttribute("rat","Updated");
 			  
-				response.sendRedirect("InterestRate.jsp");
+				response.sendRedirect("interestRate.jsp");
 			} catch (Exception e) {
 		 
 				e.printStackTrace();

@@ -117,10 +117,10 @@ li, p {
 		  <a href="loans.jsp">Loans</a>
 		  <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="Reg.jsp">Register</a>
+		  <a href="register.jsp">Register</a>
 		  <a href="login.jsp">Login</a>
-		  <a href="AboutUs.jsp">About us</a>
-		  <a href="ContactUs.jsp" class="set1">ContactUs</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" class="set1">ContactUs</a>
 		   
 	 
 	</nav><br><br>
@@ -137,11 +137,12 @@ li, p {
 				<ul> 
 				<li>Bring the best of innovation and technology in our
 					offerings</li>
-				<br>
+					<br>
+				
 				<li>Be responsive to the unique needs of every customer through
 					all channels of choice</li>
 				 <br>
-				<li>To provide value to stakeholders</li>
+				<li>To provide value to stake- holders</li>
 				<br>
 				<li>Empower and engage our employees</li>
 				<br>

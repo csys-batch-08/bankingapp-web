@@ -27,7 +27,7 @@ public class UpdateAccount extends HttpServlet {
 		  accountDetailDao.updateUserDetailAdmin(email1,mobno, email);
            HttpSession session=request.getSession();
 	       session.setAttribute("msg","Updated");
-	       response.sendRedirect("UpdateAccountDetails.jsp");
+	       response.sendRedirect("updateAccountDetails.jsp");
 		} catch (Exception e) {
 			 
 			e.printStackTrace();

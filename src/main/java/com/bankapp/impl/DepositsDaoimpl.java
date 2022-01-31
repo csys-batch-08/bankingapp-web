@@ -16,108 +16,145 @@ import com.bankapp.model.Loans;
 import com.bankapp.util.ConnectionUtil;
 
 public class DepositsDaoimpl implements DepositsDao {
-	public double getInterest(double descriptionId) {
+	public double getInterest(double descriptionId) throws SQLException {
 		String updatequery1 = "select INTEREST_RATE from ADMIN_USE where DESCRIPTION_ID=?";
 		Connection con = ConnectionUtil.getDbConnection();
 		ResultSet rs = null;
+		PreparedStatement statement=null; 
 
 		try {
-			PreparedStatement pstmt = con.prepareStatement(updatequery1);
+			 statement = con.prepareStatement(updatequery1);
 
-			pstmt.setDouble(1, descriptionId);
-			rs = pstmt.executeQuery();
+			statement.setDouble(1, descriptionId);
+			rs = statement.executeQuery();
 			if (rs.next())
 				return rs.getDouble("INTEREST_RATE");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally {
+    		if(statement!=null)
+    		{
+    			 statement.close();
+    		}
+    		if(true)
+    		{
+    			con.close();
+    			 
+    		}
+    	}	
 		return 0;
 	}
 
-	public long fixedDeposit(String type, double amount, double rate_of_interest, double maturity_value, int period,
-			String status, String pan, String email) {
+	public long fixedDeposit(String type, double amount, double rateOfInterest, double maturityValue, int period,
+			String status, String pan, String email) throws SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
 		boolean flag = false;
-		// String que = "select deposit_acc.nextval from dual";
-		String que = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL='"+email+"' and ACC_TYPE='FixedDeposit'";
-		String Query = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		 
+		String querySelect = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL='"+email+"' and ACC_TYPE='FixedDeposit'";
+		String query = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		LocalDate sysDate = LocalDate.now();
 		Date mdate = Date.valueOf(sysDate.plusYears(period));
 		long accNumber = 0;
 		int userId = 0;
+		PreparedStatement statement=null;
+		Statement statement1=null;
 		try {
-
-			 Statement st=con.createStatement();
-			ResultSet rs = st.executeQuery(que);
-		//	System.out.println("cffcc");
+           statement1=con.createStatement();
+			ResultSet rs = statement1.executeQuery(querySelect);
+		 
 			if (rs.next()) {
-				//System.out.println("efefe");
+				 
 				userId = rs.getInt(1);
 				accNumber = rs.getLong(2);
-			//	System.out.println(userId + "ascc" + accNumber);
+			 
 			}
-			PreparedStatement pstmt = con.prepareStatement(Query);
-			pstmt.setLong(1, accNumber);
-			pstmt.setInt(2, userId);
-			pstmt.setString(3, type);
-			pstmt.setDouble(4, amount);
-			pstmt.setInt(5, period);
-			pstmt.setDouble(6, rate_of_interest);
-			pstmt.setDate(7, mdate);
-			pstmt.setDouble(8, maturity_value);
-			pstmt.setString(9, status);
-			pstmt.setString(10, pan);
-//			System.out.println( type + " " + amount + " " + period + " " + rate_of_interest + " " + mdate + " "
-//					+ maturity_value + " " + status + " " + pan);
-			pstmt.executeUpdate();
+			  statement = con.prepareStatement(query);
+			statement.setLong(1, accNumber);
+			statement.setInt(2, userId);
+			statement.setString(3, type);
+			statement.setDouble(4, amount);
+			statement.setInt(5, period);
+			statement.setDouble(6, rateOfInterest);
+			statement.setDate(7, mdate);
+			statement.setDouble(8, maturityValue);
+			statement.setString(9, status);
+			statement.setString(10, pan);		 
+			statement.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
-		}
+		}finally {
+    		if(statement!=null)
+    		{
+    			 statement.close();
+    		}
+    		if(statement1!=null)
+    		{
+    			statement1.close();
+    		}
+    		if(true)
+    		{
+    			con.close();
+    			 
+    		}
+    	}	
 		return accNumber;
 	}
 
-	public long recurringDeposit(String type, double amount, double rate_of_interest, int period, double maturity_value,
-			String status, String pan, String email) {
+	public long recurringDeposit(String type, double amount, double rateOfInterest, int period, double maturityValue,
+			String status, String pan, String email) throws SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
-		String que = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='RecurringDeposit'";
-		String Query = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER) VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String query = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='RecurringDeposit'";
+		String queryInsert= "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER) VALUES(?,?,?,?,?,?,?,?,?,?)";
 		boolean flag = false;
 		LocalDate sysDate = LocalDate.now();
 		Date mdate = Date.valueOf(sysDate.plusYears(period));
 		long accNumber = 0;
 		int userId = 0;
+		PreparedStatement statement=null;
+	
 		try {
 
-			PreparedStatement pstmt = con.prepareStatement(que);
-			pstmt.setString(1, email);
-			System.out.println(email);
-			pstmt.executeUpdate();
-			ResultSet rs = pstmt.executeQuery();
+			  statement = con.prepareStatement(query);
+			statement.setString(1, email);
+			 
+			statement.executeUpdate();
+			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				accNumber = rs.getLong(2);
-				// System.out.println(userId +"ascc"+accNumber);
+				 
 			}
-			pstmt = con.prepareStatement(Query);
-			pstmt.setLong(1, accNumber);
-			pstmt.setInt(2, userId);
+			statement = con.prepareStatement(queryInsert);
+			statement.setLong(1, accNumber);
+			statement.setInt(2, userId);
 
-			pstmt.setString(3, type);
-			pstmt.setDouble(4, amount);
-			pstmt.setInt(5, period);
-			pstmt.setDouble(6, rate_of_interest);
-			pstmt.setDate(7, mdate);
-			pstmt.setDouble(8, maturity_value);
-			pstmt.setString(9, status);
-			pstmt.setString(10, pan);
-			pstmt.executeUpdate();
+			statement.setString(3, type);
+			statement.setDouble(4, amount);
+			statement.setInt(5, period);
+			statement.setDouble(6, rateOfInterest);
+			statement.setDate(7, mdate);
+			statement.setDouble(8, maturityValue);
+			statement.setString(9, status);
+			statement.setString(10, pan);
+			statement.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	 
 			e.printStackTrace();
-		}
+		}finally {
+    		if(statement!=null)
+    		{
+    			 statement.close();
+    		}
+    		 
+    		if(true)
+    		{
+    			con.close();
+    			 
+    		}
+    	}	
 		return accNumber;
 	}
 

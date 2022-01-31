@@ -2,27 +2,25 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Deposit Status</title>
-
+<title>Check Balance</title>
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
-	width:98.7%;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	padding: 7.3px;
+	padding: 4px;
+	width:100%;
 }
 
 nav a {
-	padding-right:  97px;
+	padding-right: 109.3px;
 }
 
 h1 {
@@ -39,7 +37,7 @@ a {
 }
 
 .set1 {
-	padding-right: 325.5px;
+	padding-right: 328px;
 }
 
 .btn {
@@ -47,17 +45,15 @@ a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-	float:right;
 }
- .sidebar {
-	position: fixed;
+.sidebar {
+	position:absolute;
 	left: 0;
 	width: 250px;
 	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+    background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -65,11 +61,9 @@ a {
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -78,15 +72,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -96,10 +87,16 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
+.btn {
+	float: right;
+	padding: 5px 7px;
+	margin-right: 5px;
+	border-radius: 7px;
+	color: gray;
+}
 .pa {
 	text-align: left;
 }
-
 .par {
 	padding: 20px;
 }
@@ -108,7 +105,6 @@ ul li:hover a {
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -117,36 +113,18 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
-	margin-left: 180px;
+	margin-left: 150px;
 }
-
 body {
-	background-color: rgb(198, 208, 214);
+	background-color: rgba(198, 208, 214,.9);
 }
-#transhead{
-color:red;
-}
-td {
-	padding-left: 20px;
-	text-align: justify;
-	padding-bottom: 8px;
-}
-
-th {
-	text-align: justify;
-	padding-left: 20px;
-	padding-bottom: 8px;
-}
-h2{
-text-align:center;}
 </style>
 </head>
 <body>
-<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a>
+		 <a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
 		  <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
@@ -158,7 +136,6 @@ text-align:center;}
 	<br>
 	<br>
  	<div class="sidebar">
-
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
@@ -171,34 +148,19 @@ text-align:center;}
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
-	 
-	<h2 >Check Deposit Status</h2>
+	<h2 align="center">WELCOME!</h2>
 	<div class="box">
-		<form action="deposit" method="post">
-			<table>
-			<caption>
-				<tr>
-					<th >  Account Number</th>
-					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"  required/></td>
-				</tr>
-				</caption>
-			</table>
-			<br><br>
-			<div class="btn3">
-			<button type="submit" class="btn2" >Submit</button>
-			<button type="reset" class="btn2">Reset</button>
-			</div>
-		</form>
-		<br><br>
-	
-	 
-			 <c:if test="${sessionScope.Saccnum!=null}">
-          <h4>${sessionScope.Saccnum}</h4>
+		<c:if test="${sessionScope.amount!=null}">
+		<h2>
+			Balance is :
+			${sessionScope.amount}</h2>
           </c:if> 
-            
-           <c:remove var="Saccnum" scope="session"/>
-		</div>
+          <br><br>
+			<div class="btn3">
+			<button type="submit" class="btn2" ><a href="customerDashBoard.jsp">OK</a></button>
+			</div>
+	</div>
+</body>
 </html>

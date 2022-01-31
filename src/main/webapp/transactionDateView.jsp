@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList"%>
-    <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
-    <%@page import="com.bankapp.model.Transaction"%>
+    pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList" import="java.time.LocalDate"
+     import="java.time.format.DateTimeFormatter"%>
+     
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Transaction</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<title> Transaction</title>
 <style>
 * {
 	margin: 0;
@@ -25,11 +22,11 @@ nav {
 	height: 25%;
 	margin: 0;
 	 
-	padding: 7px;
+	padding: 4px;
 }
 
 nav a {
-	padding-right: 79px;
+	padding-right: 73px;
 }
 
 h1 {
@@ -66,7 +63,7 @@ h3 {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 1200px;
+	height: 100%;
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
@@ -87,7 +84,7 @@ ul {
 	height: 100%;
 	width: 100%;
 	line-height: 40px;
-	font-size: 14px;
+	font-size: 13px;
 	padding-left: 40px;
 	color: white;
 }
@@ -117,30 +114,8 @@ ul li:hover a {
      
 
 }
-.t1 {
-	padding: 40px;
-	padding-left: 350px;
-	border:none;
-}
-
-td {
-	padding-left: 15px;
-	 
-}
-
-th {
-	padding-left:  10px;
-	font-size:18px;
-	 
-}
-.cls {
-	border-radius: 3px;
-	padding: 5px 5px 5px 5px;
-	Background-color: transparent;
-}
-
 .table1 {
-	padding: 90px;
+	padding: 140px;
 	padding-left: 300px;
 	border: none;
 }
@@ -176,7 +151,7 @@ th {
 .table{
 margin-bottom:10px;
  width:1000px;
- margin-left:180px;
+ margin-left:270px;
 }
 .table th{
 background-color:  rgba(161, 15, 95,.5);}
@@ -195,42 +170,41 @@ background-color:  rgba(35, 106, 240,.5);}
 <body>
 	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
         <nav>
-                        <a  href="index.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                         
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                        
-                       <a   href="interest.jsp" class="set1">%</a>   
-                        
-                        <button class="btn"><a href="LogoutServlet">Logout</a></button>
-       </nav>
-       <br>
-       <br>
-       <br>
+               <a href="adminDashBoard.jsp"> Home</a>
+		  <a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp">Register</a>
+		  <a href="login.jsp">Login</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" class="set1">ContactUs</a>
+		 
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
+	</nav>
+	<br>
+	<br>
+	<br>
 	<div class="sidebar">
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="viewAllUser.jsp">View All Users</a></li>
-			<li><a  href="viewAccount.jsp">View All Account</a></li>
-		    <li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="UpdateAccountDetails.jsp">Update Account Details </a></li>
-			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
-			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
-			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>
-			<li><a href="TransactionByAcc.jsp">Transaction by Account</a></li>
-			<li><a href="UserCancel.jsp">Cancel Account</a></li>
-			
-			 
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
+			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
+			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li>
 			 
 		</ul>
      </div>
       
-     
-     <h2 align="center">Transaction</h2>
+     <h2 align="center">Transaction </h2>
       
      
 
@@ -244,33 +218,34 @@ background-color:  rgba(35, 106, 240,.5);}
  <th>Transaction</th>
 <th>Receive Account Number</th>
 <th>Amount</th>
-<th>Transaction Date</th>
 </tr>
 </thead>
- 
+<br>
+<br>
 
 <tbody>
- <c:forEach items="${transacAcc}" var="TransactionAccount">
+       <c:forEach items="${ViewList}" var="viewlist">
 				  <c:set var="i" value="${i+1 }"/>
 <tr>
+ 
 
-
-<td>${i }</td>
-<td>${TransactionAccount. senderAccountNumber} </td>
-<td>${TransactionAccount. name} </td>
-<td>${TransactionAccount.transactionType }</td>
- <td>${TransactionAccount. receiveAccountNumber} </td>
- <td>${TransactionAccount.amount } </td>
- <td>${TransactionAccount.transactiondate } </td>
+<td> ${i}</td>
+<td> ${viewlist.senderAccountNumber }</td>
+<td> ${viewlist.name}</td>
+<td> ${viewlist.transactionType}</td>
+ <td> ${viewlist.receiveAccountNumber}</td>
+ <td> ${viewlist.amount}</td>
+ 
  </tr>
 
  </c:forEach>
 </tbody>
-          </table><br><br>
+          </table>
+          <br><br><br>
           <div class="btn3">
-          <button type="submit" class="btn2"><a href="TransactionByAcc.jsp">Back</a></button>
+          <button type="submit" class="btn2"><a href="TransactionByDate.jsp">Back</a></button>
           </div>
      </div>
-     
+
 </body>
 </html>

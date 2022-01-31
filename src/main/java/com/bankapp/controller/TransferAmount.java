@@ -1,9 +1,6 @@
 package com.bankapp.controller;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,25 +40,25 @@ public class TransferAmount extends HttpServlet {
 					if (pin == pinnum) {
 						transDao.depositAmount(accNo, uname, amount, pin, accNum);
 						session.setAttribute("trans", "TRANSFERRED");
-						 RequestDispatcher rd=request.getRequestDispatcher("TransferAmount.jsp");
+						 RequestDispatcher rd=request.getRequestDispatcher("transferAmount.jsp");
 						 rd.include(request, response);
 					  } 
 					else {
                          session.setAttribute("trans", "Enter  Correct   Pin Number");
-						 response.sendRedirect("TransferAmount.jsp");
+						 response.sendRedirect("transferAmount.jsp");
 						 
 					     }
 				 }
 				 else {
 					session.setAttribute("trans", "Not enough money to transfer!");
-					response.sendRedirect("TransferAmount.jsp");
+					response.sendRedirect("transferAmount.jsp");
 					 
 				      }
 			  }
 			  else {
 
 				session.setAttribute("trans", "Minimum Transaction Amount is 300! Please Transfer  More than 300");
-				response.sendRedirect("TransferAmount.jsp");
+				response.sendRedirect("transferAmount.jsp");
 				  
 				   }
 		 } 
@@ -76,7 +73,7 @@ public class TransferAmount extends HttpServlet {
 		}
 		else {
 			session.setAttribute("trans", "Verify  Account Number ");
-			response.sendRedirect("TransferAmount.jsp");
+			response.sendRedirect("transferAmount.jsp");
 		}
 			} catch (Exception e) {
 		 

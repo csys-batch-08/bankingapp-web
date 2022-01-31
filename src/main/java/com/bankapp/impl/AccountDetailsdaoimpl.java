@@ -20,18 +20,18 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		String que = "select  user_id.nextval from dual";
 		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection con = ConnectionUtil.getDbConnection();
-		int accNumber = 0;
+		int userId = 0;
 		boolean flag = false;
 		PreparedStatement statement=null;
-
+        Statement st=null;
 		try {
-			  statement = con.prepareStatement(que);
-			ResultSet rs = statement.executeQuery();
+			   st = con.createStatement();
+			ResultSet rs = st.executeQuery(que);
 			if (rs.next())
-				accNumber = rs.getInt(1);
+				userId = rs.getInt(1);
 
 			statement = con.prepareStatement(query);
-			statement.setInt(1, accNumber);
+			statement.setInt(1, userId);
 			statement.setString(2, account.getAccountType());
 			statement.setString(3, account.getAccountHolderName());
 			statement.setString(4, account.getAddress());
@@ -52,11 +52,14 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		}finally {
+			if(st!=null) {
+				st.close();
+			}
 			if(statement!=null)
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if(true)
 			{
 				con.close();
 				 
@@ -66,13 +69,11 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	}
 
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) throws SQLException {
-		List<AccountDetails> list = new ArrayList<AccountDetails>();
-		ConnectionUtil conUtil = new ConnectionUtil();
-
+		List<AccountDetails> list = new ArrayList<>();
 		String validateQuery = "select * from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER='" + accNumber
 				+ "' and PIN_NUMBER='" + pinNumber + "'";
 
-		Connection con = conUtil.getDbConnection();
+		Connection con = ConnectionUtil.getDbConnection();
 		Statement statement=null;
 		AccountDetails accDetail = null;
 		try {
@@ -96,7 +97,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if(true)
 			{
 				con.close();
 				 
@@ -106,14 +107,14 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	}
 
 	public List<AccountDetails> viewAccout() throws SQLException {
-		List<AccountDetails> list = new ArrayList<AccountDetails>();
+		List<AccountDetails> list = new ArrayList<>();
 
-		String view = "select * from  account_details";
+		String query = "select * from  account_details";
 		Connection con = ConnectionUtil.getDbConnection();
 		Statement statement=null;
 		try {
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(view);
+			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
 				AccountDetails accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(),
@@ -130,7 +131,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if(true)
 			{
 				con.close();
 				 
@@ -140,38 +141,50 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		return list;
 	}
 
-	public List<AccountDetails> viewOneAccount(long num) {
-		List<AccountDetails> List = new ArrayList<AccountDetails>();
+	public List<AccountDetails> viewOneAccount(long num) throws SQLException {
+		List<AccountDetails> list = new ArrayList<>();
 
 		String view = "select acc_type,acc_holder_name,mobile_number,email,ifsc_code,branch_name,account_status,pan_number from  account_details where account_number='" + num + "'";
 		Connection con = ConnectionUtil.getDbConnection();
+        Statement statement=null;
 		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(view);
+			  statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(view);
 			
 			if (rs.next()) {
 				AccountDetails accDetail = new AccountDetails(0, num, rs.getString(1),
 						rs.getString(2), null,null,0,null,
 						rs.getLong(3), rs.getString(4), rs.getString(5), rs.getString(6), 0,
 						 0, rs.getString(7), rs.getString(8));
-				List.add(accDetail);
+				list.add(accDetail);
 			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if(statement!=null)
+			{
+				statement.close();
+			}
+			if(true)
+			{
+				con.close();
+				 
+			}
 		}
 
-		return List;
+
+		return list;
 	}
 
 	public boolean updateUserDetailAdmin(String email1, long mobilenumber, String email) throws SQLException {
 		String updateQuery = "update user_details set email=? where email=?";
-		String updatequery1 = "update account_details set email=?,mobile_number=? where email=?";
+		String updateQuery1 = "update account_details set email=?,mobile_number=? where email=?";
 		Connection con = ConnectionUtil.getDbConnection();
 		boolean flag = false;
 		PreparedStatement statement=null;
 		try {
-			statement = con.prepareStatement(updatequery1);
+			statement = con.prepareStatement(updateQuery1);
 			statement.setString(1, email1);
 			statement.setLong(2, mobilenumber);
 			statement.setString(3, email);
@@ -189,7 +202,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if(true)
 			{
 				con.close();
 				 
@@ -218,7 +231,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if( true)
 			{
 				con.close();
 				 
@@ -247,7 +260,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				statement.close();
 			}
-			if(con!=null)
+			if( true)
 			{
 				con.close();
 				 
@@ -276,7 +289,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			{
 				 statement.close();
 			}
-			if(con!=null)
+			if(true)
 			{
 				con.close();
 				 
@@ -285,14 +298,14 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		return 0;
 	}
 
-	public double checkBalance(long accnum) {
+	public double checkBalance(long accnum) throws SQLException {
 		String que = "Select Balance from account_details where Account_number='" + accnum + "'";
 		Connection con = ConnectionUtil.getDbConnection();
 		double balance = 0;
-		Statement st;
+		Statement statement=null;
 		try {
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery(que);
+			statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(que);
 			if (rs.next()) {
 				balance = rs.getDouble(1);
 			}
@@ -300,27 +313,49 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}finally {
+			if(statement!=null)
+			{
+				 statement.close();
+			}
+			if(true)
+			{
+				con.close();
+				 
+			}
 		}
 
 		return balance;
 	}
 
-	public boolean checkaccount(long num) {
+	public boolean checkaccount(long num) throws SQLException {
 		String que = "select Account_number from account_details where account_number= '" + num + "'";
 		boolean flag = false;
-		long accnum = 0;
+		long accNum = 0;
 		Connection con = ConnectionUtil.getDbConnection();
+		Statement statement=null;
 		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(que);
+		   statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(que);
 			if (rs.next()) {
-				accnum = rs.getLong(1);
+				accNum = rs.getLong(1);
 				flag = true;
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		}
+		finally {
+			if(statement!=null)
+			{
+				 statement.close();
+			}
+			if(true)
+			{
+				con.close();
+				 
+			}
 		}
 		return flag;
 	}

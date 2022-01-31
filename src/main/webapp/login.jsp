@@ -69,10 +69,10 @@ color:white;}
                   <input type="password"  name="pwd" class="textfield" pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD"  ><br><br>
 
             
-             <a href="Reg.jsp"> Dont have an account? Please Register! </a> <br><br>
+             <a href="register.jsp"> Dont have an account? Please Register! </a> <br><br>
                <button type="submit " class="btn1">Log In</button>
               <button type="submit" class="btn1" ><a href="index.jsp">Back</a></button>
-              <a href ="ForgotPassword.jsp">ForgotPassword?</a>
+              <a href ="forgotPassword.jsp">ForgotPassword?</a>
              
                      
           <c:if test="${sessionScope.login!=null}">

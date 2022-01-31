@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Transaction</title>
@@ -14,19 +14,16 @@
 }
 
 nav {
-	font-size: 18px;
-	color: black;
+	font-size: 18px; 
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 25%;
-	margin: 0;
 	color: red;
 	padding: 3px;
-	 
+	width:100%;
 }
 
 nav a {
-	padding-right: 47.5px;
+	padding-right: 109.5px;
 }
 
 h1 {
@@ -166,35 +163,33 @@ th {
 </style>
 </head>
 <body>
-<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
         <nav>
-                        <a  href="index.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                        
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                       
-                       <a   href="interest.jsp" class="set1">%</a>   
-                        <a href="MyProfile.jsp">My Profile</a>
-                        <button class="btn"><a href="LogoutServlet">Logout</a></button>
-       </nav>
-       <br><br>
-        <br>
-	<div class="sidebar">
+            <a href="customerDashBoard.jsp"> Home</a>
+		    <a href="loans.jsp">Loans</a>
+		    <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="myProfile.jsp">My Profile</a>
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
+	</nav>
+	<br>
+	<br>
+ 	<div class="sidebar">
 
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="TransferAmount.jsp">Transfer</a></li>
-			<li><a href="Balance.jsp">Balance</a></li>
-			<li><a href="FixedDeposit.jsp">Fixed Deposits</a></li>
-			<li><a href="RecurringDeposit.jsp">Recurring Deposits</a></li>
-			<li><a href="PersonalLoan.jsp">Personal Loan request</a></li>
-			<li><a href="HousingLoan.jsp">Housing Loan request</a></li>
-			<li><a href="TransactionSummary.jsp">Transaction History</a></li>
+			<li><a href="transferAmount.jsp">Transfer</a></li>
+			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
+			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
+			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
+			<li><a href="housingLoan.jsp">Housing Loan request</a></li>
+			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
-			<li><a href="LoanStatusUser.jsp">Loan Status</a></li>
+			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 			 
 		</ul>
      </div>

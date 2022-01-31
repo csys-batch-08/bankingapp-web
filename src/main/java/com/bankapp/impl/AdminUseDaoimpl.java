@@ -9,39 +9,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.AdminUseDao;
-import com.bankapp.model.AccountDetails;
+ 
 import com.bankapp.model.AdminUse;
 import com.bankapp.util.ConnectionUtil;
 
 public class AdminUseDaoimpl implements AdminUseDao {
-public  boolean getDescriptionId(double desc_id,double rateOfInterest) {
+public  boolean getDescriptionId(double descriptionId,double rateOfInterest) throws SQLException {
 	String query="update admin_use set INTEREST_RATE=? where DESCRIPTION_ID=?";
 	Connection con = ConnectionUtil.getDbConnection();
   boolean flag=false;
+  PreparedStatement statement=null;
 	try {
-		PreparedStatement pstmt = con.prepareStatement(query);
-		pstmt.setDouble(1,rateOfInterest);
-		pstmt.setDouble(2,desc_id);
+		 statement = con.prepareStatement(query);
+		statement.setDouble(1,rateOfInterest);
+		statement.setDouble(2,descriptionId);
 		 flag=true;
-		int i = pstmt.executeUpdate();
+		  statement.executeUpdate();
 		 
 	} catch (SQLException e) {
 		e.printStackTrace();
 		 
+	}finally {
+		if(statement!=null)
+		{
+			 statement.close();
+		}
+		if(true)
+		{
+			con.close();
+			 
+		}
 	}
 	return flag;
 }
-public List<AdminUse> allDetails() {
-	List<AdminUse> list=new ArrayList<AdminUse>();
-	ConnectionUtil conUtil = new ConnectionUtil();
+public List<AdminUse> allDetails() throws SQLException {
+	List<AdminUse> list=new ArrayList<>();
+	Connection con = ConnectionUtil.getDbConnection();
 	
-	String ValidateQuery="select category_name,category_type,description,description_id,interest_rate from admin_use order by description_id";
+	String validateQuery="select category_name,category_type,description,description_id,interest_rate from admin_use order by description_id";
 	 
-	Connection con = conUtil.getDbConnection();
 	 AdminUse adminuse=null;
+	 Statement statement=null;
 	try {
-		 Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(ValidateQuery);
+		   statement=con.createStatement();
+			ResultSet rs=statement.executeQuery(validateQuery);
 			 
 			while(rs.next())
 			{
@@ -51,24 +62,34 @@ public List<AdminUse> allDetails() {
 			 
 		
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		 
 		e.printStackTrace();
-		System.out.println("Statement Error");
+		 
+	}finally {
+		if(statement!=null)
+		{
+			 statement.close();
+		}
+		if(true)
+		{
+			con.close();
+			 
+		}
 	}
-	
 	return list;
 }
-public List<AdminUse> interestRate() {
-	List<AdminUse> list=new ArrayList<AdminUse>();
-	ConnectionUtil conUtil = new ConnectionUtil();
+
+public List<AdminUse> interestRate() throws SQLException {
+	List<AdminUse> list=new ArrayList<>();
+	Connection con = ConnectionUtil.getDbConnection();
 	
-	String ValidateQuery="select * from admin_use order by description_id";
+	String validateQuery="select * from admin_use order by description_id";
 	 
-	Connection con = conUtil.getDbConnection();
+	 Statement statement=null;
 	 AdminUse adminuse=null;
 	try {
-		 Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(ValidateQuery);
+		   statement=con.createStatement();
+			ResultSet rs=statement.executeQuery(validateQuery);
 			 
 			while(rs.next())
 			{
@@ -78,9 +99,19 @@ public List<AdminUse> interestRate() {
 			 
 		
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		  
 		e.printStackTrace();
-		System.out.println("Statement Error");
+		 
+	}finally {
+		if(statement!=null)
+		{
+			 statement.close();
+		}
+		if(true)
+		{
+			con.close();
+			 
+		}
 	}
 	
 	return list;

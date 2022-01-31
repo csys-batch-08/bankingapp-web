@@ -41,17 +41,17 @@ public class HousingLoan extends HttpServlet {
 	    	 accnum=   loandao.housingLoan(loan);
 			 session.setAttribute("Hloan"," Loan Requested");
 			 session.setAttribute("Hloan1",accnum);
-			 response.sendRedirect("HousingLoan.jsp");
+			 response.sendRedirect("housingLoan.jsp");
 	    	 }
 	    	 else {
 	    		 session.setAttribute("Houloan","You have already requested this loan!");
-				 response.sendRedirect("HousingLoan.jsp");
+				 response.sendRedirect("housingLoan.jsp");
 	    	 }
 	     }
 	     else
 	     {
 	    	 session.setAttribute("HloanNot", "Oops!It seems already you have Loan from our bank...");
-	    	 response.sendRedirect("HousingLoan.jsp");
+	    	 response.sendRedirect("housingLoan.jsp");
 	     }
 			} catch (Exception e) {
 				 

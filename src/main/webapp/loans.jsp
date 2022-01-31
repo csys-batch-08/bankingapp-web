@@ -23,7 +23,7 @@ nav {
 	}
 
 nav a {
-	padding-right: 85.3px;
+	padding-right: 80.8px;
 }
 
 h1 {
@@ -101,14 +101,14 @@ text-align:center;
 
 	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
 	<nav>
-		<button type="submit"><a href="index.jsp"> Home</a></button>
-		<button type="submit"> <a href="loans.jsp">Loans</a> </button>
-		<button type="submit"> <a	href="deposits.jsp">Deposits</a></button>
-		 <button type="submit"> <a href="interest.jsp">InterestRate</a></button>
-		 <button type="submit"> <a href="Reg.jsp">Register</a></button>
-		 <button> <a href="login.jsp">Login</a> </button>
-		 <button> <a	href="AboutUs.jsp">About us</a></button>
-		 <button> <a href="ContactUs.jsp" class="set1">ContactUs</a> </button>
+	 <a href="index.jsp"> Home</a>
+		  <a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp">Register</a>
+		  <a href="login.jsp">Login</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" class="set1">ContactUs</a>
 	</nav>
 	<br>
 	<br>

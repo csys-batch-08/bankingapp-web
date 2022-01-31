@@ -175,11 +175,15 @@ background-color:  rgba(35, 106, 240,.5);}
 <body>
 	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
 	<nav>
-		<a href="index.jsp"> Home</a> <a href="loans.jsp">Loans</a> <a
-			href="deposits.jsp">Deposits</a>  
-		<a href="AboutUs.jsp">About us</a> <a href="ContactUs.jsp">Contact
-			Us</a>  <a href="interest.jsp" class="set1">%</a>
-
+		<a href="adminDashBoard.jsp"> Home</a>
+		  <a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp">Register</a>
+		  <a href="login.jsp">Login</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" class="set1">ContactUs</a>
+		 
 		<button class="btn">
 			<a href="LogoutServlet">Logout</a>
 		</button>
@@ -191,17 +195,16 @@ background-color:  rgba(35, 106, 240,.5);}
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="viewAllUser.jsp">View All Users</a></li>
-			<li><a href="viewAccount.jsp">View All Account</a></li>
-			<li><a href="AdminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="UpdateAccountDetails.jsp">Update Account
-					Details </a></li>
-			<li><a href="ApproveLoans.jsp">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits.jsp">ApproveDeposits</a></li>
-			<li><a href="InterestRateAll.jsp">Rate Of Interest</a></li>
-			<li><a href="TransactionByDate.jsp">Transaction by Date</a></li>
-			<li><a href="TransactionByAcc.jsp">Transaction by Account</a></li>
-			<li><a href="UserCancel.jsp">Cancel Account</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
+			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
+			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li>
 
 
 

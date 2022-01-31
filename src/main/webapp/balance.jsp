@@ -5,28 +5,24 @@
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Check Balance</title>
+<title>Balance</title>
+
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
 nav {
-	font-size: 17px;
-	color: black;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 30%;
-	margin: 0;
-	color: red;
-	padding: 4px;
+ 	color: red;
+	padding: 3.5px;
+	width:100%;
 }
-
 nav a {
-	padding-right:  78.3px;
+	padding-right: 109.2px;
 }
-
 h1 {
 	color: white;
 	background: #042331;
@@ -34,35 +30,30 @@ h1 {
 	margin: 0;
 	padding: 7px;
 }
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
-	padding-right: 328px;
+	padding-right: 450px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
-	font-size: 15px;
+	font-size: 16px;
 }
-
 h3 {
 	padding: 20px;
 	background-color: blue;
 	margin: 0;
 }
-
 .sidebar {
-	position:absolute;
+	position: absolute;
 	left: 0;
 	width: 250px;
 	height: 100%;
-    background-color: rgba(9, 57, 87,.8);
+background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
 
@@ -71,13 +62,11 @@ h3 {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
+   background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -86,15 +75,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -104,7 +90,6 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .btn {
 	float: right;
 	padding: 5px 7px;
@@ -112,21 +97,17 @@ ul li:hover a {
 	border-radius: 7px;
 	color: gray;
 }
-
 .pa {
 	text-align: left;
 }
-
 .par {
 	padding: 20px;
 }
-
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
-	Background-color: transparent;
+	Background-color: transparent ;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -135,11 +116,9 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
-	margin-left: 150px;
+	margin-left: 110px;
 }
-
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
@@ -147,49 +126,66 @@ body {
 </head>
 <body>
 	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	<br>
 	<nav>
-		 <a  href="CustomerDashBoard.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                       <a   href="interest.jsp" class="set1">%</a>   
-                       <a href="MyProfile.jsp">My Profile</a>
-                         <button class="btn"><a href="LogoutServlet">Logout</a></button>
+		  
+          <a href="customerDashBoard.jsp"> Home</a>
+		  <a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="myProfile.jsp">My Profile</a>
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
 	</nav>
 	<br>
 	<br>
-   <br>
 	<div class="sidebar">
 
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="TransferAmount.jsp">Transfer</a></li>
-			<li><a href="Balance.jsp">Balance</a></li>
-			<li><a href="FixedDeposit.jsp">Fixed Deposits</a></li>
-			<li><a href="RecurringDeposit.jsp">Recurring Deposits</a></li>
-			<li><a href="PersonalLoan.jsp">Personal Loan request</a></li>
-			<li><a href="HousingLoan.jsp">Housing Loan request</a></li>
-			<li><a href="TransactionSummary.jsp">Transaction History</a></li>
+			<li><a href="transferAmount.jsp">Transfer</a></li>
+			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
+			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
+			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
+			<li><a href="housingLoan.jsp">Housing Loan request</a></li>
+			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
-			<li><a href="LoanStatusUser.jsp">Loan Status</a></li>
+			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 
 		</ul>
 	</div>
 	 
-	<h2 align="center">WELCOME!</h2>
+	<h2 align="center">Balance</h2>
 	<div class="box">
-		<c:if test="${sessionScope.amount!=null}">
-		<h2>
-			Balance is :
-			${sessionScope.amount}</h2>
+		<form action="Balance" method="post">
+			<table>
+				<tr>
+					<th>Enter Account Number</th>
+					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12}"
+						required /></td>
+				</tr>
+				<tr>
+					<th>Enter Pin Number</th>
+					<td><input type="password"  class="cls" name="pin" pattern="[0-9]{4}"
+						required /></td>
+				</tr>
+
+			</table><br>
+			
+			<div class="btn3">
+			<button type="submit" class="btn2">Submit</button>
+			<button type="reset" class="btn2">Reset</button>
+			</div>
+		</form>
+
+	</div>
+	  <c:if test="${sessionScope.pinvalidate!=null}">
+          <h4>${sessionScope.pinvalidate}</h4>
           </c:if> 
             
-            <br><br>
-			<div class="btn3">
-			<button type="submit" class="btn2" ><a href="CustomerDashBoard.jsp">OK</a></button>
-			</div>
-	</div>
+           <c:remove var="pinvalidate" scope="session"/>
 </body>
 </html>

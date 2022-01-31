@@ -41,7 +41,7 @@ public class RecurringDeposit extends HttpServlet {
 	     double  maturityValue=Math.round(amount * Math.pow(base,(n* period)));
 	     depositdao.recurringDeposit(type, amount,rateOfInterest, period,maturityValue, status,pan,email) ;
 		 session.setAttribute("tran"," RD Requested");
-		 response.sendRedirect("RecurringDeposit.jsp");
+		 response.sendRedirect("recurringDeposit.jsp");
 		} catch (Exception e) {
 		 
 			e.printStackTrace();

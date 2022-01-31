@@ -36,11 +36,11 @@ public class TransactionSum extends HttpServlet {
 				TransactionDaoimpl tranDao = new TransactionDaoimpl();
 				List<Transaction> list = tranDao.getByAccountNumberUser(accNo, pin);
 				request.setAttribute("TransacSummary", list);
-				RequestDispatcher rd = request.getRequestDispatcher("TransactionView.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
                 rd.forward(request, response);
 
 			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("TransactionView.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
 				rd.include(request, response);
 			}
 		} catch (ServletException | IOException e) {

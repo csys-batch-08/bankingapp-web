@@ -32,7 +32,7 @@ public class TransactionSummary extends HttpServlet {
 	     long acc=(Long) session.getAttribute("accNo");
 	        List<Transaction> list = tranDao.getByAccountNumberAdmin(acc);
 	        request.setAttribute("transacAcc",list);
-	        RequestDispatcher rd=request.getRequestDispatcher("TransactionAdminView.jsp");
+	        RequestDispatcher rd=request.getRequestDispatcher("transactionAdminView.jsp");
 	       rd.forward(request, response);
 			 
 			} catch (Exception e) {

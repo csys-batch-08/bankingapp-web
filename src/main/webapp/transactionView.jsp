@@ -3,7 +3,7 @@
 	import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>TransactionSummary</title>
@@ -24,9 +24,7 @@ nav {
 	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87, .9);
-	height: 40%;
-	margin: 0;
-	color: red;
+	width:100%;
 	padding: 7px;
 }
 
@@ -56,14 +54,9 @@ a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
+ 
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -112,13 +105,7 @@ ul li:hover a {
 	box: shadow;
 }
 
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
+ 
 
 .pa {
 	text-align: left;
@@ -181,33 +168,33 @@ th {
 </head>
 <body>
 	<img src="images/boilogo.png" alt="couldnot load" width="400"
-		height="100" />
+		height="100" /><br>
 	<nav>
-		<a href="CustomerDashBoard.jsp"> Home</a> <a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> <a href="AboutUs.jsp">About us</a>
-		<a href="ContactUs.jsp">Contact Us</a> <a href="interest.jsp"
-			class="set1">%</a> <a href="MyProfile.jsp">My Profile</a>
+		<a href="customerDashBoard.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="myProfile.jsp">My Profile</a>
 		<button class="btn">
 			<a href="LogoutServlet">Logout</a>
 		</button>
 	</nav>
 	<br>
 	<br>
-	<br>
-	<div class="sidebar">
+ 	<div class="sidebar">
 
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="TransferAmount.jsp">Transfer</a></li>
-			<li><a href="Balance.jsp">Balance</a></li>
-			<li><a href="FixedDeposit.jsp">Fixed Deposits</a></li>
-			<li><a href="RecurringDeposit.jsp">Recurring Deposits</a></li>
-			<li><a href="PersonalLoan.jsp">Personal Loan request</a></li>
-			<li><a href="HousingLoan.jsp">Housing Loan request</a></li>
-			<li><a href="TransactionSummary.jsp">Transaction History</a></li>
+			<li><a href="transferAmount.jsp">Transfer</a></li>
+			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
+			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
+			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
+			<li><a href="housingLoan.jsp">Housing Loan request</a></li>
+			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
-			<li><a href="LoanStatusUser.jsp">Loan Status</a></li>
+			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 
 		</ul>
 	</div>
@@ -252,7 +239,7 @@ th {
 		</div>
 		<div class="btn3">
 			<button type="submit" class="btn2">
-				<a href="CustomerDashBoard.jsp">Back</a>
+				<a href="customerDashBoard.jsp">Back</a>
 			</button>
 		</div>
 	</div>

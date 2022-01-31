@@ -32,7 +32,7 @@ public class TransacDate extends HttpServlet {
          List<Transaction> list = tranDao.getbyDate(local);
          
          request.setAttribute("ViewList", list);
-		 RequestDispatcher rd=request.getRequestDispatcher("TransactionDateView.jsp");
+		 RequestDispatcher rd=request.getRequestDispatcher("transactionDateView.jsp");
 		
 			rd.forward(request, response);
 		}  catch (Exception e) {

@@ -20,10 +20,10 @@ public class Balance extends HttpServlet {
 		 if(pin==pinnum) {
 		 double amoun=transDao.viewBalance(accNo,  pin);
 		 session.setAttribute( "amount", amoun);
-		 response.sendRedirect("BalanceView.jsp");
+		 response.sendRedirect("balanceView.jsp");
 		 } else {
 			 session.setAttribute("pinvalidate","Enter Correct Pin Number");
-			 response.sendRedirect("Balance.jsp");
+			 response.sendRedirect("balance.jsp");
 		 }
 		} catch ( Exception e) {
  

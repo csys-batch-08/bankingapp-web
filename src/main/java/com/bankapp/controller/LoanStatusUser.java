@@ -31,7 +31,7 @@ public class LoanStatusUser extends HttpServlet {
 				rd.forward(request, response);
 
 			} else {
-				session.setAttribute("Saccnum", "Enter Valid Account Number!");
+				session.setAttribute("laccnum", "Enter Valid Account Number!");
 				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
 				rd.include(request, response);
 			}

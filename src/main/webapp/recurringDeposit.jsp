@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Transaction Summary</title>
+<title>RECURRING DEPOSITS</title>
 
 <style>
 * {
@@ -18,14 +18,12 @@ nav {
 	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 30%;
-	margin: 0;
-	color: red;
-	padding: 3.5px;
+    width:99%;
+	padding: 4px;
 }
 
 nav a {
-	padding-right:  79px;
+	padding-right:  103px;
 }
 
 h1 {
@@ -42,7 +40,7 @@ a {
 }
 
 .set1 {
-	padding-right: 325.5px;
+	padding-right: 325px;
 }
 
 .btn {
@@ -59,7 +57,7 @@ h3 {
 }
 
 .sidebar {
-	position:absolute;
+	position: absolute;
 	left: 0;
 	width: 250px;
 	height: 100%;
@@ -81,7 +79,7 @@ ul {
 
 .sidebar ul a {
 	height: 98%;
-	width: 99%;
+	width: 100%;
 	line-height: 40px;
 	font-size: 15px;
 	padding-left: 40px;
@@ -100,7 +98,7 @@ ul li:hover a {
 	width: 380px;
 	height: 380px;
 	position: relative;
-	margin: 3% auto;
+	margin: 6% auto;
 	background: transparent;
 	padding: 5px;
 	box: shadow;
@@ -143,7 +141,7 @@ ul li:hover a {
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
- td {
+td {
 	padding-left: 20px;
 	text-align: justify;
 	padding-bottom: 8px;
@@ -153,73 +151,71 @@ th {
 	text-align: justify;
 	padding-left: 30px;
 	padding-bottom: 8px;
-	}
-#transhead
-{
-color:red;}
+}
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
 	<nav>
-		 <a  href="CustomerDashBoard.jsp"> Home</a> 
-                       <a  href="loans.jsp">Loans</a> 
-                       <a  href="deposits.jsp">Deposits</a> 
-                       <a  href="AboutUs.jsp">About us</a>
-                       <a  href="ContactUs.jsp">Contact Us</a> 
-                       <a   href="interest.jsp" class="set1">%</a>   
-                        <a href="MyProfile.jsp">My Profile</a>
-                         <button class="btn"><a href="LogoutServlet">Logout</a></button>
+		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		  <a href="deposits.jsp">Deposits</a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="myProfile.jsp">My Profile</a>
+		<button class="btn">
+			<a href="LogoutServlet">Logout</a>
+		</button>
 	</nav>
 	<br>
-	<br><br>
-
+	<br>
 	<div class="sidebar">
-
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="TransferAmount.jsp">Transfer</a></li>
-			<li><a href="Balance.jsp">Balance</a></li>
-			<li><a href="FixedDeposit.jsp">Fixed Deposits</a></li>
-			<li><a href="RecurringDeposit.jsp">Recurring Deposits</a></li>
-			<li><a href="PersonalLoan.jsp">Personal Loan request</a></li>
-			<li><a href="HousingLoan.jsp">Housing Loan request</a></li>
-			<li><a href="TransactionSummary.jsp">Transaction History</a></li>
+			<li><a href="transferAmount.jsp">Transfer</a></li>
+			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
+			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
+			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
+			<li><a href="housingLoan.jsp">Housing Loan request</a></li>
+			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
-			<li><a href="LoanStatusUser.jsp">Loan Status</a></li>
+			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 
 		</ul>
 	</div>
- 
-	</button>
-	<h2 align="center">Transaction Summary</h2>
+	 
+	<h2 align="center">RECURRING DEPOSITS</h2>
 	<div class="box">
-		<form action="transac" method="post">
+		<form - action="Recurring" method="post">
 			<table>
 				<tr>
-					<th> Account Number</th>
-					<td><input type="text"  class="cls"  name="accno" required
-						pattern="[0-9]{12}" /></td>
+					<th>  Amount to Deposit</th>
+					<td><input type="text" name="amountDeposit"
+						class="cls" pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th>Pin Number</th>
-					<td><input type="password" class="cls" name="pin" required
-						pattern="[0-9]{4}" /></td>
+					<th>  Tenure</th>
+					<td><input type="text" class="cls"  name="period" pattern="[1-9]+"
+						required placeholder="TENURE IN YEARS" /></td>
 				</tr>
- 
+				 <tr>
+     <th>Pan Number</th>
+     <td><input type="text" name="pan" pattern="[a-zA-z0-9]+" class="cls" required "/></td>
+     </tr>
 			</table><br><br>
 			<div class="btn3">
-			<button type="submit" class="btn2" >Submit</button>
+			<button type="submit" class="btn2">Submit</button>
 			<button type="reset" class="btn2">Reset</button>
 			</div>
-			
+			<br>
+			<br>
 		</form>
-		 <c:if test="${sessionScope.pinvalidate!=null}">
-          <h4>${sessionScope.pinvalidate}</h4>
+		 <c:if test="${sessionScope.tran!=null}">
+          <h4>${sessionScope.tran}</h4>
           </c:if> 
             
-           <c:remove var="pinvalidate" scope="session"/>
+           <c:remove var="tran" scope="session"/>
 	</div>
 </body>
 </html>

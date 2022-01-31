@@ -1,7 +1,7 @@
 package com.bankapp.controller;
 
-import java.io.IOException;
  
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +20,13 @@ public class ContactUs extends HttpServlet {
 		String email=request.getParameter("email");
 		String message=request.getParameter("message");
 		ContactUsDaoimpl contact=new  ContactUsDaoimpl();
-		 contact.insertMessage(name,email,message);
+		 
+			contact.insertMessage(name,email,message);
+		 
           HttpSession session=request.getSession();
 		  session.setAttribute( "msg", "THANKYOU FOR YOUR RESPONSE!" );
-		  response.sendRedirect("ContactUs.jsp");
-		} catch (IOException e) {
+		  response.sendRedirect("contactUs.jsp");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

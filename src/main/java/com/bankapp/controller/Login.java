@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("user_id", userId);
 			session.setAttribute("pass", password);
 			session.setAttribute("username", name);
-			 RequestDispatcher rd=request.getRequestDispatcher("CustomerDashBoard.jsp");
+			 RequestDispatcher rd=request.getRequestDispatcher("customerDashBoard.jsp");
 		    rd.forward(request, response);			
 		   }
 		 else if(validAdmin !=null) 

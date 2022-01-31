@@ -66,16 +66,16 @@ public class PersonalLoan extends HttpServlet {
 				session.setAttribute("loan", " Loan Requested");
 				session.setAttribute("loan1", accnum);
 				
-					response.sendRedirect("PersonalLoan.jsp");
+					response.sendRedirect("personalLoan.jsp");
 				
 			} else {
 				session.setAttribute("Ploan", "You have Already requested the Personal Loan!");
-				response.sendRedirect("PersonalLoan.jsp");
+				response.sendRedirect("personalLoan.jsp");
 			}
 		} else {
 			session.setAttribute("loanNot", "Oops!It seems already you have Loan from our bank...");
 
-			response.sendRedirect("PersonalLoan.jsp");
+			response.sendRedirect("personalLoan.jsp");
 		}
 		} catch (Exception e) {
 			 

@@ -111,14 +111,14 @@ left: 145px;
 
 	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
 	<nav>
-		 <a href="index.jsp"> Home</a>
+		  <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>
 		  <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="Reg.jsp">Register</a>
+		  <a href="register.jsp">Register</a>
 		  <a href="login.jsp">Login</a>
-		  <a href="AboutUs.jsp">About us</a>
-		  <a href="ContactUs.jsp" class="set1">ContactUs</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" class="set1">ContactUs</a>
 		  </nav><br><br><br>
 
 

@@ -42,7 +42,7 @@ public class Register extends HttpServlet {
 		else {
 			HttpSession session=request.getSession();
 			session.setAttribute("reg","PLEASE ENTER YOUR REGISTERED ACCOUNT EMAILID");
-			response.sendRedirect("Reg.jsp");
+			response.sendRedirect("register.jsp");
 			
 		}
 		 

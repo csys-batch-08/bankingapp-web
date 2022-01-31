@@ -24,7 +24,7 @@ public class DepositApproveAdmin extends HttpServlet {
 		  session.setAttribute("useraccno", depNo);
           if(list) {
 			   session.setAttribute("depo","UPDATED");
-			   response.sendRedirect("ApproveDeposits.jsp");
+			   response.sendRedirect("approveDeposits.jsp");
           }
 			} catch (IOException e) {
 		 		e.printStackTrace();

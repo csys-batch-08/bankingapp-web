@@ -21,7 +21,7 @@ public class InterestRate extends HttpServlet {
 			List<AdminUse> list = adminDao.allDetails();
 			
 			 request.setAttribute("InterestsRate",list);
-			 RequestDispatcher rd=request.getRequestDispatcher("InterestRateAll.jsp");
+			 RequestDispatcher rd=request.getRequestDispatcher("interestRateAll.jsp");
 				
 					rd.forward(request, response);
 				} catch (Exception e) {

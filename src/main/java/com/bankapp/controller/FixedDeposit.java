@@ -43,7 +43,7 @@ public class FixedDeposit extends HttpServlet {
 		 session.setAttribute("trans","Deposit Requested");
 		 session.setAttribute("trans1","Deposit Account Number"+accnum);
 		 	
-					response.sendRedirect("FixedDeposit.jsp");
+					response.sendRedirect("fixedDeposit.jsp");
 				} catch (Exception e) {
 					 
 					e.printStackTrace();

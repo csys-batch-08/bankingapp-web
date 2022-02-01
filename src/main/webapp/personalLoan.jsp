@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>PERSONAL LOAN</title>
@@ -20,7 +20,7 @@ nav {
 }
 
 nav a {
-	padding-right: 79px;
+	padding-right: 95px;
 }
 
 h1 {
@@ -45,11 +45,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
+
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -64,6 +60,7 @@ h3 {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -139,26 +136,31 @@ color:green;
 }
 #transhead1{
 color:red;}
- 
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-		<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 
-		<header>My Account</header>
+		<header></header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -178,50 +180,51 @@ color:red;}
 	<div class="box">
 		<form action="Personal" method="post">
 			<table>
+			<caption>
 			<tr>
-					<th>Name</th>
+					<th><label for="name">Name</label></th>
 					<td><input type="text"  class="cls" name="lname"
 						pattern="[a-zA-z]{3,}" required /></td>
 				</tr>
 				<tr>
-					<th>DOB</th>
+					<th><label for="dob">DOB</label></th>
 					<td><input type="date"  class="cls" name="dob"
 						  required /></td>
 				</tr>
 				<tr>
-					<th>Address</th>
+					<th><label for="address">Address</label></th>
 					<td><input type="text"  class="cls" name="address"
 						pattern="[a-zA-z0-9,-]+" required /></td>
 				</tr>
 				<tr>
-					<th>Email</th>
+					<th><label for="email">Email</label></th>
 					<td><input type="email"  class="cls" name="email"
 						  required /></td>
 				</tr>
 				<tr>
-					<th>MobileNumber</th>
+					<th><label for="mobNo">MobileNumber</label></th>
 					<td><input type="text"  class="cls" name="mobno"
 						pattern="[6-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th>  Loan Amount</th>
+					<th><label for="loanAmount">  Loan Amount</label></th>
 					<td><input type="text"  class="cls" name="amountDeposit"
 						pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th>  Tenure</th>
+					<th> <label for="tenure"> Tenure</label></th>
 					<td><input type="text" name="period" pattern="[1-9]+"
 						class="cls" placeholder="TENURE IN YEARS" required /></td>
 				</tr>
 				<tr>
-					<th>  Working Type(Tier-I,Tier-II,Self Employee):</th>
+					<th> <label for="type"> Working Type</label></th>
 					<td><input type="text" name="Wtype" class="cls" required /></td>
 				</tr>
 				<tr>
-					<th>  Pan number</th>
+					<th> <label for="type"> Pan number</label></th>
 					<td><input type="text" name="pan" class="cls" required /></td>
 				</tr>
-
+              </caption>
 			</table><br><br>
 			<div class="btn3">
 			<button type="submit" class="btn2">Submit</button>

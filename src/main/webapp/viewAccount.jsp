@@ -18,17 +18,14 @@
 
 nav {
 	font-size: 17px;
-	 
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 25%;
-	margin: 0;
-	padding: 6.5px;
-	width:100%
+	padding: 7px;
+	width:99.9%
 }
 
 nav a {
-	padding-right: 77px;
+	padding-right: 97px;
 }
 
 h1 {
@@ -54,13 +51,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
+ 
 .sidebar{
 position:absolute;
 left:0;
@@ -167,28 +158,28 @@ color:green;}
 .div1{
 padding-left:240px
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3>  
 	<nav>
-	<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="adminDashBoard.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		  <a href="contactUs.jsp" >ContactUs</a>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
-	<br>
-	<div class="sidebar">
+	 	<div class="sidebar">
 
 		<header>ADMIN</header>
 		<ul>

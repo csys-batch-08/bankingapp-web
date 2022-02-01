@@ -61,6 +61,7 @@ h3 {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87, .3);
+	 text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -157,7 +158,7 @@ th {
 
 	<div class="sidebar">
 
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>

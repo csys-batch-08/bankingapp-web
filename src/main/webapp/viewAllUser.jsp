@@ -17,20 +17,16 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
-	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 25%;
-	margin: 0;
-	 
+	 width:98.9%
 	padding: 6.5px;
 }
 
 nav a {
-	padding-right: 65 px;
+	padding-right: 95 px;
 }
 
 h1 {
@@ -56,14 +52,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
-.sidebar {
+ .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
@@ -172,24 +161,24 @@ margin-bottom:10px;
 background-color:  rgba(161, 15, 95,.5);}
 .table td{
 background-color:  rgba(35, 106, 240,.5);}
-
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="index.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		  <a href="contactUs.jsp" >ContactUs</a>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
@@ -203,7 +192,7 @@ background-color:  rgba(35, 106, 240,.5);}
 			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>

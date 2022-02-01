@@ -6,7 +6,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Transaction Summary</title>
-
 <style>
 * {
 	margin: 0;
@@ -16,11 +15,11 @@ nav {
 	font-size: 17px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-    width:99%;
-	padding: 3.5px;
+    width:98.8%;
+	padding: 7.4px;
 }
 nav a {
-	padding-right:  99px;
+	padding-right: 95px;
 }
 h1 {
 	color: white;
@@ -42,12 +41,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-.sidebar {
+ .sidebar {
 	position:absolute;
 	left: 0;
 	width: 250px;
@@ -61,6 +55,7 @@ h3 {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -86,19 +81,10 @@ ul li:hover a {
 	position: relative;
 	margin: 3% auto;
 	background: transparent;
-	padding: 5px;
+	padding: 70px;
 	box: shadow;
 }
-
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-
-.pa {
+ .pa {
 	text-align: left;
 }
 
@@ -121,7 +107,7 @@ ul li:hover a {
 }
 
 .btn3 {
-	margin-left: 150px;
+	margin-left: 190px;
 }
 
 body {
@@ -141,27 +127,31 @@ th {
 #transhead
 {
 color:red;}
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
-	<br>
+	 	<div class="sidebar">
 
-	<div class="sidebar">
-
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -176,23 +166,23 @@ color:red;}
 
 		</ul>
 	</div>
- 
-	</button>
+ 	</button>
 	<h2 align="center">Transaction Summary</h2>
 	<div class="box">
 		<form action="transac" method="post">
 			<table>
+			<caption>
 				<tr>
-					<th> Account Number</th>
+					<th><label for="accNo"> Account Number</label></th>
 					<td><input type="text"  class="cls"  name="accno" required
 						pattern="[0-9]{12}" /></td>
 				</tr>
 				<tr>
-					<th>Pin Number</th>
+					<th><label for="pin">Pin Number</label></th>
 					<td><input type="password" class="cls" name="pin" required
 						pattern="[0-9]{4}" /></td>
 				</tr>
- 
+            </caption>
 			</table><br><br>
 			<div class="btn3">
 			<button type="submit" class="btn2" >Submit</button>
@@ -201,7 +191,7 @@ color:red;}
 			
 		</form>
 		 <c:if test="${sessionScope.pinvalidate!=null}">
-          <h4>${sessionScope.pinvalidate}</h4>
+          <h4 id="transhead">${sessionScope.pinvalidate}</h4>
           </c:if> 
             
            <c:remove var="pinvalidate" scope="session"/>

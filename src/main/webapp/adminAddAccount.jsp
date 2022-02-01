@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title> Add Account</title>
@@ -10,7 +10,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px; 
 	float: left;
@@ -18,41 +17,23 @@ nav {
 	margin: 0;
 	padding: 4px;
 }
-
 nav a {
 	padding-right: 55px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 623.5px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
 .sidebar {
 	position:absolute;
 	left: 0;
@@ -61,7 +42,6 @@ h3 {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -69,11 +49,9 @@ h3 {
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 100%;
 	width: 100%;
@@ -82,15 +60,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 16px;
 }
-
 .box {
 	width: 380px;
 	height: 700px;
@@ -100,20 +75,11 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -122,11 +88,9 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 160px;
 }
-
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
@@ -135,7 +99,6 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
@@ -158,16 +121,9 @@ color:green;}
 		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
 		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
-	<br>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br><br><br>
 	<div class="sidebar">
-
 		<header>ADMIN</header>
 		<ul>
 			<li><a href="ViewAllUser">View All Users</a></li>
@@ -180,11 +136,8 @@ color:green;}
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
-
-
 		</ul>
 	</div>
-	 
 	<h2 align="center">Add Account</h2><br>
 	<div class="div1">
 		<form action="addAccount" method="post">
@@ -241,7 +194,6 @@ color:green;}
 					<th>Enter Balance</th>
 					<td><input type="text" class="cls" name="balance" required /></td>
 				</tr>
-
 				<tr>
 					<th>Enter Pin Number</th>
 					<td><input type="text" class="cls" name="pin" pattern="[0-9]{4}" required /></td>
@@ -263,9 +215,6 @@ color:green;}
 			</div>
 			<br> <br>
 		</form>
-
-		
-	</div>
-
+</div>
 </body>
 </html>

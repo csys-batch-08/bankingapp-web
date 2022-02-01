@@ -14,7 +14,7 @@ public interface DepositsDao {
 	public long recurringDeposit(String type, double amount, double rateOfInterest, int period, double maturityValue,
 			String status,String pan,String email) throws SQLException;
 
-	public List<Deposits> viewdeposit();
+	public List<Deposits> viewdeposit() throws SQLException;
 
 	public boolean updateStatus(long accnum,String status);
 	public List<Deposits> viewStatusUser(long accNo);

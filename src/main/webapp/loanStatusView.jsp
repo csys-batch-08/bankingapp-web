@@ -1,5 +1,4 @@
- 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"%>
 	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,7 +14,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
 	float: left;
@@ -23,13 +21,11 @@ nav {
 	 width:100%;
 	padding: 6.5px;
 }
-
 nav a {
 	padding-right: 80.3px;
 	text-decoration:none;
 	color:white;
 }
-
 h1 {
 	color: white;
 	background: #042331;
@@ -37,7 +33,6 @@ h1 {
 	margin: 0;
 	padding: 7px;
 }
-
 a {
 	text-decoration: none;
 	color: white;
@@ -54,14 +49,7 @@ a {
 	font-size: 15px;
 	float:right;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
-.sidebar {
+ .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
@@ -69,19 +57,17 @@ h3 {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -153,35 +139,37 @@ body {
 }
 .table{
 margin-bottom:10px;
- width:1000px;
+ width:950px;
  margin-left:180px;
 }
 .table th{
 background-color:  rgba(161, 15, 95,.5);}
 .table td{
 background-color:  rgba(35, 106, 240,.5);}
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400"
-		height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
-	<br>
-
-	<div class="sidebar">
-
-		<header>My Account</header>
+		<div class="sidebar">
+        <header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -201,7 +189,7 @@ background-color:  rgba(35, 106, 240,.5);}
 		
 		<div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
-
+          <caption>
 			<thead>
 				<tr>
 					<th>S.no</th>
@@ -216,9 +204,6 @@ background-color:  rgba(35, 106, 240,.5);}
 
 				</tr>
 			</thead>
-			<br>
-
-
 			<tbody>
 				<c:forEach items="${LoanStatus}" var="LoanStatusView">
 				  <c:set var="i" value="${i+1 }"/>
@@ -232,14 +217,10 @@ background-color:  rgba(35, 106, 240,.5);}
 					<td>${LoanStatusView.tenure}</td>
 					<td>${LoanStatusView.monthlyPayment}</td>
 					<td>${LoanStatusView.loanStatus}</td>
-
-					 
-
-
 				</tr>
-
 				 </c:forEach>
 			</tbody>
+			</caption>
 		</table>
 		<br>
 		<br>

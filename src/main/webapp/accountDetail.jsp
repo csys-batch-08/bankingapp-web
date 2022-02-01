@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -13,7 +11,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 18px;
 	float: left;
@@ -21,28 +18,16 @@ nav {
     width:98.8%;
 	padding: 8px;
 }
-
 nav a {
-	padding-right: 100.5px;
+	padding-right: 95.5px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 520px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
@@ -50,7 +35,6 @@ a {
 	font-size: 15px;
 	float:right;
 }
-
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -59,19 +43,17 @@ a {
 	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
 background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -80,15 +62,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -98,21 +77,17 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .pa {
 	text-align: left;
 }
-
 .par {
 	padding: 20px;
 }
-
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -121,51 +96,48 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 160px;
 }
-
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
-
 td {
 	padding-left: 20px;
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
-
 #transhead {
 	color: red;
 }
+
+ #head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
-	 
-
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>		
+	</nav><br><br>
 	<div class="sidebar">
-
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -177,44 +149,35 @@ th {
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
-
 	<div class="box">
 		<h3>Account Detail</h3>
 		<form action="AccountDetails" method="post">
 			<table>
+			<caption>
 				<tr>
 					<th><label for="accountNo"> AccountNumber</label></th>
 					<td><input type="text" class="cls" name="accNo"
-						pattern="[0-9]{12}" required autofocus placeholder=" " /></td>
-					<br>
+						pattern="[0-9]{12}" required autofocus placeholder=" " /></td><br>
 				</tr>
 				<tr>
-					<br>
-					<th><label for="pin"> Pin Number</label></th>
+					<br><th><label for="pin"> Pin Number</label></th>
 					<td><input type="password" class="cls" name="pin"
 						pattern="[0-9]{4}" required /></td>
 				</tr>
-			</table>
-			<br><br>
+			</caption>
+			</table><br><br>			
 			<div class="btn3">
 				<input type="submit" class="btn2" value=submit /> 
 				<input type="reset" class="btn2" value=cancel />
 			</div>
-		</form>
-		<br>
-		<br>
-		 <c:if test="${sessionScope.pinvalid!=null}">
+		</form><br><br>
+	 <c:if test="${sessionScope.pinvalid!=null}">
           <h4>${sessionScope.pinvalid}</h4>
           </c:if> 
-            
-           <c:remove var="pinvalid" scope="session"/>
+          <c:remove var="pinvalid" scope="session"/>
 	</div>
 	</div>
-
-
-
 </body>
 </html>

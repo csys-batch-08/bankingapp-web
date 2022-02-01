@@ -70,7 +70,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
-		String validateQuery = "select * from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER='" + accNumber
+		String validateQuery = "select  * from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER='" + accNumber
 				+ "' and PIN_NUMBER='" + pinNumber + "'";
 
 		Connection con = ConnectionUtil.getDbConnection();

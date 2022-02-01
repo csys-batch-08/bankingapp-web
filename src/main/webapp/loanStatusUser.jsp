@@ -17,11 +17,11 @@ nav {
 	width:99%;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
- 	padding: 5px;
+ 	padding: 6px;
 }
 
 nav a {
-	padding-right: 75px;
+	padding-right: 99px;
 }
 
 h1 {
@@ -47,15 +47,8 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
-.sidebar {
-	position: fixed;
+ .sidebar {
+	position:absolute;
 	left: 0;
 	width: 250px;
 	height: 100%;
@@ -69,6 +62,7 @@ h3 {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
 
 ul {
@@ -142,27 +136,31 @@ body {
 #transhead{
 color:red;
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
-	<br>
+ 	<div class="sidebar">
 
-	<div class="sidebar">
-
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -182,12 +180,13 @@ color:red;
 	<div class="box">
 		<form action="loanStatus" method="post">
 			<table>
+			<caption>
 				<tr>
-					<th> Account Number</th>
+					<th><label for="accountNumber"> Account Number</label></th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"
-						required /></td>
+						required autofocus /></td>
 				</tr>
-				<tr>
+				</caption>
 			</table>
 			<br><br>
 			<div class="btn3">

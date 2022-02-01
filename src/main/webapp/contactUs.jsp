@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Contact Us</title>
@@ -13,7 +13,6 @@
 	box-sizing:border-box;
 	font-family:sans-serif;
 }
-
 nav {
 	font-size: 17px;
 	color: black;
@@ -24,53 +23,32 @@ nav {
 	color: red;
 	padding: 8px;
 }
-
 nav a {
 	padding-right: 73.7px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .par {
 	padding-left: 30px;
 }
-
-marquee {
-	height: 200px;
-	color: red;
-}
-
 .set1 {
 	padding-right: 293.4px;
 }
-
 p {
 	color: white;
 }
-
-h3, h2 {
+ .set2 {
 	text-align: center;
 	font-size: 20px;
 }
 body{
-background-image: url("images/bankof5.jpg") ; 
+   background-image: url("images/bankof5.jpg") ; 
    background-repeat: no-repeat;
-    
    background-size:cover;
-   
    }
-   .content-section{
+ .content-section{
    width:100%;
    display:flex;
    justify-content:center;
@@ -125,9 +103,7 @@ background-image: url("images/bankof5.jpg") ;
    border-radius:5px;
    margin-bottom:20px;
    opacity:0.9;
-   
-   
-   }
+    }
    .contact-form .s-btn{
    float:right;
    background-color:#2E94E4;
@@ -138,7 +114,6 @@ background-image: url("images/bankof5.jpg") ;
    font-size:15px;
    border-radius:5px;
    text-align:center;
-   
    }
    .sec{
    display:inline-flex;
@@ -146,12 +121,17 @@ background-image: url("images/bankof5.jpg") ;
    }
    #transhead{
    color:green;}
+#head{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:25px;
+ }
 </style>
 </head>
 <body>
 
-
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <br> <h3 id="head"><i>Dharshini Bank</i></h3> <br>
 	<nav>
 		 <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>
@@ -161,11 +141,8 @@ background-image: url("images/bankof5.jpg") ;
 		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
 		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-	</nav>
-	<br><br>
-	<br>
- 
-	<div class="sec">
+	</nav>	<br><br><br>
+ 	<div class="sec">
 	 <div class="contact-section">
 	      <div class="contact-info">
 	         <div ><i class="fas fa-map-marker-alt"></i>Address</div>
@@ -174,21 +151,16 @@ background-image: url("images/bankof5.jpg") ;
 	         <div ><i class="fas fa-clock"></i>8:00 AM to 8:00 PM</div>
 	           <div ><i class="fas fa-clock"></i>Post 8 PM till 8 AM only critical service offered</div>
 	      </div>
-	 </div>
-	<br>
+	 </div>	<br>
 	<div class="contact-form">
-	   <h2>Contact Us</</h2>
-	   <br>
-	   <br>
+	   <h2 class="set2">Contact Us</</h2><br> <br>
 	      <form class="contact" action="ContactUs" method="post">
 	      <input type="text" name="name" class="text-box" placeholder="Your Name" required>
 	      <input type="email" class="text-box" name="email" placeholder="Your Email" required>
 	      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
 	      <input type="submit" name="submit" class="s-btn" value="SUBMIT">
-	      
-	      </form>
-	   
-	</div>
+      </form>
+		</div>
 	</div>
 <%!	String flag;
 %>
@@ -201,8 +173,5 @@ flag = session.getAttribute("msg").toString();
  
   <%session.removeAttribute("msg");
        %>
-	
-	
-
-</body>
+  </body>
 </html>

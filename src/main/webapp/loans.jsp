@@ -93,13 +93,18 @@ text-decoration:none;
 text-align:center;
 
 }
- 
+#head{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:25px;
+ }
 </style>
 </head>
 <body>
 
-
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <br> <h3 id="head"><i>Dharshini Bank</i></h3> <br>
+ 
 	<nav>
 	 <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>

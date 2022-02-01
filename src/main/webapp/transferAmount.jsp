@@ -19,11 +19,11 @@ nav {
 	background-color: rgba(9, 57, 87,.9);
 	color: red;
 	padding: 3px;
-	width:100%;
+	width:99%;
 }
 
 nav a {
-	padding-right: 109.5px;
+	padding-right:95.5px;
 }
 
 h1 {
@@ -49,14 +49,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
-.sidebar{
+ .sidebar{
 position:absolute;
 left:0;
 width:250px;
@@ -70,7 +63,7 @@ color:white;
 text-align: center;
 line-height:50px;
 background-color: rgba(9, 57, 87,.3);
-
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -143,8 +136,10 @@ body {
 background-color: rgba(198, 208, 214,.9);
 }
 #transhead{
-color:blue;
+color:green;
 }
+#tranheadred{
+color:red;}
 h2{
 padding-left:300px;
 font-size:20px;
@@ -160,25 +155,31 @@ th {
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
-        <nav>
-            <a href="customerDashBoard.jsp"> Home</a>
-		    <a href="loans.jsp">Loans</a>
-		    <a href="deposits.jsp">Deposits</a> 
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	<nav>
+		<a href="customerDashBoard.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
  	<div class="sidebar">
 
-		<header>My Account</header>
+	<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -227,8 +228,13 @@ th {
  </div>
  </form>
  <br>
+ <c:if test="${sessionScope.transaction!=null}">
+          <h4 id="transhead">${sessionScope.transaction}</h4>
+          </c:if> 
+            
+           <c:remove var="transaction" scope="session"/>
   <c:if test="${sessionScope.trans!=null}">
-          <h4>${sessionScope.trans}</h4>
+          <h4 id="tranheadred">${sessionScope.trans}</h4>
           </c:if> 
             
            <c:remove var="trans" scope="session"/>

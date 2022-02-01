@@ -72,6 +72,7 @@ a {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87, .3);
+	 text-transform: capitalize;
 }
 
 ul {
@@ -104,9 +105,6 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
- 
-
 .pa {
 	text-align: left;
 }
@@ -164,26 +162,34 @@ th {
 .table td {
 	background-color: rgba(35, 106, 240, .5);
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
+ .head3{
+margin-left:250px ;
+font-size:28px;}
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400"
-		height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
  	<div class="sidebar">
 
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -199,12 +205,10 @@ th {
 		</ul>
 	</div>
 
-	<h2 align="center">Transaction Summary</h2>
-	<div class="">
-
-
-		<div class="container mt-4 mb-4">
+	<h3 class="head3">Transaction History</h3>
+	 		<div class="container mt-4 mb-4">
 			<table class="table table-hover table-striped">
+			<caption>
 				<thead>
 					<tr>
 						<th>S.no</th>
@@ -229,12 +233,10 @@ th {
 							<td>${Transacviewlist.receiveAccountNumber}</td>
 							<td>${Transacviewlist.amount}</td>
 							<td>${Transacviewlist.transactiondate }</td>
-							
-
 						</tr>
- </c:forEach>
-					
-				</tbody>
+                   </c:forEach>
+    			</tbody>
+				</caption>
 			</table>
 		</div>
 		<div class="btn3">
@@ -242,7 +244,7 @@ th {
 				<a href="customerDashBoard.jsp">Back</a>
 			</button>
 		</div>
-	</div>
+	 
 
 </body>
 </html>

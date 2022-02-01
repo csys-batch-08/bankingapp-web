@@ -1,73 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
-<%@page import="com.bankapp.impl. LoansDaoimpl"%>
-<%@page import="com.bankapp.model.Loans"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>admin</title>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
-	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 25%;
-	margin: 0;
-	 
-	padding: 6.5px;
+ 	padding: 6.5px;
 }
-
 nav a {
 	padding-right: 79px;
 }
 nav a:hover{
 text-decoration:none;
 color:white;}
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 9%;
-	margin: 0;
-	padding: 2px;
-}
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 450px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 }
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
-.sidebar {
+ .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
@@ -75,7 +47,6 @@ h3 {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -83,11 +54,9 @@ h3 {
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 100%;
 	width: 100%;
@@ -96,11 +65,9 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 16px;
 }
@@ -113,7 +80,6 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .btn {
 	float: right;
 	padding: 5px 7px;
@@ -121,13 +87,11 @@ ul li:hover a {
 	border-radius: 7px;
 	color: gray;
 }
-
 .table1 {
 	padding: 90px;
 	padding-left: 300px;
 	border: none;
 }
-
 .btn2{
 	 padding:5px 15px;
 	 background-color:green;
@@ -135,7 +99,6 @@ ul li:hover a {
 	 border:0;
 	 border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 670px;
 }
@@ -150,7 +113,6 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
@@ -165,11 +127,9 @@ margin-bottom:10px;
 background-color:  rgba(161, 15, 95,.5);}
 .table td{
 background-color:  rgba(35, 106, 240,.5);}
-
 .div1 {
 	padding-left: 460px;
 }
-
 #transhead {
 	color: green;
 }
@@ -186,16 +146,9 @@ background-color:  rgba(35, 106, 240,.5);}
 		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
 		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
-	<br>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br>	<br><br>
 	<div class="sidebar">
-
 		<header>ADMIN</header>
 		<ul>
 			<li><a href="ViewAllUser">View All Users</a></li>
@@ -208,18 +161,12 @@ background-color:  rgba(35, 106, 240,.5);}
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
-
-
-
-		</ul>
+	</ul>
 	</div>
 	<h2 align="center">Loan Status</h2>
-
-	 
-
 	 <div class="container mt-4 mb-4">
       <table class="table table-hover table-striped">
-
+          <caption>
 			<thead>
 				<tr>
 					<th>S.no</th>
@@ -235,11 +182,11 @@ background-color:  rgba(35, 106, 240,.5);}
 					<th>Reject</th>
 				</tr>
 			</thead>
-			 
-
 			<tbody>
 				<c:forEach items="${ApproveLoan}" var="approveloan">
 				  <c:set var="i" value="${i+1 }"/>
+				  <c:set var="approve" value="Approved" scope="page" />
+				  <c:set var="reject" value="Rejected" scope="page"/>
 				<tr>
                       <td> ${i} </td>
 					<td>${approveloan.accountNumber} </td>
@@ -250,19 +197,13 @@ background-color:  rgba(35, 106, 240,.5);}
 					<td>${approveloan.tenure}</td>
 					<td>${approveloan.interestRate}%</td>
 					<td>${approveloan.loanStatus}</td>
-					<td><a
-						href="approveloan?accno= ${approveloan.accountNumber}&status=${Approved}">Approve</a></td>
-					<td><a
-						href="approveloan?accno= ${approveloan.accountNumber}&status=<%="Rejected"%>">Reject</a></td>
+					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${approve}">Approve</a></td>
+					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${reject}">Reject</a></td>
 				</tr>
                 </c:forEach>
-				 
 			</tbody>
+			</caption>
 		</table>
-
 	</div>
-	</div>
-	</div>
-
-</body>
+	</body>
 </html>

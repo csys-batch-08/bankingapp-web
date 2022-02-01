@@ -6,7 +6,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Balance</title>
-
 <style>
 * {
 	margin: 0;
@@ -16,26 +15,18 @@ nav {
 	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
- 	color: red;
-	padding: 3.5px;
-	width:100%;
+  	padding:7px;
+	width:98.9%;
 }
 nav a {
-	padding-right: 109.2px;
-}
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
+	padding-right: 95.2px;
 }
 a {
 	text-decoration: none;
 	color: white;
 }
-.set1 {
-	padding-right: 450px;
+.set {
+	 margin-left:280px;
 }
 .btn {
 	color: white;
@@ -43,12 +34,7 @@ a {
 	border-color: transparent;
 	font-size: 16px;
 }
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-.sidebar {
+ .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
@@ -56,13 +42,13 @@ h3 {
 background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
    background-color: rgba(9, 57, 87,.3);
+    text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -90,14 +76,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-.pa {
+ .pa {
 	text-align: left;
 }
 .par {
@@ -106,7 +85,7 @@ ul li:hover a {
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
-	Background-color: transparent ;
+	Background-color: transparent;
 }
 .btn2 {
 	padding: 5px;
@@ -117,32 +96,44 @@ ul li:hover a {
 	border-radius:3px;
 }
 .btn3 {
-	margin-left: 110px;
+	margin-left: 170px;
 }
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
+td {
+	padding-left: 20px;
+	text-align: justify;
+	padding-bottom: 15px;
+}
+
+th {
+	text-align: justify;
+	padding-left: 30px;
+	padding-bottom: 15px;
+}
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
-	<br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		  
-          <a href="customerDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="customerDashBoard.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br>	<br>
 	<div class="sidebar">
-
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -154,38 +145,32 @@ body {
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
-	 
-	<h2 align="center">Balance</h2>
+	<h2 class="set" >Check Balance</h2>
 	<div class="box">
 		<form action="Balance" method="post">
 			<table>
 				<tr>
-					<th>Enter Account Number</th>
+					<th><label for="accountNum" name="accNum"> Account Number</label></th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12}"
-						required /></td>
+						required autofocus /></td>
 				</tr>
 				<tr>
-					<th>Enter Pin Number</th>
+					<th><label for="pinNum" name="pinNum">Pin Number</label></th>
 					<td><input type="password"  class="cls" name="pin" pattern="[0-9]{4}"
 						required /></td>
 				</tr>
-
-			</table><br>
-			
+			</table><br> 
 			<div class="btn3">
 			<button type="submit" class="btn2">Submit</button>
 			<button type="reset" class="btn2">Reset</button>
 			</div>
 		</form>
-
 	</div>
 	  <c:if test="${sessionScope.pinvalidate!=null}">
           <h4>${sessionScope.pinvalidate}</h4>
           </c:if> 
-            
-           <c:remove var="pinvalidate" scope="session"/>
+        <c:remove var="pinvalidate" scope="session"/>
 </body>
 </html>

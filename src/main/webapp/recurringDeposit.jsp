@@ -2,11 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>RECURRING DEPOSITS</title>
-
 <style>
 * {
 	margin: 0;
@@ -18,12 +17,12 @@ nav {
 	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-    width:99%;
-	padding: 4px;
+    width:99.5%;
+	padding: 3.5px;
 }
 
 nav a {
-	padding-right:  103px;
+	padding-right:  96px;
 }
 
 h1 {
@@ -38,24 +37,12 @@ a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right: 325px;
-}
-
-.btn {
+ .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-}
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
+	}
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -70,6 +57,7 @@ h3 {
 	color: white;
 	text-align: center;
 	line-height: 50px;
+	 text-transform: capitalize;
 	background-color: rgba(9, 57, 87,.3);
 }
 
@@ -152,19 +140,25 @@ th {
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
@@ -189,20 +183,25 @@ th {
 	<div class="box">
 		<form - action="Recurring" method="post">
 			<table>
+			 <tr>
+					<th><label for="account">Account Number</label></th>
+					<td><input type="text" name="accNo" class="cls"
+						pattern="[0-9]{12,14}" required autofocus /></td>
+				</tr>
 				<tr>
-					<th>  Amount to Deposit</th>
+					<th><label for="amount"> Amount to Deposit</label></th>
 					<td><input type="text" name="amountDeposit"
 						class="cls" pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th>  Tenure</th>
+					<th> <label for="tenure">Tenure</label></th>
 					<td><input type="text" class="cls"  name="period" pattern="[1-9]+"
 						required placeholder="TENURE IN YEARS" /></td>
 				</tr>
 				 <tr>
-     <th>Pan Number</th>
-     <td><input type="text" name="pan" pattern="[a-zA-z0-9]+" class="cls" required "/></td>
-     </tr>
+                    <th><label for="pan">Pan Number</label></th>
+                    <td><input type="text" name="pan" pattern="[a-zA-z0-9]+" class="cls" required "/></td>
+                 </tr>
 			</table><br><br>
 			<div class="btn3">
 			<button type="submit" class="btn2">Submit</button>

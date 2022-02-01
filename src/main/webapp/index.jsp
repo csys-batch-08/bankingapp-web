@@ -19,12 +19,8 @@
 
 nav {
 	font-size: 17px;
-	color: black;
-	float: left;
+ 	float: left;
 	background-color: rgba(9, 57, 87,.5);
-	height: 25%;
-	margin: 0;
-	color: red;
 	padding: 8px;
 }
 
@@ -102,16 +98,19 @@ li, p {
     border-radius:6px;
     padding: 10px 25px;
     text-align : center;
-     
  }
  .buttn a:hover{
  color:blue;}
+ #head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+ }
 </style>
 </head>
 <body>
 
-
-	 <img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i>Dharshini Bank</i></h3> 
 	 <nav>
 		  <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>

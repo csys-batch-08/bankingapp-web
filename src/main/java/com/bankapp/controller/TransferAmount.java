@@ -39,7 +39,7 @@ public class TransferAmount extends HttpServlet {
 				if (amount < balance) {
 					if (pin == pinnum) {
 						transDao.depositAmount(accNo, uname, amount, pin, accNum);
-						session.setAttribute("trans", "TRANSFERRED");
+						session.setAttribute("transaction", "TRANSFERRED");
 						 RequestDispatcher rd=request.getRequestDispatcher("transferAmount.jsp");
 						 rd.include(request, response);
 					  } 

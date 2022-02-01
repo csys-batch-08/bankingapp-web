@@ -2,17 +2,15 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Deposit Status</title>
-
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
 	width:98.7%;
@@ -20,11 +18,9 @@ nav {
 	background-color: rgba(9, 57, 87,.9);
 	padding: 7.3px;
 }
-
 nav a {
 	padding-right:  97px;
 }
-
 h1 {
 	color: white;
 	background: #042331;
@@ -32,16 +28,13 @@ h1 {
 	margin: 0;
 	padding: 7px;
 }
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 325.5px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
@@ -57,19 +50,17 @@ a {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -78,15 +69,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -99,7 +87,6 @@ ul li:hover a {
 .pa {
 	text-align: left;
 }
-
 .par {
 	padding: 20px;
 }
@@ -108,7 +95,6 @@ ul li:hover a {
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -117,11 +103,9 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 180px;
 }
-
 body {
 	background-color: rgb(198, 208, 214);
 }
@@ -133,7 +117,6 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 20px;
@@ -141,25 +124,28 @@ th {
 }
 h2{
 text-align:center;}
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br>	<br>
  	<div class="sidebar">
-
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -171,17 +157,15 @@ text-align:center;}
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
-	 
 	<h2 >Check Deposit Status</h2>
 	<div class="box">
 		<form action="deposit" method="post">
 			<table>
 			<caption>
 				<tr>
-					<th >  Account Number</th>
+					<th>  Account Number</th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"  required/></td>
 				</tr>
 				</caption>
@@ -193,12 +177,10 @@ text-align:center;}
 			</div>
 		</form>
 		<br><br>
-	
-	 
 			 <c:if test="${sessionScope.Saccnum!=null}">
           <h4>${sessionScope.Saccnum}</h4>
           </c:if> 
-            
-           <c:remove var="Saccnum" scope="session"/>
+          <c:remove var="Saccnum" scope="session"/>
 		</div>
+	</body>
 </html>

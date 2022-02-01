@@ -15,14 +15,12 @@ nav {
 	font-size: 17px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	padding: 4px;
-	width:100%;
+	padding: 7px;
+	width:98.9%;
 }
-
 nav a {
-	padding-right: 109.3px;
+	padding-right: 98.3px;
 }
-
 h1 {
 	color: white;
 	background: #042331;
@@ -30,17 +28,11 @@ h1 {
 	margin: 0;
 	padding: 7px;
 }
-
 a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right: 328px;
-}
-
-.btn {
+ tn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
@@ -60,6 +52,7 @@ a {
 	text-align: center;
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
+	 text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -87,12 +80,11 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
+ .btn {
+	color: white;
+	background-color: transparent;
+	border-color: transparent;
+	font-size: 16px;
 }
 .pa {
 	text-align: left;
@@ -119,24 +111,28 @@ ul li:hover a {
 body {
 	background-color: rgba(198, 208, 214,.9);
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" /><br>
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		 <a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br><br>
  	<div class="sidebar">
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -155,11 +151,11 @@ body {
 		<c:if test="${sessionScope.amount!=null}">
 		<h2>
 			Balance is :
-			${sessionScope.amount}</h2>
+			Rs.${sessionScope.amount}</h2>
           </c:if> 
           <br><br>
 			<div class="btn3">
-			<button type="submit" class="btn2" ><a href="customerDashBoard.jsp">OK</a></button>
+			<button type="submit" class="btn2" ><a href="customerDashBoard.jsp">Back</a></button>
 			</div>
 	</div>
 </body>

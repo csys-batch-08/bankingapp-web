@@ -15,25 +15,26 @@ import com.bankapp.impl.TransactionDaoimpl;
 import com.bankapp.model.Transaction;
  
 @WebServlet("/date")
-public class TransacDate extends HttpServlet {
- 
+public class TransacDate extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
-
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		 try {
-		String date = request.getParameter("date");
-		LocalDate local = LocalDate.parse(date);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	{
+		 try 
+		 {
+		    String date = request.getParameter("date");
+		    LocalDate local = LocalDate.parse(date);
 
-		HttpSession session = request.getSession();
-		session.setAttribute("Date", local);
+		   HttpSession session = request.getSession();
+		  session.setAttribute("Date", local);
 		
-		TransactionDaoimpl tranDao = new TransactionDaoimpl();
-         List<Transaction> list = tranDao.getbyDate(local);
-         if(list != null) {
-         request.setAttribute("ViewList", list);
-		 RequestDispatcher rd=request.getRequestDispatcher("transactionDateView.jsp");
-		 rd.forward(request, response);
+		  TransactionDaoimpl tranDao = new TransactionDaoimpl();
+           List<Transaction> list = tranDao.getbyDate(local);
+           if(list != null) {
+           request.setAttribute("ViewList", list);
+		   RequestDispatcher rd=request.getRequestDispatcher("transactionDateView.jsp");
+		   rd.forward(request, response);
          }
          else {
         	 session.setAttribute("trandate","No Transaction To View" );

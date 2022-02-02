@@ -190,11 +190,16 @@ color:red;}
 			</div>
 			
 		</form>
-		 <c:if test="${sessionScope.pinvalidate!=null}">
-          <h4 id="transhead">${sessionScope.pinvalidate}</h4>
+		 <c:if test="${sessionScope.pinum!=null}">
+          <h4 id="transhead">${sessionScope.pinum}</h4>
           </c:if> 
             
-           <c:remove var="pinvalidate" scope="session"/>
+           <c:remove var="pinum" scope="session"/>
+           <c:if test="${sessionScope.AccountNum!=null}">
+          <h4 id="transhead">${sessionScope.AccountNum}</h4>
+          </c:if> 
+            
+           <c:remove var="AccountNum" scope="session"/>
 	</div>
 </body>
 </html>

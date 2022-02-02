@@ -287,7 +287,7 @@ public class LoansDaoimpl implements LoansDao {
 		
 	}
 	public  boolean  ViewOneLoan(long accnum) {
-		List <Loans> loans = new ArrayList<Loans>();
+		List <Loans> loans = new ArrayList<>();
 		String view1 = "select * from Loans  where account_number='"+accnum+"' ";
 		Connection con1 = ConnectionUtil.getDbConnection();
 		boolean flag=false;
@@ -302,7 +302,6 @@ public class LoansDaoimpl implements LoansDao {
 				flag=true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -102,7 +102,7 @@ ul li:hover a {
 body {
 	background-color: rgb(198, 208, 214);
 }
-#transhead{
+#depohead{
 color:red;
 }
 td {
@@ -171,7 +171,7 @@ text-align:center;}
 		</form>
 		<br><br>
 			 <c:if test="${sessionScope.Saccnum!=null}">
-          <h4>${sessionScope.Saccnum}</h4>
+          <h4 id="depohead">${sessionScope.Saccnum}</h4>
           </c:if> 
           <c:remove var="Saccnum" scope="session"/>
 		</div>

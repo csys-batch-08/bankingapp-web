@@ -14,30 +14,26 @@ import com.bankapp.impl.TransactionDaoimpl;
 import com.bankapp.model.Transaction;
  
 @WebServlet("/account")
-public class TransactionSummary extends HttpServlet {
- 
-	private static final long serialVersionUID = 1L;
-
+public class TransactionSummary extends HttpServlet
+{
+ 	private static final long serialVersionUID = 1L;
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
-		   try {
-		long accNo=Long.parseLong(request.getParameter("accno"));
-		 
-		 TransactionDaoimpl transDao=new TransactionDaoimpl();
-		 transDao.getByAccountNumberAdmin(accNo);
-		 HttpSession session=request.getSession();
-		 session.setAttribute("accNo",accNo);
-		  
-	      TransactionDaoimpl tranDao = new TransactionDaoimpl();
-	     long acc=(Long) session.getAttribute("accNo");
-	        List<Transaction> list = tranDao.getByAccountNumberAdmin(acc);
-	        request.setAttribute("transacAcc",list);
-	        RequestDispatcher rd=request.getRequestDispatcher("transactionAdminView.jsp");
-	       rd.forward(request, response);
-			 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	{
+		    HttpSession session=request.getSession();
+		   try
+		   {
+		     long accNo=Long.parseLong(request.getParameter("accno"));
+		     TransactionDaoimpl transDao=new TransactionDaoimpl();
+		     transDao.getByAccountNumberAdmin(accNo);
+		     session.setAttribute("accNo",accNo);
+		     long acc=(Long) session.getAttribute("accNo");
+	         List<Transaction> list = transDao.getByAccountNumberAdmin(acc);
+	         request.setAttribute("transacAcc",list);
+	         RequestDispatcher rd=request.getRequestDispatcher("transactionAdminView.jsp");
+	         rd.forward(request, response);
 			} catch (Exception e) {
-				 
-				e.printStackTrace();
+		         e.printStackTrace();
 			}
 		 
 	}

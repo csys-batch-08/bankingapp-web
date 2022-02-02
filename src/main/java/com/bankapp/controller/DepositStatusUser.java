@@ -32,8 +32,8 @@ public class DepositStatusUser extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				session.setAttribute("Saccnum", "Enter Valid Account Number!");
-				RequestDispatcher rd = request.getRequestDispatcher("depStatusView.jsp");
-				rd.include(request, response);
+				 response.sendRedirect("depositStatusUser.jsp");
+				 
 			}
 		} catch (ServletException | IOException |SQLException e) {
 

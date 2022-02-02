@@ -7,201 +7,266 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.bankapp.dao.UserDetailsDao;
 import com.bankapp.model.UserDetails;
 import com.bankapp.util.ConnectionUtil;
 
- 
-
-
 public class UserDetailsDaoimpl implements UserDetailsDao {
-	
-	public int insertUser(UserDetails user) {
+	@Override
+	public int insertUser(UserDetails user) throws SQLException {
 		String insertQuery = "insert into USER_DETAILS(USER_NAME,EMAIL,USER_PASSWORD,MOBILE_NUMBER) VALUES (?,?,?,?)";
-        
-		Connection con = ConnectionUtil.getDbConnection();
-		int i=0;
-
+		Connection con = null;
+		PreparedStatement preStatement = null;
+		int i = 0;
 		try {
-			PreparedStatement	pst = con.prepareStatement(insertQuery);
-			pst.setString(1, user.getusername());
-			pst.setString(2, user.getEmailId());
-			pst.setString(3, user.getuserpassword());
-			pst.setLong(4, user.getmobileNumber());
-			 
-			i=pst.executeUpdate();
-			System.out.println("Value Inserted Successfully");
-			
-			
+			con = ConnectionUtil.getDbConnection();
+			preStatement = con.prepareStatement(insertQuery);
+			preStatement.setString(1, user.getusername());
+			preStatement.setString(2, user.getEmailId());
+			preStatement.setString(3, user.getuserpassword());
+			preStatement.setLong(4, user.getmobileNumber());
+			i = preStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Value not inserted");
-
+		} finally {
+			if (preStatement != null)
+				preStatement.close();
+			if (con != null)
+				con.close();
 		}
 		return i;
 	}
-	public List<UserDetails> MyProfile(String email){
-		List<UserDetails> userList=new ArrayList<UserDetails>();
-		String view="select * from User_details where  email='"+email+"'";
-		Connection con=ConnectionUtil.getDbConnection();
-		 try {
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(view);
-			while(rs.next()) {
-				UserDetails user=new UserDetails( 0, rs.getString(2), rs.getString(3), rs.getString(4), rs.getLong(5) );
+
+	public List<UserDetails> myProfile(String email) throws SQLException {
+		List<UserDetails> userList = new ArrayList<>();
+		String userQuery = "select user_login_id,user_name,email,user_password,mobile_number,role,created_date from User_details where  email= ?";
+		Connection con = null;
+		PreparedStatement preState = null;
+		ResultSet rs = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			preState = con.prepareStatement(userQuery);
+			preState.setString(1, email);
+			preState.executeUpdate();
+			rs = preState.executeQuery(userQuery);
+			while (rs.next()) {
+				UserDetails user = new UserDetails(0, rs.getString("user_name"), rs.getString("email"),
+						rs.getString("user_password"), rs.getLong("mobile_number"));
 				userList.add(user);
-			//	System.out.println(userList);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (preState != null)
+				preState.close();
+			if (con != null)
+				con.close();
 		}
-		
 		return userList;
 	}
 
-	public UserDetails validateUser(String emailId, String password) {
-		String ValidateQuery = "select * from USER_DETAILS where role='USER' and email='" + emailId + "' and user_password='"
-				+ password + "'";
-		Connection con = ConnectionUtil.getDbConnection();
+	@Override
+	public UserDetails validateUser(String emailId, String password) throws SQLException {
+		String validateQuery = "select user_login_id,user_name,email,user_password,mobile_number,role,created_date  from USER_DETAILS where role='USER' and email=? and user_password= ?";
+		Connection con = null;
+		PreparedStatement preStatement1 = null;
+		ResultSet rs = null;
 		UserDetails user = null;
 		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(ValidateQuery);
+			con = ConnectionUtil.getDbConnection();
+			preStatement1 = con.prepareStatement(validateQuery);
+			preStatement1.setString(1, emailId);
+			preStatement1.setString(2, password);
+			preStatement1.executeUpdate();
+			rs = preStatement1.executeQuery(validateQuery);
 			if (rs.next()) {
-				user = new UserDetails(rs.getInt(1), rs.getString(2), emailId, password, rs.getLong(5));
+				user = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), emailId, password,
+						rs.getLong("mobile_number"));
 			}
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			 
-		}
-		return user;
-	}
-	
-	public UserDetails validatePassword(String emailId,  long mobno) {
-		String ValidateQuery = "select * from USER_DETAILS where role='USER' and email='" + emailId + "' and mobile_number='"
-				+ mobno + "'";
-		Connection con = ConnectionUtil.getDbConnection();
-		UserDetails user = null;
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(ValidateQuery);
-			if (rs.next()) {
-				user = new UserDetails(rs.getInt(1), rs.getString(2), emailId, rs.getString(3), mobno);
-			}
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			 
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (preStatement1 != null)
+				preStatement1.close();
+			if (con != null)
+				con.close();
+
 		}
 		return user;
 	}
 
-	public  boolean updateUser(String name,String password,String email) {
+	public UserDetails validatePassword(String emailId, long mobno) throws SQLException {
+		String validateQuery1 = "select user_login_id,user_name,user_password from USER_DETAILS where role='USER' and email=? and mobile_number=?";
+		Connection con = null;
+		PreparedStatement preStatement2 = null;
+		ResultSet rs = null;
+		UserDetails user = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			preStatement2 = con.prepareStatement(validateQuery1);
+			preStatement2.setString(1, emailId);
+			preStatement2.setLong(1, mobno);
+			preStatement2.executeUpdate();
+			rs = preStatement2.executeQuery(validateQuery1);
+			if (rs.next()) {
+				user = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), emailId,
+						rs.getString("user_password"), mobno);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (preStatement2 != null)
+				preStatement2.close();
+			if (con != null)
+				con.close();
+		}
+		return user;
+	}
+
+	@Override
+	public boolean updateUser(String name, String password, String email) throws SQLException {
 
 		String updatequery1 = "update user_details set user_name=?,user_password=? where email=?";
-		Connection con = ConnectionUtil.getDbConnection();
-        boolean flag=false;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		boolean flag = false;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(updatequery1);
-			pstmt.setString(1,name);
-			pstmt.setString(2,password);
-			pstmt.setString(3,email);
-			int i = pstmt.executeUpdate();
-			 flag=true;
+			con = ConnectionUtil.getDbConnection();
+			pstmt = con.prepareStatement(updatequery1);
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setString(3, email);
+			pstmt.executeUpdate();
+			flag = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			 
-		}
-		 return flag;
-	}
-	public  boolean forgotPassword( String password,String email) {
 
-		String updatequery1 = "update user_details  set user_password=? where email=?";
-		Connection con = ConnectionUtil.getDbConnection();
-        boolean flag=false;
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close();
+		}
+		return flag;
+	}
+
+	public boolean forgotPassword(String password, String email) throws SQLException {
+
+		String updatequery2 = "update user_details  set user_password=? where email=?";
+		Connection con = null;
+		PreparedStatement pstmt1 = null;
+		boolean flag = false;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(updatequery1);
-			
-			pstmt.setString(1,password);
-			pstmt.setString(2,email);
-			int i = pstmt.executeUpdate();
-		 
-			 flag=true;
+			con = ConnectionUtil.getDbConnection();
+			pstmt1 = con.prepareStatement(updatequery2);
+			pstmt1.setString(1, password);
+			pstmt1.setString(2, email);
+			pstmt1.executeUpdate();
+			flag = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		 
+
+		} finally {
+			if (pstmt1 != null)
+				pstmt1.close();
+			if (con != null)
+				con.close();
 		}
-		 return flag;
+		return flag;
 	}
 
-	public UserDetails admin(String email_id, String password) {
-		String AdminQuery = "select * from user_details where role='ADMIN' and email='" + email_id + "'and user_password='"
-				+ password + "'";
-
-		Connection con = ConnectionUtil.getDbConnection();
+	@Override
+	public UserDetails admin(String emailId, String password) throws SQLException {
+		String adminQuery1 = "select user_login_id,user_name,email,user_password,mobile_number from user_details where role='ADMIN' and email= ?and user_password=?";
 		UserDetails user1 = null;
-		 
-			Statement stm;
-			try {
-				stm = con.createStatement();
-				ResultSet rs = stm.executeQuery(AdminQuery);
-				if (rs.next()) {
-					user1 = new UserDetails(rs.getInt(1), rs.getString(2), email_id, password, rs.getLong(5));
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		Connection con = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			pstmt1 = con.prepareStatement(adminQuery1);
+			pstmt1.setString(1, emailId);
+			pstmt1.setString(2, password);
+			pstmt1.executeUpdate();
+			rs = pstmt1.executeQuery(adminQuery1);
+			if (rs.next()) {
+				user1 = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), emailId, password,
+						rs.getLong("mobile_number"));
 			}
-		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt1 != null)
+				pstmt1.close();
+			if (con != null)
+				con.close();
+		}
+
 		return user1;
 	}
-	public List<UserDetails> viewUser(){
-		List<UserDetails> userList=new ArrayList<UserDetails>();
-		String view="select User_login_id,user_name,email,mobile_number from User_details where role='USER'";
-		Connection con=ConnectionUtil.getDbConnection();
-		 try {
-			 
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(view);
-			while(rs.next()) {
-				 
-				UserDetails user=new UserDetails(rs.getInt(1), rs.getString(2), rs.getString(3), null,rs.getLong(4) );
+
+	@Override
+	public List<UserDetails> viewUser() throws SQLException {
+		List<UserDetails> userList = new ArrayList<>();
+		String viewQuery = "select User_login_id,user_name,email,mobile_number from User_details where role='USER'";
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(viewQuery);
+			while (rs.next()) {
+
+				UserDetails user = new UserDetails(rs.getInt("User_login_id"), rs.getString("user_name"),
+						rs.getString("email"), null, rs.getLong("mobile_number"));
 				userList.add(user);
-				 
+
 			}
 		} catch (SQLException e) {
-		 
+
 			e.printStackTrace();
+		} finally {
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
 		}
-		
+
 		return userList;
 	}
-	public  boolean deleteDetails(String email) {
-		String deleteQuery="update user_details set role='Inactive' where email=?";
-		Connection con=ConnectionUtil.getDbConnection();
-		boolean flag=false;
-		 try {
-			PreparedStatement pst= con.prepareStatement(deleteQuery);
-		//	pst.setString(1, role);
+
+	@Override
+	public boolean deleteDetails(String email) throws SQLException {
+		String deleteQuery = "update user_details set role='Inactive' where email=?";
+		Connection con = ConnectionUtil.getDbConnection();
+		boolean flag = false;
+		PreparedStatement pst = null;
+		try {
+			pst = con.prepareStatement(deleteQuery);
 			pst.setString(1, email);
-			int i=pst.executeUpdate();
-		   flag=true;
+			pst.executeUpdate();
+			flag = true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+		} finally {
+			if (pst != null) {
+				pst.close();
+			}
+			if (con != null)
+				con.close();
 		}
-		 return flag;
+		return flag;
 	}
 
-	 
-	
-		 
-	}
-
+}

@@ -16,10 +16,10 @@ nav {
 	width:99%;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
- 	padding: 6px;
+ 	padding: 5px;
 }
 nav a {
-	padding-right: 99px;
+	padding-right: 97px;
 }
 nav a:hover{
 text-decoration:none;
@@ -159,7 +159,7 @@ color:red;
 			<table>
 			<caption>
 				<tr>
-					<th><label for="accountNumber"> Account Number</label></th>
+					<th><label for="accountNumber">Loan Account Number</label></th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"
 						required autofocus /></td>
 				</tr>
@@ -173,7 +173,7 @@ color:red;
 		</form>
 		<br><br>
 		 <c:if test="${sessionScope.laccnum!=null}">
-          <h4>${sessionScope.Saccnum}</h4>
+          <h4 id="transhead">${sessionScope.laccnum}</h4>
           </c:if> 
           <c:remove var="laccnum" scope="session"/>
 	</div>

@@ -14,13 +14,16 @@
 nav {
 	font-size: 17px;
 	float: left;
-	background-color: rgba(9, 57, 87,.9); 
-	margin: 0; 
-	padding: 4px;
+	background-color: rgba(9, 57, 87,.9);
+ 	padding: 5px;
+ 	width:98.9%;
 }
 nav a {
-	padding-right: 61.2px;
+	padding-right: 95px;
 }
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
@@ -34,7 +37,7 @@ a {
 	border-color: transparent;
 	font-size: 15px;
 }
-.sidebar {
+ .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
@@ -56,7 +59,7 @@ ul {
 	height: 100%;
 	width: 100%;
 	line-height: 40px;
-	font-size: 15px;
+	font-size: 14px;
 	padding-left: 40px;
 	color: white;
 }
@@ -75,14 +78,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-.btn {
+ .btn {
 	float: right;
 	padding: 5px 7px;
 	margin-right: 5px;
@@ -133,21 +129,28 @@ th {
 #transhead {
 	color: green;
 }
-</style>
+.head2{
+margin-left:270px;}
+#head{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
+ 
+ </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400"	height="100" />
+	 <br/> <h3 id="head"><i> Dharshini Bank</i></h3><br/>
 	<nav>
-		<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="index.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-			<button class="btn"><a href="LogoutServlet">Logout</a></button>
-	</nav><br><br><br>
+		  <a href="contactUs.jsp" >ContactUs</a>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br/><br/>  
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
@@ -156,13 +159,14 @@ th {
 			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
 			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
+	<h2 class="head2">Deposit Approval</h2>
 	<div class="container mt-4 mb-4">
 		<table class="table table-hover table-striped">
 		<caption>
@@ -182,7 +186,7 @@ th {
 			<tbody>
 				<c:forEach items="${ApproveDeposit}" var="approvedeposit">
 				  <c:set var="i" value="${i+1 }"/>
-				  <c:set var="approved" value="${Approved}"/>
+				  <c:set var="approved" value="Approved"  scope="page"/>
 				<tr>
 					<td>${i}</td>
 					<td>${approvedeposit.depositNumber}</td>
@@ -192,8 +196,7 @@ th {
 					<td>${approvedeposit.maturityDate }</td>
 					<td>${approvedeposit.tenure }</td>
 					<td>${approvedeposit.depositStatus }</td>
-					<td><a
-						href="DepositApproveAdmin?accno=${approvedeposit. accno}&status=${approved}">Approve</a></td>
+					<td><a href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${approved}">Approve</a></td>
 				</tr>
 				 </c:forEach>
 			</tbody>

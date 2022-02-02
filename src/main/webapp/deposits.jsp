@@ -19,13 +19,9 @@ nav {
 nav a {
 	padding-right:  80.3px;
 }
-h1 {
-	color: white;
-	background-color:rgba(16, 35, 61);
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
      text-decoration: none;
      color:white;

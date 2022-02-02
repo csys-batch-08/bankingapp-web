@@ -18,7 +18,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 	public boolean insertAccount(AccountDetails account) throws SQLException  {
 		String que = "select  user_id.nextval from dual";
-		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS,Pan_number)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection con = ConnectionUtil.getDbConnection();
 		int userId = 0;
 		boolean flag = false;
@@ -45,6 +45,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			statement.setDouble(12, account.getBalance());
 			statement.setInt(13, account.getPinNumber());
 			statement.setString(14, account.getStatus());
+			statement.setString(15,account.getPan());
 			statement.executeUpdate();
 			flag = true;
 

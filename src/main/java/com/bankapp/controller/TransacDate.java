@@ -30,14 +30,17 @@ public class TransacDate extends HttpServlet {
 		
 		TransactionDaoimpl tranDao = new TransactionDaoimpl();
          List<Transaction> list = tranDao.getbyDate(local);
-         
+         if(list != null) {
          request.setAttribute("ViewList", list);
 		 RequestDispatcher rd=request.getRequestDispatcher("transactionDateView.jsp");
-		
-			rd.forward(request, response);
+		 rd.forward(request, response);
+         }
+         else {
+        	 session.setAttribute("trandate","No Transaction To View" );
+        	 response.sendRedirect("transactionByDate.jsp");
+         }
 		}  catch (Exception e) {
-		 
-			e.printStackTrace();
+     			e.printStackTrace();
 		}
 		 
 	}

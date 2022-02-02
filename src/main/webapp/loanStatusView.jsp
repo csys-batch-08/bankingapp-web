@@ -26,6 +26,9 @@ nav a {
 	text-decoration:none;
 	color:white;
 }
+nav a:hover{
+text-decoration:none;
+color:black;}
 h1 {
 	color: white;
 	background: #042331;

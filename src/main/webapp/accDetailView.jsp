@@ -28,7 +28,7 @@ nav a {
 }
 nav a:hover{
 text-decoration:none;
-color:white;}
+color:black;}
   .btn {
 	color: white;
 	background-color: transparent;

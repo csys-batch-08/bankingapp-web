@@ -5,7 +5,7 @@
 <%@page import="com.bankapp.model.AdminUse"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Interest Rate</title>
@@ -19,48 +19,29 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
-	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 30%;
-	margin: 0;
-	color: red;
+	 width:100%;
 	padding: 7px;
 }
-
 nav a {
 	padding-right: 95px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right:  350px;
-}
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 }
-
- 
-
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -69,7 +50,6 @@ a {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -77,11 +57,9 @@ a {
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 100%;
 	width: 100%;
@@ -90,15 +68,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 16px;
 }
-
 .box {
 	width: 380px;
 	height: 700px;
@@ -108,7 +83,6 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .btn {
 	float: right;
 	padding: 5px 7px;
@@ -116,22 +90,11 @@ ul li:hover a {
 	border-radius: 7px;
 	color: gray;
 }
-
 .t1 {
 	padding: 40px;
 	padding-left: 350px;
 	border: none;
 }
-
-td {
-	padding-left: 15px;
-}
-
-th {
-	padding-left: 10px;
-	font-size: 18px;
-}
-
 .btn2{
 	 padding:5px 15px;
 	 background-color:green;
@@ -139,7 +102,6 @@ th {
 	 border:0;
 	 border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 670px;
 }
@@ -154,7 +116,6 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
@@ -169,28 +130,25 @@ margin-bottom:10px;
 background-color:  rgba(161, 15, 95,.5);}
 .table td{
 background-color:  rgba(35, 106, 240,.5);}
-
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-		<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="index.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
-	<br>
+		  <a href="contactUs.jsp" >ContactUs</a>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br><br>
 	<div class="sidebar">
 
 		<header>ADMIN</header>
@@ -249,7 +207,7 @@ background-color:  rgba(35, 106, 240,.5);}
 		<br>
 		<div class="btn3">
 			<button input="Submit" class="btn2">
-				<a href="InterestRate.jsp">Update Status</a>
+				<a href="interestRate.jsp">Update Status</a>
 			</button>
 		</div>
 	</div>

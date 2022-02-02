@@ -24,6 +24,9 @@ nav {
 nav a {
 	padding-right:  96px;
 }
+nav a:hover{
+text-decoration:none;
+color:black;}
 
 h1 {
 	color: white;

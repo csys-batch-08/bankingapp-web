@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Interest Rate</title>
@@ -14,49 +14,31 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
-	color: black;
+	width:100%;
 	float: left;
 	background-color: rgba(9, 57, 87, .9);
-	height: 25%;
-	margin: 0;
-	padding: 7px;
+	padding: 7.4px;
 }
-
 nav a {
-	padding-right: 77.5px;
+	padding-right: 95px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 9%;
-	margin: 0;
-	padding: 2px;
-}
-
-a {
+nav a:hover{
+text-decoration:none;
+color:black;}a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 450px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 }
-
- 
-
- 
-
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -103,27 +85,21 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .t1 {
 	padding: 40px;
 	padding-left: 350px;
 	border: none;
 }
-
- 
-
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .table1 {
 	padding: 90px;
 	padding-left: 300px;
 	border: none;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -132,7 +108,6 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 150px;
 }
@@ -147,34 +122,30 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
-
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
-	<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="index.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
-		 
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
-	</nav>
-	<br>
-	<br>
-	<br>
+		  <a href="contactUs.jsp" >ContactUs</a>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+	</nav><br><br>
 	<div class="sidebar">
 
 		<header>ADMIN</header>

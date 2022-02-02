@@ -1,6 +1,9 @@
 package com.bankapp.controller;
  
 import java.time.LocalDate;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +35,11 @@ public class InsertAccount extends HttpServlet {
 	    String pan=request.getParameter("pan");
 	    AccountDetailsdaoimpl accdao=new AccountDetailsdaoimpl(); 
 	    AccountDetails acc=new AccountDetails(0,0,accType,accHolderName,address,city,pincode,dob,mobNo,email,ifscCode,branch,bal,pin,status,pan);
-	    
-	    
-			accdao.insertAccount(acc);
-			response.sendRedirect("viewAccount.jsp");
+	    accdao.insertAccount(acc);
+	    List<AccountDetails> list = accdao.viewAccout();
+		  request.setAttribute("ViewAccount",list);
+		RequestDispatcher rd= request.getRequestDispatcher("viewAccount.jsp");
+		rd.forward(request, response);
 		  }catch (Exception e) {
 			 
 			e.printStackTrace();

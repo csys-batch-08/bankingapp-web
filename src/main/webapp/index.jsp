@@ -23,8 +23,6 @@ nav {
 	background-color: rgba(9, 57, 87,.5);
 	padding: 8px;
 }
-
-
 nav a {
 	padding-right: 67px;
 	text-decoration:none;

@@ -20,6 +20,9 @@ nav {
 nav a {
 	padding-right:  95px;
 }
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;

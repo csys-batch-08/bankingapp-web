@@ -21,21 +21,14 @@ nav {
 nav a {
 	padding-right:  97px;
 }
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-.set1 {
-	padding-right: 325.5px;
-}
-.btn {
+ .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
@@ -165,7 +158,7 @@ text-align:center;}
 			<table>
 			<caption>
 				<tr>
-					<th>  Account Number</th>
+					<th><label for="accountNumber">  Account Number</label></th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"  required/></td>
 				</tr>
 				</caption>

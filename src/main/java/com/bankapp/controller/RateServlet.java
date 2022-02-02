@@ -23,8 +23,7 @@ public class RateServlet extends HttpServlet {
 		   adminDao. getDescriptionId(desc, rate);
 		   HttpSession session=request.getSession();
 		   session.setAttribute("rat","Updated");
-			  
-				response.sendRedirect("interestRate.jsp");
+			response.sendRedirect("interestRate.jsp");
 			} catch (Exception e) {
 		 
 				e.printStackTrace();

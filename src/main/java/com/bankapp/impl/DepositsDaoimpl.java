@@ -238,13 +238,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			ResultSet rs = st.executeQuery(query);
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
-				System.out.println(date);
-			}
+			 	}
 			Statement st1 = con.createStatement();
 			ResultSet rs1 = st1.executeQuery(query1);
 			if (rs1.next()) {
 				period = rs1.getInt(1);
-				System.out.println(period);
+			 
 			}
 
 			LocalDate sysDate = LocalDate.now();
@@ -263,8 +262,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return flag;
 	}

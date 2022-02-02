@@ -32,20 +32,17 @@ public class TransactionSum extends HttpServlet {
 			session.setAttribute("passw", pin);
 			int pinnum = transDao.getPinnumber(accNo);
 			if (pin == pinnum) {
-
 				TransactionDaoimpl tranDao = new TransactionDaoimpl();
 				List<Transaction> list = tranDao.getByAccountNumberUser(accNo, pin);
 				request.setAttribute("TransacSummary", list);
 				RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
                 rd.forward(request, response);
-
-			} else {
+			 } else {
 				RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
 				rd.include(request, response);
-			}
-		} catch (ServletException | IOException e) {
-	 
-			e.printStackTrace();
+			 }
+		 } catch (ServletException | IOException e) {
+	    		e.printStackTrace();
 		}
 
 	}

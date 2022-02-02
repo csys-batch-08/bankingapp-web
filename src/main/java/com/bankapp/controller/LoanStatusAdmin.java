@@ -25,7 +25,6 @@ public class LoanStatusAdmin extends HttpServlet {
 		LoansDaoimpl accDetailDao = new LoansDaoimpl();
 		session.setAttribute("useraccno", accNo);
 		accDetailDao.updateStatus(accNo,status);
-		 
 		List<Loans> list = accDetailDao.viewloan();
 		request.setAttribute("ApproveLoan",list);
 		RequestDispatcher rd=request.getRequestDispatcher("approveLoans.jsp");

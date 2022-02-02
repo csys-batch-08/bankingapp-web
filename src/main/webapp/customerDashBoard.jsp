@@ -20,13 +20,9 @@ nav {
 nav a {
 	padding-right: 90.8px;
 }
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
+ nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
@@ -136,7 +132,7 @@ body {
 		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>	<br><br>
 	<div class="sidebar">
-		<header>${sessionScope.username}</h4></header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>

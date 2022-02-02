@@ -15,11 +15,15 @@ nav {
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
 	margin: 0;
-	padding: 4px;
+	padding: 7.5px;
+	width:98.9%;
 }
 nav a {
-	padding-right: 55px;
+	padding-right: 95px;
 }
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
@@ -108,21 +112,25 @@ th {
 padding-left :460px;}
 #transhead{
 color:green;}
-</style>
+#head{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
+ </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br/> <h3 id="head"><i> Dharshini Bank</i></h3><br/>
 	<nav>
-		<a href="adminDashBoard.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		<a href="index.jsp"> Home</a>
+		<a href="loans.jsp">Loans</a>
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
 		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		<button class="btn"><a href="LogoutServlet">Logout</a></button>
-	</nav><br><br><br>
+	</nav><br/><br/> 
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
@@ -138,7 +146,7 @@ color:green;}
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
-	<h2 align="center">Add Account</h2><br>
+	<h2 align="center">Add Account</h2><br/>
 	<div class="div1">
 		<form action="addAccount" method="post">
 			<table>
@@ -209,11 +217,11 @@ color:green;}
 						 required /></td>
 				</tr>
 			</table>
-			<br>
+			<br/>
 			<div class="btn3">
 			<button type="Submit" class="btn2">Submit</button>
 			</div>
-			<br> <br>
+			<br/> <br/>
 		</form>
 </div>
 </body>

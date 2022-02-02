@@ -21,22 +21,20 @@ public class LoanStatusUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession();
-			long accNo = Long.parseLong(request.getParameter("accno"));
+			long accountNum = Long.parseLong(request.getParameter("accno"));
 			LoansDaoimpl accDetailDao = new LoansDaoimpl();
-			boolean flag = accDetailDao.ViewOneLoan(accNo);
+			boolean flag = accDetailDao.ViewOneLoan(accountNum);
 			if (flag) {
-				List<Loans> accde = accDetailDao.viewStatusUser(accNo);
-				request.setAttribute("LoanStatus", accde);
+				List<Loans> loanlist = accDetailDao.viewStatusUser(accountNum);
+				request.setAttribute("LoanStatus",loanlist);
 				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
 				rd.forward(request, response);
-
-			} else {
+      		} else {
 				session.setAttribute("laccnum", "Enter Valid Account Number!");
 				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
 				rd.include(request, response);
 			}
 		} catch (ServletException | IOException e) {
-
 			e.printStackTrace();
 		}
 	}

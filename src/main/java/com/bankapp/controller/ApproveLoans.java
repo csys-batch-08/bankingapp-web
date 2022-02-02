@@ -21,8 +21,7 @@ public class ApproveLoans extends HttpServlet {
 		List<Loans> list = loanDao.viewloan();
 		request.setAttribute("ApproveLoan",list);
 		RequestDispatcher rd=request.getRequestDispatcher("approveLoans.jsp");
-	
-			rd.forward(request, response);
+	     rd.forward(request, response);
 		} catch ( Exception e) {
 			e.printStackTrace();
 		}  

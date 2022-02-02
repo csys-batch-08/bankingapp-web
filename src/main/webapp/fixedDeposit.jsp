@@ -21,13 +21,9 @@ nav {
 nav a {
 	padding-right: 90px;
 }
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
+nav a:hover{
+text-decoration:none;
+color:black;}
 a{
 	text-decoration: none;
 	color: white;

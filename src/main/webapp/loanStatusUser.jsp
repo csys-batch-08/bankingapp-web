@@ -11,7 +11,6 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 17px;
 	width:99%;
@@ -19,28 +18,19 @@ nav {
 	background-color: rgba(9, 57, 87,.9);
  	padding: 6px;
 }
-
 nav a {
 	padding-right: 99px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right: 350px;
 }
-
 .btn {
 	color: white;
 	background-color: transparent;
@@ -55,7 +45,6 @@ a {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -64,11 +53,9 @@ a {
 	background-color: rgba(9, 57, 87,.3);
 	 text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -77,15 +64,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -95,7 +79,6 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
 .btn {
 	float: right;
 	padding: 5px 7px;
@@ -103,11 +86,9 @@ ul li:hover a {
 	border-radius: 7px;
 	color: gray;
 }
-
 .pa {
 	text-align: left;
 }
-
 .par {
 	padding: 20px;
 }
@@ -116,7 +97,6 @@ ul li:hover a {
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
-
 .btn2 {
 	padding: 5px;
 	color: white;
@@ -125,11 +105,9 @@ ul li:hover a {
 	border:0;
 	border-radius:3px;
 }
-
 .btn3 {
 	margin-left: 150px;
 }
-
 body {
 	background-color: rgb(198, 208, 214);
 }
@@ -159,7 +137,6 @@ color:red;
 	<br>
 	<br>
  	<div class="sidebar">
-
 		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>

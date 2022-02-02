@@ -5,148 +5,29 @@
 <%@page import="com.bankapp.model.UserDetails"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin</title>
+<link href="asserts/css/adminStyles.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="customer.css">
-<style>
-* {
-	margin: 0;
-	padding: 0;
+ <style>
+ a{
+ text-decoration:none;
+ color:white;
+ }
+body {
+	background-color:rgba(198, 208, 214,.9);
 }
-nav {
-	font-size: 17px;
-	float: left;
-	background-color: rgba(9, 57, 87,.9);
-	 width:98.9%
-	padding: 6.5px;
-}
-
-nav a {
-	padding-right: 95 px;
-}
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 9%;
-	margin: 0;
-	padding: 2px;
-}
-
-a {
-	text-decoration: none;
-	color: white;
-}
-
-.set1 {
-	padding-right: 535.5px;
-}
-
-.btn {
-	color: white;
-	background-color: transparent;
-	border-color: transparent;
-	font-size: 15px;
-}
- .sidebar {
-	position: absolute;
-	left: 0;
-	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
-	color: white;
-}
-
-.sidebar header {
-	font-size: 15px;
-	color: white;
-	text-align: center;
-	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-}
-
-ul {
-	list-style-type: none;
-}
-
-.sidebar ul a {
-	height: 100%;
-	width: 100%;
-	line-height: 40px;
-	font-size: 14px;
-	padding-left: 40px;
-	color: white;
-}
-
-ul li:hover a {
-	padding-left: 50px;
-}
-
-.sidebar ul a {
-	margin-right: 16px;
-}
-
-.box {
-	width: 380px;
-	height: 700px;
-	position: relative;
-	margin: 6% auto;
-	background: transparent;
-	padding: 5px;
-	box: shadow;
-}
-
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-
-.t1 {
-	padding: 40px;
-	padding-left: 350px;
-	border: none;
-}
-
-td {
-	padding-left: 15px;
-}
-
-th {
-	padding-left: 10px;
-	font-size: 18px;
-}
-
-
-.btn2{
-	 padding:5px 15px;
-	 background-color:green;
-	 color:white;
-	 border:0;
-	 border-radius:3px;
-}
-
 .btn3 {
 	margin-left: 670px;
 }
-.btn2 a:hover{
-text-decoration:none;
-color:white;}
-body {
-	background-color: rgba(198, 208, 214,.9);
-}
-td {
+ td {
 	padding-left: 20px;
 	text-align: justify;
 	padding-bottom: 8px;
 }
-
 th {
 	text-align: justify;
 	padding-left: 30px;
@@ -161,16 +42,10 @@ margin-bottom:10px;
 background-color:  rgba(161, 15, 95,.5);}
 .table td{
 background-color:  rgba(35, 106, 240,.5);}
-#head{
-  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-left:20px;
-  color:rgba(243, 31, 119, 0.7);
-  font-size:23px;
- }
-</style>
+ </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3>
 	<nav>
 		<a href="index.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
@@ -182,7 +57,7 @@ background-color:  rgba(35, 106, 240,.5);}
 	</nav>
 	<br>
 	<br>
-	<br>
+	 
 	<div class="sidebar">
 
 		<header>ADMIN</header>

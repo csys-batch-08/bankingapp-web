@@ -34,55 +34,33 @@ nav a {
 nav a:hover{
 text-decoration:none;
 color:white;}
-
-h1 {
-	color: white;
-	background-color: rgba(9, 41, 63);
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .par {
 	padding-left: 30px;
 }
-
-marquee {
-	height: 200px;
-	color: red;
-}
-
 body {
 	  background-image: url("images/blue.jpg") ; 
    background-repeat: no-repeat;
    background-size:  cover;
 }
-
-.set1 {
-	padding-right: 191px;
-}
-
 .table{
-		
 		 padding-bottom:10px;
-		 
 	}
-	body{
+body{
 	background-color:  rgb(247, 204, 241);
    background-repeat: no-repeat;
    background-size:  cover;
-	}
-	 #image{
+}
+#image{
 position: relative;
 left: 145px;
-
 }
-
 #image img {
             width: 60%;
             height: 200px;
@@ -124,7 +102,6 @@ left: 145px;
 		  <a href="contactUs.jsp" class="set1">ContactUs</a>
 		  </nav><br><br><br>
 
-
 	<%
 	AdminUseDaoimpl admin = new AdminUseDaoimpl();
 	List<AdminUse> list = admin.interestRate();
@@ -132,59 +109,22 @@ left: 145px;
 	 
 	<div class="container mt-4 mb-4">
 <table class="table table-striped table-dark table-hover table-sm">
-	 
-	
+	<caption> 
+	<th></th>
 	<%
 	for (AdminUse Viewuser : list) {
 	%>
-
-	
 	 <tbody>
-		    
-			<tr>
+ 			<tr>
 				<td><%=Viewuser.getCategoryType()%></td>
 				<td><%=Viewuser.getDescription()%></td>
 				<td><%=Viewuser.getRateOfInterest()%>%</td>
 			</tr>
 			<%}%>
-
-		</tbody> 
+		</tbody>
+		</caption> 
 	</table>
-	</div>
+	</div>    
 	 
-	<%--<div id="image">
-
-        <div class="slideshow-container">
-   
-            <div class="mySlides fade">
-         
-              <img src="images/rate1.jpg" style="width:10%">
-            </div>
-           
-           
-         <div class="mySlides fade">
-                <img src="images/rate2.jpg" style="width:10%">
-            </div>
-           
-            <div class="mySlides fade">
-       
-         
-           
-               <img src="images/rate3.jpg" style="width:10%">
-            </div>
-            </div>
-           --%> 
-   
-     
-   
-       
-            
-     
-	</div>
-
-</div>
-
-
-
-</body>
+  </body>
 </html>

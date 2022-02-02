@@ -22,30 +22,20 @@ nav {
 nav a {
 	padding-right: 95px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
-}
-
-.set1 {
-	padding-right: 325.5px;
 }
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
-
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -88,14 +78,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-.pa {
+ .pa {
 	text-align: left;
 }
 .par {

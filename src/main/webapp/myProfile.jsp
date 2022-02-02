@@ -12,45 +12,23 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
 	font-size: 18px;
-	color: black;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	height: 30%;
-	margin: 0;
-	color: red;
+	 width:100%;
 	padding: 8px;
 }
-
 nav a {
 	padding-right: 60.5px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right: 328.2px;
-}
-
-h3 {
-	padding: 20px;
-	background-color: blue;
-	margin: 0;
-}
-
 .sidebar {
 	position: absolute;
 	left: 0;
@@ -59,7 +37,6 @@ h3 {
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
@@ -67,11 +44,9 @@ h3 {
 	line-height: 50px;
 	background-color: rgba(9, 57, 87,.3);
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -80,30 +55,23 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
- 
-
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 }
-
 p {
 	padding: 10px;
 	padding-left: 300px;
 	padding-right: 50px;
 }
-
 th {
 	color: white;
 	text-align: justify;
@@ -150,26 +118,30 @@ h4 {
 .btn3 {
 	margin-left: 150px;
 }
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
+ }
 </style>
 </head>
 <body>
-	<img src="images/boilogo.png" alt="couldnot load" width="400" height="100" />
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		 <a href="deposits.jsp">Deposits</a> 
 		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp">About us</a>
+		  <a href="contactUs.jsp" >ContactUs</a>
 		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn">
-			<a href="LogoutServlet">Logout</a>
-		</button>
+		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
 	<br>
 	<br>
-
-	<div class="sidebar">
-
+<div class="sidebar">
 		<header>My Account</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
@@ -182,7 +154,6 @@ h4 {
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
 	<div class="box">
@@ -195,6 +166,7 @@ h4 {
 		%>
 		<h4>My Profile</h4>
 		<table>
+		<caption>
 			<tr>
 				<th>Name</th>
 				<td><%=Viewuser.getusername()%></td>
@@ -209,11 +181,8 @@ h4 {
 				<th>Mobile Number</th>
 				<td><%=Viewuser.getmobileNumber()%></td>
 			</tr>
+			</caption>
 		</table>
-
-
-
-
 		<%
 		}
 		%>

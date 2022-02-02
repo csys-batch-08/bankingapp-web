@@ -25,14 +25,10 @@ nav a {
 	text-decoration:none;
 	color:white;
 }
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-a {
+nav a:hover{
+text-decoration:none;
+color:black;}
+ a {
 	text-decoration: none;
 	color: white;
 }
@@ -99,16 +95,7 @@ ul li:hover a {
 	padding-left: 350px;
 	border:none;
 }
-td {
-	padding-left: 15px;
-	 
-}
-th {
-	padding-left:  10px;
-	font-size:18px;
-	 
-}
-.btn2 {
+ .btn2 {
 	padding: 5px 15px;
 	color: white;
 	background-color:green;

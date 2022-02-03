@@ -51,25 +51,22 @@
 
 ## User
 
-1.User Can Update their  Password
+1.User Can View their Account Details 
 
 
-2.User Can View their Account Details
+2.User Can Transfer their Amount to Another Account
 
 
-3.User Can Transfer their Amount to Another Account
+3.User Can View their Balance
 
 
-4.User Can View their Balance
+4.User Can View their Transaction History
 
 
-5.User Can View their Transaction History
+5.User Can Apply for Loans and Deposits
 
 
-6.User Can Apply for Loans and Deposits
+6.User Can View their loan/deposit Status, whether their loan/deposit  approved or not
 
 
-7.User Can View their loan/deposit Status, whether their loan/deposit  approved or not
-
-
-8.User Can View their Profile
+7.User Can View their Profile 

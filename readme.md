@@ -40,11 +40,13 @@
 6.Admin Can View User Transaction Histoty by Account Number
 
 
-7.Admin Can View All Users
+7.Admin Can View All Users/All Accounts
 
 
 8.Admin Can Make User Account Inactive
 
+
+9.Admin Can Edit Rate Of Interest
 
 
 ## User
@@ -58,7 +60,16 @@
 3.User Can Transfer their Amount to Another Account
 
 
-4.User Can Apply for Loans and Deposits
+4.User Can View their Balance
 
 
-5.User Can View their Status, whether their loan/deposit  approved or not
+5.User Can View their Transaction History
+
+
+6.User Can Apply for Loans and Deposits
+
+
+7.User Can View their loan/deposit Status, whether their loan/deposit  approved or not
+
+
+8.User Can View their Profile

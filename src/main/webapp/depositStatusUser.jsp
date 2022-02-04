@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -12,14 +13,14 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
-	width:98.7%;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	padding: 7.3px;
+    width:98.8%;
+	padding: 8px;
 }
 nav a {
-	padding-right:  97px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
@@ -28,19 +29,22 @@ a {
 	text-decoration: none;
 	color: white;
 }
- .btn {
+.set1 {
+	padding-right: 520px;
+}
+.btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 	float:right;
 }
- .sidebar {
-	position: fixed;
+.sidebar {
+	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -48,8 +52,8 @@ a {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -85,7 +89,7 @@ ul li:hover a {
 }
 .cls {
 	border-radius: 3px;
-	padding: 5px 5px 5px 5px;
+	padding: 10px 5px 5px 5px;
 	Background-color: transparent;
 }
 .btn2 {
@@ -158,7 +162,7 @@ text-align:center;}
 			<table>
 			<caption>
 				<tr>
-					<th><label for="accountNumber">  Account Number</label></th>
+					<th><label for="accountNumber">AccountNumber/ DepositNumber</label></th>
 					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"  required/></td>
 				</tr>
 				</caption>
@@ -175,5 +179,6 @@ text-align:center;}
           </c:if> 
           <c:remove var="Saccnum" scope="session"/>
 		</div>
+		 
 	</body>
 </html>

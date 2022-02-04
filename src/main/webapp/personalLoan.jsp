@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -12,15 +13,14 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	width:99.4%;
-	padding: 4px;
+    width:98.8%;
+	padding: 8px;
 }
-
 nav a {
-	padding-right: 95px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
@@ -28,6 +28,9 @@ color:black;}
 a {
 	text-decoration: none;
 	color: white;
+}
+.set1 {
+	padding-right: 520px;
 }
 .btn {
 	color: white;
@@ -40,8 +43,8 @@ a {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 900px;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -49,8 +52,8 @@ a {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -114,6 +117,8 @@ th {
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
+#set2{
+margin-left:250px;}
 #transhead{
 color:green;
 }
@@ -143,7 +148,7 @@ color:red;}
 	<br>
 	<div class="sidebar">
 
-		<header></header>
+	<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -159,7 +164,8 @@ color:red;}
 		</ul>
 	</div>
 	 
-	<h2 align="center">PERSONAL LOAN</h2>
+	<h2 align="center">PERSONAL LOAN</h2><br>
+	<h4 id="set2">Note : If Applied for loan,Please Save <span id="transhead">Loan Number </span>for future Use!   </h4>
 	<div class="box">
 		<form action="Personal" method="post">
 			<table>
@@ -201,14 +207,27 @@ color:red;}
 				</tr>
 				<tr>
 					<th> <label for="type"> Working Type</label></th>
-					<td><input type="text" name="Wtype" class="cls" required /></td>
+					<td><select name="Wtype" class="cls" id="workType">
+					<option value="default" disabled>None</option>
+                       <option value="tier1">TIER-I</option>
+                          <option value="tier2">TIER-II</option>
+                        <option value="Employee">SELF EMPLOYEE</option>
+                              
+                        </select></td>
+				</tr>
+				<tr>
+					<th> <label for="salary">Monthly Income</label></th>
+					<td><input type="text" name="salary" PlaceHolder="ex.10000" pattern="[2-9][0-9]{4}"
+					   title="Income should be Greater than 20000"class="cls" required /></td>
 				</tr>
 				<tr>
 					<th> <label for="type"> Pan number</label></th>
 					<td><input type="text" name="pan" class="cls" required /></td>
 				</tr>
-              </caption>
-			</table><br><br>
+				 </caption>
+			</table>
+				
+             <br><br>
 			<div class="btn3">
 			<button type="submit" class="btn2">Submit</button>
 			<button type="reset" class="btn2">Reset</button>
@@ -220,16 +239,17 @@ color:red;}
             <h4>${sessionScope.loan}</h4>
 	    	<h4 id="transhead">Your Loan Number: ${sessionScope.loan1}</h4>
 		</c:if>
-		<c:remove var="trans" scope="session" />
+		<c:remove var="loan" scope="session" />
+		<c:remove var="loan1" scope="session" />
 		<c:if test="${sessionScope.loanNot!=null}">
 			<h4>${sessionScope.loanNot}</h4>
 		</c:if>
-        <c:remove var="HloanNot" scope="session" />
+        <c:remove var="loanNot" scope="session" />
 		<c:if test="${sessionScope.Ploan!=null}">
 			<h4>${sessionScope.Ploan}</h4>
 		</c:if>
-        <c:remove var="Houloan" scope="session" />
+        <c:remove var="Ploan" scope="session" />
 	</div>
-
+ 
 </body>
 </html>

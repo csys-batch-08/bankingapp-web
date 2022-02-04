@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -15,11 +16,11 @@ nav {
 	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-  	padding:7px;
-	width:98.9%;
+    width:98.8%;
+	padding: 8px;
 }
 nav a {
-	padding-right: 95.2px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
@@ -29,20 +30,21 @@ a {
 	color: white;
 }
 .set {
-	 margin-left:280px;
+	 margin-left:  250px;
 }
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
-	font-size: 16px;
+	font-size: 15px;
+	float:right;
 }
- .sidebar {
+.sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -50,8 +52,8 @@ background-color: rgba(9, 57, 87,.8);
 	color: white;
 	text-align: center;
 	line-height: 50px;
-   background-color: rgba(9, 57, 87,.3);
-    text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -121,6 +123,8 @@ th {
   color:rgba(243, 31, 119, 0.7);
   font-size:23px;
  }
+ #transhead{
+ color:red; }
 </style>
 </head>
 <body>
@@ -169,11 +173,12 @@ th {
 			<button type="submit" class="btn2">Submit</button>
 			<button type="reset" class="btn2">Reset</button>
 			</div>
-		</form>
-	</div>
-	  <c:if test="${sessionScope.pinvalidate!=null}">
-          <h4>${sessionScope.pinvalidate}</h4>
+		</form><br/><br/>
+		<c:if test="${sessionScope.pinvld!=null}">
+          <h4 id="transhead">${sessionScope.pinvld}</h4>
           </c:if> 
-        <c:remove var="pinvalidate" scope="session"/>
+        <c:remove var="pinvld" scope="session"/>
+	</div>
+	   
 </body>
 </html>

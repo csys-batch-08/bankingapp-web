@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -80,13 +81,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.pa {
-	text-align: left;
-}
-.par {
-	padding: 20px;
-}
-.cls {
+ .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
@@ -177,10 +172,11 @@ th {
 			</div>
 		</form><br><br>
 	 <c:if test="${sessionScope.pinvalid!=null}">
-          <h4>${sessionScope.pinvalid}</h4>
+          <h4 id="transhead">${sessionScope.pinvalid}</h4>
           </c:if> 
           <c:remove var="pinvalid" scope="session"/>
+          
 	</div>
-	</div>
+	 
 </body>
 </html>

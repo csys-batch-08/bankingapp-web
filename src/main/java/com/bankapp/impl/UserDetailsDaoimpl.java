@@ -40,7 +40,7 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 	public List<UserDetails> myProfile(String email) throws SQLException {
 		List<UserDetails> userList = new ArrayList<>();
-		String userQuery = "select user_login_id,user_name,email,user_password,mobile_number,role,created_date from User_details where  email= ?";
+		String userQuery = "select user_login_id,user_name,email,user_password,mobile_number from User_details where  email= ?";
 		Connection con = null;
 		PreparedStatement preState = null;
 		ResultSet rs = null;
@@ -48,11 +48,10 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 			con = ConnectionUtil.getDbConnection();
 			preState = con.prepareStatement(userQuery);
 			preState.setString(1, email);
-			preState.executeUpdate();
-			rs = preState.executeQuery(userQuery);
+			rs = preState.executeQuery();
 			while (rs.next()) {
-				UserDetails user = new UserDetails(0, rs.getString("user_name"), rs.getString("email"),
-						rs.getString("user_password"), rs.getLong("mobile_number"));
+				UserDetails user = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"),
+						rs.getString("email"), rs.getString("user_password"), rs.getLong("mobile_number"));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -70,7 +69,7 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 	@Override
 	public UserDetails validateUser(String emailId, String password) throws SQLException {
-		String validateQuery = "select user_login_id,user_name,email,user_password,mobile_number,role,created_date  from USER_DETAILS where role='USER' and email=? and user_password= ?";
+		String validateQuery = "select user_login_id,user_name,email,user_password,mobile_number  from USER_DETAILS where role='USER' and email=? and user_password= ?";
 		Connection con = null;
 		PreparedStatement preStatement1 = null;
 		ResultSet rs = null;
@@ -80,11 +79,10 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 			preStatement1 = con.prepareStatement(validateQuery);
 			preStatement1.setString(1, emailId);
 			preStatement1.setString(2, password);
-			preStatement1.executeUpdate();
-			rs = preStatement1.executeQuery(validateQuery);
+			rs = preStatement1.executeQuery();
 			if (rs.next()) {
-				user = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), emailId, password,
-						rs.getLong("mobile_number"));
+				user = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), rs.getString("email"),
+						rs.getString("user_password"), rs.getLong("mobile_number"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -196,11 +194,11 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 			pstmt1 = con.prepareStatement(adminQuery1);
 			pstmt1.setString(1, emailId);
 			pstmt1.setString(2, password);
-			pstmt1.executeUpdate();
-			rs = pstmt1.executeQuery(adminQuery1);
+
+			rs = pstmt1.executeQuery();
 			if (rs.next()) {
-				user1 = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), emailId, password,
-						rs.getLong("mobile_number"));
+				user1 = new UserDetails(rs.getInt("user_login_id"), rs.getString("user_name"), rs.getString("email"),
+						rs.getString("user_password"), rs.getLong("mobile_number"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -217,7 +215,7 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 	@Override
 	public List<UserDetails> viewUser() throws SQLException {
 		List<UserDetails> userList = new ArrayList<>();
-		String viewQuery = "select User_login_id,user_name,email,mobile_number from User_details where role='USER'";
+		String viewQuery = "select User_login_id,user_name,email,mobile_number from User_details where role='USER' order by user_login_id";
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -248,10 +246,11 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 	@Override
 	public boolean deleteDetails(String email) throws SQLException {
 		String deleteQuery = "update user_details set role='Inactive' where email=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		boolean flag = false;
 		PreparedStatement pst = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(deleteQuery);
 			pst.setString(1, email);
 			pst.executeUpdate();

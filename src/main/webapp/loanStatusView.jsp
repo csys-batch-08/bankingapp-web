@@ -1,6 +1,8 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -15,36 +17,23 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	 width:100%;
-	padding: 6.5px;
+    width:100%;
+	padding: 6px;
 }
 nav a {
-	padding-right: 80.3px;
-	text-decoration:none;
-	color:white;
+	padding-right: 90px;
 }
 nav a:hover{
 text-decoration:none;
 color:black;}
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
 a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right:  281px;
-}
-
+ 
 .btn {
 	color: white;
 	background-color: transparent;
@@ -52,12 +41,12 @@ a {
 	font-size: 15px;
 	float:right;
 }
- .sidebar {
+.sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height:  900px;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -65,8 +54,8 @@ a {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -79,11 +68,9 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
@@ -234,5 +221,6 @@ background-color:  rgba(35, 106, 240,.5);}
 			</button>
 		</div>
 		</div>
+		 
 </body>
 </html>

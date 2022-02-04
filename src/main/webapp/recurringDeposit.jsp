@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -11,80 +12,66 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
-	font-size: 17px;
-	color: black;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-    width:99.5%;
-	padding: 3.5px;
+    width:98.8%;
+	padding: 8px;
 }
-
 nav a {
-	padding-right:  96px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
 color:black;}
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
 a {
 	text-decoration: none;
 	color: white;
 }
- .btn {
+.set1 {
+	padding-right: 520px;
+}
+.btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-	}
+	float:right;
+}
 .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	 text-transform: capitalize;
-	background-color: rgba(9, 57, 87,.3);
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
-	width: 100%;
+	width: 99%;
 	line-height: 40px;
 	font-size: 15px;
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -94,16 +81,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-
-.pa {
+ .pa {
 	text-align: left;
 }
 
@@ -149,6 +127,14 @@ th {
   color:rgba(243, 31, 119, 0.7);
   font-size:23px;
  }
+ #transhead{
+ color:green;}
+ #transheads{
+ color:red;}
+  .set2{
+ color:black;
+ font-size:18px;
+ margin-left:250px;}
 </style>
 </head>
 <body>
@@ -166,7 +152,7 @@ th {
 	<br>
 	<br>
 	<div class="sidebar">
-		<header>My Account</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -192,8 +178,13 @@ th {
 						pattern="[0-9]{12,14}" required autofocus /></td>
 				</tr>
 				<tr>
-					<th><label for="amount"> Amount to Deposit</label></th>
+					<th><label for="amount"> Total Amount  </label></th>
 					<td><input type="text" name="amountDeposit"
+						class="cls" pattern="[1-9][0-9]+" required /></td>
+				</tr>
+				<tr>
+					<th><label for="amount"> Monthly Deposit</label></th>
+					<td><input type="text" name="monthlyDeposit"
 						class="cls" pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
@@ -213,11 +204,23 @@ th {
 			<br>
 			<br>
 		</form>
-		 <c:if test="${sessionScope.tran!=null}">
-          <h4>${sessionScope.tran}</h4>
+		<h4 id="set2">Note<sup id="transheads">*</sup>:Please Save Deposit Number for future Use   </h4>
+		 <c:if test="${sessionScope.rd1!=null}">
+          <h4 id= "transhead">${sessionScope.rd1}</h4>
+          </c:if> 
+          <c:remove var="rd1" scope="session"/>
+              <c:if test="${sessionScope.rd2!=null}">
+          <h4 id= "transhead">${sessionScope.rd2}</h4>
           </c:if> 
             
-           <c:remove var="tran" scope="session"/>
+           <c:remove var="rd2" scope="session"/>
+           
+             <c:if test="${sessionScope.rd!=null}">
+          <h4 id= "transheads">${sessionScope.rd}</h4>
+          </c:if> 
+            
+           <c:remove var="rd" scope="session"/>
 	</div>
+	 
 </body>
 </html>

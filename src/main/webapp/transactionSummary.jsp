@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -12,41 +14,38 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
     width:98.8%;
-	padding: 7.4px;
+	padding: 8px;
 }
 nav a {
-	padding-right: 95px;
+	padding-right: 95.5px;
 }
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
 .set1 {
-	padding-right: 325.5px;
+	padding-right: 520px;
 }
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
- .sidebar {
-	position:absolute;
+.sidebar {
+	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -54,13 +53,12 @@ a {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -201,5 +199,6 @@ color:red;}
             
            <c:remove var="AccountNum" scope="session"/>
 	</div>
+	 
 </body>
 </html>

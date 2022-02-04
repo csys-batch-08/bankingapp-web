@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -12,14 +13,14 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
-	width:99%;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
- 	padding: 5px;
+    width:98.8%;
+	padding: 8px;
 }
 nav a {
-	padding-right: 97px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
@@ -29,20 +30,21 @@ a {
 	color: white;
 }
 .set1 {
-	padding-right: 350px;
+	padding-right: 520px;
 }
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
- .sidebar {
-	position:absolute;
+.sidebar {
+	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -50,8 +52,8 @@ a {
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -79,13 +81,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
+ 
 .pa {
 	text-align: left;
 }
@@ -177,5 +173,6 @@ color:red;
           </c:if> 
           <c:remove var="laccnum" scope="session"/>
 	</div>
+ 
 </body>
 </html>

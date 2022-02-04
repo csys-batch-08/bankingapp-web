@@ -64,9 +64,9 @@ color:white;}
          
         <h2 align=center>Login</h2>
         <label for="userid" class="lab">EMAIL ID</label><br>
-                  <input type="text" class="textfield" name="userId" pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}" placeholder="EMAIL ID"  ><br><br>
+                  <input type="text" class="textfield" name="userId" pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}" placeholder="EMAIL ID" required ><br><br>
                   <label for="pass" class="lab">PASSWORD</label>
-                  <input type="password"  name="pwd" class="textfield" pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD"  ><br><br>
+                  <input type="password"  name="pwd" class="textfield" pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD" required ><br><br>
 
             
              <a href="register.jsp"> Dont have an account? Please Register! </a> <br><br>

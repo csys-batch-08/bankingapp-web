@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.*"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <%@ page import="com.bankapp.model.UserDetails"%>
 <%@ page import="com.bankapp.impl.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -16,11 +18,11 @@ nav {
 	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	 width:100%;
+	 width: 98.7%;
 	padding: 8px;
 }
 nav a {
-	padding-right: 60.5px;
+	padding-right: 95px;
 }
 nav a:hover{
 text-decoration:none;
@@ -66,6 +68,7 @@ ul li:hover a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
 p {
 	padding: 10px;
@@ -140,7 +143,7 @@ h4 {
 	</nav>
 	<br>
 	<br>
-	<br>
+	 
 <div class="sidebar">
 		<header>My Account</header>
 		<ul>
@@ -160,7 +163,7 @@ h4 {
 		<%
 		String email = (String) session.getAttribute("user_id");
 		UserDetailsDaoimpl userdao = new UserDetailsDaoimpl();
-		List<UserDetails> list = userdao.MyProfile(email);
+		List<UserDetails> list = userdao.myProfile(email);
 
 		for (UserDetails Viewuser : list) {
 		%>
@@ -189,8 +192,9 @@ h4 {
 		<br>
 		<br>
 		<div class="btn3">
-			<button type="submit" class="btn2"><a href="CustomerDashBoard.jsp">Back</a></button>
+			<button type="submit" class="btn2"><a href="customerDashBoard.jsp">Back</a></button>
 		</div>
 	</div>
+ 
 </body>
 </html>

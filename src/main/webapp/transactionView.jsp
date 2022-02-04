@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -18,28 +20,24 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
-	font-size: 16px;
-	color: black;
+	font-size: 18px;
 	float: left;
-	background-color: rgba(9, 57, 87, .9);
-	width:100%;
-	padding: 7px;
+	background-color: rgba(9, 57, 87,.9);
+    width:100%;
+	padding: 6px;
 }
-
 nav a {
-	padding-right: 77.5px;
+	padding-right: 90px;
 }
- a {
+nav a:hover{
+text-decoration:none;
+color:black;}
+a {
 	text-decoration: none;
 	color: white;
 }
-
-.set1 {
-	padding-right: 325.5px;
-}
-
+ 
 .btn {
 	color: white;
 	background-color: transparent;
@@ -47,29 +45,25 @@ nav a {
 	font-size: 15px;
 	float:right;
 }
- 
 .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 1200px;
-	background-color: rgba(9, 57, 87, .8);
+	height:  1200px;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
-
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87, .3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
-
 ul {
 	list-style-type: none;
 }
-
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -78,15 +72,12 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
-
 ul li:hover a {
 	padding-left: 50px;
 }
-
 .sidebar ul a {
 	margin-right: 0px;
 }
-
 .box {
 	width: 380px;
 	height: 380px;
@@ -165,7 +156,7 @@ font-size:28px;}
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	 <br> <h3 id="head"><i> Dharshini Bank</i></h3>  
 	<nav>
 		<a href="customerDashBoard.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
@@ -177,9 +168,8 @@ font-size:28px;}
 		<button class="btn"><a href="LogoutServlet">Logout</a></button>
 	</nav>
 	<br>
-	<br>
+	<br> 
  	<div class="sidebar">
-
 		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
@@ -192,10 +182,8 @@ font-size:28px;}
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-
 		</ul>
 	</div>
-
 	<h3 class="head3">Transaction History</h3>
 	 		<div class="container mt-4 mb-4">
 			<table class="table table-hover table-striped">
@@ -215,27 +203,26 @@ font-size:28px;}
 					<c:forEach items="${TransacSummary}" var="Transacviewlist">
 						<c:set var="i" value="${i+1 }" />
 						<tr>
-
-
 							<td>${i}</td>
 							<td>${Transacviewlist.senderAccountNumber }</td>
 							<td>${Transacviewlist.name}</td>
 							<td>${Transacviewlist.transactionType}</td>
 							<td>${Transacviewlist.receiveAccountNumber}</td>
 							<td>${Transacviewlist.amount}</td>
-							<td>${Transacviewlist.transactiondate }</td>
+							<fmt:parseDate value="${Transacviewlist.transactiondate }" pattern="yyyy-MM-dd" var="transacDate" type="date"/>
+                         <td><fmt:formatDate value="${transacDate}" pattern="dd-MM-yyyy"/>  </td>
 						</tr>
                    </c:forEach>
     			</tbody>
 				</caption>
 			</table>
 		</div>
-		<div class="btn3">
+	<div class="btn3">
 			<button type="submit" class="btn2">
 				<a href="customerDashBoard.jsp">Back</a>
 			</button>
-		</div>
+	</div>
 	 
-
+  
 </body>
 </html>

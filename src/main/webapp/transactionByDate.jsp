@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.time.LocalDate"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
 <%@page import="com.bankapp.model.Transaction"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -151,20 +152,16 @@ th {
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="ViewAllUser">View All Users</a></li>
-			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
-			<li><a href="userCancel.jsp">Cancel Account</a></li>
-
-
-
-		</ul>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li></ul>
 	</div>
 	<%
 	TransactionDaoimpl transdao = new TransactionDaoimpl();
@@ -188,12 +185,11 @@ th {
 			<div class="btn3">
 				<button type="Submit" class="btn2">Submit</button>
 			</div>
-			          <c:if test="${sessionScope.trandate!=null}">
-          <h4>${sessionScope.trandate}</h4>
+		   <c:if test="${sessionScope.trandate!=null}">
+           <h4>${sessionScope.trandate}</h4>
           </c:if> 
-            
            <c:remove var="trandate" scope="session"/>
    		</form>
-	</div>
+	 </div>
 </body>
 </html>

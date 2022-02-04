@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList" %>
      <%@page import="com.bankapp.impl.AccountDetailsdaoimpl"%>
+     <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
     <%@page import="com.bankapp.model. *"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -8,13 +9,92 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>All Account</title>
-<link href="asserts/css/adminStyles.css" rel="stylesheet">
+ 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
  <style>
- a{
- text-decoration:none;
- color:white;
+* {
+	margin: 0;
+	padding: 0;
+}
+nav {
+	font-size: 17px;
+	float: left;
+	background-color: rgba(9, 57, 87,.9);
+	width:100%;
+	padding: 6.5px;
+}
+nav a {
+	padding-right: 95px;
+	text-decoration:none;
+	color:white;
+}
+a{
+text-decoration:none;
+color:white;}
+nav a:hover,a:hover{
+	text-decoration:none;
+	color: black;
+}
+.btn {
+	color: white;
+	background-color: transparent;
+	border-color: transparent;
+	font-size: 15px;
+	float:right;
+}
+ .sidebar {
+	position: absolute;
+	left: 0;
+	width: 250px;
+	height:1600px;
+	background-color: rgba(9, 57, 87,.8);
+	color: white;
+}
+.sidebar header {
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	line-height: 50px;
+	background-color: rgba(9, 57, 87,.3);
+}
+ul {
+	list-style-type: none;
+}
+.sidebar ul a {
+	height: 100%;
+	width: 100%;
+	line-height: 40px;
+	font-size: 14px;
+	padding-left: 40px;
+	color: white;
+}
+ul li:hover a {
+	padding-left: 50px;
+}
+.sidebar ul a {
+	margin-right: 16px;
+	text-decoration:none;
+	color:white;
+}
+.btn2{
+	 padding:5px 15px;
+	 background-color:green;
+	 color:white;
+	 border:0;
+	 border-radius:3px;
+	 }
+
+.btn2 a:hover{
+text-decoration:none;
+color:white;
+}
+
+#head{
+  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-left:20px;
+  color:rgba(243, 31, 119, 0.7);
+  font-size:23px;
  }
 body {
 	background-color:rgba(198, 208, 214,.9);
@@ -66,20 +146,16 @@ padding-left:240px
 
 		<header>ADMIN</header>
 		<ul>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposit</a></li>
-			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
-			<li><a href="userCancel.jsp">Cancel Account</a></li>
-
-
-
-		</ul>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li></ul>
 	</div>
 	
 	
@@ -128,7 +204,7 @@ padding-left:240px
 		<button type="submit" class="btn2"><a href="adminDashBoard.jsp">Back</a></button>
 		</div>
 		 
-
+ 
           
 </body>
 </html>

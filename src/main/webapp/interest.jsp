@@ -18,12 +18,10 @@
 
 nav {
 	font-size: 18px;
-	color: black;
+	 
 	float: left;
 	background-color: rgba(9, 57, 87,.5);
-	height: 25%;
-	margin: 0;
-	 
+ width:100%;
 	padding: 8px;
 }
 
@@ -110,7 +108,7 @@ left: 145px;
 	<div class="container mt-4 mb-4">
 <table class="table table-striped table-dark table-hover table-sm">
 	<caption> 
-	<th></th>
+	 
 	<%
 	for (AdminUse Viewuser : list) {
 	%>

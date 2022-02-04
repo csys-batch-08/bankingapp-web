@@ -1,47 +1,51 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import = "java.util.List"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Account Details</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
  <style>
 * {
 	margin: 0;
 	padding: 0;
 }
 nav {
-	font-size: 17px;
- 	float: left;
+	font-size: 18px;
+	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	padding: 3px;
-	width:99.8%;
+    width:98.8%;
+	padding: 8px;
 }
 nav a {
-	padding-right: 95.2px;
-	text-decoration: none;
-	color: white;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
 color:black;}
-  .btn {
+a {
+	text-decoration: none;
+	color: white;
+}
+.set1 {
+	padding-right: 520px;
+}
+.btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
 	float:right;
 }
- .sidebar {
+.sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
 	height: 96%;
-	background-color: rgba(9, 57, 87,.8);
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -49,8 +53,8 @@ color:black;}
 	color: white;
 	text-align: center;
 	line-height: 50px;
-	background-color: rgba(9, 57, 87,.3);
-	 text-transform: capitalize;
+background-color: rgba(9, 57, 87,.3 );
+ text-transform: capitalize;
 }
 ul {
 	list-style-type: none;
@@ -65,7 +69,6 @@ ul {
 }
 ul li:hover a {
 	padding-left: 50px;
-	text-decoration:none;
 }
 .sidebar ul a {
 	margin-right: 0px;
@@ -90,7 +93,7 @@ p {
 	padding-right: 50px;
 }
 .t1{
-  margin-right:350px;
+  margin-right:370px;
  margin-bottom:7px;
  font-size:19px;
 }
@@ -98,7 +101,8 @@ p {
 	padding-left: 90px;
 }
 th {
-	padding-left: 440px
+	padding-left: 440px;
+	text-align:justify;
 }
 a{
 text-decoration:none;
@@ -156,7 +160,7 @@ margin-left:250px;}
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 		</ul>
      </div>
-     <h3 >Account Details</h3>
+     <h3 >Account Details</h3><br><br>
       <div class="t1">
   <table >
   <caption>
@@ -170,11 +174,7 @@ margin-left:250px;}
    <td>${AccountDetails.accountHolderName}</td>
    </tr>
    <tr>
-   <th>AccountBalance</th>
-   <td>${AccountDetails.balance}</td>
-   </tr>
-   <tr>
-   <th>AccountAddress</th>
+   <th> Address</th>
    <td>${AccountDetails.address}</td>
    </tr>
      <th >City</th>
@@ -184,7 +184,9 @@ margin-left:250px;}
     <td>${AccountDetails.pincode}</td>
    </tr>
     <th >DOB</th>
-   <td>${AccountDetails.dob}</td>
+     <fmt:parseDate value="${AccountDetails.dob}" pattern="yyyy-MM-dd" var="dob" type="date"/>
+<td><fmt:formatDate value="${dob}" pattern="dd-MM-yyyy"/>  </td>
+   <td></td>
    </tr>
     <th >Mobile number</th>
    <td>${AccountDetails.mobileNumber}</td>
@@ -209,5 +211,6 @@ margin-left:250px;}
     <button type="submit" class="btn2" ><a href="customerDashBoard.jsp">Back</a></button>
         </div>
    </div>
+    
 </body>
 </html>

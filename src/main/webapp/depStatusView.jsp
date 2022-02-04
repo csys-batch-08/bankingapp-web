@@ -1,6 +1,8 @@
  <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -14,27 +16,23 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	 width:99.9%;
+    width:100%;
 	padding: 6px;
 }
 nav a {
-	padding-right: 94px;
-	text-decoration:none;
-	color:white;
+	padding-right: 90px;
 }
 nav a:hover{
 text-decoration:none;
 color:black;}
- a {
+a {
 	text-decoration: none;
 	color: white;
 }
-.set1 {
-	padding-right: 311.5px;
-}
+ 
 .btn {
 	color: white;
 	background-color: transparent;
@@ -42,12 +40,12 @@ color:black;}
 	font-size: 15px;
 	float:right;
 }
- .sidebar {
-	position: fixed;
+.sidebar {
+	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height:  900px;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -55,7 +53,7 @@ color:black;}
 	color: white;
 	text-align: center;
 	line-height: 50px;
-background-color: rgba(9, 57, 87,.3);
+background-color: rgba(9, 57, 87,.3 );
  text-transform: capitalize;
 }
 ul {
@@ -179,7 +177,7 @@ background-color:  rgba(35, 106, 240,.5);}
 					<th>Account Number</th>
 					<th>Deposit Type</th>
 					<th>Amount</th>
-					<th>Maturity Date</th>
+					<th>MaturityDate</th>
 					<th>Rate Of Interest</th>
 					<th>Tenure</th>
 					<th>MaturityValue</th>
@@ -196,7 +194,8 @@ background-color:  rgba(35, 106, 240,.5);}
 					<td>${depositView.accno}</td>
 					<td>${depositView.depositType }</td>
 					<td>${depositView.amount}</td>
-					<td>${depositView.maturityDate}</td>
+						<fmt:parseDate value="${depositView.maturityDate}" pattern="yyyy-MM-dd" var="maturityDate" type="date"/>
+                         <td><fmt:formatDate value="${maturityDate}" pattern="dd-MM-yyyy"/>  </td>
 					<td>${depositView.rateOfInterest}
 					<td>${depositView.tenure}</td>
 					<td>${depositView.maturityValue}</td>
@@ -211,6 +210,7 @@ background-color:  rgba(35, 106, 240,.5);}
 		<button type="submit" class="btn2">
 			<a href="customerDashBoard.jsp">Back</a>
 		</button>
+		 
 		</div>
 </body>
 </html>

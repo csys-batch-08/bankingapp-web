@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bankapp.impl.LoansDaoimpl;
 import com.bankapp.model.Loans;
- 
- 
+
 @WebServlet("/loanStatus")
 public class LoanStatusUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @Override
+
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession session = request.getSession();
@@ -26,13 +26,12 @@ public class LoanStatusUser extends HttpServlet {
 			boolean flag = accDetailDao.ViewOneLoan(accountNum);
 			if (flag) {
 				List<Loans> loanlist = accDetailDao.viewStatusUser(accountNum);
-				request.setAttribute("LoanStatus",loanlist);
+				request.setAttribute("LoanStatus", loanlist);
 				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
 				rd.forward(request, response);
-      		} else {
+			} else {
 				session.setAttribute("laccnum", "Enter Valid Account Number!");
-				 response.sendRedirect("loanStatusUser.jsp");
-				 
+				response.sendRedirect("loanStatusUser.jsp");
 			}
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

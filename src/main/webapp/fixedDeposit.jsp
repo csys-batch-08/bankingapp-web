@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -12,21 +14,24 @@
 	padding: 0;
 }
 nav {
-	font-size: 17px;
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	 width:98.9%;
-	padding: 4px;
+    width:98.8%;
+	padding: 8px;
 }
 nav a {
-	padding-right: 90px;
+	padding-right: 95.5px;
 }
 nav a:hover{
 text-decoration:none;
 color:black;}
-a{
+a {
 	text-decoration: none;
 	color: white;
+}
+.set1 {
+	padding-right: 520px;
 }
 .btn {
 	color: white;
@@ -35,12 +40,12 @@ a{
 	font-size: 15px;
 	float:right;
 }
- .sidebar {
+.sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
-	background-color: rgba(9, 57, 87,.8);
+	height: 96%;
+	background-color: rgba(9, 57, 87,.8 );
 	color: white;
 }
 .sidebar header {
@@ -48,7 +53,7 @@ a{
 	color: white;
 	text-align: center;
 	line-height: 50px;
-background-color: rgba(9, 57, 87,.3);
+background-color: rgba(9, 57, 87,.3 );
  text-transform: capitalize;
 }
 ul {
@@ -77,13 +82,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
+ 
 .pa {
 	text-align: left;
 }
@@ -125,6 +124,14 @@ th {
   color:rgba(243, 31, 119, 0.7);
   font-size:23px;
  }
+ #transhead{
+ color:green;}
+  #transheads{
+ color:red;}
+ .set2{
+ color:black;
+ font-size:18px;
+ margin-left:250px;}
 </style>
 </head>
 <body>
@@ -142,8 +149,7 @@ th {
 	<br>
 	<br>
 	 	<div class="sidebar">
-
-		<header>${sessionScope.username}</header>
+        <header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -195,12 +201,23 @@ th {
 			<br>
 			<br>
 		</form>
-		 
+		 <h4 id="set2">Note<sup id="transheads">*</sup>:Please Save Deposit Number for future Use   </h4>
 		  <c:if test="${sessionScope.trans!=null}">
-          <h4>${sessionScope.trans}</h4>
+          <h4 id= "transhead">${sessionScope.trans}</h4>
           </c:if> 
             
            <c:remove var="trans" scope="session"/>
+            <c:if test="${sessionScope.trans1!=null}">
+          <h4 id= "transhead">${sessionScope.trans1}</h4>
+          </c:if> 
+            
+           <c:remove var="trans1" scope="session"/>
+            <c:if test="${sessionScope.fd!=null}">
+          <h4 id= "transheads">${sessionScope.fd}</h4>
+          </c:if> 
+            
+           <c:remove var="fd" scope="session"/>
 	</div>
+ 
 </body>
 </html>

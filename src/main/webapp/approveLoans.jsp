@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -39,12 +41,13 @@ a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
  .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 100%;
+	height:  900px;
 	background-color: rgba(9, 57, 87,.8);
 	color: white;
 }
@@ -59,7 +62,7 @@ ul {
 	list-style-type: none;
 }
 .sidebar ul a {
-	height: 100%;
+	height:  900px;
 	width: 100%;
 	line-height: 40px;
 	font-size: 14px;
@@ -81,13 +84,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
+ 
 .table1 {
 	padding: 90px;
 	padding-left: 300px;
@@ -122,7 +119,7 @@ th {
 .table{
 margin-bottom:10px;
  width:1000px;
- margin-left:180px;
+ margin-left:160px;
 }
 .table th{
 background-color:  rgba(161, 15, 95,.5);}
@@ -132,7 +129,9 @@ background-color:  rgba(35, 106, 240,.5);}
 	padding-left: 460px;
 }
 #transhead {
-	color: green;
+	color: red;
+	margin-left:250px;
+	font-size:21px;
 }
 #head{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -157,15 +156,15 @@ background-color:  rgba(35, 106, 240,.5);}
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="ViewAllUser">View All Users</a></li>
-			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 	</ul>
 	</div>
@@ -176,13 +175,15 @@ background-color:  rgba(35, 106, 240,.5);}
 			<thead>
 				<tr>
 					<th>S.no</th>
-					<th>AccountNumber</th>
+					<th>Account Number</th>
 					<th>Name</th>
 					<th>Mobile number</th>
-					<th>LoanType</th>
-					<th>LoanAmount</th>
+					<th>Loan Type</th>
+					<th>Loan Amount</th>
 					<th>Tenure</th>
 					<th>Interest</th>
+					<th>Monthly Payment</th>
+					<th>Monthly income</th>
 					<th>Status</th>
 					<th>Approve</th>
 					<th>Reject</th>
@@ -198,18 +199,26 @@ background-color:  rgba(35, 106, 240,.5);}
 					<td>${approveloan.accountNumber} </td>
 					<td>${approveloan.username} </td>
 					<td>${approveloan.mobno} </td>
+					
 					<td>${approveloan.loanType}</td>
 					<td>${approveloan.loanAmount}</td>
 					<td>${approveloan.tenure}</td>
 					<td>${approveloan.interestRate}%</td>
+					<td>${approveloan.monthlyPayment}</td>
+					<td>${approveloan.salary} </td>
 					<td>${approveloan.loanStatus}</td>
-					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${approve}">Approve</a></td>
-					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${reject}">Reject</a></td>
+					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${approve}&salary=${approveloan.salary}">Approve</a></td>
+					<td><a href="approveloan?accno=${approveloan.accountNumber}&status=${reject}&salary=${approveloan.salary}">Reject</a></td>
 				</tr>
                 </c:forEach>
 			</tbody>
 			</caption>
 		</table>
+		<c:if test="${sessionScope.loanadmin!=null}">
+          <h4 id="transhead">${sessionScope.loanadmin}</h4>
+          </c:if> 
+          <c:remove var="loanadmin" scope="session"/>
 	</div>
+	 
 	</body>
 </html>

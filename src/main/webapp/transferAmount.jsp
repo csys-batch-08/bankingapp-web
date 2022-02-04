@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
@@ -12,33 +13,23 @@
 	margin: 0;
 	padding: 0;
 }
-
 nav {
-	font-size: 18px; 
+	font-size: 18px;
 	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	color: red;
-	padding: 3px;
-	width:99%;
+    width:98.8%;
+	padding: 8px;
 }
-
 nav a {
-	padding-right:95.5px;
+	padding-right: 95px;
 }
-
-h1 {
-	color: white;
-	background: #042331;
-	height: 10%;
-	margin: 0;
-	padding: 7px;
-}
-
+nav a:hover{
+text-decoration:none;
+color:black;}
 a {
 	text-decoration: none;
 	color: white;
 }
-
 .set1 {
 	padding-right:  522px;
 }
@@ -48,6 +39,7 @@ a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
+	float:right;
 }
  .sidebar{
 position:absolute;
@@ -96,15 +88,7 @@ ul li:hover a {
 	box: shadow;
 	 
 }
-
-.btn {
-	float: right;
-	padding: 5px 7px;
-	margin-right: 5px;
-	border-radius: 7px;
-	color: gray;
-}
-
+ 
 .pa {
 	text-align: left;
 }
@@ -239,5 +223,6 @@ th {
             
            <c:remove var="trans" scope="session"/>
  </div>
+  
 </body>
 </html>

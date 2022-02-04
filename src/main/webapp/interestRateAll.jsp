@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <%@page import="com.bankapp.impl.AdminUseDaoimpl"%>
 <%@page import="com.bankapp.model.AdminUse"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -153,20 +154,16 @@ background-color:  rgba(35, 106, 240,.5);}
 
 		<header>ADMIN</header>
 		<ul>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
-			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
-			<li><a href="userCancel.jsp">Cancel Account</a></li>
-
-
-
-		</ul>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li></ul>
 	</div>
 
 	<h3 align="center">Rate Of Interest</h3>
@@ -211,5 +208,6 @@ background-color:  rgba(35, 106, 240,.5);}
 			</button>
 		</div>
 	</div>
+	 
 </body>
 </html>

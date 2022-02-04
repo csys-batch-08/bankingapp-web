@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -183,6 +185,7 @@ body {
 		<p class="par">Frequently clean your hands with soap and water, or
 			an alcohol-based hand rub</p>
 	</div>
+	 
 </body>
 <script>
     var slideIndex = 0;

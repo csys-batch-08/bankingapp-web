@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -134,15 +136,15 @@ color:green;}
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
+			<li><a href="ApproveLoans">ApproveLoans</a></li>
+			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposits">ApproveDeposits</a></li>
-			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
@@ -224,5 +226,6 @@ color:green;}
 			<br/> <br/>
 		</form>
 </div>
+ 
 </body>
 </html>

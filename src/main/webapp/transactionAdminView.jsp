@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList"%>
-    <%@page import="com.bankapp.impl.TransactionDaoimpl"%>
-    <%@page import="com.bankapp.model.Transaction"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
+      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +60,7 @@ ul {
 }
 .sidebar ul a {
 	height: 100%;
-	width: 100%;
+	width:  900px;;
 	line-height: 40px;
 	font-size: 14px;
 	padding-left: 40px;
@@ -81,12 +81,7 @@ ul li:hover a {
         padding:5px;
         box:shadow;
    }
- .t1 {
-	padding: 40px;
-	padding-left: 350px;
-	border:none;
-}
- .cls {
+  .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
@@ -126,7 +121,7 @@ th {
 }
 .table{
 margin-bottom:10px;
- width:1000px;
+ width:250px;
  margin-left:180px;
 }
 .table th{
@@ -164,20 +159,16 @@ background-color:  rgba(35, 106, 240,.5);}
 
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="ViewAllUser">View All Users</a></li>
-			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
-			<li><a href="userCancel.jsp">Cancel Account</a></li>
-			
-			 
-			 
-		</ul>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="userCancel.jsp">Cancel Account</a></li></ul>
      </div>
       
      
@@ -190,12 +181,12 @@ background-color:  rgba(35, 106, 240,.5);}
 <thead>
 <tr>
   <th>S.no</th>
-  <th>Sender Account Number</th>
+  <th>SenderAccountNumber</th>
  <th>Name</th>
  <th>Transaction</th>
-<th>Receive Account Number</th>
+<th>ReceiveAccountNumber</th>
 <th>Amount</th>
-<th>Transaction Date</th>
+<th>TransactionDate</th>
 </tr>
 </thead>
  
@@ -209,17 +200,19 @@ background-color:  rgba(35, 106, 240,.5);}
 <td>${i }</td>
 <td>${TransactionAccount. senderAccountNumber} </td>
 <td>${TransactionAccount. name} </td>
-<td>${TransactionAccount.transactionType }</td>
+<td>${TransactionAccount.transactionstatus }</td>
  <td>${TransactionAccount. receiveAccountNumber} </td>
  <td>${TransactionAccount.amount } </td>
- <td>${TransactionAccount.transactiondate } </td>
+ <fmt:parseDate value="${TransactionAccount.transactiondate }" pattern="yyyy-MM-dd" var="transactionDate" type="date"/>
+<td><fmt:formatDate value="${transactionDate}" pattern="dd-MM-yyyy"/>  </td>
+ 
  </tr>
 
  </c:forEach>
 </tbody>
           </table><br><br>
           <div class="btn3">
-          <button type="submit" class="btn2"><a href="TransactionByAcc.jsp">Back</a></button>
+          <button type="submit" class="btn2"><a href="transactionByAcc.jsp">Back</a></button>
           </div>
      </div>
      

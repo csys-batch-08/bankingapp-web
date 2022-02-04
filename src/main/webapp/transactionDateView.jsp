@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"  import = "java.util.List" import = "java.util.ArrayList" import="java.time.LocalDate"
      import="java.time.format.DateTimeFormatter"%>
+     <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title> Transaction</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 * {
 	margin: 0;
@@ -16,7 +19,7 @@ nav {
 	font-size: 17px;
  	float: left;
 	background-color: rgba(9, 57, 87,.9);
-	 width: 98.9%;
+	 width:  100%;
 	padding: 7.3px;
 }
 nav a {
@@ -105,6 +108,7 @@ td {
 	padding-left: 20px;
 	text-align: justify;
 	padding-bottom: 8px;
+	text-transform:capitalize;
 }
 
 th {
@@ -114,8 +118,8 @@ th {
 }
 .table{
 margin-bottom:10px;
- width:1000px;
- margin-left:270px;
+ width:300px;
+ margin-left:250px;
 }
 .table th{
 background-color:  rgba(161, 15, 95,.5);}
@@ -151,15 +155,15 @@ background-color:  rgba(35, 106, 240,.5);}
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="ViewAllUser">View All Users</a></li>
-			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="ApproveLoans">ApproveLoans</a></li>
 			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
+			<li><a href="ViewAllUser">View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 			 
 		</ul>
@@ -172,10 +176,11 @@ background-color:  rgba(35, 106, 240,.5);}
 <thead>
 <tr>
   <th>S.no</th>
-  <th>Sender Account Number</th>
+  <th>SenderAccountNumber</th>
  <th>Name</th>
- <th>Transaction</th>
-<th>Receive Account Number</th>
+ 
+<th>ReceiveAccountNumber</th>
+<th>TransactionStatus</th>
 <th>Amount</th>
 </tr>
 </thead>
@@ -186,8 +191,9 @@ background-color:  rgba(35, 106, 240,.5);}
 <td> ${i}</td>
 <td> ${viewlist.senderAccountNumber }</td>
 <td> ${viewlist.name}</td>
-<td> ${viewlist.transactionType}</td>
+ 
  <td> ${viewlist.receiveAccountNumber}</td>
+ <td> ${viewlist.transactionstatus}</td>
  <td> ${viewlist.amount}</td>
   </tr>
  </c:forEach>
@@ -199,6 +205,6 @@ background-color:  rgba(35, 106, 240,.5);}
           <button type="submit" class="btn2"><a href="transactionByDate.jsp">Back</a></button>
           </div>
      </div>
-
+  
 </body>
 </html>

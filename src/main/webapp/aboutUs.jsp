@@ -4,7 +4,7 @@
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>AboutUs</title>
+<title>About Us</title>
 <style>
 * {
 	margin: 0;
@@ -159,7 +159,7 @@ text-align:center;}
 </head>
 <body>
 
-	 <br> <br> <h3 id="head"><i>Dharshini Bank</i></h3> <br>
+	 <br> <br> <h3 id="head"><em>Dharshini Bank</em></h3> <br>
 	<nav>
 		 <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>
@@ -196,7 +196,7 @@ text-align:center;}
 						follow on Qualified Institutions Placement in February 2008.</p>
 					</div>
 				<div class="btn2">
-					<button type="submit"><a href="ContactUs.jsp">ContactUs</a></button>
+					<a href="ContactUs.jsp"><button type="submit">ContactUs</button></a>
 	    		</div>
 	</div>
 			<div class="img1">
@@ -204,13 +204,13 @@ text-align:center;}
 					<div id="image">
 						<div class="slideshow-container">
 							<div class="mySlides fade">
-								<img src="images/bankof7.jpg" style="width: 60%">
+								<img src="images/bankof7.jpg" style="width: 60%" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof6.jpg" style="width: 60%">
+								<img src="images/bankof6.jpg" style="width: 60%" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof2.jpg" style="width: 60%">
+								<img src="images/bankof2.jpg" style="width: 60%" alt="Couldn't load image">
 							</div>
 						</div>
 					</div>

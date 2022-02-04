@@ -29,7 +29,7 @@ public class HousingLoan extends HttpServlet {
 			double amount = Double.parseDouble(request.getParameter("amountDeposit"));
 			int period = Integer.parseInt(request.getParameter("period"));
 			String pan = request.getParameter("pan");
-			double numberOfPayments = period * 12;
+			double numberOfPayments = (period * 12);
 			double rateOfInterest = 0;
 			rateOfInterest = loandao.getInterest(3.3);
 			double rt = (rateOfInterest / (12 * 100));
@@ -38,16 +38,17 @@ public class HousingLoan extends HttpServlet {
 			long accnum = 0;
 			boolean flag = loandao.validateLoan(pan);
 			boolean checkloan = loandao.validateHouseLoan(pan);
-			if (flag == true) {
-				if (checkloan == false) {
+			if (flag) {
+				if (checkloan) {
+					session.setAttribute("Houloan", "You have already requested this loan!");
+					response.sendRedirect("housingLoan.jsp");
+				} else {
+
 					Loans loan = new Loans(0, name, date, address, mobno, emailId, type, wtype, amount, period,
 							rateOfInterest, monthlyPayment, status, pan);
 					accnum = loandao.housingLoan(loan);
 					session.setAttribute("Hloan", " Loan Requested");
 					session.setAttribute("Hloan1", accnum);
-					response.sendRedirect("housingLoan.jsp");
-				} else {
-					session.setAttribute("Houloan", "You have already requested this loan!");
 					response.sendRedirect("housingLoan.jsp");
 				}
 			} else {

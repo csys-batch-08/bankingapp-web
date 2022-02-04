@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin</title>
+<title>Dashboard</title>
 <style>
 * {
 	margin: 0;
@@ -94,7 +93,7 @@ body{
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	 <br> <h3 id="head"><em> Dharshini Bank</em></h3><br> 
 	<nav>
 		<a href="index.jsp"> Home</a>
 		<a href="loans.jsp">Loans</a>
@@ -102,7 +101,7 @@ body{
 		  <a href="interest.jsp" >Interest Rate</a>
 		  <a href="aboutUs.jsp">About us</a>
 		  <a href="contactUs.jsp" >ContactUs</a>
-		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+		<a href="LogoutServlet"><button class="btn">Logout</button></a>
 	</nav><br><br>
 <div class="sidebar">
 		<header>ADMIN</header>
@@ -119,13 +118,7 @@ body{
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
-	<%!String name;%>
-	<%
-	name = (String) session.getAttribute("adminname");
-	%>
-		<p>	<b>WELCOME &nbsp <%=name%>!
-			</b>
-		</p><br><br>
+	 		<p>	<strong>WELCOME   ${sessionScope.adminname}!</strong></p><br/><br/>
 			<p>Some ways to Prevent Spread of COVID-19</p>
 		<p class="par">Avoid touching surfaces, especially in public
 			settings or health facilities, in case people infected with COVID-19

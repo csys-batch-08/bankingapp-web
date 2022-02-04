@@ -108,7 +108,7 @@ li, p {
 </head>
 <body>
 
-	 <br> <h3 id="head"><i>Dharshini Bank</i></h3> 
+	 <br> <h3 id="head"><em>Dharshini Bank</em></h3> 
 	 <nav>
 		  <a href="index.jsp"> Home</a>
 		  <a href="loans.jsp">Loans</a>

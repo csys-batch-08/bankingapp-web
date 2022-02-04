@@ -25,8 +25,7 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserDetails validAdmin = userDetailDao.admin(userId, password);
 			UserDetails validUser = userDetailDao.validateUser(userId, password);
-			session.setAttribute("validUser", validUser);
-			session.setAttribute("validAdmin", validAdmin);
+
 			if (validUser != null) {
 
 				String name = validUser.getusername();

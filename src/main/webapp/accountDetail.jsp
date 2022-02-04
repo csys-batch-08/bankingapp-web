@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -105,7 +104,7 @@ td {
 	text-align: justify;
 	padding-bottom: 8px;
 }
-th {
+#thead1 {
 	text-align: justify;
 	padding-left: 30px;
 	padding-bottom: 8px;
@@ -123,16 +122,16 @@ th {
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	 <br> <h3 id="head"><em> Dharshini Bank</em></h3><br> 
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a>
-		<a href="loans.jsp">Loans</a>
+		 <a href="customerDashBoard.jsp"> Home</a>
+		 <a href="loans.jsp">Loans</a>
 		 <a href="deposits.jsp">Deposits</a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" >ContactUs</a>
-		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn"><a href="LogoutServlet">Logout</a></button>		
+		 <a href="interest.jsp" >Interest Rate</a>
+		 <a href="aboutUs.jsp">About us</a>
+		 <a href="contactUs.jsp" >ContactUs</a>
+		 <a href="myProfile.jsp">My Profile</a>
+		 <a href="LogoutServlet"><button class="btn">Logout</button></a>		
 	</nav><br><br>
 	<div class="sidebar">
 		<header>${sessionScope.username}</header>
@@ -153,24 +152,24 @@ th {
 		<h3>Account Detail</h3>
 		<form action="AccountDetails" method="post">
 			<table>
-			<caption>
+			 <caption>
 				<tr>
-					<th><label for="accountNo"> AccountNumber</label></th>
-					<td><input type="text" class="cls" name="accNo"
-						pattern="[0-9]{12}" required autofocus placeholder=" " /></td><br>
+					<th id="thead1"><label for="accountNo"> AccountNumber</label></th>
+					<td><input type="text" class="cls" name="accNo" id="accNum"
+						pattern="[0-9]{12}" required autofocus placeholder=" " /></td> 
 				</tr>
 				<tr>
-					<br><th><label for="pin"> Pin Number</label></th>
-					<td><input type="password" class="cls" name="pin"
-						pattern="[0-9]{4}" required /></td>
+					 <th id="thead1"><label for="pin"> Pin Number</label></th>
+					<td><input type="password" class="cls" name="pin" id="pinNum"
+						pattern="[0-9]{4}"   required /></td>
 				</tr>
-			</caption>
+			 </caption>
 			</table><br><br>			
 			<div class="btn3">
 				<input type="submit" class="btn2" value=submit /> 
 				<input type="reset" class="btn2" value=cancel />
 			</div>
-		</form><br><br>
+		</form><br/><br/>
 	 <c:if test="${sessionScope.pinvalid!=null}">
           <h4 id="transhead">${sessionScope.pinvalid}</h4>
           </c:if> 

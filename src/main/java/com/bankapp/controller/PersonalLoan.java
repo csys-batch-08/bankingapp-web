@@ -47,7 +47,7 @@ public class PersonalLoan extends HttpServlet {
 				rateOfInterest = loandao.getInterest(3.3);
 			}
 
-			double numberOfPayments = period * 12;
+			double numberOfPayments = (period * 12);
 			double rt = (rateOfInterest / (12 * 100));
 			double r = Math.pow((1 + rt), numberOfPayments);
 			double monthlyPayment = Math.round(amount * rt * ((r) / (r - 1)));
@@ -55,18 +55,18 @@ public class PersonalLoan extends HttpServlet {
 			String status = "NotApproved";
 			boolean flag = loandao.validateLoan(pan);
 			boolean checkloan = loandao.validatePersonalLoan(pan);
-			if (flag == true) {
-				if (checkloan == false) {
+			if (flag) {
+				if (checkloan) {
+					session.setAttribute("Ploan", "You have Already requested the Personal Loan!");
+					response.sendRedirect("personalLoan.jsp");
+
+				} else {
 					Loans loan = new Loans(0, name, date, address, mobno, emailId, type, wtype, amount, period,
 							rateOfInterest, monthlyPayment, status, pan, salary);
 					accnum = loandao.PersonalLoan(loan);
 					session.setAttribute("loan", " Loan Requested");
 					session.setAttribute("loan1", accnum);
 
-					response.sendRedirect("personalLoan.jsp");
-
-				} else {
-					session.setAttribute("Ploan", "You have Already requested the Personal Loan!");
 					response.sendRedirect("personalLoan.jsp");
 				}
 			} else {

@@ -206,11 +206,9 @@ h2 {
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
-			<li><a href="transactionByAccount.jsp">Transaction by
-					Account</a></li>
+			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
 			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account
-					Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
@@ -245,7 +243,6 @@ h2 {
 							<td>${approveloan.accountNumber}</td>
 							<td>${approveloan.username}</td>
 							<td>${approveloan.mobno}</td>
-
 							<td>${approveloan.loanType}</td>
 							<td>${approveloan.loanAmount}</td>
 							<td>${approveloan.tenure}</td>

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.List"
 	import="java.util.ArrayList"%>
-	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -20,50 +19,59 @@
 	margin: 0;
 	padding: 0;
 }
+
 nav {
 	font-size: 18px;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
-    width:100%;
+	background-color: rgba(9, 57, 87, .9);
+	width: 100%;
 	padding: 6px;
 }
+
 nav a {
 	padding-right: 90px;
 }
-nav a:hover{
-text-decoration:none;
-color:black;}
+
+nav a:hover {
+	text-decoration: none;
+	color: black;
+}
+
 a {
 	text-decoration: none;
 	color: white;
 }
- 
+
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-	float:right;
+	float: right;
 }
+
 .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height:  1200px;
-	background-color: rgba(9, 57, 87,.8 );
+	height: 1200px;
+	background-color: rgba(9, 57, 87, .8);
 	color: white;
 }
+
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
-background-color: rgba(9, 57, 87,.3 );
- text-transform: capitalize;
+	background-color: rgba(9, 57, 87, .3);
+	text-transform: capitalize;
 }
+
 ul {
 	list-style-type: none;
 }
+
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -72,12 +80,15 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
+
 ul li:hover a {
 	padding-left: 50px;
 }
+
 .sidebar ul a {
 	margin-right: 0px;
 }
+
 .box {
 	width: 380px;
 	height: 380px;
@@ -87,6 +98,7 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
+
 .pa {
 	text-align: left;
 }
@@ -126,7 +138,7 @@ td {
 	padding-left: 15px;
 }
 
-th {
+#thead1 {
 	padding-left: 10px;
 	font-size: 18px;
 }
@@ -144,32 +156,38 @@ th {
 .table td {
 	background-color: rgba(35, 106, 240, .5);
 }
-#head{
-  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-left:20px;
-  color:rgba(243, 31, 119, 0.7);
-  font-size:23px;
- }
- .head3{
-margin-left:250px ;
-font-size:28px;}
+
+#head {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	margin-left: 20px;
+	color: rgba(243, 31, 119, 0.7);
+	font-size: 23px;
+}
+
+.head3 {
+	margin-left: 250px;
+	font-size: 28px;
+}
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3>  
+	<br>
+	<h3 id="head">
+		<em> Dharshini Bank</em>
+	</h3>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a> 
 		<a href="loans.jsp">Loans</a>
-		 <a href="deposits.jsp">Deposits</a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" >ContactUs</a>
-		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+		<a href="deposits.jsp">Deposits</a> 
+		<a href="interest.jsp">Interest Rate</a> 
+		<a href="aboutUs.jsp">About us</a> 
+		<a href="contactUs.jsp">ContactUs</a>
+		<a href="MyProfile">My Profile</a>
+       <a href="LogoutServlet"><button class="btn">Logout</button></a>
 	</nav>
 	<br>
-	<br> 
- 	<div class="sidebar">
+	<br>
+	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
@@ -185,18 +203,18 @@ font-size:28px;}
 		</ul>
 	</div>
 	<h3 class="head3">Transaction History</h3>
-	 		<div class="container mt-4 mb-4">
-			<table class="table table-hover table-striped">
+	<div class="container mt-4 mb-4">
+		<table class="table table-hover table-striped">
 			<caption>
 				<thead>
 					<tr>
-						<th>S.no</th>
-						<th>Sender Account Number</th>
-						<th>Name</th>
-						<th>Transaction</th>
-						<th>Receive Account Number</th>
-						<th>Amount</th>
-						<th>Date</th>
+						<th id="thead1">S.no</th>
+						<th id="thead1">Sender Account Number</th>
+						<th id="thead1">Name</th>
+						<th id="thead1">Transaction</th>
+						<th id="thead1">Receive Account Number</th>
+						<th id="thead1">Amount</th>
+						<th id="thead1">Date</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -209,20 +227,18 @@ font-size:28px;}
 							<td>${Transacviewlist.transactionType}</td>
 							<td>${Transacviewlist.receiveAccountNumber}</td>
 							<td>${Transacviewlist.amount}</td>
-							<fmt:parseDate value="${Transacviewlist.transactiondate }" pattern="yyyy-MM-dd" var="transacDate" type="date"/>
-                         <td><fmt:formatDate value="${transacDate}" pattern="dd-MM-yyyy"/>  </td>
+							<fmt:parseDate value="${Transacviewlist.transactiondate }"
+								pattern="yyyy-MM-dd" var="transacDate" type="date" />
+							<td><fmt:formatDate value="${transacDate}"
+									pattern="dd-MM-yyyy" /></td>
 						</tr>
-                   </c:forEach>
-    			</tbody>
-				</caption>
-			</table>
-		</div>
-	<div class="btn3">
-			<button type="submit" class="btn2">
-				<a href="customerDashBoard.jsp">Back</a>
-			</button>
+					</c:forEach>
+				</tbody>
+			</caption>
+		</table>
 	</div>
-	 
-  
+	<div class="btn3">
+		<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>		
+	</div>
 </body>
 </html>

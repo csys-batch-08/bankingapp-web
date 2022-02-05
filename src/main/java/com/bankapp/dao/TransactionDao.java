@@ -12,12 +12,12 @@ public interface TransactionDao {
 
 	public double viewBalance(long accountNumber, int pinNo) throws SQLException;
 
-	public int getPinnumber(long accountno);
+	public int getPinnumber(long accountno) throws SQLException;
 
-	public List<Transaction> getbyDate(LocalDate date);
+	public List<Transaction> getbyDate(LocalDate date) throws SQLException;
 
-	public List<Transaction> getByAccountNumberUser(long accNo, int pin);
+	public List<Transaction> getByAccountNumberUser(long accNo, int pin) throws SQLException;
 
-	public List<Transaction> getByAccountNumberAdmin(long accNo);
+	public List<Transaction> getByAccountNumberAdmin(long accNo) throws SQLException;
 
 }

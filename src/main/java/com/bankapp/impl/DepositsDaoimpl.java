@@ -39,7 +39,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (statement != null) {
 				statement.close();
 			}
-			if (true) {
+			if (con != null) {
 				con.close();
 			}
 		}
@@ -115,7 +115,7 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public long recurringDeposit(String type, double amount, double rateOfInterest, int period, double maturityValue,
 			String status, String pan, String email, double totalAmount) throws SQLException {
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		String query = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='SavingsAccount'";
 		String queryInsert = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER,Total_amount) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		String selQuery = "select deposit_number from deposits where ACCOUNT_NUMBER=? and amount=?";
@@ -128,7 +128,7 @@ public class DepositsDaoimpl implements DepositsDao {
 		PreparedStatement statement = null;
 		ResultSet rs1 = null;
 		try {
-
+			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(query);
 			statement.setString(1, email);
 
@@ -170,7 +170,7 @@ public class DepositsDaoimpl implements DepositsDao {
 				statement.close();
 			}
 
-			if (true) {
+			if (con != null) {
 				con.close();
 
 			}

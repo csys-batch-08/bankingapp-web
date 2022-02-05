@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
-<link rel="stylesheet" href="RegCss.css">
+
 <style>
 .box{
         width:400px;
@@ -76,10 +76,10 @@ font-size:20px;
 <h3>USER</h3>
  <form  action="register" method="post"  >
           <label for="Name" class="lab">Name</label> <br>
-                <input type="text"  class="textfield" name="uname" pattern="[A-Za-z]{5,}" placeholder="Name"required  > <br>
+                <input type="text"  class="textfield" name="uname" id="uname" pattern="[A-Za-z]{5,}" placeholder="Name"required  > <br>
  
                   <label for="email" class="lab">Email</label> <br>
-                 <input type="email"  class="textfield" name="emailId" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" placeholder="Email" required >  <br>
+                 <input type="email"  class="textfield" name="emailId" id="emailId" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" placeholder="Email" required >  <br>
  
                <label for="pwd" class="lab">Create Password:</label> <br>
                <input type="Password"  class="textfield" name="pwd" id="pwd" pattern="[A-Za-z0-9]{8,10}" placeholder="Password" 
@@ -89,28 +89,20 @@ font-size:20px;
                <input type="Password"  class="textfield" name="Cpwd" id="Cpwd" required  placeholder="Confirm Password">  <br>
  
                 <label for="mobNo" class="lab" >Mobile Number</label> <br>
-                <input type="phone"   class="textfield" name="mobNo"  pattern="[6-9][0-9]{9}" required placeholder="MobileNumber" > <br><br>
+                <input type="text"   class="textfield" name="mobNo" id="mobno" pattern="[6-9][0-9]{9}" required placeholder="MobileNumber" > <br><br>
               
             
              <button type="submit" class="btn1"  onclick="myfunction()">Submit</button>
               <button type="reset" class="btn1" >Reset</button>
-              <button type="submit" class="btn1" ><a href="index.jsp">Back</a></button>
+              <a href="index.jsp"><button type="submit" class="btn1" >Back</button></a>
                
      
 </form>
-
-<%
-String flag;
-%>
-<%
-if(session.getAttribute("reg") != null){
-flag = session.getAttribute("reg").toString();
-%>
-<h4 id = "transhead"><%= flag%></h4>
-<% }%>
+<c:if test="${sessionScope.reg!=null}">
+           <h4>${sessionScope.reg}</h4>
+          </c:if> 
+           <c:remove var="reg" scope="session"/>
  
-  <%session.removeAttribute("reg");
-       %>
 </div>
 </body>
 

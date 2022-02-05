@@ -134,15 +134,15 @@ li, p {
 				<ul> 
 				<li>Bring the best of innovation and technology in our
 					offerings</li>
-					<br>
+					 
 				
 				<li>Be responsive to the unique needs of every customer through
 					all channels of choice</li>
-				 <br>
+				  
 				<li>To provide value to stake- holders</li>
-				<br>
+				 
 				<li>Empower and engage our employees</li>
-				<br>
+				 
 
 				</ul>
 			</div>
@@ -150,7 +150,7 @@ li, p {
 			 
 		</div>
 		<div class="butn">
-	 <button type="submit" class="buttn" ><a href="login.jsp">WELCOME</a></button>
+	 <a href="login.jsp"><button type="submit" class="buttn" >WELCOME</button></a>
 </div>
 </body>
 </html>

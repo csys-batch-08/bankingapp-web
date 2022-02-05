@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -12,52 +14,63 @@
 	margin: 0;
 	padding: 0;
 }
+
 nav {
 	font-size: 18px;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
-    width:98.8%;
+	background-color: rgba(9, 57, 87, .9);
+	width: 98.8%;
 	padding: 8px;
 }
+
 nav a {
 	padding-right: 95.5px;
 }
-nav a:hover{
-text-decoration:none;
-color:black;}
+
+nav a:hover {
+	text-decoration: none;
+	color: black;
+}
+
 a {
 	text-decoration: none;
 	color: white;
 }
+
 .set1 {
 	padding-right: 520px;
 }
+
 .btn {
 	color: white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-	float:right;
+	float: right;
 }
+
 .sidebar {
 	position: absolute;
 	left: 0;
 	width: 250px;
 	height: 96%;
-	background-color: rgba(9, 57, 87,.8 );
+	background-color: rgba(9, 57, 87, .8);
 	color: white;
 }
+
 .sidebar header {
 	font-size: 15px;
 	color: white;
 	text-align: center;
 	line-height: 50px;
-background-color: rgba(9, 57, 87,.3 );
- text-transform: capitalize;
+	background-color: rgba(9, 57, 87, .3);
+	text-transform: capitalize;
 }
+
 ul {
 	list-style-type: none;
 }
+
 .sidebar ul a {
 	height: 98%;
 	width: 99%;
@@ -66,12 +79,15 @@ ul {
 	padding-left: 40px;
 	color: white;
 }
+
 ul li:hover a {
 	padding-left: 50px;
 }
+
 .sidebar ul a {
 	margin-right: 0px;
 }
+
 .box {
 	width: 380px;
 	height: 380px;
@@ -81,58 +97,74 @@ ul li:hover a {
 	padding: 5px;
 	box: shadow;
 }
- 
+
 .pa {
 	text-align: left;
 }
+
 .par {
 	padding: 20px;
 }
+
 .cls {
 	border-radius: 3px;
 	padding: 5px 5px 5px 5px;
 	Background-color: transparent;
 }
+
 .btn2 {
 	padding: 5px;
 	color: white;
 	background-color: green;
 	margin-right: 30px;
-	border:0;
-	border-radius:3px;
+	border: 0;
+	border-radius: 3px;
 }
+
 .btn3 {
 	margin-left: 150px;
 }
+
 body {
 	background-color: rgb(198, 208, 214);
 }
-#transhead{
-color:red;
+
+#transhead {
+	color: red;
 }
-#head{
-  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-left:20px;
-  color:rgba(243, 31, 119, 0.7);
-  font-size:23px;
- }
+
+#head {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	margin-left: 20px;
+	color: rgba(243, 31, 119, 0.7);
+	font-size: 23px;
+}
+
+h2 {
+	text-align: center;
+}
+#thead1{
+padding:1px;
+}
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	<br>
+	<h3 id="head">
+		<em> Dharshini Bank</em>
+	</h3>
+	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a>
-		<a href="loans.jsp">Loans</a>
-		 <a href="deposits.jsp">Deposits</a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" >ContactUs</a>
-		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+		<a href="customerDashBoard.jsp"> Home</a> <a href="loans.jsp">Loans</a>
+		<a href="deposits.jsp">Deposits</a> <a href="interest.jsp">Interest
+			Rate</a> <a href="aboutUs.jsp">About us</a> <a href="contactUs.jsp">ContactUs</a>
+		<a href="myProfile.jsp">My Profile</a>
+		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		
 	</nav>
 	<br>
 	<br>
- 	<div class="sidebar">
+	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
@@ -148,31 +180,33 @@ color:red;
 
 		</ul>
 	</div>
-	 
-	<h2 align="center">Check Status</h2>
+
+	<h2>Check Status</h2>
 	<div class="box">
 		<form action="loanStatus" method="post">
 			<table>
-			<caption>
-				<tr>
-					<th><label for="accountNumber">Loan Account Number</label></th>
-					<td><input type="text" class="cls" name="accno" pattern="[0-9]{12,14}"
-						required autofocus /></td>
-				</tr>
+				<caption>
+					<tr>
+						<th id="thead1"><label for="accountNumber">Loan Account Number</label></th>
+						<td><input type="text" class="cls" name="accno" id="accno"
+							pattern="[0-9]{12,14}" required autofocus /></td>
+					</tr>
 				</caption>
 			</table>
-			<br><br>
+			<br>
+			<br>
 			<div class="btn3">
-			<button type="submit" class="btn2">Submit</button>
-			<button type="reset" class="btn2">Reset</button>
+				<button type="submit" class="btn2">Submit</button>
+				<button type="reset" class="btn2">Reset</button>
 			</div>
 		</form>
-		<br><br>
-		 <c:if test="${sessionScope.laccnum!=null}">
-          <h4 id="transhead">${sessionScope.laccnum}</h4>
-          </c:if> 
-          <c:remove var="laccnum" scope="session"/>
+		<br>
+		<br>
+		<c:if test="${sessionScope.laccnum!=null}">
+			<h4 id="transhead">${sessionScope.laccnum}</h4>
+		</c:if>
+		<c:remove var="laccnum" scope="session" />
 	</div>
- 
+
 </body>
 </html>

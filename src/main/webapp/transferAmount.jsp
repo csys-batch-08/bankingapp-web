@@ -1,37 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
 <title>Transaction</title>
- 
+
 <style>
 * {
 	margin: 0;
 	padding: 0;
 }
+
 nav {
 	font-size: 18px;
 	float: left;
-	background-color: rgba(9, 57, 87,.9);
-    width:98.8%;
+	background-color: rgba(9, 57, 87, .9);
+	width: 98.8%;
 	padding: 8px;
 }
+
 nav a {
 	padding-right: 95px;
 }
-nav a:hover{
-text-decoration:none;
-color:black;}
+
+nav a:hover {
+	text-decoration: none;
+	color: black;
+}
+
 a {
 	text-decoration: none;
 	color: white;
 }
+
 .set1 {
-	padding-right:  522px;
+	padding-right: 522px;
 }
 
 .btn {
@@ -39,24 +44,27 @@ a {
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
-	float:right;
+	float: right;
 }
- .sidebar{
-position:absolute;
-left:0;
-width:250px;
-height:96%;
-background-color: rgba(9, 57, 87,.8);
-color:white;
+
+.sidebar {
+	position: absolute;
+	left: 0;
+	width: 250px;
+	height: 96%;
+	background-color: rgba(9, 57, 87, .8);
+	color: white;
 }
-.sidebar header{
-font-size:15px;
-color:white;
-text-align: center;
-line-height:50px;
-background-color: rgba(9, 57, 87,.3);
- text-transform: capitalize;
+
+.sidebar header {
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	line-height: 50px;
+	background-color: rgba(9, 57, 87, .3);
+	text-transform: capitalize;
 }
+
 ul {
 	list-style-type: none;
 }
@@ -86,9 +94,8 @@ ul li:hover a {
 	background: transparent;
 	padding: 5px;
 	box: shadow;
-	 
 }
- 
+
 .pa {
 	text-align: left;
 }
@@ -108,8 +115,8 @@ ul li:hover a {
 	color: white;
 	background-color: green;
 	margin-right: 30px;
-	border:0;
-	border-radius:3px;
+	border: 0;
+	border-radius: 3px;
 }
 
 .btn3 {
@@ -117,53 +124,63 @@ ul li:hover a {
 }
 
 body {
-background-color: rgba(198, 208, 214,.9);
+	background-color: rgba(198, 208, 214, .9);
 }
-#transhead{
-color:green;
+
+#transhead {
+	color: green;
 }
-#tranheadred{
-color:red;}
-h2{
-padding-left:300px;
-font-size:20px;
+
+#tranheadred {
+	color: red;
 }
+
+h2 {
+	padding-left: 300px;
+	font-size: 20px;
+}
+
 td {
 	padding-left: 20px;
 	text-align: justify;
 	padding-bottom: 8px;
 }
 
-th {
+#thead1 {
 	text-align: justify;
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
-#head{
-  font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-left:20px;
-  color:rgba(243, 31, 119, 0.7);
-  font-size:23px;
- }
+
+#head {
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	margin-left: 20px;
+	color: rgba(243, 31, 119, 0.7);
+	font-size: 23px;
+}
 </style>
 </head>
 <body>
-	 <br> <h3 id="head"><i> Dharshini Bank</i></h3><br> 
+	<br>
+	<h3 id="head">
+		<em> Dharshini Bank</em>
+	</h3>
+	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a>
+		<a href="customerDashBoard.jsp"> Home</a> 
 		<a href="loans.jsp">Loans</a>
-		 <a href="deposits.jsp">Deposits</a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" >ContactUs</a>
-		  <a href="myProfile.jsp">My Profile</a>
-		<button class="btn"><a href="LogoutServlet">Logout</a></button>
+		<a href="deposits.jsp">Deposits</a> 
+		<a href="interest.jsp">Interest	Rate</a> 
+		<a href="aboutUs.jsp">About us</a> 
+		<a href="contactUs.jsp">ContactUs</a>
+		<a href="MyProfile">My Profile</a>
+		<a href="LogoutServlet"><button class="btn">Logout</button></a>
 	</nav>
 	<br>
 	<br>
- 	<div class="sidebar">
+	<div class="sidebar">
 
-	<header>${sessionScope.username}</header>
+		<header>${sessionScope.username}</header>
 		<ul>
 			<li><a href="accountDetail.jsp">AccountDetails</a></li>
 			<li><a href="transferAmount.jsp">Transfer</a></li>
@@ -175,54 +192,62 @@ th {
 			<li><a href="transactionSummary.jsp">Transaction History</a></li>
 			<li><a href="depositStatusUser.jsp">Deposit Status</a></li>
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
-			 
+
 		</ul>
-     </div>
-    <h2>Amount Transfer</h2>
- <div class="box">
- 
- <form action="TransferAmount" method="post">
- 
- <table>
- <tr>
- <th>Name</th>
- <td><input type="text" name="uname" class="cls" required pattern="[A-Za-z]{3,}"/></td>
- </tr>
- <tr>
- <th>Account Number</th>
- <td><input type="text" name="accno" class="cls" required pattern="[0-9]{12}"/></td>
- </tr>
- <tr>
- <th>Amount</th>
- <td><input type="text" name="amount" pattern="[1-9][0-9]+"  title="Please Enter Valid Amount" class="cls" required></td>
- </tr>
- <tr>
- <th>Pin Number</th>
- <td><input type="password" name="pin"  class="cls" required pattern="[0-9]{4}"/></td>
- </tr>
- <tr>
- <th>Receiver Account Number</th>
- <td><input type="text" name="RecAccNo" class="cls" required pattern="[0-9]{12}"/></td>
- </tr>
- </table>
- <br><br>
- <div class="btn3">
- <button type="submit" class="btn2">Submit</button>
- <button type="reset" class="btn2" >Reset</button>
- </div>
- </form>
- <br>
- <c:if test="${sessionScope.transaction!=null}">
-          <h4 id="transhead">${sessionScope.transaction}</h4>
-          </c:if> 
-            
-           <c:remove var="transaction" scope="session"/>
-  <c:if test="${sessionScope.trans!=null}">
-          <h4 id="tranheadred">${sessionScope.trans}</h4>
-          </c:if> 
-            
-           <c:remove var="trans" scope="session"/>
- </div>
-  
+	</div>
+	<h2>Amount Transfer</h2>
+	<div class="box">
+
+		<form action="TransferAmount" method="post">
+
+			<table>
+			<caption>
+				<tr>
+					<th id="thead1"><label for="name">Name</label></th>
+					<td><input type="text" name="uname" id="uname" class="cls" required
+						pattern="[A-Za-z]{3,}" /></td>
+				</tr>
+				<tr>
+					<th id="thead1"><label for="accno">Account Number</label></th>
+					<td><input type="text" name="accno" id="accno" class="cls" required
+						pattern="[0-9]{12}" /></td>
+				</tr>
+				<tr>
+					<th id="thead1"><label for="amount">Amount</label></th>
+					<td><input type="text" name="amount" id="amount" pattern="[1-9][0-9]+"
+						title="Please Enter Valid Amount" class="cls" required></td>
+				</tr>
+				<tr>
+					<th id="thead1"><label for="pin">Pin Number</label></th>
+					<td><input type="password" name="pin" id="pin" class="cls" required
+						pattern="[0-9]{4}" /></td>
+				</tr>
+				<tr>
+					<th id="thead1"><label for="receiveAccnum">Receiver Account Number</label></th>
+					<td><input type="text" name="RecAccNo" id="accNum" class="cls" required
+						pattern="[0-9]{12}" /></td>
+				</tr>
+			</caption>
+			</table>
+			<br>
+			<br>
+			<div class="btn3">
+				<button type="submit" class="btn2">Submit</button>
+				<button type="reset" class="btn2">Reset</button>
+			</div>
+		</form>
+		<br>
+		<c:if test="${sessionScope.transaction!=null}">
+			<h4 id="transhead">${sessionScope.transaction}</h4>
+		</c:if>
+
+		<c:remove var="transaction" scope="session" />
+		<c:if test="${sessionScope.trans!=null}">
+			<h4 id="tranheadred">${sessionScope.trans}</h4>
+		</c:if>
+
+		<c:remove var="trans" scope="session" />
+	</div>
+
 </body>
 </html>

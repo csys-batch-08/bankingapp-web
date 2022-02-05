@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.TransactionDao;
-import com.bankapp.model.AccountDetails;
 import com.bankapp.model.Transaction;
-import com.bankapp.model.UserDetails;
 import com.bankapp.util.ConnectionUtil;
 
 public class TransactionDaoimpl implements TransactionDao {
@@ -105,34 +103,45 @@ public class TransactionDaoimpl implements TransactionDao {
 		return balance;
 	}
 
-	public double viewBalanceFd(String pan) {
-		Connection con = ConnectionUtil.getDbConnection();
-		String query1 = "select BALANCE from account_details where  Pan_number=? ";
-		PreparedStatement pst;
-		double balance = 0;
-		try {
+	public double viewBalanceFd(String pan) throws SQLException {
 
+		String query1 = "select BALANCE from account_details where  Pan_number=? ";
+		PreparedStatement pst = null;
+		Connection con = null;
+		double balance = 0;
+		ResultSet rs = null;
+		try {
+			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query1);
 			pst.setString(1, pan);
-
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			if (rs.next()) {
 				balance = rs.getDouble("balance");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 		return balance;
 	}
 
 	@Override
-	public int getPinnumber(long accountno) {
+	public int getPinnumber(long accountno) throws SQLException {
 		String query = "select pin_number from Account_Details where account_number = ?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pst = con.prepareStatement(query);
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(query);
 			pst.setLong(1, accountno);
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
 			} else {
@@ -140,33 +149,46 @@ public class TransactionDaoimpl implements TransactionDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 		return 0;
 	}
 
 	@Override
-	public List<Transaction> getbyDate(LocalDate date) {
-		Connection con = ConnectionUtil.getDbConnection();
-		List<Transaction> list = new ArrayList<Transaction>();
-		// System.out.println(date);
-
-		String query = "select Sender_account_number,name,Transaction_type,Receiver_account_number,amount,transaction_status,transaction_date from transaction  where to_char(transaction_date,'yyyy-MM-dd')='"
-				+ date + "'  ";
+	public List<Transaction> getbyDate(LocalDate date) throws SQLException {
+		Connection con = null;
+		List<Transaction> list = new ArrayList<>();
+		String query = "select Sender_account_number,name,Transaction_type,Receiver_account_number,amount,transaction_status,transaction_date from transaction  where to_char(transaction_date,'yyyy-MM-dd')=? ";
+		PreparedStatement st = null;
+		ResultSet rs = null;
 		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
-
+			con = ConnectionUtil.getDbConnection();
+			st = con.prepareStatement(query);
+			st.setDate(1, java.sql.Date.valueOf(date));
+			rs = st.executeQuery();
 			while (rs.next()) {
 				Transaction trans = new Transaction(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getLong(4),
 						rs.getDouble(5), 0, rs.getString(6), rs.getDate(7).toLocalDate());
 				list.add(trans);
-				// System.out.println(list);
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
 		}
 		return list;
 	}
@@ -193,6 +215,13 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 		return list;
 	}
@@ -219,6 +248,13 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 
 		return list;
@@ -239,6 +275,13 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 		return date;
 	}

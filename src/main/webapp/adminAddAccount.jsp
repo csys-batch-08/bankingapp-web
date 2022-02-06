@@ -158,12 +158,12 @@ td {
 	<br />
 	<nav id="navbar">
 		    <a href="index.jsp" target="_self"> Home</a>
-		    <a href="loans.jsp" target="_self">Loans</a>
-		    <a href="deposits.jsp" target="_self">Deposits</a>
+		    <a href="loans.jsp" target="_self">Loan</a>
+		    <a href="deposits.jsp" target="_self">Deposit</a>
 		    <a href="interest.jsp" target="_self">Interest Rate</a>
 		    <a href="aboutUs.jsp" target="_self">About us</a>
-		    <a href="contactUs.jsp" target="_self">ContactUs</a>
-		    <a href="LogoutServlet" target="_self"><button class="btn">Logout</button></a>
+		    <a href="contactUs.jsp" target="_self">Contact Us</a>
+		    <a href="LogoutServlet" target="_self"><button class="btn">Log Out</button></a>
 	</nav>
 	<br />
 	<br />
@@ -184,6 +184,7 @@ td {
 			<li><a href="userCancel.jsp" target="_self">Cancel Account</a></li>
 		</ul>
 	</div>
+	<h1></h1>
 	<h2>Add Account</h2>
 	<br/>
 	<div class="div1">
@@ -192,11 +193,11 @@ td {
 				 <caption>
 					<tr>
 						<th id="thead1"><label for="accountType">Enter Account Type</label></th>
-						<td><input type="text" class="cls" name="type" id="type" required /></td>
+						<td><input type="text" class="cls" name="accountType" id="accountType" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="accountHoldName">Enter Account Holder Name</label></th>
-						<td><input type="text" class="cls"  id="aname" name="aname"
+						<td><input type="text" class="cls"  id="accountHoldName" name="accountHoldName"
 							pattern="[A-Za-z]{5,}" required /></td>
 					</tr>
 					<tr>
@@ -210,8 +211,8 @@ td {
 							pattern="[A-Za-z]{3,}" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="pincode">Enter PinCode</label></th>
-						<td><input type="text" class="cls" name="pincode" id="pinCode"
+						<th id="thead1"><label for="pincode">Enter Pin Code</label></th>
+						<td><input type="text" class="cls" name="pincode" id="pincode"
 							pattern="[0-9]{6}" required /></td>
 					</tr>
 					<tr>
@@ -221,7 +222,7 @@ td {
 					</tr>
 					<tr>
 						<th id="thead1"><label for="mobile">Enter Mobile Number</label></th>
-						<td><input type="text" class="cls" name="mobno" id="mobno"
+						<td><input type="text" class="cls" name="mobile" id="mobile"
 							pattern="[6-9][0-9]{9}" required /></td>
 					</tr>
 					<tr>
@@ -231,11 +232,11 @@ td {
 					</tr>
 					<tr>
 						<th id="thead1"><label for="ifscCode">Enter IfscCode</label></th>
-						<td><input type="text" class="cls" name="code" id="code" required /></td>
+						<td><input type="text" class="cls" name="ifscCode" id="ifscCode" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="branchName">Enter Branch Name</label></th>
-						<td><input type="text" class="cls" name="branch" id="branch"
+						<td><input type="text" class="cls" name="branchName" id="branchName"
 							pattern="[A-Za-z]{3,}" required /></td>
 					</tr>
 					<tr>
@@ -260,7 +261,7 @@ td {
 			</table>
 			<br/>
 			<div class="btn3">
-				<button type="Submit" class="btn2">Submit</button>
+				<button type="submit" class="btn2">Submit</button>
 			</div>
 			<br/> <br/>
 		</form>

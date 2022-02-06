@@ -194,15 +194,16 @@ public class TransactionDaoimpl implements TransactionDao {
 	}
 
 	@Override
-	public List<Transaction> getByAccountNumberAdmin(long accNo) {
+	public List<Transaction> getByAccountNumberAdmin(long accNo) throws SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
 		List<Transaction> list = new ArrayList<Transaction>();
 		ResultSet rs = null;
+		Statement pst = null;
 		String query = " select * from transaction  where  Sender_Account_number='" + accNo
 				+ "' order by transaction_date desc  ";
 		try {
-			Statement st = con.createStatement();
-			rs = st.executeQuery(query);
+			pst = con.createStatement();
+			rs = pst.executeQuery(query);
 
 			while (rs.next()) {
 
@@ -248,13 +249,6 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
 		}
 
 		return list;
@@ -275,13 +269,6 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
 		}
 		return date;
 	}

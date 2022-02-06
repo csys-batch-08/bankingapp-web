@@ -159,7 +159,7 @@ td {
 }
 
 h2 {
-	teaxt-align: center;
+	text-align: center;
 }
 </style>
 </head>
@@ -171,15 +171,14 @@ h2 {
 	<br>
 	<nav>
 				<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="customerDashBoard.jsp"><fmt:message  key="Home"/></a>
+		  <a href="index.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp"><fmt:message  key="Register"/></a>
-		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
-		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
+		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+		  <a href="MyProfile">My Profile</a>
+		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout"/></button></a>
 </fmt:bundle>
 	</nav>
 	<br>
@@ -213,7 +212,7 @@ h2 {
 			<table>
 				<caption>
 					<tr>
-						<th id="thead1"><label for="lname">Name</label></th>
+						<th id="thead1"><label for="lname">Name </label></th>
 						<td><input type="text" class="cls" name="lname" id="lname"
 							pattern="[a-zA-z]{3,}" required /></td>
 					</tr>
@@ -270,8 +269,8 @@ h2 {
 
 			<br> <br>
 			<div class="btn3">
-				<button type="submit" name="submit" class="btn2">Submit</button>
-				<button type="reset" name="reset" class="btn2">Reset</button>
+				<button type="submit" name="submit" class="btn2">Submit </button>
+				<button type="reset" name="reset" class="btn2">Reset </button>
 			</div>
 			<br> <br>
 		</form>

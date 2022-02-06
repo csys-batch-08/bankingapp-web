@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+		<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Loans</title>
+<title>Loan Details</title>
 <style>
 * {
 	margin: 0;
@@ -101,14 +102,16 @@ text-align:center;
 	<br>
 
 	<nav>
-		<a href="index.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a> 
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="register.jsp">Register</a> 
-		<a href="login.jsp">Login</a>
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp"	class="set1">ContactUs</a>
+		<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="index.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp"><fmt:message key="Register"/></a>
+		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+	 </fmt:bundle>
 	</nav>
 	<br>
 	<br>

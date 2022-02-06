@@ -1,6 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -141,14 +141,14 @@ td {
 }
 
 #thead1 {
-	text-align: justify;
+	Padding: 5px;
 	padding-left: 30px;
 	padding-bottom: 8px;
 }
 
 .table {
 	margin-bottom: 10px;
-	width: 950px;
+	width: 450px;
 	margin-left: 150px;
 }
 
@@ -161,7 +161,7 @@ td {
 }
 
 h2 {
-text-align:center;
+	text-align: center;
 }
 
 #head {
@@ -179,24 +179,27 @@ text-align:center;
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest	Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
-		
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -206,7 +209,7 @@ text-align:center;
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 		</ul>
 	</div>
-	<h2> Deposits</h2>
+	<h2>Deposits</h2>
 	<div class="container mt-4 mb-4">
 		<table class="table table-hover table-striped">
 			<caption>
@@ -216,12 +219,12 @@ text-align:center;
 						<th id="thead1">Deposit Number</th>
 						<th id="thead1">Account Number</th>
 						<th id="thead1">Deposit Type</th>
-						<th id="thead1">Amount</th>
-						<th id="thead1">MaturityDate</th>
+						<th id="thead1">Amount </th>
+						<th id="thead1">Maturity Date</th>
 						<th id="thead1">Rate Of Interest</th>
-						<th id="thead1">Tenure</th>
-						<th id="thead1">MaturityValue</th>
-						<th id="thead1">Status</th>
+						<th id="thead1">Tenure </th>
+						<th id="thead1">Maturity Value</th>
+						<th id="thead1">Status </th>
 
 					</tr>
 				</thead>
@@ -247,13 +250,11 @@ text-align:center;
 				</tbody>
 			</caption>
 		</table>
-		</div>
-		<br>
-		<br>
-		<div class="btn3">
-			<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
-			
-
-		</div>
+	</div>
+	<br>
+	<br>
+	<div class="btn3">
+		<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back </button></a>
+	</div>
 </body>
 </html>

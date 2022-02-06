@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -40,7 +41,7 @@ a {
 }
 
 .btn {
-	color: white;
+	color:white;
 	background-color: transparent;
 	border-color: transparent;
 	font-size: 15px;
@@ -174,20 +175,27 @@ h2 {
 	</h3>
 	<br>
 	<nav>
-		<a href="index.jsp"> Home</a> <a href="loans.jsp">Loans</a> <a
-			href="deposits.jsp">Deposits</a> <a href="interest.jsp">Interest
-			Rate</a> <a href="aboutUs.jsp">About us</a> <a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -209,11 +217,11 @@ h2 {
 				<thead>
 					<tr>
 						<th id="thead1">S.no</th>
-						<th id="thead1">Category</th>
-						<th id="thead1">CategoryType</th>
-						<th id="thead1">Description</th>
-						<th id="thead1">DescriptionId</th>
-						<th id="thead1">InterestRate</th>
+						<th id="thead1">Category </th>
+						<th id="thead1">Category Type</th>
+						<th id="thead1">Description </th>
+						<th id="thead1">DescriptionId </th>
+						<th id="thead1">Interest Rate</th>
 
 					</tr>
 				</thead>

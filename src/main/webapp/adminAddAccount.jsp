@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -157,18 +158,22 @@ td {
 	</h3>
 	<br />
 	<nav id="navbar">
-		    <a href="index.jsp" target="_self"> Home</a>
-		    <a href="loans.jsp" target="_self">Loan</a>
-		    <a href="deposits.jsp" target="_self">Deposit</a>
-		    <a href="interest.jsp" target="_self">Interest Rate</a>
-		    <a href="aboutUs.jsp" target="_self">About us</a>
-		    <a href="contactUs.jsp" target="_self">Contact Us</a>
-		    <a href="LogoutServlet" target="_self"><button class="btn">Log Out</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br />
 	<br />
 	<div class="sidebar">
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
 			<li><a href="ApproveLoans" target="_self">Approve Loans</a></li>
 			<li><a href="ApproveDeposit" target="_self">Approve Deposits</a></li>
@@ -216,7 +221,7 @@ td {
 							pattern="[0-9]{6}" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="dob">Enter Date of Birth</label></th>
+						<th id="thead1"><label for="date">Enter Date of Birth</label></th>
 						<td><input type="date" class="cls" name="date" id="date"
 							placeholder="dd-mm-yyyy" required /></td>
 					</tr>
@@ -261,7 +266,7 @@ td {
 			</table>
 			<br/>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
+				<button type="submit" class="btn2">Submit </button>
 			</div>
 			<br/> <br/>
 		</form>

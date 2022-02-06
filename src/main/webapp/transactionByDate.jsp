@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.time.LocalDate"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Transaction</title>
+<title>Transaction Details</title>
 <style>
 * {
 	margin: 0;
@@ -146,7 +147,7 @@ td {
 }
 
 h2 {
-text-align:center;
+	text-align: center;
 }
 
 #head {
@@ -164,19 +165,26 @@ text-align:center;
 	</h3>
 	<br>
 	<nav>
-		<a href="index.jsp"> Home</a> <a href="loans.jsp">Loans</a> <a
-			href="deposits.jsp">Deposits</a> <a href="interest.jsp">Interest
-			Rate</a> <a href="aboutUs.jsp">About us</a> <a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -189,24 +197,24 @@ text-align:center;
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
-	
 
-	<h2 >Transaction</h2>
+	<h1></h1>
+	<h2>Transaction History</h2>
 	<div class="box">
 
 		<form action="date" method="post">
 			<table>
 				<caption>
 					<tr>
-						<th id="thead1">Enter Date</th>
-						<td><input type="date" id="date"class="cls" name="date"
+						<th id="thead1"><label for="date">Enter Date</label></th>
+						<td><input type="date" id="date" class="cls" name="date"
 							max="${date}" required /></td>
 					</tr>
 				</caption>
 			</table>
 			<br> <br>
 			<div class="btn3">
-				<button type="Submit" class="btn2">Submit</button>
+				<button type="Submit" class="btn2">Submit </button>
 			</div>
 			<c:if test="${sessionScope.trandate!=null}">
 				<h4>${sessionScope.trandate}</h4>

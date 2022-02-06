@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Register</title>
+<title>Register Page</title>
 
 <style>
 .box{
@@ -75,26 +76,31 @@ font-size:20px;
 <div class="box">   
 <h3>USER</h3>
  <form  action="register" method="post"  >
-          <label for="Name" class="lab">Name</label> <br>
-                <input type="text"  class="textfield" name="uname" id="uname" pattern="[A-Za-z]{5,}" placeholder="Name"required  > <br>
+          <label for="uname" class="lab">Name </label> <br>
+                <input type="text"  class="textfield" name="uname" id="uname" 
+                  pattern="[A-Za-z]{5,}" placeholder="Name"required  > <br>
  
-                  <label for="email" class="lab">Email</label> <br>
-                 <input type="email"  class="textfield" name="emailId" id="emailId" pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" placeholder="Email" required >  <br>
+                  <label for="email" class="lab">Email </label> <br>
+                 <input type="email"  class="textfield" name="emailId" id="emailId" 
+                 pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" placeholder="Email" required >  <br>
  
-               <label for="pwd" class="lab">Create Password:</label> <br>
-               <input type="Password"  class="textfield" name="pwd" id="pwd" pattern="[A-Za-z0-9]{8,10}" placeholder="Password" 
+               <label for="pwd" class="lab">Create Password</label> <br>
+               <input type="Password"  class="textfield" name="pwd" id="pwd" 
+               pattern="[A-Za-z0-9]{8,10}" placeholder="Password" 
                title="(Minimum 8 characters includes lowercase,uppercase,numbers)" required  ><br> 
  
-               <label for="confirmPwd" class="lab" >Confirm Password:</label> <br>
-               <input type="Password"  class="textfield" name="Cpwd" id="Cpwd" required  placeholder="Confirm Password">  <br>
+               <label for="confirmPwd" class="lab" >Confirm Password</label> <br>
+               <input type="Password"  class="textfield" name="Cpwd" id="Cpwd"
+                required  placeholder="Confirm Password">  <br>
  
                 <label for="mobNo" class="lab" >Mobile Number</label> <br>
-                <input type="text"   class="textfield" name="mobNo" id="mobno" pattern="[6-9][0-9]{9}" required placeholder="MobileNumber" > <br><br>
+                <input type="text"   class="textfield" name="mobNo" id="mobno" 
+                pattern="[6-9][0-9]{9}" required placeholder="MobileNumber" > <br><br>
               
             
-             <button type="submit" class="btn1"  onclick="myfunction()">Submit</button>
-              <button type="reset" class="btn1" >Reset</button>
-              <a href="index.jsp"><button type="submit" class="btn1" >Back</button></a>
+             <button type="submit" class="btn1"  onclick="myfunction()">Submit </button>
+              <button type="reset" class="btn1" >Reset </button>
+              <a href="index.jsp"><button type="submit" class="btn1" >Back </button></a>
                
      
 </form>

@@ -77,7 +77,9 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	@Override
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
-		String validateQuery = "select  user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER=? and PIN_NUMBER=?";
+		System.out.println(accNumber);
+		System.out.println(pinNumber);
+		String validateQuery = "select user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER=? and PIN_NUMBER=?";
 
 		Connection con = null;
 		PreparedStatement state = null;
@@ -87,9 +89,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			con = ConnectionUtil.getDbConnection();
 			state = con.prepareStatement(validateQuery);
 			state.setLong(1, accNumber);
-			state.setInt(1, pinNumber);
+			state.setInt(2, pinNumber);
 			rs = state.executeQuery();
-
 			if (rs.next()) {
 				accDetail = new AccountDetails(rs.getInt("user_id"), rs.getLong("account_number"),
 						rs.getString("acc_type"), rs.getString("acc_holder_name"), rs.getString("address"),

@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"
-	import="java.util.ArrayList" import="java.time.LocalDate"
-	import="java.time.format.DateTimeFormatter"%>
-<%
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-%>
+	pageEncoding="ISO-8859-1"  %>
+  	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Transaction</title>
+<title>Transaction Date</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -181,22 +177,26 @@ text-align:center;
 	</h3>
 	<br>
 	<nav>
-		<a href="index.jsp"> Home</a>
-	    <a href="loans.jsp">Loans</a> 
-	    <a href="deposits.jsp">Deposits</a> 
-	    <a href="interest.jsp">Interest	Rate</a> 
-	    <a href="aboutUs.jsp">About us</a> 
-	    <a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 		
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -210,19 +210,19 @@ text-align:center;
 
 		</ul>
 	</div>
-
-	<h2 >Transaction</h2>
+ <h1></h1>
+	<h2 >Transaction History</h2>
 	<div class="container mt-4 mb-4">
 		<table class="table table-hover table-striped">
 			<caption>
 				<thead>
 					<tr>
 						<th id="thead1">S.no</th>
-						<th id="thead1">SenderAccountNumber</th>
-						<th id="thead1">Name</th>
-						<th id="thead1">ReceiveAccountNumber</th>
-						<th id="thead1">TransactionStatus</th>
-						<th id="thead1">Amount</th>
+						<th id="thead1">Sender Account Number</th>
+						<th id="thead1">Name </th>
+						<th id="thead1">Receiver Account Number</th>
+						<th id="thead1">Transaction Status</th>
+						<th id="thead1">Amount </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -244,7 +244,7 @@ text-align:center;
 		<br>
 		<br>
 		<div class="btn3">
-			<a href="transactionByDate.jsp"><button type="submit" class="btn2"></button>Back</a>
+			<a href="transactionByDate.jsp"><button type="submit" class="btn2"></button>Back </a>
 		</div>
 	</div>
 

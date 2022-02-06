@@ -71,6 +71,7 @@ public class AdminUseDaoimpl implements AdminUseDao {
 		} finally {
 			if (rs != null)
 				rs.close();
+
 			if (statement != null) {
 				statement.close();
 			}

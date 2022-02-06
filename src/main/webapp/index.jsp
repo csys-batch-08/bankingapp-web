@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	pageEncoding="ISO-8859-1" %>
+			<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 
-<title>index</title>
+<title>Index Page </title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -22,6 +23,7 @@ nav {
  	float: left;
 	background-color: rgba(9, 57, 87,.5);
 	padding: 8px;
+	width:100%;
 }
 nav a {
 	padding-right: 67px;
@@ -108,16 +110,18 @@ li, p {
 </head>
 <body>
 
-	 <br> <h3 id="head"><em>Dharshini Bank</em></h3> 
+	 <br> <h3 id="head"><em>Dharshini Bank</em></h3> <br>
 	 <nav>
-		  <a href="index.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+		  <fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="index.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
+		  <a href="register.jsp"><fmt:message key="Register"/></a>
+		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp"  ><fmt:message  key="ContactUS"/></a>
+	 </fmt:bundle>
 		   
 	 
 	</nav><br><br>
@@ -150,7 +154,7 @@ li, p {
 			 
 		</div>
 		<div class="butn">
-	 <a href="login.jsp"><button type="submit" class="buttn" >WELCOME</button></a>
+	 <a href="login.jsp"><button type="submit" class="buttn" >WELCOME </button></a>
 </div>
 </body>
 </html>

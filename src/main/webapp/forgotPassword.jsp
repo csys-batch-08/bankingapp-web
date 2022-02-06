@@ -67,7 +67,7 @@ body {
 	color: red;
 }
 </style>
-<title>Login</title>
+<title>Forgot Password</title>
 </head>
 <body>
 	<div class="img">
@@ -75,25 +75,27 @@ body {
 			<form action="ForgotPassword" method="post">
 
 				<h2>FORGOT PASSWORD</h2>
-				<br> <label for="userid" class="lab">EMAIL ID</label><br>
-				<input type="text" class="textfield" name="userId"
+				<br> 
+				<label for="userId" class="lab">EMAIL ID</label><br>
+				<input type="text" class="textfield" name="userId" id="userId"
 					pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}"
-					placeholder="EMAIL ID"><br>
-				<br> <label for="pass" class="lab">MOBILE NUMBER</label> <input
-					type="text" name="mobNo" class="textfield" pattern="[6-9][0-9]{9}"
-					placeholder="PASSWORD"> <label for="pass" class="lab">PASSWORD</label>
-				<input type="password" name="pwd" class="textfield"
-					pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD"> <label
-					for="pass" class="lab">CONFIRM PASSWORD</label> <input
-					type="password" name="cpwd" class="textfield"
+					placeholder="EMAIL ID"><br> <br> 
+				<label for="mobNo" class="lab">MOBILE NUMBER</label> 
+				<input type="text" name="mobNo" id="mobNo"
+				    class="textfield" pattern="[6-9][0-9]{9}"
+					placeholder="PASSWORD"> 
+				<label for="pwd" class="lab">PASSWORD </label> 
+				 <input type="password" name="pwd" id="pwd" class="textfield"
+					pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD"> 
+				<label	for="cpwd" class="lab">CONFIRM PASSWORD</label> 
+				<input	type="password" name="cpwd" id="cpwd" class="textfield"
 					pattern="[A-Za-z0-9]{8,10}" placeholder="PASSWORD"> <br>
 				<br>
 
 				<button type="submit" class="btn1">Log In</button>
 				<a href="login.jsp">
-					<button type="submit" class="btn1">Back</button>
-				</a><br>
-				<br>
+					<button type="submit" class="btn1">Back </button>
+				</a><br> <br>
 			</form>
 		</div>
 	</div>

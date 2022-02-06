@@ -80,6 +80,7 @@ nav {
  	float: left;
 	background-color: rgba(9, 57, 87,.5);
 	padding: 8px;
+	width:100%;
 }
 nav a {
 	padding-right: 73.9px;
@@ -171,7 +172,7 @@ text-align:center;}
 		  <a href="register.jsp"><fmt:message key="Register"/></a>
 		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
+		  <a href="contactUs.jsp"  ><fmt:message  key="ContactUS"/></a>
 	 </fmt:bundle>
 	</nav>
 	<br><br><br><br>

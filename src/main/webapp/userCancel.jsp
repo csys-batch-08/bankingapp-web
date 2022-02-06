@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>UserInactive</title>
+<title>User Inactive</title> 
 
 <style>
 * {
@@ -151,21 +152,25 @@ h2 {
 	</h3>
 	<br>
 	<nav>
-		<a href="index.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a> 
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve- Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -184,12 +189,12 @@ h2 {
 			<table>
 				<caption>
 					<tr>
-						<th id="thead1"><label for="accNum">Account Number</label></th>
+						<th id="thead1"><label for="accNo">Account Number</label></th>
 						<td><input type="text" class="cls" id="accNo" name="accNo" required
 							pattern="[0-9]{12,14}" /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="status">Status(active or inactive)</label></th>
+						<th id="thead1"><label for="stat">Status(active or inactive)</label></th>
 						<td><input type="text" class="cls" id="stat" name="stat" required /></td>
 					</tr>
 				</caption>
@@ -197,8 +202,8 @@ h2 {
 			<br>
 			<br>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
-				<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
+				<button type="submit" class="btn2">Submit </button>
+				<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back </button></a>
 				
 			</div>
 		</form>

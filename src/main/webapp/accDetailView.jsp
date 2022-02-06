@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.List"%>
+	pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -168,17 +168,18 @@ h3 {
 	</h3>
 	<br>
 	<nav>
-		<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="index.jsp"><fmt:message  key="Home"/></a>
-		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
-		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp"><fmt:message  key="Register"/></a>
-		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
-		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
-		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
- </fmt:bundle> 
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
@@ -256,7 +257,7 @@ h3 {
 		<div class="btn3">
 
 			<a href="customerDashBoard.jsp"><button type="submit" name="submit"
-					class="btn2">Back</button></a>
+					class="btn2">Back </button></a>
 
 		</div>
 	</div>

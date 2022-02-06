@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>viewUser</title>
+<title>view User</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -151,23 +152,25 @@ th {
 		<em> Dharshini Bank</em>
 	</h3>
 	<nav>
-		<a href="index.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a> 
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="adminDashBoard.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+		    <a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout"/></button></a>
+</fmt:bundle>
 	</nav>
 	<br>
 	<br>
 
 	<div class="sidebar">
 
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -190,10 +193,10 @@ th {
 				<thead>
 					<tr>
 						<th id="thead1">S.no</th>
-						<th id="thead1">UserLoginId</th>
-						<th id="thead1">UserName</th>
-						<th id="thead1">>Email</th>
-						<th id="thead1">MobileNumber</th>
+						<th id="thead1">User LoginId</th>
+						<th id="thead1">User Name</th>
+						<th id="thead1">Email </th>
+						<th id="thead1">Mobile Number</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -215,7 +218,7 @@ th {
 	<br>
 	<br>
 	<div class="btn3">
-		<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
+		<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back </button></a>
 
 	</div>
 

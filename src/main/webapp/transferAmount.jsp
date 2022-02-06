@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>Transaction</title>
+<title>Transfer Amount</title>
 
 <style>
 * {
@@ -167,14 +168,18 @@ td {
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest	Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="MyProfile">My Profile</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
@@ -182,9 +187,9 @@ td {
 
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -203,7 +208,7 @@ td {
 			<table>
 			<caption>
 				<tr>
-					<th id="thead1"><label for="name">Name</label></th>
+					<th id="thead1"><label for="uname">Name </label></th>
 					<td><input type="text" name="uname" id="uname" class="cls" required
 						pattern="[A-Za-z]{3,}" /></td>
 				</tr>
@@ -213,7 +218,7 @@ td {
 						pattern="[0-9]{12}" /></td>
 				</tr>
 				<tr>
-					<th id="thead1"><label for="amount">Amount</label></th>
+					<th id="thead1"><label for="amount">Amount </label></th>
 					<td><input type="text" name="amount" id="amount" pattern="[1-9][0-9]+"
 						title="Please Enter Valid Amount" class="cls" required></td>
 				</tr>
@@ -223,8 +228,8 @@ td {
 						pattern="[0-9]{4}" /></td>
 				</tr>
 				<tr>
-					<th id="thead1"><label for="receiveAccnum">Receiver Account Number</label></th>
-					<td><input type="text" name="RecAccNo" id="accNum" class="cls" required
+					<th id="thead1"><label for="RecAccNo">Receiver Account Number</label></th>
+					<td><input type="text" name="RecAccNo" id="RecAccNo" class="cls" required
 						pattern="[0-9]{12}" /></td>
 				</tr>
 			</caption>
@@ -232,8 +237,8 @@ td {
 			<br>
 			<br>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
-				<button type="reset" class="btn2">Reset</button>
+				<button type="submit" class="btn2">Submit </button>
+				<button type="reset" class="btn2">Reset </button>
 			</div>
 		</form>
 		<br>

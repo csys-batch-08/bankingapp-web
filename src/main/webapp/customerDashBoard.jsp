@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>User</title>
+<title>Customer DashBoard</title>
 <style>
 * {
 	margin: 0;
@@ -147,22 +148,25 @@ body {
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest	Rate</a> 
-		<a href="aboutUs.jsp">About us</a> <a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a>
-		<a href="LogoutServlet"><button class="btn"></button>Logout</a>
+		<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="index.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+		  <a href="MyProfile">My Profile</a>
+		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout"/></button></a>
+ </fmt:bundle> 
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -182,19 +186,19 @@ body {
 		<div id="image">
 			<div class="slideshow-container">
 				<div class="mySlides fade">
-					<img src="images/fd1.jpg" style="width: 40%" alt="couldn't load image">
+					<img src="images/fd1.jpg" style="width: 40% ;height:40%;" alt="couldn't load image">
 				</div>
 				<div class="mySlides fade">
-					<img src="images/rd1.jpeg" style="width: 40%" alt="couldn't load image">
+					<img src="images/rd1.jpeg" style="width: 40% ;height:40%;" alt="couldn't load image">
 				</div>
 				<div class="mySlides fade">
-					<img src="images/pl1.jpg" style="width: 40%" alt="couldn't load image">
+					<img src="images/pl1.jpg" style="width: 40% ;height:40%;"  alt="couldn't load image">
 				</div>
 				<div class="mySlides fade">
-					<img src="images/pl3.jpg" style="width: 40%" alt="couldn't load image">
+					<img src="images/pl3.jpg" style="width: 40% ;height:40%;"  alt="couldn't load image">
 				</div>
 				<div class="mySlides fade">
-					<img src="images/hl1.jpg" style="width: 40%" alt="couldn't load image">
+					<img src="images/hl1.jpg" style="width: 40% ;height:40%;"  alt="couldn't load image">
 				</div>
 			</div>
 		</div>

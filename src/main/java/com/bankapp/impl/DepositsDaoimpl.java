@@ -65,6 +65,7 @@ public class DepositsDaoimpl implements DepositsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(querySelect);
+			statement.setString(1, email);
 			rs = statement.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
@@ -329,8 +330,9 @@ public class DepositsDaoimpl implements DepositsDao {
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
-			// pst.n
-			rs = pst.executeQuery(query);
+			pst.setLong(1, accNo);
+			pst.setLong(2, accNo);
+			rs = pst.executeQuery();
 
 			while (rs.next()) {
 				Deposits dep = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),

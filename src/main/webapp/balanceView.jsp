@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -147,14 +148,16 @@ text-align:center;
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="customerDashBoard.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+		  <a href="MyProfile">My Profile</a>
+		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout"/></button></a>
+ </fmt:bundle> 
 		
 	</nav>
 	<br>
@@ -162,9 +165,9 @@ text-align:center;
 	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -182,7 +185,7 @@ text-align:center;
 		<br>
 		<br>
 		<div class="btn3">
-			<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
+			<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back </button></a>
 			
 		</div>
 	</div>

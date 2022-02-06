@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-%>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
@@ -161,21 +159,25 @@ text-Align:center;
 	</h3>
 	<br />
 	<nav>
-		<a href="index.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a> 
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br />
 	<br />
 	<div class="sidebar">
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -194,7 +196,7 @@ text-Align:center;
 			<table>
 				<caption>
 					<tr>
-						<th id="tablehead"><label for="accountNumber">Account
+						<th id="tablehead"><label for="acc">Account
 								Number</label></th>
 						<td><input type="text" name="acc" id="acc" class="cls"
 							pattern="[0-9]{12,16}" required /></td>
@@ -205,7 +207,7 @@ text-Align:center;
 							pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}" required /></td>
 					</tr>
 					<tr>
-						<th id="tablehead"><label for="update email">Enter
+						<th id="tablehead"><label for="email1">Enter
 								Email to update</label></th>
 						<td><input type="text" name="email1" id="email1" class="cls"
 							pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}" required /></td>
@@ -213,7 +215,7 @@ text-Align:center;
 					<tr>
 						<th id="tablehead"><label for="mobno">Enter Mobile
 								number to update</label></th>
-						<td><input type="text" name="mobno" id="mobNo" class="cls"
+						<td><input type="text" name="mobno" id="mobno" class="cls"
 							pattern="[6-9][0-9]{9}" required /></td>
 					</tr>
 				</caption>
@@ -221,8 +223,8 @@ text-Align:center;
 			<br>
 			<br>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
-				<button type="reset" class="btn2">Reset</button>
+				<button type="submit" class="btn2">Submit </button>
+				<button type="reset" class="btn2">Reset </button>
 				<br>
 				<br>
 			</div>
@@ -231,5 +233,6 @@ text-Align:center;
 			</c:if>
 			<c:remove var="msg" scope="session" />
 		</form>
+	</div>	
 </body>
 </html>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -139,6 +139,10 @@ td {
 	padding-bottom: 8px;
 }
 
+h2 {
+	text-align: center;
+}
+
 #transhead {
 	color: red;
 }
@@ -158,15 +162,19 @@ td {
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
-		
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
+
 	</nav>
 	<br>
 	<br>
@@ -174,9 +182,9 @@ td {
 
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -187,29 +195,28 @@ td {
 
 		</ul>
 	</div>
- 
+
 	<h2>Transaction Summary</h2>
 	<div class="box">
 		<form action="transac" method="post">
 			<table>
 				<caption>
 					<tr>
-						<th id="thead1"><label for="accNo"> Account Number</label></th>
-						<td><input type="text" class="cls" name="accno" id="accNum" required
-							pattern="[0-9]{12}" /></td>
+						<th id="thead1"><label for="accno"> Account Number</label></th>
+						<td><input type="text" class="cls" name="accno" id="accno"
+							required pattern="[0-9]{12}" /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="pin">Pin Number</label></th>
-						<td><input type="password" class="cls" id="pin" name="pin" required
-							pattern="[0-9]{4}" /></td>
+						<td><input type="password" class="cls" id="pin" name="pin"
+							required pattern="[0-9]{4}" /></td>
 					</tr>
 				</caption>
 			</table>
-			<br>
-			<br>
+			<br> <br>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
-				<button type="reset" class="btn2">Reset</button>
+				<button type="submit" class="btn2">Submit </button>
+				<button type="reset" class="btn2">Reset </button>
 			</div>
 
 		</form>

@@ -193,7 +193,7 @@ padding:1px;}
 	<br/>
 	<br/>
 	<div class="sidebar">
-		<header>Admin Account</header>
+		<header>My Account</header>
 		<ul>
 			<li><a href="ApproveLoans">Approve Loans</a></li>
 			<li><a href="ApproveDeposit">Approve Deposits</a></li>

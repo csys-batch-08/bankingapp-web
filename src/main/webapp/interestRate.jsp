@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -165,28 +166,32 @@ td {
 </head>
 <body>
 	<br>
-	<h2 id="head">
+	<h3 id="head">
 		<em> Dharshini Bank</em>
-	</h2>
+	</h3>
 	<br>
 	<nav>
-		<a href="index.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a> 
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 		
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 
-		<header>ADMIN</header>
+		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -207,21 +212,22 @@ td {
 			<table>
 			  
 				<tr>
-					<th id="thead1"><label for="description">Enter DescriptionId</label></th>
-					<td><input type="text" name="desc" class="cls" required /></td>
+					<th id="thead1"><label for="desc">Enter DescriptionId</label></th>
+					<td><input type="text" name="desc"  id="desc"
+					 class="cls" required /></td>
 				</tr>
 
 				<tr>
-					<th id="thead1"><label for="interestRate">Enter InterestRate</label></th>
-					<td><input type="text" class="cls" name="rate" required /></td>
+					<th id="thead1"><label for="rate">Enter InterestRate</label></th>
+					<td><input type="text" class="cls" name="rate" id="rate" required /></td>
 				</tr>
 			</table>
 			<br>
 
 			<div class="btn3">
 
-				<button type="submit" class="btn2">Submit</button>
-				<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
+				<button type="submit" class="btn2">Submit </button>
+				<a href="adminDashBoard.jsp"><button type="submit" class="btn2">Back </button></a>
 				
 			</div>
 

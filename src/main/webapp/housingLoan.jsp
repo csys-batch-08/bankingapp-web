@@ -177,17 +177,18 @@ h2 {
 	</h3>
 	<br>
 	<nav>
-			<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="customerDashBoard.jsp"><fmt:message  key="Home"/></a>
-		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
-		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp"><fmt:message  key="Register"/></a>
-		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
-		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
-		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
- </fmt:bundle>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
@@ -214,15 +215,16 @@ h2 {
 	<div class="box">
 		<form action="House" method="post">
 			<table>
-			 
-				 <tr>
-					<th id="thead1"><label for="lname">Name</label></th>
+
+				<tr>
+					<th id="thead1"><label for="lname">Name </label></th>
 					<td><input type="text" class="cls" name="lname" id="lname"
 						pattern="[a-zA-z]{3,}" required /></td>
 				</tr>
 				<tr>
-					 <th id="thead1"><label for="dob">Date Of Birth</label></th>
-					<td><input type="date" class="cls" name="dob"  id="dob" required /></td>
+					<th id="thead1"><label for="dob">Date Of Birth</label></th>
+					<td><input type="date" class="cls" name="dob" id="dob"
+						required /></td>
 				</tr>
 				<tr>
 					<th id="thead1"><label for="address">Address </label></th>
@@ -231,28 +233,31 @@ h2 {
 				</tr>
 				<tr>
 					<th id="thead1"><label for="email">Email </label></th>
-					<td><input type="email" class="cls" name="email" id="email" required /></td>
+					<td><input type="email" class="cls" name="email" id="email"
+						required /></td>
 				</tr>
 				<tr>
-					<th id="thead1"><label for="mobile">Mobile Number</label></th>
+					<th id="thead1"><label for="mobno">Mobile Number</label></th>
 					<td><input type="text" class="cls" name="mobno" id="mobno"
 						pattern="[6-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th id="thead1"><label for="loanAmount">Loan Amount</label></th>
-					<td><input type="text" name="amountDeposit" class="cls" id="amount"
-						pattern="[1-9][0-9]+" required/></td>
+					<th id="thead1"><label for="amountDeposit">Loan Amount</label></th>
+					<td><input type="text" name="amountDeposit" class="cls"
+						id="amountDeposit" pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
 					<th id="thead1"><label for="tenure">Tenure </label></th>
-					<td><input type="text" name="period" id="period" pattern="[1-9]+"
-						class="cls" placeholder="TENURE IN YEARS" required /></td>
+					<td><input type="text" name="period" id="period"
+						pattern="[1-9]+" class="cls" placeholder="TENURE IN YEARS"
+						required /></td>
 				</tr>
 				<tr>
 					<th id="thead1"><label for="pan">Pan number</label></th>
-					<td><input type="text" name="pan" id="pan" class="cls" required /></td>
+					<td><input type="text" name="pan" id="pan" class="cls"
+						required /></td>
 				</tr>
-				 
+
 			</table>
 			<br> <br>
 			<div class="btn3">
@@ -275,7 +280,7 @@ h2 {
 			<h4>${sessionScope.Houloan}</h4>
 		</c:if>
 		<c:remove var="Houloan" scope="session" />
-		 
+
 	</div>
 
 </body>

@@ -117,7 +117,7 @@ td {
 	padding-left: 15px;
 }
 
-#thead1  {
+#thead1 {
 	padding-left: 10px;
 	font-size: 17px;
 }
@@ -173,24 +173,27 @@ body {
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest	Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
-		
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="interest.jsp">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="MyProfile">My Profile</a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
 	<div class="sidebar">
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -210,14 +213,14 @@ body {
 				<thead>
 					<tr>
 						<th id="thead1">S.no</th>
-						<th id="thead1">AccountNumber</th>
-						<th id="thead1">Name</th>
+						<th id="thead1">Account Number</th>
+						<th id="thead1">Name </th>
 						<th id="thead1">Loan Type</th>
-						<th id="thead1">Amount</th>
+						<th id="thead1">Amount </th>
 						<th id="thead1">Rate of Interest</th>
-						<th id="thead1">Tenure</th>
+						<th id="thead1">Tenure </th>
 						<th id="thead1">Monthly Payment</th>
-						<th id="thead1">Status</th>
+						<th id="thead1">Status </th>
 
 					</tr>
 				</thead>
@@ -241,8 +244,9 @@ body {
 		</table>
 		<br> <br> <br>
 		<div class="btn3">
-			<a href="customerDashBoard.jsp"><button type="submit" class="btn2">Back</button></a>
-			
+			<a href="customerDashBoard.jsp"><button type="submit"
+					class="btn2">Back </button></a>
+
 		</div>
 	</div>
 

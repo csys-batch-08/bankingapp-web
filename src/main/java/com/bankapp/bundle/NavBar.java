@@ -9,6 +9,6 @@ public class NavBar extends ListResourceBundle {
 	}
 
 	static final Object[][] contents = { { "nav.Home", "Home" }, { "nav.Loans", "Loans" },
-			{ "nav.Deposits", "Deposits" }, { "nav.login", "login" }, { "nav.Register", "Register" },
-			{ "nav.AboutUs", "About Us" }, { "nav.Contact Us", "Contact Us" }, { "nav.Logout", "LogOut" } };
+			{ "nav.Deposits", "Deposits" }, { "nav.Login", "Login" }, { "nav.Register", "Register" },
+			{ "nav.AboutUs", "About Us" }, { "nav.ContactUS", "ContactUS" }, { "nav.Logout", "Logout" } };
 }

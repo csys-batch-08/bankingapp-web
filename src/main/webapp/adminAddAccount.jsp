@@ -157,31 +157,31 @@ td {
 	</h3>
 	<br />
 	<nav id="navbar">
-		    <a href="index.jsp"> Home</a>
-		    <a href="loans.jsp">Loans</a>
-		    <a href="deposits.jsp">Deposits</a>
-		    <a href="interest.jsp">Interest Rate</a>
-		    <a href="aboutUs.jsp">About us</a>
-		    <a href="contactUs.jsp">ContactUs</a>
-		    <a href="LogoutServlet"><button class="btn">Logout</button></a>
+		    <a href="index.jsp" target="_self"> Home</a>
+		    <a href="loans.jsp" target="_self">Loans</a>
+		    <a href="deposits.jsp" target="_self">Deposits</a>
+		    <a href="interest.jsp" target="_self">Interest Rate</a>
+		    <a href="aboutUs.jsp" target="_self">About us</a>
+		    <a href="contactUs.jsp" target="_self">ContactUs</a>
+		    <a href="LogoutServlet" target="_self"><button class="btn">Logout</button></a>
 	</nav>
 	<br />
 	<br />
 	<div class="sidebar">
 		<header>ADMIN</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
-			<li><a href="InterestRate">Rate Of Interest</a></li>
-			<li><a href="ViewAllUser">View All Users</a></li>
-			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
-			<li><a href="transactionByAccount.jsp">Transaction by
+			<li><a href="ApproveLoans" target="_self">Approve Loans</a></li>
+			<li><a href="ApproveDeposit" target="_self">Approve Deposits</a></li>
+			<li><a href="InterestRate" target="_self">Rate Of Interest</a></li>
+			<li><a href="ViewAllUser" target="_self">View All Users</a></li>
+			<li><a href="ViewAllAccount" target="_self">View All Account</a></li>
+			<li><a href="transactionByDate.jsp" target="_self">Transaction by Date</a></li>
+			<li><a href="transactionByAccount.jsp" target="_self">Transaction by
 					Account</a></li>
-			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account
+			<li><a href="adminAddAccount.jsp" target="_self">Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp" target="_self">Update Account
 					Details </a></li>
-			<li><a href="userCancel.jsp">Cancel Account</a></li>
+			<li><a href="userCancel.jsp" target="_self">Cancel Account</a></li>
 		</ul>
 	</div>
 	<h2>Add Account</h2>
@@ -192,69 +192,69 @@ td {
 				 <caption>
 					<tr>
 						<th id="thead1"><label for="accountType">Enter Account Type</label></th>
-						<td><input type="text" class="cls" name="type" required /></td>
+						<td><input type="text" class="cls" name="type" id="type" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="accountHoldName">Enter Account Holder Name</label></th>
-						<td><input type="text" class="cls" name="aname"
+						<td><input type="text" class="cls"  id="aname" name="aname"
 							pattern="[A-Za-z]{5,}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="address">Enter Address</label></th>
-						<td><input type="text" class="cls" name="address"
+						<td><input type="text" class="cls" name="address" id="address"
 							pattern="[A-Za-z0-9]{5,}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="city">Enter City</label></th>
-						<td><input type="text" name="city" class="cls"
+						<td><input type="text" name="city" class="cls" id="city"
 							pattern="[A-Za-z]{3,}" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="pincode">Enter Pincode</label></th>
-						<td><input type="text" class="cls" name="pincode"
+						<th id="thead1"><label for="pincode">Enter PinCode</label></th>
+						<td><input type="text" class="cls" name="pincode" id="pinCode"
 							pattern="[0-9]{6}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="dob">Enter Date of Birth</label></th>
-						<td><input type="date" class="cls" name="date"
+						<td><input type="date" class="cls" name="date" id="date"
 							placeholder="dd-mm-yyyy" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="mobile">Enter Mobile Number</label></th>
-						<td><input type="text" class="cls" name="mobno"
+						<td><input type="text" class="cls" name="mobno" id="mobno"
 							pattern="[6-9][0-9]{9}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="email">Enter Email</label></th>
-						<td><input type="email" class="cls" name="email"
+						<td><input type="email" class="cls" name="email" id="email"
 							pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="ifscCode">Enter Ifsc code</label></th>
-						<td><input type="text" class="cls" name="code" required /></td>
+						<th id="thead1"><label for="ifscCode">Enter IfscCode</label></th>
+						<td><input type="text" class="cls" name="code" id="code" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="branchName">Enter Branch Name</label></th>
-						<td><input type="text" class="cls" name="branch"
+						<td><input type="text" class="cls" name="branch" id="branch"
 							pattern="[A-Za-z]{3,}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="balance">Enter Balance</label></th>
-						<td><input type="text" class="cls" name="balance" required /></td>
+						<td><input type="text" class="cls" name="balance"  id="balance" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="pin">Enter Pin Number</label></th>
-						<td><input type="text" class="cls" name="pin"
+						<td><input type="text" class="cls" name="pin" id="pin"
 							pattern="[0-9]{4}" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="status">Enter Status</label></th>
-						<td><input type="text" class="cls" name="status"
+						<td><input type="text" class="cls" name="status" id="status"
 							placeholder="ACTIVE OR INACTIVE" required /></td>
 					</tr>
 					<tr>
 						<th id="thead1"><label for="pan">Enter Pan Number</label></th>
-						<td><input type="text" class="cls" name="pan" required /></td>
+						<td><input type="text" class="cls" name="pan"  id="pan" required /></td>
 					</tr>
 				</caption>
 			</table>

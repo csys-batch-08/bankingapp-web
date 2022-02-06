@@ -16,7 +16,6 @@ import com.bankapp.util.ConnectionUtil;
 
 public class TransactionDaoimpl implements TransactionDao {
 
-	@SuppressWarnings("resource")
 	@Override
 	public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO)
 			throws SQLException {
@@ -173,8 +172,9 @@ public class TransactionDaoimpl implements TransactionDao {
 			st.setDate(1, java.sql.Date.valueOf(date));
 			rs = st.executeQuery();
 			while (rs.next()) {
-				Transaction trans = new Transaction(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getLong(4),
-						rs.getDouble(5), 0, rs.getString(6), rs.getDate(7).toLocalDate());
+				Transaction trans = new Transaction(rs.getLong("Sender_account_number"), rs.getString("name"),
+						rs.getString("Transaction_type"), rs.getLong("Receiver_account_number"), rs.getDouble("amount"),
+						0, rs.getString("transaction_status"), rs.getDate("transaction_date").toLocalDate());
 				list.add(trans);
 			}
 
@@ -195,26 +195,29 @@ public class TransactionDaoimpl implements TransactionDao {
 
 	@Override
 	public List<Transaction> getByAccountNumberAdmin(long accNo) throws SQLException {
-		Connection con = ConnectionUtil.getDbConnection();
-		List<Transaction> list = new ArrayList<Transaction>();
+		Connection con = null;
+		List<Transaction> list = new ArrayList<>();
+
 		ResultSet rs = null;
-		Statement pst = null;
-		String query = " select * from transaction  where  Sender_Account_number='" + accNo
-				+ "' order by transaction_date desc  ";
+		PreparedStatement pst = null;
+		String query = " select sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status,transaction_date from transaction  where  Sender_Account_number=? order by transaction_date desc  ";
 		try {
-			pst = con.createStatement();
-			rs = pst.executeQuery(query);
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(query);
+			pst.setLong(1, accNo);
+			rs = pst.executeQuery();
 
 			while (rs.next()) {
 
-				Transaction transac = new Transaction(rs.getLong(2), rs.getString(3), rs.getString(4), rs.getLong(5),
-						rs.getDouble(6), 0, rs.getString(7), rs.getDate(9).toLocalDate());
+				Transaction transac = new Transaction(rs.getLong("sender_account_number"), rs.getString("name"),
+						rs.getString("transaction_type"), rs.getLong("receiver_account_number"), rs.getDouble("amount"),
+						rs.getDouble("balance"), rs.getString("transaction_status"),
+						rs.getDate("transaction_date").toLocalDate());
 				list.add(transac);
 			}
-			// System.out.println(list);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} finally {
 			if (rs != null)
@@ -228,39 +231,51 @@ public class TransactionDaoimpl implements TransactionDao {
 	}
 
 	@Override
-	public List<Transaction> getByAccountNumberUser(long accNo, int pin) {
+	public List<Transaction> getByAccountNumberUser(long accNo, int pin) throws SQLException {
 		Connection con = ConnectionUtil.getDbConnection();
-		List<Transaction> list = new ArrayList<Transaction>();
-
+		List<Transaction> list = new ArrayList<>();
+		PreparedStatement pst = null;
 		ResultSet rs = null;
-		String query = "select * from transaction where  Sender_Account_number='" + accNo
-				+ "' order by transaction_date desc ";
+		String query = "select  Sender_account_number,name,Transaction_type,Receiver_account_number,amount,transaction_status,transaction_date from transaction where  Sender_Account_number=? and pin_number=? order by transaction_date desc ";
 		try {
-			Statement pst = con.createStatement();
-			rs = pst.executeQuery(query);
+			pst = con.prepareStatement(query);
+			pst.setLong(1, accNo);
+			pst.setInt(2, pin);
+			rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Transaction trans = new Transaction(rs.getLong(2), rs.getString(3), rs.getString(4), rs.getLong(5),
-						rs.getDouble(6), 0, rs.getString(7), rs.getDate(9).toLocalDate());
+				Transaction trans = new Transaction(rs.getLong("Sender_account_number"), rs.getString("name"),
+						rs.getString("Transaction_type"), rs.getLong("Receiver_account_number"), rs.getDouble("amount"),
+						rs.getDouble("balance"), rs.getString("transaction_status"),
+						rs.getDate("transaction_date").toLocalDate());
 				list.add(trans);
 			}
-			// System.out.println(list);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pst != null)
+				pst.close();
+			if (con != null)
+				con.close();
 		}
 
 		return list;
 	}
 
-	public LocalDate getDate() {
+	public LocalDate getDate() throws SQLException {
 		String query = "select trunc(Sysdate) from dual";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		LocalDate date = null;
+		ResultSet rs = null;
+		Statement st = null;
 		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			con = ConnectionUtil.getDbConnection();
+			st = con.createStatement();
+			rs = st.executeQuery(query);
 
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
@@ -269,6 +284,13 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
 		}
 		return date;
 	}

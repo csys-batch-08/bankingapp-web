@@ -50,7 +50,7 @@ public class DepositsDaoimpl implements DepositsDao {
 	public long fixedDeposit(String type, double amount, double rateOfInterest, double maturityValue, int period,
 			String status, String pan, String email) throws SQLException {
 		Connection con = null;
-		boolean flag = false;
+
 		String querySelect = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='SavingsAccount'";
 		String query = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER,Total_amount) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		String selQuery = "select deposit_number from deposits where ACCOUNT_NUMBER=? and amount=?";
@@ -91,7 +91,7 @@ public class DepositsDaoimpl implements DepositsDao {
 				depNumber = resSet.getLong("deposit_number");
 
 			}
-			flag = true;
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -119,7 +119,7 @@ public class DepositsDaoimpl implements DepositsDao {
 		String query = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='SavingsAccount'";
 		String queryInsert = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER,Total_amount) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		String selQuery = "select deposit_number from deposits where ACCOUNT_NUMBER=? and amount=?";
-		boolean flag = false;
+
 		LocalDate sysDate = LocalDate.now();
 		Date mdate = Date.valueOf(sysDate.plusYears(period));
 		long accNumber = 0;
@@ -161,7 +161,7 @@ public class DepositsDaoimpl implements DepositsDao {
 				deprdNumber = rs1.getLong("deposit_number");
 
 			}
-			flag = true;
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -181,7 +181,7 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public List<Deposits> viewdeposit() throws SQLException {
 		List<Deposits> loans = new ArrayList<>();
-		String view1 = "select * from Deposits  ";
+		String view1 = " select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amountfrom Deposits";
 		Connection con = null;
 		Statement statement = null;
 		try {
@@ -189,10 +189,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(view1);
 			while (rs.next()) {
-				Deposits loan = new Deposits(rs.getLong(1), rs.getLong(2), rs.getInt(3), rs.getString(4),
-						rs.getDouble(5), rs.getDate(6).toLocalDate(), rs.getInt(7), rs.getDouble(8),
-						rs.getDate(9).toLocalDate(), rs.getDouble(10), rs.getString(11), rs.getString(12), null,
-						rs.getDouble(14));
+				Deposits loan = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
+						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
+						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
+						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
+						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
+						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
 				loans.add(loan);
 			}
 		} catch (SQLException e) {
@@ -216,20 +218,23 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	public boolean viewOnedeposit(long accnum) throws SQLException {
 		List<Deposits> loans = new ArrayList<>();
-		String view1 = "select * from Deposits  where account_number='" + accnum + "' or deposit_number='" + accnum
-				+ "'";
+		String view1 = "select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits  where account_number=? or deposit_number= ?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
 		boolean flag = false;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(view1);
+			statement = con.prepareStatement(view1);
+			statement.setLong(1, accnum);
+			statement.setLong(2, accnum);
+			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
-				Deposits loan = new Deposits(rs.getLong(1), rs.getLong(2), rs.getInt(3), rs.getString(4),
-						rs.getDouble(5), rs.getDate(6).toLocalDate(), rs.getInt(7), rs.getDouble(8),
-						rs.getDate(9).toLocalDate(), rs.getDouble(10), rs.getString(11), rs.getString(12),
-						rs.getDate(13).toLocalDate(), rs.getDouble(14));
+				Deposits loan = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
+						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
+						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
+						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
+						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
+						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
 				loans.add(loan);
 				flag = true;
 			}
@@ -251,26 +256,26 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public boolean updateStatus(long depnum, String status) throws SQLException {
 		String query = "select sysdate from dual ";
-		String query1 = "select tenure_in_years from deposits where Deposit_number='" + depnum + "'";
+		String showQuery = "select tenure_in_years from deposits where Deposit_number='" + depnum + "'";
 		String que = "UPDATE DEPOSITS SET DEPOSIT_STATUS=?,maturity_date=? , Approved_date=? WHERE deposit_number=?";
-		String query2 = "select account_number from deposits where deposit_number=?";
+		String selectQuery = "select account_number from deposits where deposit_number=?";
 		String updateQuery = "Update account_details set balance=(select balance from account_details where account_number=?)-(select amount from deposits where deposit_number=?) where account_number=?";
 		Connection con = null;
 		int period = 0;
 		PreparedStatement pst = null;
+		Statement st = null;
 		LocalDate date = null;
 		ResultSet rs = null;
 		long accNum = 0;
 		boolean flag = false;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			Statement st = con.createStatement();
+			st = con.createStatement();
 			rs = st.executeQuery(query);
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
 			}
-			Statement st1 = con.createStatement();
-			ResultSet rs1 = st1.executeQuery(query1);
+			ResultSet rs1 = st.executeQuery(showQuery);
 			if (rs1.next()) {
 				period = rs1.getInt(1);
 
@@ -288,7 +293,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (rows > 0) {
 				flag = true;
 			}
-			pst = con.prepareStatement(query2);
+			pst = con.prepareStatement(selectQuery);
 			pst.setLong(1, depnum);
 			ResultSet reSet = pst.executeQuery();
 			if (reSet.next()) {
@@ -317,20 +322,23 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public List<Deposits> viewStatusUser(long accNo) throws SQLException {
 		List<Deposits> list = new ArrayList<>();
-		String query = "select * from Deposits  where account_number=? or deposit_number=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		String query = "select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits  where account_number=? or deposit_number=?";
+		Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pst = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			// pst.n
 			rs = pst.executeQuery(query);
 
 			while (rs.next()) {
-				Deposits dep = new Deposits(rs.getLong(1), rs.getLong(2), rs.getInt(3), rs.getString(4),
-						rs.getDouble(5), rs.getDate(6).toLocalDate(), rs.getInt(7), rs.getDouble(8),
-						rs.getDate(9).toLocalDate(), rs.getDouble(10), rs.getString(11), rs.getString(12),
-						rs.getDate(13).toLocalDate(), rs.getDouble(14));
+				Deposits dep = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
+						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
+						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
+						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
+						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
+						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
 				list.add(dep);
 			}
 		} catch (SQLException e) {
@@ -350,14 +358,17 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	}
 
-	public double checkBalanceAdmin(long depnum) {
-		Connection con = ConnectionUtil.getDbConnection();
+	public double checkBalanceAdmin(long depnum) throws SQLException {
+
 		String query = "select account_number from deposits where deposit_number=?";
-		String query1 = "select BALANCE from account_details where   account_number=? ";
-		PreparedStatement pst;
+		String selectQuery = "select BALANCE from account_details where   account_number=? ";
+		PreparedStatement pst = null;
+		Connection con = null;
+		ResultSet rs = null;
 		long accountNum = 0;
 		double balance = 0;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			pst.setLong(1, depnum);
 			ResultSet rs1 = pst.executeQuery();
@@ -365,27 +376,37 @@ public class DepositsDaoimpl implements DepositsDao {
 				accountNum = rs1.getLong("account_number");
 			}
 
-			pst = con.prepareStatement(query1);
+			pst = con.prepareStatement(selectQuery);
 			pst.setLong(1, accountNum);
 
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			if (rs.next()) {
 				balance = rs.getDouble("balance");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (pst != null) {
+				pst.close();
+			}
+			if (rs != null)
+				rs.close();
+			if (con != null) {
+				con.close();
+			}
 		}
 		return balance;
 	}
 
 	public double checkAmountAdmin(long depositNumber) {
-		Connection con = ConnectionUtil.getDbConnection();
-		String query1 = "select amount from deposits where deposit_number=?";
-		PreparedStatement pst;
+
+		String query = "select amount from deposits where deposit_number=?";
+		PreparedStatement pst = null;
+		Connection con = null;
 		double amount = 0;
 		try {
-
-			pst = con.prepareStatement(query1);
+			con = ConnectionUtil.getDbConnection();
+			pst = con.prepareStatement(query);
 			pst.setLong(1, depositNumber);
 
 			ResultSet rs = pst.executeQuery();

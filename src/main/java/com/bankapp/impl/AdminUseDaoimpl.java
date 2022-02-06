@@ -84,13 +84,14 @@ public class AdminUseDaoimpl implements AdminUseDao {
 
 	public List<AdminUse> interestRate() throws SQLException {
 		List<AdminUse> list = new ArrayList<>();
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 
 		String validateQuery = "select category_name,category_type,description,description_id,interest_rate  from admin_use order by description_id";
 		ResultSet rs = null;
 		Statement statement = null;
 		AdminUse adminuse = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
 			rs = statement.executeQuery(validateQuery);
 
@@ -111,7 +112,7 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			if (statement != null) {
 				statement.close();
 			}
-			if (true) {
+			if (con != null) {
 				con.close();
 			}
 		}

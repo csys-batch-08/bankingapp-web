@@ -203,27 +203,27 @@ h3 {
 			<caption>
 				<c:forEach items="${AccountDetail}" var="AccountDetails">
 					<tr>
-						<th id="thead1"><label for="accountType">AccountType</label></th>
+						<th id="thead1"><label for="accountType">Account Type</label></th>
 						<td>${AccountDetails.accountType}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="accountHolderName">AccountHolderName</label></th>
+						<th id="thead1"><label for="accountHolderName">Account Holder Name</label></th>
 						<td>${AccountDetails.accountHolderName}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="address">Address</label></th>
+						<th id="thead1"><label for="address">Address </label></th>
 						<td>${AccountDetails.address}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="city">City</label></th>
+						<th id="thead1"><label for="city">City </label></th>
 						<td>${AccountDetails.city}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="pinCode">PinCode</label></th>
+						<th id="thead1"><label for="pinCode">Pin Code</label></th>
 						<td>${AccountDetails.pincode}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="dob">DOB</label></th>
+						<th id="thead1"><label for="dob">Date Of Birth</label></th>
 						<fmt:parseDate value="${AccountDetails.dob}" pattern="yyyy-MM-dd"
 							var="dob" type="date" />
 						<td><fmt:formatDate value="${dob}" pattern="dd-MM-yyyy" /></td>
@@ -233,7 +233,7 @@ h3 {
 						<td>${AccountDetails.mobileNumber}</td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="email">Email</label></th>
+						<th id="thead1"><label for="email">Email Id</label></th>
 						<td>${AccountDetails. email}</td>
 					</tr>
 					<tr>

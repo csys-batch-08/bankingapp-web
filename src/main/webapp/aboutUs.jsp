@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -155,22 +156,29 @@ text-align:center;}
   color:rgba(243, 31, 119, 0.7);
   font-size:25px;
  }
+ .imgStyle{
+ width:60%;
+ height:60%;
+ }
 </style>
 </head>
 <body>
 
 	 <br> <br> <h3 id="head"><em>Dharshini Bank</em></h3> <br>
 	<nav>
-		 <a href="index.jsp"> Home</a>
-		  <a href="loans.jsp">Loans</a>
-		  <a href="deposits.jsp">Deposits</a> 
+	<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="index.jsp">Home</a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp">Register</a>
-		  <a href="login.jsp">Login</a>
-		  <a href="aboutUs.jsp">About us</a>
-		  <a href="contactUs.jsp" class="set1">ContactUs</a>
+		  <a href="register.jsp"><fmt:message  key="Register"/></a>
+		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
+		  <a href="aboutUs.jsp">AboutUs</a>
+		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
+	 </fmt:bundle>
 	</nav>
 	<br><br><br><br>
+	<h1></h1>
 	<h2 >ABOUT US</h2><br>
 	<div class="section1">
 		<div class="container">
@@ -196,7 +204,7 @@ text-align:center;}
 						follow on Qualified Institutions Placement in February 2008.</p>
 					</div>
 				<div class="btn2">
-					<a href="ContactUs.jsp"><button type="submit">ContactUs</button></a>
+					<a href="ContactUs.jsp" target="_self"><button type="submit"name="submit" >Contact Us</button></a>
 	    		</div>
 	</div>
 			<div class="img1">
@@ -204,13 +212,13 @@ text-align:center;}
 					<div id="image">
 						<div class="slideshow-container">
 							<div class="mySlides fade">
-								<img src="images/bankof7.jpg" style="width: 60%" alt="Couldn't load image">
+								<img src="images/bankof7.jpg"  class="imgStyle" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof6.jpg" style="width: 60%" alt="Couldn't load image">
+								<img src="images/bankof6.jpg" class="imgStyle" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof2.jpg" style="width: 60%" alt="Couldn't load image">
+								<img src="images/bankof2.jpg" class="imgStyle" alt="Couldn't load image">
 							</div>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
@@ -18,13 +19,15 @@ public class TransactionDateRestrict extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-		TransactionDaoimpl transdao = new TransactionDaoimpl();
-		LocalDate date = transdao.getDate();
-		request.setAttribute("date", date);
-		RequestDispatcher rd = request.getRequestDispatcher("transactionByDate.jsp");
 		try {
+			TransactionDaoimpl transdao = new TransactionDaoimpl();
+			LocalDate date = transdao.getDate();
+
+			request.setAttribute("date", date);
+			RequestDispatcher rd = request.getRequestDispatcher("transactionByDate.jsp");
+
 			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
 

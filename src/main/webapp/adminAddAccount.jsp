@@ -190,7 +190,7 @@ td {
 	<div class="div1">
 		<form action="addAccount" method="post">
 			<table>
-				 <caption>
+				
 					<tr>
 						<th id="thead1"><label for="accountType">Enter Account Type</label></th>
 						<td><input type="text" class="cls" name="accountType" id="accountType" required /></td>
@@ -257,7 +257,7 @@ td {
 						<th id="thead1"><label for="pan">Enter Pan Number</label></th>
 						<td><input type="text" class="cls" name="pan"  id="pan" required /></td>
 					</tr>
-				</caption>
+				
 			</table>
 			<br/>
 			<div class="btn3">

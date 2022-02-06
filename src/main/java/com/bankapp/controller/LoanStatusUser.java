@@ -1,6 +1,7 @@
 package com.bankapp.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -23,9 +24,12 @@ public class LoanStatusUser extends HttpServlet {
 			HttpSession session = request.getSession();
 			long accountNum = Long.parseLong(request.getParameter("accno"));
 			LoansDaoimpl accDetailDao = new LoansDaoimpl();
-			boolean flag = accDetailDao.ViewOneLoan(accountNum);
+			boolean flag = accDetailDao.viewOneLoan(accountNum);
 			if (flag) {
-				List<Loans> loanlist = accDetailDao.viewStatusUser(accountNum);
+				List<Loans> loanlist;
+
+				loanlist = accDetailDao.viewStatusUser(accountNum);
+
 				request.setAttribute("LoanStatus", loanlist);
 				RequestDispatcher rd = request.getRequestDispatcher("loanStatusView.jsp");
 				rd.forward(request, response);
@@ -33,7 +37,7 @@ public class LoanStatusUser extends HttpServlet {
 				session.setAttribute("laccnum", "Enter Valid Account Number!");
 				response.sendRedirect("loanStatusUser.jsp");
 			}
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

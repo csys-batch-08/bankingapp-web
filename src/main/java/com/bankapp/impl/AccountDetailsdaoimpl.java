@@ -20,14 +20,16 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public boolean insertAccount(AccountDetails account) throws SQLException {
 		String que = "select  user_id.nextval from dual";
 		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS,Pan_number)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		int userId = 0;
 		boolean flag = false;
 		PreparedStatement statement = null;
 		Statement st = null;
+		ResultSet rs = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			st = con.createStatement();
-			ResultSet rs = st.executeQuery(que);
+			rs = st.executeQuery(que);
 			if (rs.next())
 				userId = rs.getInt(1);
 
@@ -54,13 +56,17 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (st != null) {
-				st.close();
-			}
 			if (statement != null) {
 				statement.close();
 			}
-			if (true) {
+			if (rs != null) {
+				rs.close();
+			}
+			if (st != null) {
+				st.close();
+			}
+
+			if (con != null) {
 				con.close();
 
 			}
@@ -73,14 +79,16 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		List<AccountDetails> list = new ArrayList<>();
 		String validateQuery = "select  user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER=? and PIN_NUMBER=?";
 
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		PreparedStatement state = null;
 		AccountDetails accDetail = null;
+		ResultSet rs = null;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			state = con.prepareStatement(validateQuery);
 			state.setLong(1, accNumber);
 			state.setInt(1, pinNumber);
-			ResultSet rs = state.executeQuery();
+			rs = state.executeQuery();
 
 			if (rs.next()) {
 				accDetail = new AccountDetails(rs.getInt("user_id"), rs.getLong("account_number"),
@@ -100,7 +108,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			if (state != null) {
 				state.close();
 			}
-			if (true) {
+			if (con != null) {
 				con.close();
 
 			}
@@ -146,14 +154,15 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public List<AccountDetails> viewOneAccount(long num) throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
 
-		String view = "select acc_type,acc_holder_name,mobile_number,email,ifsc_code,branch_name,account_status,pan_number from  account_details where account_number='"
-				+ num + "'";
+		String viewQuery = "select acc_type,acc_holder_name,mobile_number,email,ifsc_code,branch_name,account_status,pan_number from  account_details where account_number=?";
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(view);
+			statement = con.prepareStatement(viewQuery);
+			statement.setLong(1, num);
+			rs = statement.executeQuery();
 
 			if (rs.next()) {
 				AccountDetails accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3),
@@ -166,6 +175,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
+			if (rs != null)
+				rs.close();
 			if (statement != null) {
 				statement.close();
 			}
@@ -181,13 +192,13 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	@Override
 	public boolean updateUserDetailAdmin(String email1, long mobilenumber, String email) throws SQLException {
 		String updateQuery = "update user_details set email=? where email=?";
-		String updateQuery1 = "update account_details set email=?,mobile_number=? where email=?";
+		String updateQueryAcc = "update account_details set email=?,mobile_number=? where email=?";
 		Connection con = null;
 		boolean flag = false;
 		PreparedStatement statement = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.prepareStatement(updateQuery1);
+			statement = con.prepareStatement(updateQueryAcc);
 			statement.setString(1, email1);
 			statement.setLong(2, mobilenumber);
 			statement.setString(3, email);
@@ -299,14 +310,16 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	}
 
 	public double checkBalance(long accnum) throws SQLException {
-		String que = "Select Balance from account_details where Account_number='" + accnum + "'";
+		String query = "Select Balance from account_details where Account_number= ?";
 		Connection con = null;
 		double balance = 0;
-		Statement statement = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(que);
+			statement = con.prepareStatement(query);
+			statement.setLong(1, accnum);
+			rs = statement.executeQuery();
 			if (rs.next()) {
 				balance = rs.getDouble(1);
 			}
@@ -315,6 +328,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
+			if (rs != null)
+				rs.close();
 			if (statement != null) {
 				statement.close();
 			}
@@ -328,17 +343,19 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	}
 
 	public boolean checkaccount(long num) throws SQLException {
-		String que = "select Account_number from account_details where account_number= '" + num + "'";
+		String que = "select Account_number from account_details where account_number= ?";
 		boolean flag = false;
-		long accNum = 0;
+		long accountNumber = 0;
 		Connection con = null;
-		Statement statement = null;
+		PreparedStatement statement = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(que);
+			statement = con.prepareStatement(que);
+			statement.setLong(1, num);
+			rs = statement.executeQuery();
 			if (rs.next()) {
-				accNum = rs.getLong(1);
+				accountNumber = rs.getLong(1);
 				flag = true;
 			}
 

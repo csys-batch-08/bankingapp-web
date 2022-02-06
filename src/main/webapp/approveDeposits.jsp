@@ -6,7 +6,7 @@
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<title>admin</title>
+<title>Approve Deposits</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -178,22 +178,25 @@ padding:1px;}
 	</h3>
 	<br />
 	<nav>
-		<a href="index.jsp"> Home</a>
-	    <a href="loans.jsp">Loans</a> 
-	    <a href="deposits.jsp">Deposits</a>
-	    <a href="interest.jsp">Interest Rate</a> 
-	    <a href="aboutUs.jsp">About us</a> 
-	    <a href="contactUs.jsp">ContactUs</a>
-		<a href="LogoutServlet"><button class="btn">Logout</button></a>
-		
+			<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="index.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp"><fmt:message  key="Register"/></a>
+		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
+		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
+ </fmt:bundle>
 	</nav>
 	<br/>
 	<br/>
 	<div class="sidebar">
-		<header>ADMIN</header>
+		<header>Admin Account</header>
 		<ul>
-			<li><a href="ApproveLoans">ApproveLoans</a></li>
-			<li><a href="ApproveDeposit">ApproveDeposits</a></li>
+			<li><a href="ApproveLoans">Approve Loans</a></li>
+			<li><a href="ApproveDeposit">Approve Deposits</a></li>
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
@@ -211,15 +214,15 @@ padding:1px;}
 				<thead>
 					<tr>
 						<th id="thead1">S.no</th>
-						<th id="thead1">DepositNumber</th>
-						<th id="thead1">AccountNumber</th>
-						<th id="thead1">DepositType</th>
-						<th id="thead1">Amount</th>
-						<th id="thead1">AppliedDate</th>
-						<th id="thead1">Tenure</th>
-						<th id="thead1">Status</th>
-						<th id="thead1">Approve</th>
-						<th id="thead1">Reject</th>
+						<th id="thead1">Deposit Number</th>
+						<th id="thead1">Account Number</th>
+						<th id="thead1">Deposit Type</th>
+						<th id="thead1">Amount </th>
+						<th id="thead1">Applied Date</th>
+						<th id="thead1">Tenure </th>
+						<th id="thead1">Status </th>
+						<th id="thead1">Approve </th>
+						<th id="thead1">Reject </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -240,9 +243,9 @@ padding:1px;}
 							<td>${approvedeposit.tenure }</td>
 							<td>${approvedeposit.depositStatus }</td>
 							<td><a
-								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${approved}">Approve</a></td>
+								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${approved}">Approve </a></td>
 							<td><a
-								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${rejected}">Reject</a></td>
+								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${rejected}">Reject </a></td>
 
 						</tr>
 					</c:forEach>

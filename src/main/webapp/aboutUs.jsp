@@ -156,10 +156,7 @@ text-align:center;}
   color:rgba(243, 31, 119, 0.7);
   font-size:25px;
  }
- .imgStyle{
- width:60%;
- height:60%;
- }
+ 
 </style>
 </head>
 <body>
@@ -167,13 +164,13 @@ text-align:center;}
 	 <br> <br> <h3 id="head"><em>Dharshini Bank</em></h3> <br>
 	<nav>
 	<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="index.jsp">Home</a>
+		 <a href="index.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
 		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp"><fmt:message  key="Register"/></a>
+		  <a href="register.jsp"><fmt:message key="Register"/></a>
 		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
-		  <a href="aboutUs.jsp">AboutUs</a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
 		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
 	 </fmt:bundle>
 	</nav>
@@ -212,13 +209,13 @@ text-align:center;}
 					<div id="image">
 						<div class="slideshow-container">
 							<div class="mySlides fade">
-								<img src="images/bankof7.jpg"  class="imgStyle" alt="Couldn't load image">
+								<img src="images/bankof7.jpg"  Style="width:60%;  height:60%;" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof6.jpg" class="imgStyle" alt="Couldn't load image">
+								<img src="images/bankof6.jpg"  Style="width:60%;  height:60%;" alt="Couldn't load image">
 							</div>
 							<div class="mySlides fade">
-								<img src="images/bankof2.jpg" class="imgStyle" alt="Couldn't load image">
+								<img src="images/bankof2.jpg"  Style="width:60%;  height:60%;" alt="Couldn't load image">
 							</div>
 						</div>
 					</div>

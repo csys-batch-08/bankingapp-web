@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%
-response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-%>
+ 	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang=en>
@@ -172,15 +170,17 @@ h2 {
 	</h3>
 	<br>
 	<nav>
-		<a href="customerDashBoard.jsp"> Home</a> 
-		<a href="loans.jsp">Loans</a>
-		<a href="deposits.jsp">Deposits</a> 
-		<a href="interest.jsp">Interest	Rate</a> 
-		<a href="aboutUs.jsp">About us</a> 
-		<a href="contactUs.jsp">ContactUs</a>
-		<a href="myProfile.jsp">My Profile</a> 
-		<a href="LogoutServlet"><button	class="btn">Logout</button></a>
-
+				<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
+		 <a href="customerDashBoard.jsp"><fmt:message  key="Home"/></a>
+		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
+		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
+		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="register.jsp"><fmt:message  key="Register"/></a>
+		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
+		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
+		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
+		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
+</fmt:bundle>
 	</nav>
 	<br>
 	<br>
@@ -188,9 +188,9 @@ h2 {
 
 		<header>${sessionScope.username}</header>
 		<ul>
-			<li><a href="accountDetail.jsp">AccountDetails</a></li>
-			<li><a href="transferAmount.jsp">Transfer</a></li>
-			<li><a href="balance.jsp">Balance</a></li>
+			<li><a href="accountDetail.jsp">Account Details</a></li>
+			<li><a href="transferAmount.jsp">Transfer Amount</a></li>
+			<li><a href="balance.jsp">Balance </a></li>
 			<li><a href="fixedDeposit.jsp">Fixed Deposits</a></li>
 			<li><a href="recurringDeposit.jsp">Recurring Deposits</a></li>
 			<li><a href="personalLoan.jsp">Personal Loan request</a></li>
@@ -213,35 +213,35 @@ h2 {
 			<table>
 				<caption>
 					<tr>
-						<th id="thead1"><label for="name">Name</label></th>
+						<th id="thead1"><label for="lname">Name</label></th>
 						<td><input type="text" class="cls" name="lname" id="lname"
 							pattern="[a-zA-z]{3,}" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="dob">DOB</label></th>
+						<th id="thead1"><label for="dob">Date of Birth</label></th>
 						<td><input type="date" class="cls" name="dob" id="dob" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="address">Address</label></th>
+						<th id="thead1"><label for="address">Address </label></th>
 						<td><input type="text" class="cls" name="address" id="address"
 							pattern="[a-zA-z0-9,-]+" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="email">Email</label></th>
+						<th id="thead1"><label for="email">Email </label></th>
 						<td><input type="email" class="cls" name="email" id="email" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="mobNo">MobileNumber</label></th>
+						<th id="thead1"><label for="mobno">Mobile Number</label></th>
 						<td><input type="text" class="cls" name="mobno" id="mobno"
 							pattern="[6-9][0-9]+" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="loanAmount"> Loan Amount</label></th>
-						<td><input type="text" class="cls" name="amountDeposit" id="amountDeposits"
+						<th id="thead1"><label for="amountDeposit"> Loan Amount</label></th>
+						<td><input type="text" class="cls" name="amountDeposit" id="amountDeposit"
 							pattern="[1-9][0-9]+" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="tenure"> Tenure</label></th>
+						<th id="thead1"><label for="period"> Tenure</label></th>
 						<td><input type="text" name="period" id="period" pattern="[1-9]+"
 							class="cls" placeholder="TENURE IN YEARS" required /></td>
 					</tr>
@@ -270,8 +270,8 @@ h2 {
 
 			<br> <br>
 			<div class="btn3">
-				<button type="submit" class="btn2">Submit</button>
-				<button type="reset" class="btn2">Reset</button>
+				<button type="submit" name="submit" class="btn2">Submit</button>
+				<button type="reset" name="reset" class="btn2">Reset</button>
 			</div>
 			<br> <br>
 		</form>

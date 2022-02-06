@@ -16,8 +16,8 @@ public interface DepositsDao {
 
 	public List<Deposits> viewdeposit() throws SQLException;
 
-	public boolean updateStatus(long accnum, String status);
+	public boolean updateStatus(long accnum, String status) throws SQLException;
 
-	public List<Deposits> viewStatusUser(long accNo);
+	public List<Deposits> viewStatusUser(long accNo) throws SQLException;
 
 }

@@ -315,7 +315,7 @@ public class DepositsDaoimpl implements DepositsDao {
 	}
 
 	@Override
-	public List<Deposits> viewStatusUser(long accNo) {
+	public List<Deposits> viewStatusUser(long accNo) throws SQLException {
 		List<Deposits> list = new ArrayList<>();
 		String query = "select * from Deposits  where account_number=? or deposit_number=?";
 		Connection con = ConnectionUtil.getDbConnection();

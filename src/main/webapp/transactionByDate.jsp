@@ -199,7 +199,7 @@ text-align:center;
 				<caption>
 					<tr>
 						<th id="thead1">Enter Date</th>
-						<td><input type="date" class="cls" name="date"
+						<td><input type="date" id="date"class="cls" name="date"
 							max="${date}" required /></td>
 					</tr>
 				</caption>

@@ -249,21 +249,23 @@ public class DepositsDaoimpl implements DepositsDao {
 	}
 
 	@Override
-	public boolean updateStatus(long depnum, String status) {
+	public boolean updateStatus(long depnum, String status) throws SQLException {
 		String query = "select sysdate from dual ";
 		String query1 = "select tenure_in_years from deposits where Deposit_number='" + depnum + "'";
 		String que = "UPDATE DEPOSITS SET DEPOSIT_STATUS=?,maturity_date=? , Approved_date=? WHERE deposit_number=?";
 		String query2 = "select account_number from deposits where deposit_number=?";
 		String updateQuery = "Update account_details set balance=(select balance from account_details where account_number=?)-(select amount from deposits where deposit_number=?) where account_number=?";
-		Connection con = ConnectionUtil.getDbConnection();
+		Connection con = null;
 		int period = 0;
 		PreparedStatement pst = null;
 		LocalDate date = null;
+		ResultSet rs = null;
 		long accNum = 0;
 		boolean flag = false;
 		try {
+			con = ConnectionUtil.getDbConnection();
 			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(query);
+			rs = st.executeQuery(query);
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
 			}
@@ -291,7 +293,6 @@ public class DepositsDaoimpl implements DepositsDao {
 			ResultSet reSet = pst.executeQuery();
 			if (reSet.next()) {
 				accNum = reSet.getLong("account_number");
-				// System.out.println("acc" + accNum);
 			}
 			pst = con.prepareStatement(updateQuery);
 			pst.setLong(1, accNum);
@@ -300,19 +301,29 @@ public class DepositsDaoimpl implements DepositsDao {
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (pst != null) {
+				pst.close();
+			}
+			if (rs != null)
+				rs.close();
+			if (con != null) {
+				con.close();
+			}
 		}
 		return flag;
 	}
 
 	@Override
 	public List<Deposits> viewStatusUser(long accNo) {
-		List<Deposits> list = new ArrayList<Deposits>();
-		String query = "select * from Deposits  where account_number='" + accNo + "' or deposit_number='" + accNo + "'";
+		List<Deposits> list = new ArrayList<>();
+		String query = "select * from Deposits  where account_number=? or deposit_number=?";
 		Connection con = ConnectionUtil.getDbConnection();
 		ResultSet rs = null;
+		PreparedStatement pst = null;
 		try {
-			Statement pst = con.createStatement();
-
+			pst = con.prepareStatement(query);
+			// pst.n
 			rs = pst.executeQuery(query);
 
 			while (rs.next()) {
@@ -323,8 +334,17 @@ public class DepositsDaoimpl implements DepositsDao {
 				list.add(dep);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
+		} finally {
+			if (pst != null) {
+				pst.close();
+			}
+			if (rs != null)
+				rs.close();
+			if (con != null) {
+				con.close();
+			}
 		}
 		return list;
 

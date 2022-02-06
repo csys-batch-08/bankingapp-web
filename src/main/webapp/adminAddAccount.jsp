@@ -12,7 +12,7 @@
 	padding: 0;
 }
 
-nav {
+#navbar {
 	font-size: 17px;
 	float: left;
 	background-color: rgba(9, 57, 87, .9);
@@ -156,7 +156,7 @@ td {
 		<em> Dharshini Bank</em>
 	</h3>
 	<br />
-	<nav>
+	<nav id="navbar">
 		    <a href="index.jsp"> Home</a>
 		    <a href="loans.jsp">Loans</a>
 		    <a href="deposits.jsp">Deposits</a>

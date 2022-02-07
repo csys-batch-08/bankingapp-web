@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"  "%>
+	pageEncoding="ISO-8859-1"  %>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -54,7 +54,7 @@ a {
 	position: absolute;
 	left: 0;
 	width: 250px;
-	height: 1200px;
+	height: 1500px;
 	background-color: rgba(9, 57, 87, .8);
 	color: white;
 }
@@ -184,10 +184,10 @@ text-align:center;
 	<br>
 	<nav>
 		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
-			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			c
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="LogoutServlet"><button class="btn">

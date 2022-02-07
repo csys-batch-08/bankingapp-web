@@ -15,11 +15,11 @@ import javax.servlet.http.HttpSession;
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
 import com.bankapp.model.Transaction;
- 
+
 @WebServlet("/transac")
-public class TransactionSum extends HttpServlet
-{
+public class TransactionSum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -32,25 +32,23 @@ public class TransactionSum extends HttpServlet
 			session.setAttribute("passw", pin);
 			int pinnum = transDao.getPinnumber(accNo);
 			boolean flag = accdao.checkaccount(accNo);
-			 			if(flag){
-			    if (pin == pinnum) {
-				List<Transaction> list = transDao.getByAccountNumberUser(accNo, pin);
-				request.setAttribute("TransacSummary", list);
-				RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
-                rd.forward(request, response);
-			    } else {
-				 session.setAttribute("pinum", "Enter Valid Pin Number");
-				 response.sendRedirect("transactionSummary.jsp");
-				 			 }
-			}
-			else
-			{
+			if (flag) {
+				if (pin == pinnum) {
+					List<Transaction> list = transDao.getByAccountNumberUser(accNo);
+					request.setAttribute("TransacSummary", list);
+					RequestDispatcher rd = request.getRequestDispatcher("transactionView.jsp");
+					rd.forward(request, response);
+				} else {
+					session.setAttribute("pinum", "Enter Valid Pin Number");
+					response.sendRedirect("transactionSummary.jsp");
+				}
+			} else {
 				session.setAttribute("AccountNum", "Enter Valid Account Number");
 				response.sendRedirect("transactionSummary.jsp");
-				 
+
 			}
-		 } catch (ServletException | IOException | SQLException e) {
-	    		e.printStackTrace();
+		} catch (ServletException | IOException | SQLException e) {
+			e.printStackTrace();
 		}
 
 	}

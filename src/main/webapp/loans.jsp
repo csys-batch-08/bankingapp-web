@@ -106,7 +106,7 @@ text-align:center;
 		 <a href="index.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="RateOfInterest">Interest Rate</a>
 		  <a href="register.jsp"><fmt:message key="Register"/></a>
 		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>

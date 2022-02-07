@@ -19,7 +19,7 @@ public class RateOfInterest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			AdminUseDaoimpl admin = new AdminUseDaoimpl();
 

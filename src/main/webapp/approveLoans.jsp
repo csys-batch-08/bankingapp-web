@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" "%>
+	pageEncoding="ISO-8859-1" %>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@ a {
 .sidebar {
 	position: absolute;
 	left: 0;
-	width: 250px;
+	width: 245px;
 	height: 900px;
 	background-color: rgba(9, 57, 87, .8);
 	color: white;
@@ -127,30 +127,21 @@ body {
 	background-color: rgb(198, 208, 214);
 }
 
-td {
-	padding-left: 20px;
-	text-align: justify;
-	padding-bottom: 8px;
-}
-
-th {
-	text-align: justify;
-	padding-left: 30px;
-	padding-bottom: 8px;
-}
+ 
 
 .table {
 	margin-bottom: 10px;
-	width: 1000px;
-	margin-left: 160px;
+	width:  900px;
+	margin-left: 133px;
 }
 
 #thead {
-	padding: 1px;
+	padding:0;
 }
 
 .table th {
 	background-color: rgba(161, 15, 95, .5);
+	
 }
 
 .table td {
@@ -190,7 +181,7 @@ h2 {
 		  <a href="adminDashBoard.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="RateOfInterest">Interest Rate</a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
 		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
 		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout"/></button></a>
@@ -251,10 +242,18 @@ h2 {
 							<td>${approveloan.monthlyPayment}</td>
 							<td>${approveloan.salary}</td>
 							<td>${approveloan.loanStatus}</td>
+							<c:choose>
+							<c:when test="${approveloan.loanStatus.equals('NotApproved')}">
 							<td><a
 								href="approveloan?accno=${approveloan.accountNumber}&status=${approve}&salary=${approveloan.salary}">Approve</a></td>
 							<td><a
 								href="approveloan?accno=${approveloan.accountNumber}&status=${reject}&salary=${approveloan.salary}">Reject</a></td>
+							</c:when>
+							<c:otherwise>
+							<td>Status Updated Already</td>
+							<td>Status Updated Already</td> 
+							</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -116,11 +116,11 @@ body {
 		 <a href="index.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
+		  <a href="RateOfInterest">Interest Rate</a>
 		  <a href="register.jsp"><fmt:message key="Register"/></a>
 		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" ><fmt:message  key="ContactUS"/></a>
+		  <a href="contactUs.jsp"><fmt:message  key="ContactUS"/></a>
 	 </fmt:bundle>
 	</nav>
 	<br>
@@ -139,12 +139,12 @@ body {
 				</thead>
 				
 				<tbody>
-				 <c:forEach items="${rateInterest}" var="Interest">
+				 <c:forEach items="${rateInterest}" var="interestrate">
 		
 					<tr>
-						<td>${Interest.categoryType}</td>
-						<td>${Interest.description}</td>
-						<td>${Interest.restOfInterest}%</td>
+						<td>${interestrate.categoryType}</td>
+						<td>${interestrate.description}</td>
+						<td>${interestrate.rateOfInterest}%</td>
 					</tr>
 					 </c:forEach>
 				</tbody>

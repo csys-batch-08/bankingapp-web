@@ -166,7 +166,7 @@ h2 {
 			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="MyProfile">My Profile</a>

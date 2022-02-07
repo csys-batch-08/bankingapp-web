@@ -1,44 +1,57 @@
 package com.bankapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ContactUs {
+public class ContactUs implements Serializable {
 
-	 private String userName;
-	 private String email;
-	 private String message;
+	private static final long serialVersionUID = 1L;
+
+	private String userName;
+	private String email;
+	private String message;
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getMessage() {
 		return message;
 	}
+
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
 	public ContactUs(String userName, String email, String message) {
 		super();
 		this.userName = userName;
 		this.email = email;
 		this.message = message;
 	}
+
 	public ContactUs() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(email, message, userName);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,10 +64,10 @@ public class ContactUs {
 		return Objects.equals(email, other.email) && Objects.equals(message, other.message)
 				&& Objects.equals(userName, other.userName);
 	}
+
 	@Override
 	public String toString() {
 		return "ContactUs [userName=" + userName + ", email=" + email + ", message=" + message + "]";
 	}
-	 
-	 
+
 }

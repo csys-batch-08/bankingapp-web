@@ -162,7 +162,7 @@ td {
 			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="LogoutServlet"><button class="btn">
@@ -175,18 +175,18 @@ td {
 	<div class="sidebar">
 		<header>My Account</header>
 		<ul>
-			<li><a href="ApproveLoans" target="_self">Approve Loans</a></li>
-			<li><a href="ApproveDeposit" target="_self">Approve Deposits</a></li>
-			<li><a href="InterestRate" target="_self">Rate Of Interest</a></li>
-			<li><a href="ViewAllUser" target="_self">View All Users</a></li>
-			<li><a href="ViewAllAccount" target="_self">View All Account</a></li>
-			<li><a href="transactionByDate.jsp" target="_self">Transaction by Date</a></li>
-			<li><a href="transactionByAccount.jsp" target="_self">Transaction by
+			<li><a href="ApproveLoans" >Approve Loans</a></li>
+			<li><a href="ApproveDeposit" >Approve Deposits</a></li>
+			<li><a href="InterestRate" >Rate Of Interest</a></li>
+			<li><a href="ViewAllUser" >View All Users</a></li>
+			<li><a href="ViewAllAccount">View All Account</a></li>
+			<li><a href="transactionByDate.jsp" >Transaction by Date</a></li>
+			<li><a href="transactionByAccount.jsp" >Transaction by
 					Account</a></li>
-			<li><a href="adminAddAccount.jsp" target="_self">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp" target="_self">Update Account
+			<li><a href="adminAddAccount.jsp" >Insert Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp" >Update Account
 					Details </a></li>
-			<li><a href="userCancel.jsp" target="_self">Cancel Account</a></li>
+			<li><a href="userCancel.jsp" >Cancel Account</a></li>
 		</ul>
 	</div>
 	<h1></h1>
@@ -202,7 +202,7 @@ td {
 					</tr>
 					<tr>
 						<th id="thead1"><label for="accountHoldName">Enter Account Holder Name</label></th>
-						<td><input type="text" class="cls"  id="accountHoldName" name="accountHoldName"
+						<td><input type="text" class="cls"  name="accountHoldName"  id="accountHoldName"
 							pattern="[A-Za-z]{5,}" required /></td>
 					</tr>
 					<tr>

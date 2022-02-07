@@ -181,7 +181,7 @@ h2 {
 			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="MyProfile">My Profile</a>
@@ -247,7 +247,7 @@ h2 {
 						id="amountDeposit" pattern="[1-9][0-9]+" required /></td>
 				</tr>
 				<tr>
-					<th id="thead1"><label for="tenure">Tenure </label></th>
+					<th id="thead1"><label for="period">Tenure </label></th>
 					<td><input type="text" name="period" id="period"
 						pattern="[1-9]+" class="cls" placeholder="TENURE IN YEARS"
 						required /></td>
@@ -261,8 +261,8 @@ h2 {
 			</table>
 			<br> <br>
 			<div class="btn3">
-				<button type="submit" name="submit" class="btn2">Submit</button>
-				<button type="reset" name="reset" class="btn2">Reset</button>
+				<button type="submit" name="submit" class="btn2">Submit </button>
+				<button type="reset" name="reset" class="btn2">Reset </button>
 			</div>
 			<br> <br>
 		</form>

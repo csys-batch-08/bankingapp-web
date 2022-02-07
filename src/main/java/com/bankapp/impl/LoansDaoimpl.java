@@ -125,8 +125,8 @@ public class LoansDaoimpl implements LoansDao {
 
 	@Override
 	public boolean validateLoan(String pan) throws SQLException {
-		String que = "select  * from loans where  pan_number= ? ";
-		String query = "select  * from loans where  pan_number=? and Loan_status='Rejected' or Loan_status='NotApproved' ";
+		String que = "select   account_number from loans where  pan_number= ? ";
+		String query = "select  account_number from loans where  pan_number=? and Loan_status='Rejected' or Loan_status='NotApproved' ";
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -166,7 +166,7 @@ public class LoansDaoimpl implements LoansDao {
 	}
 
 	public boolean validatePersonalLoan(String pan) throws SQLException {
-		String que = "select  * from loans where  pan_number=? and Loan_type='Personal Loan' ";
+		String que = "select   account_number from loans where  pan_number=? and Loan_type='Personal Loan' ";
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -196,7 +196,7 @@ public class LoansDaoimpl implements LoansDao {
 	}
 
 	public boolean validateHouseLoan(String pan) throws SQLException {
-		String que = "select  * from loans where  pan_number= ? and Loan_type='Housing Loan'";
+		String que = "select  account_number from loans where  pan_number= ? and Loan_type='Housing Loan'";
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -277,7 +277,7 @@ public class LoansDaoimpl implements LoansDao {
 	@Override
 	public List<Loans> viewloan() throws SQLException {
 		List<Loans> loans = new ArrayList<>();
-		String selectQuery = "select * from LOANS  ";
+		String selectQuery = "select account_number,acc_holder_name,dob,address,mobile_number,email,ifsc_code,acc_status,applied_date,loan_type,description,loan_amount,tenure,interest_rate,monthly_payment,loan_status,pan_number,salary,Approved_date from LOANS  ";
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -286,10 +286,13 @@ public class LoansDaoimpl implements LoansDao {
 			st = con.createStatement();
 			rs = st.executeQuery(selectQuery);
 			while (rs.next()) {
-				Loans loan = new Loans(rs.getLong(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getString(5),
-						rs.getLong(6), rs.getString(7), rs.getString(11), rs.getString(12), rs.getDouble(13),
-						rs.getInt(14), rs.getDouble(15), rs.getDouble(16), rs.getString(17), rs.getString(18),
-						rs.getDouble(19));
+				Loans loan = new Loans(rs.getLong("account_number"), rs.getString("acc_holder_name"),
+						rs.getDate("dob").toLocalDate(), rs.getString("address"), rs.getLong("mobile_number"),
+						rs.getString("email"), rs.getString("ifsc_code"), rs.getString("acc_status"),
+						rs.getDate("applied_date").toLocalDate(), rs.getString("loan_type"),
+						rs.getString("description"), rs.getDouble("loan_amount"), rs.getInt("tenure"),
+						rs.getDouble("interest_rate"), rs.getDouble("monthly_payment"), rs.getString("loan_status"),
+						rs.getString("pan_number"), rs.getDouble("salary"), rs.getDate("approved_date").toLocalDate());
 				loans.add(loan);
 			}
 		} catch (SQLException e) {
@@ -337,7 +340,7 @@ public class LoansDaoimpl implements LoansDao {
 	@Override
 	public List<Loans> viewStatusUser(long accNo) throws SQLException {
 		List<Loans> list = new ArrayList<>();
-		String query = "select  * from loans where account_number= ?";
+		String query = "select  account_number,acc_holder_name,dob,address,mobile_number,email,ifsc_code,acc_status,applied_date,loan_type,description,loan_amount,tenure,interest_rate,monthly_payment,loan_status,pan_number,salary,Approved_date from loans where account_number= ?";
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -345,12 +348,16 @@ public class LoansDaoimpl implements LoansDao {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			pst.setLong(1, accNo);
-			rs = pst.executeQuery(query);
+			rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Loans dep = new Loans(rs.getLong(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getString(5),
-						rs.getLong(6), rs.getString(7), rs.getString(11), rs.getString(12), rs.getDouble(13),
-						rs.getInt(14), rs.getDouble(15), rs.getDouble(16), rs.getString(17), rs.getString(18));
+				Loans dep = new Loans(rs.getLong("account_number"), rs.getString("acc_holder_name"),
+						rs.getDate("dob").toLocalDate(), rs.getString("address"), rs.getLong("mobile_number"),
+						rs.getString("email"), rs.getString("ifsc_code"), rs.getString("acc_status"),
+						rs.getDate("applied_date").toLocalDate(), rs.getString("loan_type"),
+						rs.getString("description"), rs.getDouble("loan_amount"), rs.getInt("tenure"),
+						rs.getDouble("interest_rate"), rs.getDouble("monthly_payment"), rs.getString("loan_status"),
+						rs.getString("pan_number"), rs.getDouble("salary"), rs.getDate("approved_date").toLocalDate());
 				list.add(dep);
 			}
 		} catch (SQLException e) {
@@ -371,7 +378,7 @@ public class LoansDaoimpl implements LoansDao {
 
 	public boolean viewOneLoan(long accnum) throws SQLException {
 		List<Loans> loans = new ArrayList<>();
-		String query = "select * from Loans  where account_number= ? ";
+		String query = "select account_number,acc_holder_name,dob,address,mobile_number,email,ifsc_code,acc_status,applied_date,loan_type,description,loan_amount,tenure,interest_rate,monthly_payment,loan_status,pan_number,salary,Approved_date from Loans  where account_number= ? ";
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -382,9 +389,13 @@ public class LoansDaoimpl implements LoansDao {
 			pst.setLong(1, accnum);
 			rs = pst.executeQuery();
 			if (rs.next()) {
-				Loans loan = new Loans(rs.getLong(2), rs.getString(3), rs.getDate(4).toLocalDate(), rs.getString(5),
-						rs.getLong(6), rs.getString(7), rs.getString(11), rs.getString(12), rs.getDouble(13),
-						rs.getInt(14), rs.getDouble(15), rs.getDouble(16), rs.getString(17), rs.getString(18));
+				Loans loan = new Loans(rs.getLong("account_number"), rs.getString("acc_holder_name"),
+						rs.getDate("dob").toLocalDate(), rs.getString("address"), rs.getLong("mobile_number"),
+						rs.getString("email"), rs.getString("ifsc_code"), rs.getString("acc_status"),
+						rs.getDate("applied_date").toLocalDate(), rs.getString("loan_type"),
+						rs.getString("description"), rs.getDouble("loan_amount"), rs.getInt("tenure"),
+						rs.getDouble("interest_rate"), rs.getDouble("monthly_payment"), rs.getString("loan_status"),
+						rs.getString("pan_number"), rs.getDouble("salary"), rs.getDate("approved_date").toLocalDate());
 				loans.add(loan);
 				flag = true;
 			}

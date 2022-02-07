@@ -1,9 +1,10 @@
 package com.bankapp.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class AccountDetails {
+public class AccountDetails implements Serializable {
 	private int userId;
 	private Long accountNumber;
 	private String accountType;

@@ -183,7 +183,7 @@ h2 {
 			<a href="customerDashBoard.jsp"><fmt:message key="Home" /></a>
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="MyProfile">My Profile</a>
@@ -209,6 +209,7 @@ h2 {
 			<li><a href="loanStatusUser.jsp">Loan Status</a></li>
 		</ul>
 	</div>
+	<h1></h1>
 	<h2>Deposits</h2>
 	<div class="container mt-4 mb-4">
 		<table class="table table-hover table-striped">

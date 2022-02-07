@@ -16,7 +16,7 @@ public interface TransactionDao {
 
 	public List<Transaction> getbyDate(LocalDate date) throws SQLException;
 
-	public List<Transaction> getByAccountNumberUser(long accNo, int pin) throws SQLException;
+	public List<Transaction> getByAccountNumberUser(long accNo) throws SQLException;
 
 	public List<Transaction> getByAccountNumberAdmin(long accNo) throws SQLException;
 

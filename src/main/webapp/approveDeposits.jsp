@@ -135,12 +135,14 @@ th {
 
 .table {
 	margin-top: 30px;
-	width: 400px;
+	width: 1000px;
 	margin-left: 200px;
+	   padding:5px;
 }
 
 .table th {
 	background-color: rgba(161, 15, 95, .5);
+ 
 }
 
 .table td {
@@ -161,8 +163,11 @@ th {
 	margin-left: 270px;
 	font-size: 18px;
 }
-#thead1{
-padding:1px;}
+
+#thead1 {
+	padding: 1px;
+}
+
 #head {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 	margin-left: 20px;
@@ -178,20 +183,21 @@ padding:1px;}
 	</h3>
 	<br />
 	<nav>
-			<fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="index.jsp"><fmt:message  key="Home"/></a>
-		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
-		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
-		  <a href="register.jsp"><fmt:message  key="Register"/></a>
-		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
-		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp" class="set1"><fmt:message  key="ContactUS "/></a>
-		<a href="LogoutServlet"><button	class="btn"><fmt:message  key="Logout "/></button></a>
- </fmt:bundle>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="RateOfInterest">Interest Rate</a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+			<a href="LogoutServlet"><button class="btn">
+					<fmt:message key="Logout" />
+				</button></a>
+
+		</fmt:bundle>
 	</nav>
-	<br/>
-	<br/>
+	<br />
+	<br />
 	<div class="sidebar">
 		<header>My Account</header>
 		<ul>
@@ -201,9 +207,11 @@ padding:1px;}
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
 			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
-			<li><a href="transactionByAccount.jsp">Transaction by Account</a></li>
+			<li><a href="transactionByAccount.jsp">Transaction by
+					Account</a></li>
 			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
-			<li><a href="updateAccountDetails.jsp">Update Account Details </a></li>
+			<li><a href="updateAccountDetails.jsp">Update Account
+					Details </a></li>
 			<li><a href="userCancel.jsp">Cancel Account</a></li>
 		</ul>
 	</div>
@@ -217,12 +225,12 @@ padding:1px;}
 						<th id="thead1">Deposit Number</th>
 						<th id="thead1">Account Number</th>
 						<th id="thead1">Deposit Type</th>
-						<th id="thead1">Amount </th>
-						<th id="thead1">Applied Date</th>
-						<th id="thead1">Tenure </th>
-						<th id="thead1">Status </th>
-						<th id="thead1">Approve </th>
-						<th id="thead1">Reject </th>
+						<th id="thead1">Amount</th>
+						<th id="thead1">AppliedDate  </th>
+						<th id="thead1">Tenure</th>
+						<th id="thead1">Status</th>
+						<th id="thead1">Approve</th>
+						<th id="thead1">Reject</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -241,12 +249,21 @@ padding:1px;}
 							<td><fmt:formatDate value="${maturedDate}"
 									pattern="dd-MM-yyyy" /></td>
 							<td>${approvedeposit.tenure }</td>
-							<td>${approvedeposit.depositStatus }</td>
+							<td>${approvedeposit.depositStatus}</td>
+							<c:choose>
+							<c:when test="${approvedeposit.depositStatus.equals('NotApproved')}">
 							<td><a
-								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${approved}">Approve </a></td>
+								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${approved}">Approve
+							</a></td>
 							<td><a
-								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${rejected}">Reject </a></td>
-
+								href="DepositApproveAdmin?accno=${approvedeposit.depositNumber}&status=${rejected}">Reject
+							</a></td>
+                            </c:when>
+                            <c:otherwise>
+							<td>Status Updated Already</td>
+							<td>Status Updated Already</td> 
+							</c:otherwise>
+                            </c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>

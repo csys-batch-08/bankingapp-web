@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-			<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang=en>
 <head>
@@ -84,7 +84,7 @@ text-align:center;
 		 <a href="index.jsp"><fmt:message  key="Home"/></a>
 		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
 		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="interest.jsp" >Interest Rate</a>
+		 <a href="RateOfInterest">Interest Rate</a>
 		  <a href="register.jsp"><fmt:message key="Register"/></a>
 		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
 		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>

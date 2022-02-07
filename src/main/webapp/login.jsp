@@ -5,7 +5,7 @@
 <html lang=en>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="RegCss.css">
+ 
 <title>User Login</title>
 <style>
 .box {
@@ -62,6 +62,7 @@ body {
 
 a {
 	color: white;
+	text-decoration:none;
 }
 
 h2 {
@@ -75,16 +76,16 @@ h2 {
 		<div class="box">
 			<form action="login" method="post">
                <h1></h1>
-				<h2>Login</h2>
+				<h2>Login </h2>
 				<label for="userId" class="lab">EMAIL ID</label><br>
 				 <input 	type="text" class="textfield" name="userId" id="userId"
 					pattern="[a-z]+[0-9.]+[@][a-z]+[.][a-z]+{8,15}"
 					placeholder="EMAIL ID" required>
 					<br> <br> 
-				 <label for="pwd" class="lab">PASSWORD</label>
+				 <label for="pwd" class="lab">PASSWORD </label>
 				 <input type="password" name="pwd" class="textfield" id="pwd" pattern="[A-Za-z0-9]{8,10}"
 					placeholder="PASSWORD" required><br> <br>
-				  <a href="register.jsp"> Dont have an account? Please Register! </a> <br>
+				  <a href="register.jsp"> Don't have an account? Please Register! </a> <br>
 				<br>
 				<button type="submit" class="btn1">Log In</button>
 				<a href="index.jsp"><button type="submit" class="btn1">Back </button></a>

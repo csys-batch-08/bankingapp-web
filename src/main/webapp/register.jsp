@@ -74,13 +74,14 @@ font-size:20px;
 
 <body>
 <div class="box">   
-<h3>USER</h3>
+<h2></h2>
+<h3>USER </h3>
  <form  action="register" method="post"  >
           <label for="uname" class="lab">Name </label> <br>
                 <input type="text"  class="textfield" name="uname" id="uname" 
                   pattern="[A-Za-z]{5,}" placeholder="Name"required  > <br>
  
-                  <label for="email" class="lab">Email </label> <br>
+                  <label for="emailId" class="lab">Email </label> <br>
                  <input type="email"  class="textfield" name="emailId" id="emailId" 
                  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" placeholder="Email" required >  <br>
  
@@ -89,12 +90,12 @@ font-size:20px;
                pattern="[A-Za-z0-9]{8,10}" placeholder="Password" 
                title="(Minimum 8 characters includes lowercase,uppercase,numbers)" required  ><br> 
  
-               <label for="confirmPwd" class="lab" >Confirm Password</label> <br>
+               <label for="CPwd" class="lab" >Confirm Password</label> <br>
                <input type="Password"  class="textfield" name="Cpwd" id="Cpwd"
                 required  placeholder="Confirm Password">  <br>
  
                 <label for="mobNo" class="lab" >Mobile Number</label> <br>
-                <input type="text"   class="textfield" name="mobNo" id="mobno" 
+                <input type="text"   class="textfield" name="mobNo" id="mobNo" 
                 pattern="[6-9][0-9]{9}" required placeholder="MobileNumber" > <br><br>
               
             

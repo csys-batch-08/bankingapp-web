@@ -14,6 +14,21 @@ import com.bankapp.model.Deposits;
 import com.bankapp.util.ConnectionUtil;
 
 public class DepositsDaoimpl implements DepositsDao {
+	private static final String DEPOSIT_NUMBER = "deposit_number";
+	private static final String TOTAL_AMOUNT = "total_amount";
+	private static final String APPROVED_DATE = "approved_date";
+	private static final String PAN_NUMBER = "pan_number";
+	private static final String DEPOSIT_STATUS = "deposit_status";
+	private static final String MATURITY_VALUE = "maturity_value";
+	private static final String MATURITY_DATE = "maturity_date";
+	private static final String RATE_OF_INTEREST = "rate_of_interest";
+	private static final String USER_ID = "user_id";
+	private static final String DATE_OF_DEPOSIT = "date_of_deposit";
+	private static final String DEPOSIT_TYPE = "deposit_type";
+	private static final String TENURE_IN_YEARS = "tenure_in_years";
+	private static final String AMOUNT = "amount";
+	private static final String ACCOUNT_NUMBER = "account_number";
+
 	/*
 	 * this method is to find rateofInterest
 	 */
@@ -89,7 +104,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setDouble(2, amount);
 			resSet = statement.executeQuery();
 			if (resSet.next()) {
-				depNumber = resSet.getLong("deposit_number");
+				depNumber = resSet.getLong(DEPOSIT_NUMBER);
 
 			}
 
@@ -159,7 +174,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setDouble(2, amount);
 			rs1 = statement.executeQuery();
 			if (rs1.next()) {
-				deprdNumber = rs1.getLong("deposit_number");
+				deprdNumber = rs1.getLong(DEPOSIT_NUMBER);
 
 			}
 
@@ -182,7 +197,7 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public List<Deposits> viewdeposit() throws SQLException {
 		List<Deposits> loans = new ArrayList<>();
-		String view1 = " select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amountfrom Deposits";
+		String view1 = " select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits";
 		Connection con = null;
 		Statement statement = null;
 		try {
@@ -190,12 +205,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(view1);
 			while (rs.next()) {
-				Deposits loan = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
-						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
-						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
-						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
-						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
-						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
+				Deposits loan = new Deposits(rs.getLong(DEPOSIT_NUMBER), rs.getLong(ACCOUNT_NUMBER), rs.getInt(USER_ID),
+						rs.getString(DEPOSIT_TYPE), rs.getDouble(AMOUNT), rs.getDate(DATE_OF_DEPOSIT).toLocalDate(),
+						rs.getInt(TENURE_IN_YEARS), rs.getDouble(RATE_OF_INTEREST),
+						rs.getDate(MATURITY_DATE).toLocalDate(), rs.getDouble(MATURITY_VALUE),
+						rs.getString(DEPOSIT_STATUS), rs.getString(PAN_NUMBER), rs.getDate(APPROVED_DATE).toLocalDate(),
+						rs.getDouble(TOTAL_AMOUNT));
 				loans.add(loan);
 			}
 		} catch (SQLException e) {
@@ -230,12 +245,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setLong(2, accnum);
 			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
-				Deposits loan = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
-						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
-						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
-						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
-						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
-						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
+				Deposits loan = new Deposits(rs.getLong(DEPOSIT_NUMBER), rs.getLong(ACCOUNT_NUMBER), rs.getInt(USER_ID),
+						rs.getString(DEPOSIT_TYPE), rs.getDouble(AMOUNT), rs.getDate(DATE_OF_DEPOSIT).toLocalDate(),
+						rs.getInt(TENURE_IN_YEARS), rs.getDouble(RATE_OF_INTEREST),
+						rs.getDate(MATURITY_DATE).toLocalDate(), rs.getDouble(MATURITY_VALUE),
+						rs.getString(DEPOSIT_STATUS), rs.getString(PAN_NUMBER), rs.getDate(APPROVED_DATE).toLocalDate(),
+						rs.getDouble(TOTAL_AMOUNT));
 				loans.add(loan);
 				flag = true;
 			}
@@ -298,7 +313,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			pst.setLong(1, depnum);
 			ResultSet reSet = pst.executeQuery();
 			if (reSet.next()) {
-				accNum = reSet.getLong("account_number");
+				accNum = reSet.getLong(ACCOUNT_NUMBER);
 			}
 			pst = con.prepareStatement(updateQuery);
 			pst.setLong(1, accNum);
@@ -335,12 +350,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			rs = pst.executeQuery();
 
 			while (rs.next()) {
-				Deposits dep = new Deposits(rs.getLong("deposit_number"), rs.getLong("account_number"),
-						rs.getInt("user_id"), rs.getString("deposit_type"), rs.getDouble("amount"),
-						rs.getDate("date_of_deposit").toLocalDate(), rs.getInt("tenure_in_years"),
-						rs.getDouble("rate_of_interest"), rs.getDate("maturity_date").toLocalDate(),
-						rs.getDouble("maturity_value"), rs.getString("deposit_status"), rs.getString("pan_number"),
-						rs.getDate("approved_date").toLocalDate(), rs.getDouble("total_amount"));
+				Deposits dep = new Deposits(rs.getLong(DEPOSIT_NUMBER), rs.getLong(ACCOUNT_NUMBER), rs.getInt(USER_ID),
+						rs.getString(DEPOSIT_TYPE), rs.getDouble(AMOUNT), rs.getDate(DATE_OF_DEPOSIT).toLocalDate(),
+						rs.getInt(TENURE_IN_YEARS), rs.getDouble(RATE_OF_INTEREST),
+						rs.getDate(MATURITY_DATE).toLocalDate(), rs.getDouble(MATURITY_VALUE),
+						rs.getString(DEPOSIT_STATUS), rs.getString(PAN_NUMBER), rs.getDate(APPROVED_DATE).toLocalDate(),
+						rs.getDouble(TOTAL_AMOUNT));
 				list.add(dep);
 			}
 		} catch (SQLException e) {
@@ -375,7 +390,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			pst.setLong(1, depnum);
 			ResultSet rs1 = pst.executeQuery();
 			if (rs1.next()) {
-				accountNum = rs1.getLong("account_number");
+				accountNum = rs1.getLong(ACCOUNT_NUMBER);
 			}
 
 			pst = con.prepareStatement(selectQuery);
@@ -413,7 +428,7 @@ public class DepositsDaoimpl implements DepositsDao {
 
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
-				amount = rs.getDouble("amount");
+				amount = rs.getDouble(AMOUNT);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

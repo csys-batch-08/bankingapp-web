@@ -9,8 +9,11 @@ public class Loans {
 	private String username;
 	private LocalDate dob;
 	private String address;
-	private String email;
 	private long mobno;
+	private String email;
+	private String ifscCode;
+	private String accountStatus;
+	private LocalDate applieDate;
 	private String loanType;
 	private String description;
 	private double loanAmount;
@@ -20,6 +23,7 @@ public class Loans {
 	private String loanStatus;
 	private String panNumber;
 	private double salary;
+	private LocalDate approvedDate;
 
 	public long getAccountNumber() {
 		return accountNumber;
@@ -53,6 +57,14 @@ public class Loans {
 		this.address = address;
 	}
 
+	public long getMobno() {
+		return mobno;
+	}
+
+	public void setMobno(long mobno) {
+		this.mobno = mobno;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -61,12 +73,28 @@ public class Loans {
 		this.email = email;
 	}
 
-	public long getMobno() {
-		return mobno;
+	public String getIfscCode() {
+		return ifscCode;
 	}
 
-	public void setMobno(long mobno) {
-		this.mobno = mobno;
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+
+	public String getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(String accountStatus) {
+		this.accountStatus = accountStatus;
+	}
+
+	public LocalDate getApplieDate() {
+		return applieDate;
+	}
+
+	public void setApplieDate(LocalDate applieDate) {
+		this.applieDate = applieDate;
 	}
 
 	public String getLoanType() {
@@ -141,6 +169,14 @@ public class Loans {
 		this.salary = salary;
 	}
 
+	public LocalDate getApprovedDate() {
+		return approvedDate;
+	}
+
+	public void setApprovedDate(LocalDate approvedDate) {
+		this.approvedDate = approvedDate;
+	}
+
 	public Loans(long accountNumber, String loanType, String description, double loanAmount, int tenure,
 			double interestRate, double monthlyPayment, String loanStatus) {
 		super();
@@ -209,10 +245,37 @@ public class Loans {
 		this.salary = salary;
 	}
 
+	public Loans(long accountNumber, String username, LocalDate dob, String address, long mobno, String email,
+			String ifscCode, String accountStatus, LocalDate applieDate, String loanType, String description,
+			double loanAmount, int tenure, double interestRate, double monthlyPayment, String loanStatus,
+			String panNumber, double salary, LocalDate approvedDate) {
+		super();
+		this.accountNumber = accountNumber;
+		this.username = username;
+		this.dob = dob;
+		this.address = address;
+		this.mobno = mobno;
+		this.email = email;
+		this.ifscCode = ifscCode;
+		this.accountStatus = accountStatus;
+		this.applieDate = applieDate;
+		this.loanType = loanType;
+		this.description = description;
+		this.loanAmount = loanAmount;
+		this.tenure = tenure;
+		this.interestRate = interestRate;
+		this.monthlyPayment = monthlyPayment;
+		this.loanStatus = loanStatus;
+		this.panNumber = panNumber;
+		this.salary = salary;
+		this.approvedDate = approvedDate;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountNumber, address, description, dob, email, interestRate, loanAmount, loanStatus,
-				loanType, mobno, monthlyPayment, panNumber, salary, tenure, username);
+		return Objects.hash(accountNumber, accountStatus, address, applieDate, approvedDate, description, dob, email,
+				ifscCode, interestRate, loanAmount, loanStatus, loanType, mobno, monthlyPayment, panNumber, salary,
+				tenure, username);
 	}
 
 	@Override
@@ -224,9 +287,11 @@ public class Loans {
 		if (getClass() != obj.getClass())
 			return false;
 		Loans other = (Loans) obj;
-		return accountNumber == other.accountNumber && Objects.equals(address, other.address)
-				&& Objects.equals(description, other.description) && Objects.equals(dob, other.dob)
-				&& Objects.equals(email, other.email)
+		return accountNumber == other.accountNumber && Objects.equals(accountStatus, other.accountStatus)
+				&& Objects.equals(address, other.address) && Objects.equals(applieDate, other.applieDate)
+				&& Objects.equals(approvedDate, other.approvedDate) && Objects.equals(description, other.description)
+				&& Objects.equals(dob, other.dob) && Objects.equals(email, other.email)
+				&& Objects.equals(ifscCode, other.ifscCode)
 				&& Double.doubleToLongBits(interestRate) == Double.doubleToLongBits(other.interestRate)
 				&& Double.doubleToLongBits(loanAmount) == Double.doubleToLongBits(other.loanAmount)
 				&& Objects.equals(loanStatus, other.loanStatus) && Objects.equals(loanType, other.loanType)
@@ -240,10 +305,11 @@ public class Loans {
 	@Override
 	public String toString() {
 		return "Loans [accountNumber=" + accountNumber + ", username=" + username + ", dob=" + dob + ", address="
-				+ address + ", email=" + email + ", mobno=" + mobno + ", loanType=" + loanType + ", description="
+				+ address + ", mobno=" + mobno + ", email=" + email + ", ifscCode=" + ifscCode + ", accountStatus="
+				+ accountStatus + ", applieDate=" + applieDate + ", loanType=" + loanType + ", description="
 				+ description + ", loanAmount=" + loanAmount + ", tenure=" + tenure + ", interestRate=" + interestRate
 				+ ", monthlyPayment=" + monthlyPayment + ", loanStatus=" + loanStatus + ", panNumber=" + panNumber
-				+ ", salary=" + salary + "]";
+				+ ", salary=" + salary + ", approvedDate=" + approvedDate + "]";
 	}
 
 }

@@ -1,9 +1,13 @@
 package com.bankapp.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Deposits {
+public class Deposits implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	private long depositNumber;
 	private long accno;
 	private int userId;
@@ -154,7 +158,7 @@ public class Deposits {
 
 	public Deposits() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override

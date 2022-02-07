@@ -169,7 +169,7 @@ h2 {
 			<a href="adminDashBoard.jsp"><fmt:message key="Home" /></a>
 			<a href="loans.jsp"><fmt:message key="Loans" /></a>
 			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
-			<a href="interest.jsp">Interest Rate</a>
+			<a href="RateOfInterest">Interest Rate</a>
 			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
 			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
 			<a href="LogoutServlet"><button class="btn">
@@ -188,7 +188,7 @@ h2 {
 			<li><a href="InterestRate">Rate Of Interest</a></li>
 			<li><a href="ViewAllUser">View All Users</a></li>
 			<li><a href="ViewAllAccount">View All Account</a></li>
-			<li><a href="transactionByDate.jsp">Transaction by Date</a></li>
+			<li><a href="TransactionDateRestrict">Transaction by Date</a></li>
 			<li><a href="transactionByAccount.jsp">Transaction by
 					Account</a></li>
 			<li><a href="adminAddAccount.jsp">Insert Account Details </a></li>
@@ -207,7 +207,7 @@ h2 {
 				<caption>
 					<tr>
 						<th id="thead1"><label for="date">Enter Date</label></th>
-						<td><input type="date" id="date" class="cls" name="date"
+						<td><input type="date" class="cls" name="date"  id="date" 
 							max="${date}" required /></td>
 					</tr>
 				</caption>

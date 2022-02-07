@@ -18,14 +18,13 @@ public class TransactionDateRestrict extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			TransactionDaoimpl transdao = new TransactionDaoimpl();
 			LocalDate date = transdao.getDate();
 
 			request.setAttribute("date", date);
 			RequestDispatcher rd = request.getRequestDispatcher("transactionByDate.jsp");
-
 			rd.forward(request, response);
 		} catch (ServletException | IOException | SQLException e) {
 			e.printStackTrace();

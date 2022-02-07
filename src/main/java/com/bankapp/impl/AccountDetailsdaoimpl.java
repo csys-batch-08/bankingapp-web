@@ -77,8 +77,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	@Override
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
-		System.out.println(accNumber);
-		System.out.println(pinNumber);
+
 		String validateQuery = "select user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER=? and PIN_NUMBER=?";
 
 		Connection con = null;
@@ -346,7 +345,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public boolean checkaccount(long num) throws SQLException {
 		String que = "select Account_number from account_details where account_number= ?";
 		boolean flag = false;
-		long accountNumber = 0;
+
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
@@ -356,7 +355,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			statement.setLong(1, num);
 			rs = statement.executeQuery();
 			if (rs.next()) {
-				accountNumber = rs.getLong(1);
+				long accountNumber = rs.getLong(1);
 				flag = true;
 			}
 

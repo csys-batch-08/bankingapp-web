@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bankapp.exception.IncorrectAccNumberException; 
+import com.bankapp.exception.IncorrectAccNumberException;
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
 
@@ -28,9 +28,9 @@ public class TransferAmount extends HttpServlet {
 		AccountDetailsdaoimpl accdao = new AccountDetailsdaoimpl();
 		TransactionDaoimpl transDao = new TransactionDaoimpl();
 		int pinnum = transDao.getPinnumber(accNo);
-		 
+
 		double balance = accdao.checkBalance(accNo);
- 
+
 		boolean flag = accdao.checkaccount(accNum);
 		boolean flag1=accdao.checkaccount(accNo);
 		if(flag1) {
@@ -38,30 +38,31 @@ public class TransferAmount extends HttpServlet {
 			if (amount >= 300) {
 				if (amount < balance) {
 					if (pin == pinnum) {
+
 						transDao.depositAmount(accNo, uname, amount, pin, accNum);
 						session.setAttribute("transaction", "TRANSFERRED");
 						 RequestDispatcher rd=request.getRequestDispatcher("transferAmount.jsp");
 						 rd.include(request, response);
-					  } 
+					  }
 					else {
                          session.setAttribute("trans", "Enter  Correct   Pin Number");
 						 response.sendRedirect("transferAmount.jsp");
-						 
+
 					     }
 				 }
 				 else {
 					session.setAttribute("trans", "Not enough money to transfer!");
 					response.sendRedirect("transferAmount.jsp");
-					 
+
 				      }
 			  }
 			  else {
 
 				session.setAttribute("trans", "Minimum Transaction Amount is 300! Please Transfer  More than 300");
 				response.sendRedirect("transferAmount.jsp");
-				  
+
 				   }
-		 } 
+		 }
 		else {
 			try {
 				session.setAttribute("trans", "Verify Receiver  Account Number ");
@@ -76,10 +77,10 @@ public class TransferAmount extends HttpServlet {
 			response.sendRedirect("transferAmount.jsp");
 		}
 			} catch (Exception e) {
-		 
+
 			e.printStackTrace();
 		}
-			  	 
+
 
 	}
 

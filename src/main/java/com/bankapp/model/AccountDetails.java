@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class AccountDetails implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int userId;
 	private Long accountNumber;
 	private String accountType;

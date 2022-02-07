@@ -90,7 +90,7 @@ font-size:20px;
                pattern="[A-Za-z0-9]{8,10}" placeholder="Password" 
                title="(Minimum 8 characters includes lowercase,uppercase,numbers)" required  ><br> 
  
-               <label for="CPwd" class="lab" >Confirm Password</label> <br>
+               <label for="Cpwd" class="lab" >Confirm Password</label> <br>
                <input type="Password"  class="textfield" name="Cpwd" id="Cpwd"
                 required  placeholder="Confirm Password">  <br>
  

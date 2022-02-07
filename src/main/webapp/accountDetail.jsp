@@ -200,8 +200,8 @@ td {
 			<br>
 			<br>
 			<div class="btn3">
-				<input type="submit" class="btn2" id="submit" name="submit" value=submit /> 
-				<input	type="reset" class="btn2" id="reset" name="reset" value=cancel />
+				<button type="submit" class="btn2" >Submit </button> 
+				<button	type="reset" class="btn2"  >Reset </button>
 			</div>
 		</form>
 		<br />

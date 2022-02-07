@@ -245,7 +245,7 @@ h2 {
 							class="cls" placeholder="TENURE IN YEARS" required /></td>
 					</tr>
 					<tr>
-						<th id="thead1"><label for="type"> Working Type</label></th>
+						<th id="thead1"><label for="Wtype"> Working Type</label></th>
 						<td><select name="Wtype" class="cls" id="Wtype">
 								<option value="default" disabled>None </option>
 								<option value="tier1">TIER-I</option>

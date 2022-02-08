@@ -44,5 +44,30 @@ public class ConnectionUtil {
 			con.close();
 		}
 	}
-
+	public  static  void closePrepareStatement(PreparedStatement pstmt,ResultSet rs, PreparedStatement stmt, Connection con) throws SQLException {
+		if(pstmt !=null)
+			pstmt.close();
+		if (rs != null) {
+			rs.close();
+		}
+		if (stmt != null) {
+			stmt.close();
+		}
+		if (con != null) {
+			con.close();
+		}
+	}
+		public  static  void closeStatePrepareStatement( Statement pstmt,ResultSet rs, PreparedStatement stmt, Connection con) throws SQLException {
+			if(pstmt !=null)
+				pstmt.close();
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+	}
 }

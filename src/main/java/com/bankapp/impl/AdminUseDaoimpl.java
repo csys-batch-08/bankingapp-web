@@ -69,16 +69,7 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			e.printStackTrace();
 
 		} finally {
-			if (rs != null)
-				rs.close();
-
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-
-			}
+			 ConnectionUtil.closeStatement(rs, statement, con);
 		}
 		return list;
 	}
@@ -107,15 +98,7 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			e.printStackTrace();
 
 		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeStatement(rs, statement, con);
 		}
 
 		return list;

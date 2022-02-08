@@ -97,26 +97,21 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return balance;
 	}
 
 	public double viewBalanceFd(String pan) throws SQLException {
 
-		String query1 = "select BALANCE from account_details where  Pan_number=? ";
+		String query = "select BALANCE from account_details where  Pan_number=? ";
 		PreparedStatement pst = null;
 		Connection con = null;
 		double balance = 0;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pst = con.prepareStatement(query1);
+			pst = con.prepareStatement(query);
 			pst.setString(1, pan);
 			rs = pst.executeQuery();
 			if (rs.next()) {
@@ -125,12 +120,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return balance;
 	}
@@ -154,12 +144,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return 0;
 	}
@@ -188,12 +173,7 @@ public class TransactionDaoimpl implements TransactionDao {
 			e.printStackTrace();
 
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, st, con);
 		}
 		return list;
 	}
@@ -225,12 +205,7 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return list;
 	}
@@ -258,12 +233,7 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (pst != null)
-				pst.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 
 		return list;
@@ -288,12 +258,7 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeStatement(rs, st, con);
 		}
 		return date;
 	}

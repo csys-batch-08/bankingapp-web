@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bankapp.exception.IncorrectAccNumberException;
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
 
@@ -64,12 +63,10 @@ public class TransferAmount extends HttpServlet {
 				   }
 		 }
 		else {
-			try {
+
 				session.setAttribute("trans", "Verify Receiver  Account Number ");
-				throw new IncorrectAccNumberException();
-			   } catch (IncorrectAccNumberException e) {
-				response.sendRedirect(e.getMessage());
-			    }
+				response.sendRedirect("transferAmount.jsp" );
+
 		    }
 		}
 		else {

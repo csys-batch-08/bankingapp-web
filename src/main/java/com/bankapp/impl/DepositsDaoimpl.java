@@ -48,15 +48,7 @@ public class DepositsDaoimpl implements DepositsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			ConnectionUtil.closeConnection(rs, statement, con);
 		}
 		return 0;
 	}
@@ -74,14 +66,16 @@ public class DepositsDaoimpl implements DepositsDao {
 		long accNumber = 0;
 		int userId = 0;
 		long depNumber = 0;
+		PreparedStatement st = null;
 		PreparedStatement statement = null;
+		PreparedStatement state = null;
 		ResultSet rs = null;
 		ResultSet resSet = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.prepareStatement(querySelect);
-			statement.setString(1, email);
-			rs = statement.executeQuery();
+			st = con.prepareStatement(querySelect);
+			st.setString(1, email);
+			rs = st.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				accNumber = rs.getLong(2);
@@ -99,10 +93,10 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setString(10, pan);
 			statement.setDouble(11, amount);
 			statement.executeUpdate();
-			statement = con.prepareStatement(selQuery);
-			statement.setLong(1, accNumber);
-			statement.setDouble(2, amount);
-			resSet = statement.executeQuery();
+			state = con.prepareStatement(selQuery);
+			state.setLong(1, accNumber);
+			state.setDouble(2, amount);
+			resSet = state.executeQuery();
 			if (resSet.next()) {
 				depNumber = resSet.getLong(DEPOSIT_NUMBER);
 
@@ -112,14 +106,19 @@ public class DepositsDaoimpl implements DepositsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				rs.close();
-			}
+
 			if (resSet != null)
 				resSet.close();
+			if (state != null)
+				state.close();
 			if (statement != null) {
 				statement.close();
 			}
+			if (rs != null) {
+				rs.close();
+			}
+			if(st!= null)
+				st.close();
 			if (con != null) {
 				con.close();
 
@@ -141,15 +140,18 @@ public class DepositsDaoimpl implements DepositsDao {
 		long accNumber = 0;
 		int userId = 0;
 		long deprdNumber = 0;
+		PreparedStatement st = null;
 		PreparedStatement statement = null;
-		ResultSet rs1 = null;
+		PreparedStatement state = null;
+		ResultSet reSet = null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.prepareStatement(query);
-			statement.setString(1, email);
+			st = con.prepareStatement(query);
+			st.setString(1, email);
 
-			statement.executeUpdate();
-			ResultSet rs = statement.executeQuery();
+			st.executeUpdate();
+			rs = st.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				accNumber = rs.getLong(2);
@@ -169,12 +171,12 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setString(10, pan);
 			statement.setDouble(11, totalAmount);
 			statement.executeUpdate();
-			statement = con.prepareStatement(selQuery);
-			statement.setLong(1, accNumber);
-			statement.setDouble(2, amount);
-			rs1 = statement.executeQuery();
-			if (rs1.next()) {
-				deprdNumber = rs1.getLong(DEPOSIT_NUMBER);
+			state = con.prepareStatement(selQuery);
+			state.setLong(1, accNumber);
+			state.setDouble(2, amount);
+			reSet = state.executeQuery();
+			if (reSet.next()) {
+				deprdNumber = reSet.getLong(DEPOSIT_NUMBER);
 
 			}
 
@@ -182,14 +184,21 @@ public class DepositsDaoimpl implements DepositsDao {
 
 			e.printStackTrace();
 		} finally {
+			if (reSet != null)
+				reSet.close();
+			if (state != null)
+				state.close();
 			if (statement != null) {
 				statement.close();
 			}
-
+			if (rs != null) {
+				rs.close();
+			}
+			if(st!= null)
+				st.close();
 			if (con != null) {
 				con.close();
-
-			}
+		}
 		}
 		return deprdNumber;
 	}
@@ -279,11 +288,15 @@ public class DepositsDaoimpl implements DepositsDao {
 		Connection con = null;
 		int period = 0;
 		PreparedStatement pst = null;
+		PreparedStatement state = null;
+		PreparedStatement statement = null;
 		Statement st = null;
 		LocalDate date = null;
 		ResultSet rs = null;
+		ResultSet reSet=null;
 		long accNum = 0;
 		boolean flag = false;
+		ResultSet resuSet=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			st = con.createStatement();
@@ -291,43 +304,53 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
 			}
-			ResultSet rs1 = st.executeQuery(showQuery);
-			if (rs1.next()) {
-				period = rs1.getInt(1);
+		    resuSet = st.executeQuery(showQuery);
+			if (resuSet.next()) {
+				period = resuSet.getInt(1);
 
 			}
 
 			LocalDate sysDate = LocalDate.now();
 			Date mdate = Date.valueOf(sysDate.plusYears(period));
 
-			pst = con.prepareStatement(que);
-			pst.setString(1, status);
-			pst.setDate(2, mdate);
-			pst.setDate(3, java.sql.Date.valueOf(date));
-			pst.setLong(4, depnum);
-			int rows = pst.executeUpdate();
+			state = con.prepareStatement(que);
+			state.setString(1, status);
+			state.setDate(2, mdate);
+			state.setDate(3, java.sql.Date.valueOf(date));
+			state.setLong(4, depnum);
+			int rows = state.executeUpdate();
 			if (rows > 0) {
 				flag = true;
 			}
 			pst = con.prepareStatement(selectQuery);
 			pst.setLong(1, depnum);
-			ResultSet reSet = pst.executeQuery();
+			  reSet = pst.executeQuery();
 			if (reSet.next()) {
 				accNum = reSet.getLong(ACCOUNT_NUMBER);
 			}
-			pst = con.prepareStatement(updateQuery);
-			pst.setLong(1, accNum);
-			pst.setLong(2, depnum);
-			pst.setLong(3, accNum);
-			pst.executeUpdate();
+			statement = con.prepareStatement(updateQuery);
+			statement.setLong(1, accNum);
+			statement.setLong(2, depnum);
+			statement.setLong(3, accNum);
+			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if (statement != null)
+				statement.close();
+			if (reSet != null)
+				reSet.close();
 			if (pst != null) {
 				pst.close();
 			}
+			if ( state != null)
+				state.close();
+			if (resuSet != null)
+				resuSet.close();
 			if (rs != null)
 				rs.close();
+			if(st!=null)
+				st.close();
 			if (con != null) {
 				con.close();
 			}
@@ -380,34 +403,42 @@ public class DepositsDaoimpl implements DepositsDao {
 		String query = "select account_number from deposits where deposit_number=?";
 		String selectQuery = "select BALANCE from account_details where   account_number=? ";
 		PreparedStatement pst = null;
+		PreparedStatement state=null;
 		Connection con = null;
 		ResultSet rs = null;
+		ResultSet reSet=null;
 		long accountNum = 0;
 		double balance = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			pst.setLong(1, depnum);
-			ResultSet rs1 = pst.executeQuery();
-			if (rs1.next()) {
-				accountNum = rs1.getLong(ACCOUNT_NUMBER);
+			 reSet = pst.executeQuery();
+			if (reSet.next()) {
+				accountNum = reSet.getLong(ACCOUNT_NUMBER);
 			}
 
-			pst = con.prepareStatement(selectQuery);
-			pst.setLong(1, accountNum);
+			state = con.prepareStatement(selectQuery);
+			state.setLong(1, accountNum);
 
-			rs = pst.executeQuery();
+			rs = state.executeQuery();
 			if (rs.next()) {
 				balance = rs.getDouble("balance");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (state != null) {
+				state.close();
+			}
+			if (reSet != null)
+				reSet.close();
 			if (pst != null) {
 				pst.close();
 			}
-			if (rs != null)
-				rs.close();
 			if (con != null) {
 				con.close();
 			}

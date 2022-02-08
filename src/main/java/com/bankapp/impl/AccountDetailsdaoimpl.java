@@ -57,20 +57,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-			if (rs != null) {
-				rs.close();
-			}
-			if (st != null) {
-				st.close();
-			}
-
-			if (con != null) {
-				con.close();
-
-			}
+			 ConnectionUtil.closeStatePrepareStatement(st, rs, statement, con);
 		}
 		return flag;
 	}
@@ -199,8 +186,10 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			e.printStackTrace();
 
 		} finally {
-			 ConnectionUtil.closeConnection(null, stmt, con);
-		}
+			if(statement!=null)
+
+			 ConnectionUtil.closePrepareStatement(statement, null, stmt, con);
+			 }
 		return flag;
 	}
 
@@ -309,15 +298,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-
-			}
+		 ConnectionUtil.closeConnection(rs, statement, con);
 		}
 
 		return balance;
@@ -326,7 +307,6 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public boolean checkaccount(long num) throws SQLException {
 		String que = "select Account_number from account_details where account_number= ?";
 		boolean flag = false;
-
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet rs = null;
@@ -336,7 +316,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			statement.setLong(1, num);
 			rs = statement.executeQuery();
 			if (rs.next()) {
-				long accountNumber = rs.getLong(1);
+
 				flag = true;
 			}
 

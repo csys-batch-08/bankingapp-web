@@ -100,7 +100,6 @@ public class AdminUseDaoimpl implements AdminUseDao {
 				adminuse = new AdminUse(rs.getString("category_name"), rs.getString("category_type"),
 						rs.getString("description"), rs.getDouble("description_id"), rs.getDouble("interest_rate"));
 				list.add(adminuse);
-				System.out.println(adminuse);
 			}
 
 		} catch (SQLException e) {

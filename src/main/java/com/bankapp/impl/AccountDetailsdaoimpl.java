@@ -19,7 +19,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	@Override
 	public boolean insertAccount(AccountDetails account) throws SQLException {
 		String que = "select  user_id.nextval from dual";
-		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS,Pan_number)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Account_details (USER_ID,ACC_TYPE,ACC_HOLDER_NAME,ADDRESS,CITY,PINCODE,DOB,MOBILE_NUMBER,"
+				+ "EMAIL,IFSC_CODE,BRANCH_NAME,BALANCE,PIN_NUMBER,ACCOUNT_STATUS,Pan_number)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Connection con = null;
 		int userId = 0;
 		boolean flag = false;
@@ -78,7 +79,9 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public List<AccountDetails> searchDetail(long accNumber, int pinNumber) throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
 
-		String validateQuery = "select user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS WHERE  ACCOUNT_NUMBER=? and PIN_NUMBER=?";
+		String validateQuery = "select user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,"
+				+ "ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS "
+				+ "WHERE  account_number=? and pin_number=?";
 
 		Connection con = null;
 		PreparedStatement state = null;
@@ -105,13 +108,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			e.printStackTrace();
 
 		} finally {
-			if (state != null) {
-				state.close();
-			}
-			if (con != null) {
-				con.close();
-
-			}
+			ConnectionUtil.closeConnection(rs, state, con);
 		}
 		return list;
 	}
@@ -120,13 +117,15 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 	public List<AccountDetails> viewAccout() throws SQLException {
 		List<AccountDetails> list = new ArrayList<>();
 
-		String query = "select  user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS order by account_number";
+		String query = "select  user_id,account_number,acc_type,acc_holder_name,address,city,pincode,dob,mobile_number,email,"
+				+ "ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS order by account_number";
 		Connection con = null;
 		Statement statement = null;
+		ResultSet rs=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(query);
+			 rs = statement.executeQuery(query);
 			while (rs.next()) {
 				AccountDetails accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(),
@@ -139,13 +138,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-
-			}
+			 ConnectionUtil.closeStatement(rs, statement, con);
 		}
 
 		return list;
@@ -175,16 +168,9 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (statement != null) {
-				statement.close();
+			 ConnectionUtil.closeStatement(rs, statement, con);
 			}
-			if (con != null) {
-				con.close();
 
-			}
-		}
 
 		return list;
 	}
@@ -196,6 +182,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		Connection con = null;
 		boolean flag = false;
 		PreparedStatement statement = null;
+		PreparedStatement stmt=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQueryAcc);
@@ -203,22 +190,16 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			statement.setLong(2, mobilenumber);
 			statement.setString(3, email);
 			statement.executeUpdate();
-			statement = con.prepareStatement(updateQuery);
-			statement.setString(1, email1);
-			statement.setString(2, email);
-			statement.executeUpdate();
+			stmt = con.prepareStatement(updateQuery);
+			stmt.setString(1, email1);
+			stmt.setString(2, email);
+			stmt.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-			if (con != null) {
-				con.close();
-
-			}
+			 ConnectionUtil.closeConnection(null, stmt, con);
 		}
 		return flag;
 	}

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@ nav {
 	float: left;
 	background-color: rgba(9, 57, 87, .7);
 	height: 25%;
-	width:100%;
+	width: 100%;
 	padding: 8px;
 }
 
@@ -168,16 +168,16 @@ body {
 	</h3>
 	<br>
 	<nav>
-		 <fmt:bundle basename = "com.bankapp.bundle.NavBar" prefix="nav.">
-		 <a href="index.jsp"><fmt:message  key="Home"/></a>
-		  <a href="loans.jsp"><fmt:message  key="Loans"/></a>
-		  <a href="deposits.jsp"><fmt:message  key="Deposits"/> </a> 
-		  <a href="RateOfInterest">Interest Rate</a>
-		  <a href="register.jsp"><fmt:message key="Register"/></a>
-		  <a href="login.jsp"><fmt:message  key="Login"/> </a>
-		  <a href="aboutUs.jsp"><fmt:message  key="AboutUs"/></a>
-		  <a href="contactUs.jsp"  ><fmt:message  key="ContactUS"/></a>
-	 </fmt:bundle>
+		<fmt:bundle basename="com.bankapp.bundle.NavBar" prefix="nav.">
+			<a href="index.jsp"><fmt:message key="Home" /></a>
+			<a href="loans.jsp"><fmt:message key="Loans" /></a>
+			<a href="deposits.jsp"><fmt:message key="Deposits" /> </a>
+			<a href="RateOfInterest">Interest Rate</a>
+			<a href="register.jsp"><fmt:message key="Register" /></a>
+			<a href="login.jsp"><fmt:message key="Login" /> </a>
+			<a href="aboutUs.jsp"><fmt:message key="AboutUs" /></a>
+			<a href="contactUs.jsp"><fmt:message key="ContactUS" /></a>
+		</fmt:bundle>
 	</nav>
 	<br>
 	<br>
@@ -208,18 +208,20 @@ body {
 			<h2 class="set2">Contact Us</h2>
 			<br> <br>
 			<form class="contact" action="ContactUs" method="post">
-				<input type="text" name="name" id="name" class="text-box"
-					placeholder="Your Name" required> <input type="email"
-					class="text-box" name="email" id="email" placeholder="Your Email" required>
-				<textarea name="message"  id="message"rows="6" placeholder="Your Message"
-					required></textarea>
-				<button type="submit" name="submit" class="s-btn" >SUBMIT </button>
+				<label for="name"></label>  <input type="text" name="name" id="name"
+					class="text-box" placeholder="Your Name" required> <label
+					for="email"></label>  <input type="email" class="text-box"
+					name="email" id="email" placeholder="Your Email" required>
+				<label for="message"></label>
+				<textarea name="message" id="message" rows="6"
+					placeholder="Your Message" required></textarea>
+				<button type="submit" name="submit" class="s-btn">SUBMIT</button>
 			</form>
 		</div>
 	</div>
-	 <c:if test="${sessionScope.msg!=null}">
-          <h4 id="depohead">${sessionScope.msg}</h4>
-          </c:if> 
-          <c:remove var="msg" scope="session"/>
+	<c:if test="${sessionScope.msg!=null}">
+		<h4 id="depohead">${sessionScope.msg}</h4>
+	</c:if>
+	<c:remove var="msg" scope="session" />
 </body>
 </html>

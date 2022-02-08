@@ -29,7 +29,6 @@ public class Login extends HttpServlet {
 			if (validUser != null) {
 
 				String name = validUser.getusername();
-
 				session.setAttribute("user_id", userId);
 				session.setAttribute("pass", password);
 				session.setAttribute("username", name);

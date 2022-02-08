@@ -32,13 +32,14 @@ public class TransactionSummary extends HttpServlet {
 				long acc = (Long) session.getAttribute("accNo");
 				List<Transaction> list = transDao.getByAccountNumberAdmin(acc);
 				boolean res = list.isEmpty();
-				if (res == false) {
+				if (res) {
+					session.setAttribute("tranacc", "No Transaction To View");
+					response.sendRedirect("transactionByAccount.jsp");
+				} else {
 					request.setAttribute("transacAcc", list);
 					RequestDispatcher rd = request.getRequestDispatcher("transactionAdminView.jsp");
 					rd.forward(request, response);
-				} else {
-					session.setAttribute("tranacc", "No Transaction To View");
-					response.sendRedirect("transactionByAccount.jsp");
+
 				}
 			} else {
 				session.setAttribute("tranaccount", "No Transaction To View");

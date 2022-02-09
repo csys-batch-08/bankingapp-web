@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.bankapp.dao.DepositsDao;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Deposits;
 import com.bankapp.util.ConnectionUtil;
 
@@ -46,7 +47,8 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (rs.next())
 				return rs.getDouble("INTEREST_RATE");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, statement, con);
 		}
@@ -55,7 +57,7 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	@Override
 	public long fixedDeposit(String type, double amount, double rateOfInterest, double maturityValue, int period,
-			String status, String pan, String email) throws SQLException {
+			String status, String pan, String email)  {
 		Connection con = null;
 
 		String querySelect = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='SavingsAccount'";
@@ -103,23 +105,51 @@ public class DepositsDaoimpl implements DepositsDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-
-			if (resSet != null)
-				resSet.close();
-			if (state != null)
-				state.close();
-			if (statement != null)
-				statement.close();
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
+			if (resSet != null) {
+				try {
+					resSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (state != null) {
+				try {
+					state.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
 			if (con != null) {
-				con.close();
-
+				try {
+					con.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 		}
 		return depNumber;
@@ -127,12 +157,11 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	@Override
 	public long recurringDeposit(String type, double amount, double rateOfInterest, int period, double maturityValue,
-			String status, String pan, String email, double totalAmount) throws SQLException {
+			String status, String pan, String email, double totalAmount)  {
 		Connection con = null;
 		String query = "select USER_ID,ACCOUNT_NUMBER FROM ACCOUNT_DETAILS WHERE EMAIL=? and ACC_TYPE='SavingsAccount'";
 		String queryInsert = "INSERT INTO DEPOSITS (ACCOUNT_NUMBER,USER_ID,DEPOSIT_TYPE,AMOUNT,TENURE_IN_YEARS,RATE_OF_INTEREST,MATURITY_DATE,MATURITY_VALUE,DEPOSIT_STATUS,PAN_NUMBER,Total_amount) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		String selQuery = "select deposit_number from deposits where ACCOUNT_NUMBER=? and amount=?";
-
 		LocalDate sysDate = LocalDate.now();
 		Date mdate = Date.valueOf(sysDate.plusYears(period));
 		long accNumber = 0;
@@ -147,18 +176,15 @@ public class DepositsDaoimpl implements DepositsDao {
 			con = ConnectionUtil.getDbConnection();
 			st = con.prepareStatement(query);
 			st.setString(1, email);
-
 			st.executeUpdate();
 			rs = st.executeQuery();
 			if (rs.next()) {
 				userId = rs.getInt(1);
 				accNumber = rs.getLong(2);
-
 			}
 			statement = con.prepareStatement(queryInsert);
 			statement.setLong(1, accNumber);
 			statement.setInt(2, userId);
-
 			statement.setString(3, type);
 			statement.setDouble(4, amount);
 			statement.setInt(5, period);
@@ -175,27 +201,55 @@ public class DepositsDaoimpl implements DepositsDao {
 			reSet = state.executeQuery();
 			if (reSet.next()) {
 				deprdNumber = reSet.getLong(DEPOSIT_NUMBER);
-
 			}
-
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (reSet != null)
-				reSet.close();
-			if (state != null)
-				state.close();
+			if (reSet != null) {
+				try {
+					reSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (state != null) {
+				try {
+					state.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
 			if (statement != null) {
-				statement.close();
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 			if (rs != null) {
-				rs.close();
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 			if (st != null)
-				st.close();
+				try {
+					st.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			if (con != null) {
-				con.close();
+				try {
+					con.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 		}
 		return deprdNumber;
@@ -204,13 +258,14 @@ public class DepositsDaoimpl implements DepositsDao {
 	@Override
 	public List<Deposits> viewdeposit() throws SQLException {
 		List<Deposits> loans = new ArrayList<>();
-		String view1 = " select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits";
+		String viewQuery = " select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits";
 		Connection con = null;
 		Statement statement = null;
+		ResultSet rs=null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(view1);
+			 rs = statement.executeQuery(viewQuery);
 			while (rs.next()) {
 				Deposits loan = new Deposits(rs.getLong(DEPOSIT_NUMBER), rs.getLong(ACCOUNT_NUMBER), rs.getInt(USER_ID),
 						rs.getString(DEPOSIT_TYPE), rs.getDouble(AMOUNT), rs.getDate(DATE_OF_DEPOSIT).toLocalDate(),
@@ -221,19 +276,10 @@ public class DepositsDaoimpl implements DepositsDao {
 				loans.add(loan);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-
-			if (statement != null) {
-				statement.close();
-			}
-
-			if (con != null) {
-				con.close();
-
-			}
-
+			ConnectionUtil.closeStatement(rs, statement, con);
 		}
 
 		return loans;
@@ -241,16 +287,17 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	public boolean viewOnedeposit(long accnum) throws SQLException {
 		List<Deposits> loans = new ArrayList<>();
-		String view1 = "select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits  where account_number=? or deposit_number= ?";
+		String viewQuery = "select deposit_number,account_number,user_id,deposit_type,amount,date_of_deposit,tenure_in_years,rate_of_interest,maturity_date,maturity_value,deposit_status,pan_number,approved_date,total_amount from Deposits  where account_number=? or deposit_number= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
+		ResultSet rs=null;
 		boolean flag = false;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			statement = con.prepareStatement(view1);
+			statement = con.prepareStatement(viewQuery);
 			statement.setLong(1, accnum);
 			statement.setLong(2, accnum);
-			ResultSet rs = statement.executeQuery();
+		    rs = statement.executeQuery();
 			if (rs.next()) {
 				Deposits loan = new Deposits(rs.getLong(DEPOSIT_NUMBER), rs.getLong(ACCOUNT_NUMBER), rs.getInt(USER_ID),
 						rs.getString(DEPOSIT_TYPE), rs.getDouble(AMOUNT), rs.getDate(DATE_OF_DEPOSIT).toLocalDate(),
@@ -262,22 +309,16 @@ public class DepositsDaoimpl implements DepositsDao {
 				flag = true;
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null) {
-				statement.close();
-			}
-
-			if (con != null) {
-				con.close();
-			}
+			 ConnectionUtil.closeConnection(rs, statement, con);
 		}
 		return flag;
 	}
 
 	@Override
-	public boolean updateStatus(long depnum, String status) throws SQLException {
+	public boolean updateStatus(long depnum, String status)  {
 		String query = "select sysdate from dual ";
 		String showQuery = "select tenure_in_years from deposits where Deposit_number='" + depnum + "'";
 		String que = "UPDATE DEPOSITS SET DEPOSIT_STATUS=?,maturity_date=? , Approved_date=? WHERE deposit_number=?";
@@ -307,10 +348,8 @@ public class DepositsDaoimpl implements DepositsDao {
 				period = resuSet.getInt(1);
 
 			}
-
 			LocalDate sysDate = LocalDate.now();
 			Date mdate = Date.valueOf(sysDate.plusYears(period));
-
 			state = con.prepareStatement(que);
 			state.setString(1, status);
 			state.setDate(2, mdate);
@@ -332,25 +371,66 @@ public class DepositsDaoimpl implements DepositsDao {
 			statement.setLong(3, accNum);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (statement != null)
-				statement.close();
-			if (reSet != null)
-				reSet.close();
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (reSet != null) {
+				try {
+					reSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
 			if (pst != null) {
-				pst.close();
+				try {
+					pst.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
-			if (state != null)
-				state.close();
-			if (resuSet != null)
-				resuSet.close();
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
+			if (state != null) {
+				try {
+					state.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (resuSet != null) {
+				try {
+					resuSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}}
 			if (con != null) {
-				con.close();
+				try {
+					con.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 		}
 		return flag;
@@ -380,17 +460,10 @@ public class DepositsDaoimpl implements DepositsDao {
 				list.add(dep);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (pst != null) {
-				pst.close();
-			}
-			if (rs != null)
-				rs.close();
-			if (con != null) {
-				con.close();
-			}
+			 ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return list;
 
@@ -424,7 +497,8 @@ public class DepositsDaoimpl implements DepositsDao {
 				balance = rs.getDouble("balance");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (rs != null) {
 				rs.close();
@@ -460,7 +534,8 @@ public class DepositsDaoimpl implements DepositsDao {
 				amount = rs.getDouble(AMOUNT);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 		return amount;
 	}

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bankapp.impl.LoansDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Loans;
 
 @WebServlet("/House")
@@ -56,8 +57,8 @@ public class HousingLoan extends HttpServlet {
 				response.sendRedirect("housingLoan.jsp");
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

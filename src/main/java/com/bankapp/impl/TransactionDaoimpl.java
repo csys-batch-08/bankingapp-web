@@ -11,22 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.TransactionDao;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Transaction;
 import com.bankapp.util.ConnectionUtil;
 
 public class TransactionDaoimpl implements TransactionDao {
-
 	private static final String BALANCE2 = "balance";
 	private static final String TRANSACTION_DATE = "transaction_date";
 	private static final String AMOUNT = "amount";
 	private static final String TRANSACTION_STATUS = "transaction_status";
-
 	@Override
 	public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO) {
-
-		String selectQuery = "select balance from account_details where account_number=?";
-		String inserQuery = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)"
-				+ "values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
+		String showQuery = "select balance from account_details where account_number=?";
+		String query = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status) values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
 		double balance = 0;
 		boolean flag = false;
 		Connection con = null;
@@ -35,42 +32,54 @@ public class TransactionDaoimpl implements TransactionDao {
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-
-			ps = con.prepareStatement(selectQuery);
+			ps = con.prepareStatement(showQuery);
 			ps.setDouble(1, senderAccNum);
 			ps.executeUpdate();
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				balance = rs.getDouble(BALANCE2);
 			}
-			pst = con.prepareStatement(inserQuery);
+			pst = con.prepareStatement(query);
 			pst.setLong(1, senderAccNum);
 			pst.setString(2, uname);
 			pst.setLong(3, receiverAccNO);
 			pst.setDouble(4, amount);
 			pst.setDouble(5, balance);
 			pst.executeUpdate();
-
 			flag = true;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
+			 	if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException e) {
+						Logger.printStackTrace(e);
+						Logger.runTimeException(e.getMessage());
+					}
+			 	}
+				if (ps != null) {
+					try {
+						ps.close();
+					} catch (SQLException e) {
+						Logger.printStackTrace(e);
+						Logger.runTimeException(e.getMessage());
+					}
+				}
 				if (con != null)
-					con.close();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
+				{
+					try {
+						con.close();
+					} catch (SQLException e) {
+						Logger.printStackTrace(e);
+						Logger.runTimeException(e.getMessage());
+					}
+				}
 		}
 		return flag;
-
 	}
+
 
 	@Override
 	public double viewBalance(long accountNumber, int pinNo) throws SQLException {
@@ -89,7 +98,8 @@ public class TransactionDaoimpl implements TransactionDao {
 				balance = rs.getDouble(BALANCE2);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, pst, con);
 		}
@@ -112,7 +122,8 @@ public class TransactionDaoimpl implements TransactionDao {
 				balance = rs.getDouble(BALANCE2);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, pst, con);
 		}
@@ -136,7 +147,8 @@ public class TransactionDaoimpl implements TransactionDao {
 				return 0;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, pst, con);
 		}
@@ -164,8 +176,8 @@ public class TransactionDaoimpl implements TransactionDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 
 		} finally {
 			ConnectionUtil.closeConnection(rs, st, con);
@@ -197,8 +209,8 @@ public class TransactionDaoimpl implements TransactionDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, pst, con);
 		}
@@ -225,8 +237,8 @@ public class TransactionDaoimpl implements TransactionDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, pst, con);
 		}
@@ -244,14 +256,12 @@ public class TransactionDaoimpl implements TransactionDao {
 			con = ConnectionUtil.getDbConnection();
 			st = con.createStatement();
 			rs = st.executeQuery(query);
-
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
 			}
-
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeStatement(rs, st, con);
 		}
@@ -282,8 +292,8 @@ public class TransactionDaoimpl implements TransactionDao {
 			pst.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (pst != null)
 				try {
@@ -302,8 +312,8 @@ public class TransactionDaoimpl implements TransactionDao {
 				try {
 					con.close();
 				} catch (SQLException e) {
-
-					e.printStackTrace();
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
 				}
 		}
 		return flag;

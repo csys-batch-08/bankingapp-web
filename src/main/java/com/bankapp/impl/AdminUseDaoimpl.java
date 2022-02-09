@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.AdminUseDao;
-
+import com.bankapp.logger.Logger;
 import com.bankapp.model.AdminUse;
 import com.bankapp.util.ConnectionUtil;
 
@@ -29,8 +29,8 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();
@@ -65,9 +65,8 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			 ConnectionUtil.closeStatement(rs, statement, con);
 		}
@@ -77,7 +76,6 @@ public class AdminUseDaoimpl implements AdminUseDao {
 	public List<AdminUse> interestRate() throws SQLException {
 		List<AdminUse> list = new ArrayList<>();
 		Connection con = null;
-
 		String validateQuery = "select category_name,category_type,description,description_id,interest_rate  from admin_use order by description_id";
 		ResultSet rs = null;
 		Statement statement = null;
@@ -94,9 +92,8 @@ public class AdminUseDaoimpl implements AdminUseDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeStatement(rs, statement, con);
 		}

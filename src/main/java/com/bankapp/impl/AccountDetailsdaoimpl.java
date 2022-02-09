@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.AccountDetailsDao;
-
+import com.bankapp.logger.Logger;
 import com.bankapp.model.AccountDetails;
 
 import com.bankapp.util.ConnectionUtil;
@@ -54,10 +54,10 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			flag = true;
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeStatePrepareStatement(st, rs, statement, con);
+			ConnectionUtil.closeStatePrepareStatement(st, rs, statement, con);
 		}
 		return flag;
 	}
@@ -91,9 +91,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, state, con);
 		}
@@ -108,11 +107,11 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 				+ "ifsc_code,branch_name,balance,pin_number,account_status,pan_number from ACCOUNT_DETAILS order by account_number";
 		Connection con = null;
 		Statement statement = null;
-		ResultSet rs=null;
+		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.createStatement();
-			 rs = statement.executeQuery(query);
+			rs = statement.executeQuery(query);
 			while (rs.next()) {
 				AccountDetails accDetail = new AccountDetails(rs.getInt(1), rs.getLong(2), rs.getString(3),
 						rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDate(8).toLocalDate(),
@@ -122,10 +121,10 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeStatement(rs, statement, con);
+			ConnectionUtil.closeStatement(rs, statement, con);
 		}
 
 		return list;
@@ -152,12 +151,11 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 				list.add(accDetail);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeStatement(rs, statement, con);
-			}
-
+			ConnectionUtil.closeStatement(rs, statement, con);
+		}
 
 		return list;
 	}
@@ -169,7 +167,7 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 		Connection con = null;
 		boolean flag = false;
 		PreparedStatement statement = null;
-		PreparedStatement stmt=null;
+		PreparedStatement stmt = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			statement = con.prepareStatement(updateQueryAcc);
@@ -183,13 +181,14 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			stmt.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 
 		} finally {
-			if(statement!=null)
+			if (statement != null)
 
-			 ConnectionUtil.closePrepareStatement(statement, null, stmt, con);
-			 }
+				ConnectionUtil.closePrepareStatement(statement, null, stmt, con);
+		}
 		return flag;
 	}
 
@@ -208,8 +207,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			flag = true;
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();
@@ -238,7 +237,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 				return null;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();
@@ -266,7 +266,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 				return 0;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();
@@ -295,10 +296,10 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-		 ConnectionUtil.closeConnection(rs, statement, con);
+			ConnectionUtil.closeConnection(rs, statement, con);
 		}
 
 		return balance;
@@ -321,8 +322,8 @@ public class AccountDetailsdaoimpl implements AccountDetailsDao {
 			}
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.DepositsDaoimpl;
-
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Deposits;
 
 @WebServlet("/DepositApproveAdmin")
@@ -44,7 +44,8 @@ public class DepositApproveAdmin extends HttpServlet {
 				rd.forward(request, response);
 			}
 		} catch (IOException | SQLException | ServletException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

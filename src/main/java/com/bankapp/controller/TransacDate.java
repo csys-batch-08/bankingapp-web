@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Transaction;
 
 @WebServlet("/date")
@@ -41,7 +42,8 @@ public class TransacDate extends HttpServlet {
 				rd.forward(request, response);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

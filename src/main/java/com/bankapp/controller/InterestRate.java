@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bankapp.impl.AdminUseDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.AdminUse;
 
 @WebServlet("/InterestRate")
@@ -26,7 +27,8 @@ public class InterestRate extends HttpServlet {
 
 			rd.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

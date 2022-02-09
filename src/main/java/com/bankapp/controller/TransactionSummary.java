@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Transaction;
 
 @WebServlet("/account")
@@ -47,7 +48,8 @@ public class TransactionSummary extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

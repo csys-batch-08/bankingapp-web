@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.bankapp.dao.UserDetailsDao;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.UserDetails;
 import com.bankapp.util.ConnectionUtil;
 
@@ -34,7 +35,8 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 			i = preStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (preStatement != null)
 				preStatement.close();
@@ -61,7 +63,8 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			ConnectionUtil.closeConnection(rs, preState, con);
 		}
@@ -87,35 +90,34 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 						rs.getString(USER_PASSWORD), rs.getLong(MOBILE_NUMBER));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			 ConnectionUtil.closeConnection(rs, preStatement1, con);
-
 		}
 		return user;
 	}
 
 	public UserDetails validatePassword(String emailId, long mobno) throws SQLException {
-		String validateQuery1 = "select user_login_id,user_name,user_password from USER_DETAILS where role='USER' and email=? and mobile_number=?";
+		String validateQuery = "select user_login_id,user_name,user_password from USER_DETAILS where role='USER' and email=? and mobile_number=?";
 		Connection con = null;
 		PreparedStatement prePareState = null;
 		ResultSet rs = null;
 		UserDetails user = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			prePareState = con.prepareStatement(validateQuery1);
+			prePareState = con.prepareStatement(validateQuery);
 			prePareState.setString(1, emailId);
 			prePareState.setLong(1, mobno);
 			prePareState.executeUpdate();
-			rs = prePareState.executeQuery(validateQuery1);
+			rs = prePareState.executeQuery(validateQuery);
 			if (rs.next()) {
 				user = new UserDetails(rs.getInt(USER_LOGIN_ID), rs.getString(USER_NAME), emailId,
 						rs.getString(USER_PASSWORD), mobno);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
                 ConnectionUtil.closeConnection(rs, prePareState, con);
 		}
@@ -125,22 +127,22 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 	@Override
 	public boolean updateUser(String name, String password, String email) throws SQLException {
 
-		String updatequery1 = "update user_details set user_name=?,user_password=? where email=?";
+		String updateQuery = "update user_details set user_name=?,user_password=? where email=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		boolean flag = false;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt = con.prepareStatement(updatequery1);
+			pstmt = con.prepareStatement(updateQuery);
 			pstmt.setString(1, name);
 			pstmt.setString(2, password);
 			pstmt.setString(3, email);
 			pstmt.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
-
-		} finally {
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
+			} finally {
 			if (pstmt != null)
 				pstmt.close();
 			if (con != null)
@@ -151,23 +153,24 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 	public boolean forgotPassword(String password, String email) throws SQLException {
 
-		String updatequery2 = "update user_details  set user_password=? where email=?";
+		String updateQuery = "update user_details  set user_password=? where email=?";
 		Connection con = null;
-		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt = null;
 		boolean flag = false;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt1 = con.prepareStatement(updatequery2);
-			pstmt1.setString(1, password);
-			pstmt1.setString(2, email);
-			pstmt1.executeUpdate();
+			pstmt = con.prepareStatement(updateQuery);
+			pstmt.setString(1, password);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 
 		} finally {
-			if (pstmt1 != null)
-				pstmt1.close();
+			if (pstmt != null)
+				pstmt.close();
 			if (con != null)
 				con.close();
 		}
@@ -176,32 +179,29 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 	@Override
 	public UserDetails admin(String emailId, String password) throws SQLException {
-		String adminQuery1 = "select user_login_id,user_name,email,user_password,mobile_number from user_details where role='ADMIN' and email= ?and user_password=?";
-		UserDetails user1 = null;
+		String adminQuery = "select user_login_id,user_name,email,user_password,mobile_number from user_details where role='ADMIN' and email= ?and user_password=?";
+		UserDetails user = null;
 		Connection con = null;
-		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			pstmt1 = con.prepareStatement(adminQuery1);
-			pstmt1.setString(1, emailId);
-			pstmt1.setString(2, password);
+			pstmt = con.prepareStatement(adminQuery);
+			pstmt.setString(1, emailId);
+			pstmt.setString(2, password);
 
-			rs = pstmt1.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				user1 = new UserDetails(rs.getInt(USER_LOGIN_ID), rs.getString(USER_NAME), rs.getString(EMAIL2),
+				user = new UserDetails(rs.getInt(USER_LOGIN_ID), rs.getString(USER_NAME), rs.getString(EMAIL2),
 						rs.getString(USER_PASSWORD), rs.getLong(MOBILE_NUMBER));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (pstmt1 != null)
-				pstmt1.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil.closeConnection(rs, pstmt, con);
 		}
-
-		return user1;
+		return user;
 	}
 
 	@Override
@@ -223,15 +223,11 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (st != null)
-				st.close();
-			if (con != null)
-				con.close();
+		 ConnectionUtil.closeStatement(rs, st, con);
 		}
-
 		return userList;
 	}
 
@@ -248,8 +244,8 @@ public class UserDetailsDaoimpl implements UserDetailsDao {
 			pst.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (pst != null) {
 				pst.close();

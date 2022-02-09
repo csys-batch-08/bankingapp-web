@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bankapp.impl.DepositsDaoimpl;
-import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Deposits;
 
 @WebServlet("/ApproveDeposit")
@@ -25,7 +25,8 @@ public class ApproveDeposit extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("approveDeposits.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 }

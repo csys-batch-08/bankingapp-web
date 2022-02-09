@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bankapp.logger.Logger;
+
 @WebServlet("/LogoutServlet")
 public class Logout extends HttpServlet {
 
@@ -19,7 +21,8 @@ public class Logout extends HttpServlet {
 			session.invalidate();
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

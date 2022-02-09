@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.UserDetailsDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.UserDetails;
 
 @WebServlet("/MyProfile")
@@ -30,8 +31,8 @@ public class MyProfile extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("myProfile.jsp");
 			rd.forward(request, response);
 		} catch (ServletException | IOException | SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

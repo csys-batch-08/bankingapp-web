@@ -1,6 +1,6 @@
 package com.bankapp.controller;
 
- 
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.AccountDetailsdaoimpl;
- 
+import com.bankapp.logger.Logger;
+
 @WebServlet("/Cancel")
 public class UserCancel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)   {
 		try {
@@ -23,11 +24,11 @@ public class UserCancel extends HttpServlet {
 	    userDetailDao.deleteDetails(accno,status);
 		HttpSession session=request.getSession();
 	  	session.setAttribute("can", "Updated");
-	  	
+
 			response.sendRedirect("userCancel.jsp");
 		} catch (Exception e) {
-		 
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

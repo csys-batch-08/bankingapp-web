@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bankapp.impl.LoansDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Loans;
 
 @WebServlet("/ApproveLoans")
@@ -23,7 +24,8 @@ public class ApproveLoans extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("approveLoans.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

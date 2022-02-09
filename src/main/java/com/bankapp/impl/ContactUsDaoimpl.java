@@ -1,5 +1,6 @@
 package com.bankapp.impl;
 
+import com.bankapp.logger.Logger;
 import com.bankapp.model.ContactUs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,18 +28,15 @@ public class ContactUsDaoimpl {
 			statement.setString(3, message);
 			flag = true;
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
-
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-
 			if (statement != null) {
 				statement.close();
 			}
 			if (con != null) {
 				con.close();
-
 			}
 		}
 		return flag;
@@ -61,7 +59,8 @@ public class ContactUsDaoimpl {
 				list.add(contact);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (statement != null) {
 				statement.close();

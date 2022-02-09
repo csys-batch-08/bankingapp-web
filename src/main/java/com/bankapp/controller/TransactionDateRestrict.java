@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 
 @WebServlet("/TransactionDateRestrict")
 public class TransactionDateRestrict extends HttpServlet {
@@ -27,7 +28,8 @@ public class TransactionDateRestrict extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("transactionByDate.jsp");
 			rd.forward(request, response);
 		} catch (ServletException | IOException | SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bankapp.impl.UserDetailsDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.UserDetails;
 
 @WebServlet("/ViewAllUser")
@@ -28,8 +29,8 @@ public class ViewAllUser extends HttpServlet {
 			rd.forward(request, response);
 
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

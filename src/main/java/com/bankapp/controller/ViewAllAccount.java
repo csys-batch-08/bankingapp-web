@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bankapp.impl.AccountDetailsdaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.AccountDetails;
 
 @WebServlet("/ViewAllAccount")
@@ -25,8 +26,8 @@ public class ViewAllAccount extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("viewAccount.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

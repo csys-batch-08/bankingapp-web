@@ -1,5 +1,5 @@
 package com.bankapp.controller;
- 
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.AdminUseDaoimpl;
- 
- 
+import com.bankapp.logger.Logger;
+
+
  @WebServlet("/interestRate")
 public class RateServlet extends HttpServlet {
- 
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -25,8 +26,8 @@ public class RateServlet extends HttpServlet {
 		   session.setAttribute("rat","Updated");
 			response.sendRedirect("interestRate.jsp");
 			} catch (Exception e) {
-		 
-				e.printStackTrace();
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 			}
 	}
 

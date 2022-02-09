@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bankapp.impl.UserDetailsDaoimpl;
+import com.bankapp.logger.Logger;
 @WebServlet("/ForgotPassword")
 public class ForgotPassword extends HttpServlet {
  	private static final long serialVersionUID = 1L;
@@ -17,7 +18,8 @@ public class ForgotPassword extends HttpServlet {
 		userDetailDao.forgotPassword(password, email);
 		response.sendRedirect("login.jsp");
 		} catch (Exception e) {
-			 e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.UserDetailsDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.UserDetails;
 
 @WebServlet("/login")
@@ -44,7 +45,8 @@ public class Login extends HttpServlet {
 				response.sendRedirect("login.jsp");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

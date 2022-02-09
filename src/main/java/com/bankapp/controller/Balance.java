@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 
 @WebServlet("/Balance")
 public class Balance extends HttpServlet {
@@ -28,8 +29,8 @@ public class Balance extends HttpServlet {
 				response.sendRedirect("balance.jsp");
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 	}
 

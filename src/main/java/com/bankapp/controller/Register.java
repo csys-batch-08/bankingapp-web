@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.UserDetailsDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.UserDetails;
 
 @WebServlet("/register")
@@ -31,7 +32,6 @@ public class Register extends HttpServlet {
 				String id = accountsDao.getUserId(email);
 
 				if (id != null) {
-					int accountId = Integer.parseInt(id);
 					UserDetails user = new UserDetails(name, email, password, mobileNo);
 					userDetailDao.insertUser(user);
 					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
@@ -54,8 +54,8 @@ public class Register extends HttpServlet {
 		} catch (
 
 		Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

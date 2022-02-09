@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bankapp.impl.AccountDetailsdaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 
 @WebServlet("/TransferAmount")
 public class TransferAmount extends HttpServlet {
@@ -75,8 +76,8 @@ public class TransferAmount extends HttpServlet {
 			response.sendRedirect("transferAmount.jsp");
 		}
 			} catch (Exception e) {
-
-			e.printStackTrace();
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
 		}
 
 

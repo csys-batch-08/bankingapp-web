@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bankapp.impl.LoansDaoimpl;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Loans;
 
 @WebServlet("/approveloan")
@@ -52,8 +53,8 @@ public class LoanStatusAdmin extends HttpServlet {
 				rd.forward(request, response);
 			}
 		} catch (ServletException | IOException | SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

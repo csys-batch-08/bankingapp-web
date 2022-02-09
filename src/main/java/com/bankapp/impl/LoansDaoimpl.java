@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bankapp.dao.LoansDao;
+import com.bankapp.logger.Logger;
 import com.bankapp.model.Loans;
 import com.bankapp.util.ConnectionUtil;
 
@@ -47,9 +48,10 @@ public class LoansDaoimpl implements LoansDao {
 			if (rs.next())
 				return rs.getDouble("INTEREST_RATE");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pstmt, con);
+			ConnectionUtil.closeConnection(rs, pstmt, con);
 		}
 		return 0;
 	}
@@ -70,9 +72,7 @@ public class LoansDaoimpl implements LoansDao {
 			if (rs.next()) {
 				accNumber = rs.getLong(1);
 			}
-
 			pstmt = con.prepareStatement(query);
-
 			pstmt.setLong(1, accNumber);
 			pstmt.setString(2, loan.getUsername());
 			pstmt.setDate(3, java.sql.Date.valueOf(loan.getDob()));
@@ -91,10 +91,10 @@ public class LoansDaoimpl implements LoansDao {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil. closeStatePrepareStatement(st, rs, pstmt, con);
+			ConnectionUtil.closeStatePrepareStatement(st, rs, pstmt, con);
 		}
 		return accNumber;
 
@@ -116,17 +116,16 @@ public class LoansDaoimpl implements LoansDao {
 				accNum = rs.getLong(1);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeConnection(rs, st, con);
+			ConnectionUtil.closeConnection(rs, st, con);
 		}
 		return accNum;
-
 	}
 
 	@Override
-	public boolean validateLoan(String pan) throws SQLException {
+	public boolean validateLoan(String pan) {
 		String que = "select   account_number from loans where  pan_number= ? ";
 		String query = "select  account_number from loans where  pan_number=? and Loan_status='Rejected' or Loan_status='NotApproved' ";
 		Connection con = null;
@@ -143,30 +142,56 @@ public class LoansDaoimpl implements LoansDao {
 			state = con.prepareStatement(query);
 			state.setString(1, pan);
 			if (rs.next()) {
-
 				rSet = state.executeQuery(query);
 				if (rSet.next()) {
 					flag = false;
-
 				}
-
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			if (rSet != null)
-				rSet.close();
-			if (state != null)
-				state.close();
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
-			if (con != null)
-				con.close();
+			if (rSet != null) {
+				try {
+					rSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
+			}
+			if (state != null) {
+				try {
+					state.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
+			}
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
+			}
+			if (st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
+			}
 		}
-
 		return flag;
 	}
 
@@ -182,15 +207,13 @@ public class LoansDaoimpl implements LoansDao {
 			st.setString(1, pan);
 			rs = st.executeQuery();
 			if (rs.next()) {
-
 				flag = true;
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-
-			 ConnectionUtil.closeConnection(rs, st, con);
+			ConnectionUtil.closeConnection(rs, st, con);
 		}
 		return flag;
 	}
@@ -211,10 +234,10 @@ public class LoansDaoimpl implements LoansDao {
 				flag = true;
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-          ConnectionUtil.closeConnection(rs, st, con);
+			ConnectionUtil.closeConnection(rs, st, con);
 		}
 		return flag;
 	}
@@ -251,12 +274,11 @@ public class LoansDaoimpl implements LoansDao {
 			pstmt.setString(13, loan.getLoanStatus());
 			pstmt.setString(14, loan.getPanNumber());
 			pstmt.executeUpdate();
-
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-			 ConnectionUtil.closeStatePrepareStatement(st, rs, pstmt, con);
+			ConnectionUtil.closeStatePrepareStatement(st, rs, pstmt, con);
 		}
 		return accNumber;
 	}
@@ -276,19 +298,18 @@ public class LoansDaoimpl implements LoansDao {
 				Loans loan = new Loans(rs.getLong(ACCOUNT_NUMBER), rs.getString(ACC_HOLDER_NAME),
 						rs.getDate("dob").toLocalDate(), rs.getString(ADDRESS), rs.getLong(MOBILE_NUMBER),
 						rs.getString(EMAIL), rs.getString(IFSC_CODE), rs.getString(ACC_STATUS),
-						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE),
-						rs.getString(DESCRIPTION), rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE),
-						rs.getDouble(INTEREST_RATE), rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS),
-						rs.getString(PAN_NUMBER), rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
+						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE), rs.getString(DESCRIPTION),
+						rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE), rs.getDouble(INTEREST_RATE),
+						rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS), rs.getString(PAN_NUMBER),
+						rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
 				loans.add(loan);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-           ConnectionUtil.closeStatement(rs, st, con);
+			ConnectionUtil.closeStatement(rs, st, con);
 		}
-
 		return loans;
 	}
 
@@ -314,7 +335,6 @@ public class LoansDaoimpl implements LoansDao {
 			if (con != null)
 				con.close();
 		}
-
 		return flag;
 	}
 
@@ -330,23 +350,21 @@ public class LoansDaoimpl implements LoansDao {
 			pst = con.prepareStatement(query);
 			pst.setLong(1, accNo);
 			rs = pst.executeQuery();
-
 			while (rs.next()) {
 				Loans dep = new Loans(rs.getLong(ACCOUNT_NUMBER), rs.getString(ACC_HOLDER_NAME),
 						rs.getDate("dob").toLocalDate(), rs.getString(ADDRESS), rs.getLong(MOBILE_NUMBER),
 						rs.getString(EMAIL), rs.getString(IFSC_CODE), rs.getString(ACC_STATUS),
-						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE),
-						rs.getString(DESCRIPTION), rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE),
-						rs.getDouble(INTEREST_RATE), rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS),
-						rs.getString(PAN_NUMBER), rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
+						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE), rs.getString(DESCRIPTION),
+						rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE), rs.getDouble(INTEREST_RATE),
+						rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS), rs.getString(PAN_NUMBER),
+						rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
 				list.add(dep);
 			}
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return list;
 
@@ -368,19 +386,19 @@ public class LoansDaoimpl implements LoansDao {
 				Loans loan = new Loans(rs.getLong(ACCOUNT_NUMBER), rs.getString(ACC_HOLDER_NAME),
 						rs.getDate("dob").toLocalDate(), rs.getString(ADDRESS), rs.getLong(MOBILE_NUMBER),
 						rs.getString(EMAIL), rs.getString(IFSC_CODE), rs.getString(ACC_STATUS),
-						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE),
-						rs.getString(DESCRIPTION), rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE),
-						rs.getDouble(INTEREST_RATE), rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS),
-						rs.getString(PAN_NUMBER), rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
+						rs.getDate(APPLIED_DATE).toLocalDate(), rs.getString(LOAN_TYPE), rs.getString(DESCRIPTION),
+						rs.getDouble(LOAN_AMOUNT), rs.getInt(TENURE), rs.getDouble(INTEREST_RATE),
+						rs.getDouble(MONTHLY_PAYMENT), rs.getString(LOAN_STATUS), rs.getString(PAN_NUMBER),
+						rs.getDouble(SALARY), rs.getDate(APPROVED_DATE).toLocalDate());
 				loans.add(loan);
 				flag = true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-               ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
-
 		return flag;
 	}
 
@@ -399,9 +417,10 @@ public class LoansDaoimpl implements LoansDao {
 				monthlyPayment = rs.getDouble(MONTHLY_PAYMENT);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
-           ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return monthlyPayment;
 	}

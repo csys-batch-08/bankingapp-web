@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bankapp.impl.DepositsDaoimpl;
 import com.bankapp.impl.TransactionDaoimpl;
+import com.bankapp.logger.Logger;
 
 @WebServlet("/Recurring")
 public class RecurringDeposit extends HttpServlet {
@@ -51,8 +52,8 @@ public class RecurringDeposit extends HttpServlet {
 				response.sendRedirect("recurringDeposit.jsp");
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		}
 
 	}

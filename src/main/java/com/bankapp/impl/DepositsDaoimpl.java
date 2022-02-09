@@ -469,7 +469,7 @@ public class DepositsDaoimpl implements DepositsDao {
 
 	}
 
-	public double checkBalanceAdmin(long depnum) throws SQLException {
+	public double checkBalanceAdmin(long depnum)   {
 
 		String query = "select account_number from deposits where deposit_number=?";
 		String selectQuery = "select BALANCE from account_details where   account_number=? ";
@@ -501,18 +501,43 @@ public class DepositsDaoimpl implements DepositsDao {
 			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (rs != null) {
-				rs.close();
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 			if (state != null) {
-				state.close();
+				try {
+					state.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 			if (reSet != null)
-				reSet.close();
+				try {
+					reSet.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			if (pst != null) {
-				pst.close();
+				try {
+					pst.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 			if (con != null) {
-				con.close();
+				try {
+					con.close();
+				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
+				}
 			}
 		}
 		return balance;
@@ -523,19 +548,29 @@ public class DepositsDaoimpl implements DepositsDao {
 		String query = "select amount from deposits where deposit_number=?";
 		PreparedStatement pst = null;
 		Connection con = null;
+		ResultSet rs=null;
 		double amount = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			pst.setLong(1, depositNumber);
 
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			if (rs.next()) {
 				amount = rs.getDouble(AMOUNT);
 			}
 		} catch (SQLException e) {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
+		}
+		finally {
+			try {
+				ConnectionUtil.closeConnection(rs, pst, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+
+			}
 		}
 		return amount;
 	}

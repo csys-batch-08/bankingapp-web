@@ -51,31 +51,12 @@ public class TransactionDaoimpl implements TransactionDao {
 			Logger.printStackTrace(e);
 			Logger.runTimeException(e.getMessage());
 		} finally {
-			 	if (rs != null) {
-					try {
-						rs.close();
-					} catch (SQLException e) {
-						Logger.printStackTrace(e);
-						Logger.runTimeException(e.getMessage());
-					}
-			 	}
-				if (ps != null) {
-					try {
-						ps.close();
-					} catch (SQLException e) {
-						Logger.printStackTrace(e);
-						Logger.runTimeException(e.getMessage());
-					}
-				}
-				if (con != null)
-				{
-					try {
-						con.close();
-					} catch (SQLException e) {
-						Logger.printStackTrace(e);
-						Logger.runTimeException(e.getMessage());
-					}
-				}
+			try {
+				ConnectionUtil.closePrepareStatement(pst, rs, ps, con);
+			} catch (SQLException e) {
+				Logger.printStackTrace(e);
+				Logger.runTimeException(e.getMessage());
+			}
 		}
 		return flag;
 	}
@@ -299,14 +280,16 @@ public class TransactionDaoimpl implements TransactionDao {
 				try {
 					pst.close();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
 				}
 			if (ps != null)
 				try {
 					ps.close();
 				} catch (SQLException e) {
+					Logger.printStackTrace(e);
+					Logger.runTimeException(e.getMessage());
 
-					e.printStackTrace();
 				}
 			if (con != null)
 				try {

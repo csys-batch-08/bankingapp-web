@@ -327,8 +327,8 @@ public class LoansDaoimpl implements LoansDao {
 			pst.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
-
-			e.printStackTrace();
+			Logger.printStackTrace(e);
+			Logger.runTimeException(e.getMessage());
 		} finally {
 			if (pst != null)
 				pst.close();

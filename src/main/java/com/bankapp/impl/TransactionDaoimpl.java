@@ -22,8 +22,7 @@ public class TransactionDaoimpl implements TransactionDao {
 	private static final String TRANSACTION_STATUS = "transaction_status";
 
 	@Override
-	public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO)
-			throws SQLException {
+	public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO) {
 
 		String selectQuery = "select balance from account_details where account_number=?";
 		String inserQuery = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)"
@@ -57,12 +56,17 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (ps != null)
-				ps.close();
-			if (con != null)
-				con.close();
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
 		}
 		return flag;
 
@@ -254,7 +258,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		return date;
 	}
 
-	public boolean updateBalance(long senderAccNum, double amount, int pinNo, long receiverAccNO)   {
+	public boolean updateBalance(long senderAccNum, double amount, int pinNo, long receiverAccNO) {
 		String query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
 		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? "
 				+ "WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";

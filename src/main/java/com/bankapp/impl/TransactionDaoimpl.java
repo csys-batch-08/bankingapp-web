@@ -254,7 +254,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		return date;
 	}
 
-	public boolean updateBalance(long senderAccNum, double amount, int pinNo, long receiverAccNO) throws SQLException {
+	public boolean updateBalance(long senderAccNum, double amount, int pinNo, long receiverAccNO)   {
 		String query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
 		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? "
 				+ "WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
@@ -282,11 +282,25 @@ public class TransactionDaoimpl implements TransactionDao {
 			e.printStackTrace();
 		} finally {
 			if (pst != null)
-				pst.close();
+				try {
+					pst.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			if (ps != null)
-				ps.close();
+				try {
+					ps.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
 			if (con != null)
-				con.close();
+				try {
+					con.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace();
+				}
 		}
 		return flag;
 

@@ -70,4 +70,19 @@ public class ConnectionUtil {
 				con.close();
 			}
 	}
+		public  static  void closeResultSet(ResultSet rset, PreparedStatement pstmt,ResultSet rs, PreparedStatement stmt, Connection con) throws SQLException {
+			if(rset !=null)
+				rset.close();
+			if(pstmt !=null)
+				pstmt.close();
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		}
 }

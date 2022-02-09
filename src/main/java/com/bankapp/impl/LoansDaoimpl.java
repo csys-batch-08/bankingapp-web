@@ -94,14 +94,7 @@ public class LoansDaoimpl implements LoansDao {
 
 			e.printStackTrace();
 		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (rs != null)
-				rs.close();
-			if (st != null)
-				st.close();
-			if (con != null)
-				con.close();
+			 ConnectionUtil. closeStatePrepareStatement(st, rs, pstmt, con);
 		}
 		return accNumber;
 
@@ -164,10 +157,10 @@ public class LoansDaoimpl implements LoansDao {
 		} finally {
 			if (rSet != null)
 				rSet.close();
-			if (rs != null)
-				rs.close();
 			if (state != null)
 				state.close();
+			if (rs != null)
+				rs.close();
 			if (st != null)
 				st.close();
 			if (con != null)
@@ -263,7 +256,7 @@ public class LoansDaoimpl implements LoansDao {
 
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeStatePrepareStatement(pstmt, rs, pstmt, con);
+			 ConnectionUtil.closeStatePrepareStatement(st, rs, pstmt, con);
 		}
 		return accNumber;
 	}

@@ -111,13 +111,11 @@ public class DepositsDaoimpl implements DepositsDao {
 				resSet.close();
 			if (state != null)
 				state.close();
-			if (statement != null) {
+			if (statement != null)
 				statement.close();
-			}
-			if (rs != null) {
+			if (rs != null)
 				rs.close();
-			}
-			if(st!= null)
+			if (st != null)
 				st.close();
 			if (con != null) {
 				con.close();
@@ -194,11 +192,11 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (rs != null) {
 				rs.close();
 			}
-			if(st!= null)
+			if (st != null)
 				st.close();
 			if (con != null) {
 				con.close();
-		}
+			}
 		}
 		return deprdNumber;
 	}
@@ -293,10 +291,10 @@ public class DepositsDaoimpl implements DepositsDao {
 		Statement st = null;
 		LocalDate date = null;
 		ResultSet rs = null;
-		ResultSet reSet=null;
+		ResultSet reSet = null;
 		long accNum = 0;
 		boolean flag = false;
-		ResultSet resuSet=null;
+		ResultSet resuSet = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			st = con.createStatement();
@@ -304,7 +302,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (rs.next()) {
 				date = rs.getDate(1).toLocalDate();
 			}
-		    resuSet = st.executeQuery(showQuery);
+			resuSet = st.executeQuery(showQuery);
 			if (resuSet.next()) {
 				period = resuSet.getInt(1);
 
@@ -324,7 +322,7 @@ public class DepositsDaoimpl implements DepositsDao {
 			}
 			pst = con.prepareStatement(selectQuery);
 			pst.setLong(1, depnum);
-			  reSet = pst.executeQuery();
+			reSet = pst.executeQuery();
 			if (reSet.next()) {
 				accNum = reSet.getLong(ACCOUNT_NUMBER);
 			}
@@ -343,13 +341,13 @@ public class DepositsDaoimpl implements DepositsDao {
 			if (pst != null) {
 				pst.close();
 			}
-			if ( state != null)
+			if (state != null)
 				state.close();
 			if (resuSet != null)
 				resuSet.close();
 			if (rs != null)
 				rs.close();
-			if(st!=null)
+			if (st != null)
 				st.close();
 			if (con != null) {
 				con.close();
@@ -403,17 +401,17 @@ public class DepositsDaoimpl implements DepositsDao {
 		String query = "select account_number from deposits where deposit_number=?";
 		String selectQuery = "select BALANCE from account_details where   account_number=? ";
 		PreparedStatement pst = null;
-		PreparedStatement state=null;
+		PreparedStatement state = null;
 		Connection con = null;
 		ResultSet rs = null;
-		ResultSet reSet=null;
+		ResultSet reSet = null;
 		long accountNum = 0;
 		double balance = 0;
 		try {
 			con = ConnectionUtil.getDbConnection();
 			pst = con.prepareStatement(query);
 			pst.setLong(1, depnum);
-			 reSet = pst.executeQuery();
+			reSet = pst.executeQuery();
 			if (reSet.next()) {
 				accountNum = reSet.getLong(ACCOUNT_NUMBER);
 			}

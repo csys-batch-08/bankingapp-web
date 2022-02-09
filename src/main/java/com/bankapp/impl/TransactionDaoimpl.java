@@ -25,22 +25,18 @@ public class TransactionDaoimpl implements TransactionDao {
 	public boolean depositAmount(long senderAccNum, String uname, double amount, int pinNo, long receiverAccNO)
 			throws SQLException {
 
-		String query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
 		String selectQuery = "select balance from account_details where account_number=?";
-		String inserQuery = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
-		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
+		String inserQuery = "insert into transaction (sender_account_number,name,transaction_type,receiver_account_number,amount,balance,transaction_status)"
+				+ "values(?,?,'DEPOSIT AMOUNT',?,?,?,'CREDITED')";
 		double balance = 0;
 		boolean flag = false;
 		Connection con = null;
 		PreparedStatement ps = null;
+		PreparedStatement pst = null;
 		ResultSet rs = null;
 		try {
 			con = ConnectionUtil.getDbConnection();
-			ps = con.prepareStatement(query);
-			ps.setDouble(1, amount);
-			ps.setLong(2, receiverAccNO);
-			ps.setLong(3, receiverAccNO);
-			ps.executeUpdate();
+
 			ps = con.prepareStatement(selectQuery);
 			ps.setDouble(1, senderAccNum);
 			ps.executeUpdate();
@@ -48,20 +44,14 @@ public class TransactionDaoimpl implements TransactionDao {
 			if (rs.next()) {
 				balance = rs.getDouble(BALANCE2);
 			}
-			ps = con.prepareStatement(inserQuery);
-			ps.setLong(1, senderAccNum);
-			ps.setString(2, uname);
-			ps.setLong(3, receiverAccNO);
-			ps.setDouble(4, amount);
-			ps.setDouble(5, balance);
-			ps.executeUpdate();
-			ps = con.prepareStatement(sendQuery);
-			ps.setLong(1, senderAccNum);
-			ps.setDouble(2, amount);
-			ps.setLong(3, senderAccNum);
-			ps.setInt(4, pinNo);
+			pst = con.prepareStatement(inserQuery);
+			pst.setLong(1, senderAccNum);
+			pst.setString(2, uname);
+			pst.setLong(3, receiverAccNO);
+			pst.setDouble(4, amount);
+			pst.setDouble(5, balance);
+			pst.executeUpdate();
 
-			ps.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
 
@@ -97,7 +87,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return balance;
 	}
@@ -120,7 +110,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return balance;
 	}
@@ -144,7 +134,7 @@ public class TransactionDaoimpl implements TransactionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return 0;
 	}
@@ -153,7 +143,8 @@ public class TransactionDaoimpl implements TransactionDao {
 	public List<Transaction> getbyDate(LocalDate date) throws SQLException {
 		Connection con = null;
 		List<Transaction> list = new ArrayList<>();
-		String query = "select Sender_account_number,name,Transaction_type,Receiver_account_number,amount,transaction_status,transaction_date from transaction  where to_char(transaction_date,'dd-MM-yyyy')=? ";
+		String query = "select Sender_account_number,name,Transaction_type,Receiver_account_number,amount,transaction_status,transaction_date from transaction  "
+				+ "where to_char(transaction_date,'dd-MM-yyyy')=? ";
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
@@ -173,7 +164,7 @@ public class TransactionDaoimpl implements TransactionDao {
 			e.printStackTrace();
 
 		} finally {
-			 ConnectionUtil.closeConnection(rs, st, con);
+			ConnectionUtil.closeConnection(rs, st, con);
 		}
 		return list;
 	}
@@ -205,7 +196,7 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 		return list;
 	}
@@ -233,7 +224,7 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeConnection(rs, pst, con);
+			ConnectionUtil.closeConnection(rs, pst, con);
 		}
 
 		return list;
@@ -258,9 +249,47 @@ public class TransactionDaoimpl implements TransactionDao {
 
 			e.printStackTrace();
 		} finally {
-			 ConnectionUtil.closeStatement(rs, st, con);
+			ConnectionUtil.closeStatement(rs, st, con);
 		}
 		return date;
+	}
+
+	public boolean updateBalance(long senderAccNum, double amount, int pinNo, long receiverAccNO) throws SQLException {
+		String query = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = ? +(select balance from account_details where account_number=?) WHERE  ACCOUNT_NUMBER= ?  ";
+		String sendQuery = " UPDATE  ACCOUNT_DETAILS  SET BALANCE = (select balance from account_details where account_number=?)-? "
+				+ "WHERE  ACCOUNT_NUMBER= ? AND PIN_NUMBER= ? ";
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		PreparedStatement pst = null;
+		boolean flag = false;
+		try {
+			con = ConnectionUtil.getDbConnection();
+			ps = con.prepareStatement(query);
+			ps.setDouble(1, amount);
+			ps.setLong(2, receiverAccNO);
+			ps.setLong(3, receiverAccNO);
+			ps.executeUpdate();
+			pst = con.prepareStatement(sendQuery);
+			pst.setLong(1, senderAccNum);
+			pst.setDouble(2, amount);
+			pst.setLong(3, senderAccNum);
+			pst.setInt(4, pinNo);
+			pst.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			if (pst != null)
+				pst.close();
+			if (ps != null)
+				ps.close();
+			if (con != null)
+				con.close();
+		}
+		return flag;
+
 	}
 
 }
